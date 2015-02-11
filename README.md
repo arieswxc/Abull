@@ -1,4 +1,9 @@
 # bull
+
+### 默认的数据库是mysql数据库。使用前请先配置数据库文件
+```
+mv config/database.yml.default config/database.yml
+```
 以下是第三版的见需求：
 ![](http://7viknv.com1.z0.glb.clouddn.com/xq3-1.png?attname=&e=1423574930&token=jD-5bAN8KEOtgqDXYyBgas1wglWOolaz1kFBVRsR:_TIdrP0tfwUUmm_yG4-7QsT4d94)
 ![](http://7viknv.com1.z0.glb.clouddn.com/xq3-2.png?attname=&e=1423575928&token=jD-5bAN8KEOtgqDXYyBgas1wglWOolaz1kFBVRsR:SI_MFRgWffNyZscQ1S8f_VX6mc4)
