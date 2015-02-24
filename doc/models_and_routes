@@ -9,6 +9,8 @@ user:(use devise用户)
   id_card_number
   abstract
   has_many :followings
+  id_card_check(3 pics)
+user增加身份证图片、正面、反面、手持身份证。
 
 account:（某个用户的账户，余额、角色、评论、私信）
   user_id
@@ -17,12 +19,13 @@ account:（某个用户的账户，余额、角色、评论、私信）
   has_many :comments
   has_many :messages
   has_many :check
+  level
 
-fundraising:（发标，标的名字、操盘手、额度、到期时间、收益、收益率、状态、投标s）
+fund:（发标，标的名字、操盘手、额度、到期时间、收益、收益率、状态、投标s）
   name
   user_id
   amount
-  deadline
+  colleciton_deadline
   earning
   earning_rate
   state: on, off
@@ -30,8 +33,18 @@ fundraising:（发标，标的名字、操盘手、额度、到期时间、收�
   has_many: comments
   private: true false
   minimum
-  collection_end_day
+  invest_starting_date
+  invest_ending_date
   industry  
+
+homs
+子账户用户名、密码、
+has_many properties
+
+property(关联到历史)
+  user_id
+  date
+  amount(总资产)。
 
 invest:（投资:某人在某天投资某个标，以及投入的钱数）
   user_id(investing)
