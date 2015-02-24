@@ -1,0 +1,98 @@
+models
+
+user:(use devise用户)
+  avatar
+  email
+  password
+  nick_name
+  real_name
+  id_card_number
+  abstract
+  has_many :followings
+
+account:（某个用户的账户，余额、角色、评论、私信）
+  user_id
+  balance
+  role: investing fundraising
+  has_many :comments
+  has_many :messages
+  has_many :check
+
+fundraising:（发标，标的名字、操盘手、额度、到期时间、收益、收益率、状态、投标s）
+  name
+  user_id
+  amount
+  deadline
+  earning
+  earning_rate
+  state: on, off
+  has_many: invests
+  has_many: comments
+  private: true false
+  minimum
+  collection_end_day
+  industry  
+
+invest:（投资:某人在某天投资某个标，以及投入的钱数）
+  user_id(investing)
+  number
+  fundraising_id
+  date
+
+news:（动态）
+  title
+  content
+  date
+
+topic: （热门话题）
+  title
+  user_id
+  content
+  datetime
+  
+check:（充值、提现）
+  account_id
+  number
+  date
+  type: in out
+
+record:(交易记录)
+  account_id
+  ??(invest)
+
+peizi（某人在某时向平台配资多少）
+  user_id
+  date
+  number
+  description
+  deadline
+  status: apply/confirm/finish
+comment:
+  user_id
+  commentable_type
+  commentable_id
+  title
+  comment
+
+routes:
+resources: user
+  login
+  signup
+  id_check on: :member
+  profile: user=>show
+  following on: :member
+  unfollowing on: :member
+
+resource: account
+  checkin on: :member
+  checkout on: :meber
+
+resources：fundraising
+resources: invest
+resources: news
+resources: topic
+resrouces: check
+resources: record
+resources: peizi
+resources: sns
+  topics_list
