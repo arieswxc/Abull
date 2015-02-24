@@ -3,13 +3,14 @@ models
 user:(use devise用户)
   avatar
   email
-  password
+  password(8位，必须是字母和数字的混合,前端设个强度指示的检查,jiecheng(2/24))
   nick_name
-  real_name
+  real_name(姓名不用分开jiecheng(2/24))
   id_card_number
   abstract
   has_many :followings
   id_card_check(3 pics)
+  cell
 user增加身份证图片、正面、反面、手持身份证。
 
 account:（某个用户的账户，余额、角色、评论、私信）
