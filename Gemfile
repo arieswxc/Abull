@@ -30,7 +30,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'unicorn'
 
 # Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'capistrano-rails', group: :development
+gem 'capistrano-rvm', group: :development
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -48,6 +49,11 @@ gem 'devise'
 # follower relationship
 gem "acts_as_follower"
 gem 'bootstrap-sass'
+# User ransack for database searching
+gem 'ransack'
+
+# User kaminari for pagination
+gem 'kaminari'
 
 # For user avatar
 gem 'carrierwave'

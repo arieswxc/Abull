@@ -50,7 +50,7 @@ https://github.com/crowdint/acts_as_shopping_cart
 https://github.com/collectiveidea/acts_as_geocodable
 
 ## 数据库搜索组件
-gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4.1"
+gem "ransack"
 
 ## cancan 权限处理
 
