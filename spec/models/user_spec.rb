@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe User do
+RSpec.describe User, type: :model do
   # normal
   it "is valid with email and password" do
     expect(create(:user)).to be_valid
@@ -46,7 +46,7 @@ describe User do
   end
 
   # nick_name
-  it "is valid without real_name" do
+  it "is valid without nick_name" do
     expect(build(:user, nick_name: nil)).to be_valid
   end
 end
