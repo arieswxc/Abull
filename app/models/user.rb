@@ -4,4 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, 
          :recoverable, :rememberable, :trackable, :validatable
   mount_uploader :avatar, AvatarUploader
+  has_many :funds
+  has_many :invests
+
+  acts_as_followable
+  acts_as_follower
 end

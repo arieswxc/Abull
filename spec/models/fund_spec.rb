@@ -30,8 +30,8 @@ RSpec.describe Fund, type: :model do
   end
 
   # collection_deadline
-  it "is invalid without colleciton_deadline" do
-    expect(build(:fund, colleciton_deadline: nil)).to be_invalid
+  it "is invalid without collection_deadline" do
+    expect(build(:fund, collection_deadline: nil)).to be_invalid
   end
 
   # earning

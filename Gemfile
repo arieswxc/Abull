@@ -45,6 +45,8 @@ end
 
 gem 'activeadmin', github: 'activeadmin'
 gem 'devise'
+# follower relationship
+gem "acts_as_follower"
 gem 'bootstrap-sass'
 
 # For user avatar

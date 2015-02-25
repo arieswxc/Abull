@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150225044101) do
+ActiveRecord::Schema.define(version: 20150225051808) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -28,11 +28,24 @@ ActiveRecord::Schema.define(version: 20150225044101) do
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
 
+  create_table "follows", force: :cascade do |t|
+    t.integer  "followable_id",   limit: 4,                   null: false
+    t.string   "followable_type", limit: 255,                 null: false
+    t.integer  "follower_id",     limit: 4,                   null: false
+    t.string   "follower_type",   limit: 255,                 null: false
+    t.boolean  "blocked",         limit: 1,   default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "follows", ["followable_id", "followable_type"], name: "fk_followables", using: :btree
+  add_index "follows", ["follower_id", "follower_type"], name: "fk_follows", using: :btree
+
   create_table "funds", force: :cascade do |t|
     t.string   "name",                 limit: 255
     t.integer  "user_id",              limit: 4
     t.decimal  "amount",                           precision: 12, scale: 2
-    t.datetime "colleciton_deadline"
+    t.datetime "collection_deadline"
     t.decimal  "earning",                          precision: 12, scale: 2, default: 0.0
     t.decimal  "earning_rate",                     precision: 6,  scale: 4
     t.string   "state",                limit: 255

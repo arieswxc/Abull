@@ -3,7 +3,7 @@ FactoryGirl.define do
     name                "MyString"
     association         :user
     amount              "9.99"
-    colleciton_deadline "2015-02-24 22:20:20"
+    collection_deadline "2015-02-24 22:20:20"
     earning             "9.99"
     earning_rate        "9.99"
     state               "on"
