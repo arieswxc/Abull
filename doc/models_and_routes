@@ -16,7 +16,7 @@ user增加身份证图片、正面、反面、手持身份证。
 account:（某个用户的账户，余额、角色、评论、私信）
   user_id
   balance
-  role: investing fundraising
+  role: investing fund
   has_many :comments
   has_many :messages
   has_many :check
@@ -51,7 +51,7 @@ property(关联到历史)
 invest:（投资:某人在某天投资某个标，以及投入的钱数）
   user_id(investing)
   number
-  fundraising_id
+  fund_id
   date
 
 news:（动态）
@@ -102,7 +102,7 @@ resource: account
   checkin on: :member
   checkout on: :meber
 
-resources：fundraising
+resources：fund
 resources: invest
 resources: news
 resources: topic

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150224142020) do
+ActiveRecord::Schema.define(version: 20150225044101) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -33,18 +33,30 @@ ActiveRecord::Schema.define(version: 20150224142020) do
     t.integer  "user_id",              limit: 4
     t.decimal  "amount",                           precision: 12, scale: 2
     t.datetime "colleciton_deadline"
-    t.decimal  "earning",                          precision: 12, scale: 2
+    t.decimal  "earning",                          precision: 12, scale: 2, default: 0.0
     t.decimal  "earning_rate",                     precision: 6,  scale: 4
     t.string   "state",                limit: 255
-    t.boolean  "private_check",        limit: 1
+    t.boolean  "private_check",        limit: 1,                            default: true
     t.decimal  "minimum",                          precision: 12, scale: 2
     t.datetime "invest_starting_date"
     t.datetime "invest_ending_date"
-    t.datetime "created_at",                                                null: false
-    t.datetime "updated_at",                                                null: false
+    t.datetime "created_at",                                                               null: false
+    t.datetime "updated_at",                                                               null: false
   end
 
   add_index "funds", ["user_id"], name: "index_funds_on_user_id", using: :btree
+
+  create_table "invests", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "fund_id",    limit: 4
+    t.decimal  "number",               precision: 12, scale: 2, default: 0.0
+    t.datetime "date"
+    t.datetime "created_at",                                                  null: false
+    t.datetime "updated_at",                                                  null: false
+  end
+
+  add_index "invests", ["fund_id"], name: "index_invests_on_fund_id", using: :btree
+  add_index "invests", ["user_id"], name: "index_invests_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
@@ -69,4 +81,6 @@ ActiveRecord::Schema.define(version: 20150224142020) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "funds", "users"
+  add_foreign_key "invests", "funds"
+  add_foreign_key "invests", "users"
 end
