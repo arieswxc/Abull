@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/activeadmin/activeadmin.git
-  revision: 97bf84a405077364dc89bf3ec5ee368f226fe9c2
+  revision: a0bf8da21b7a6f37e1ad28790187e0244a0d5466
   specs:
     activeadmin (1.0.0.pre)
       arbre (~> 1.0, >= 1.0.2)
@@ -102,6 +102,9 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    carrierwave-qiniu (0.1.5)
+      carrierwave
+      qiniu (~> 6.2.4)
     childprocess (0.5.5)
       ffi (~> 1.0, >= 1.0.11)
     coffee-rails (4.1.0)
@@ -168,7 +171,7 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    mime-types (2.4.3)
+    mime-types (1.25.1)
     mini_portile (0.6.2)
     minitest (5.5.1)
     multi_json (1.10.1)
@@ -176,11 +179,22 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
+    netrc (0.10.3)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
     polyamorous (1.1.0)
       activerecord (>= 3.0)
+    qiniu (6.2.4)
+      json (~> 1.7)
+      mime-types (~> 1.19)
+      rest-client (~> 1.6)
+      ruby-hmac (~> 0.4)
+    qiniu-rs (3.4.10)
+      json (~> 1.7)
+      mime-types (~> 1.19)
+      rest-client (~> 1.6)
+      ruby-hmac (~> 0.4)
     rack (1.6.0)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -218,6 +232,9 @@ GEM
     rdoc (4.2.0)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
+    rest-client (1.7.3)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     rmagick (2.13.4)
     rspec-core (3.2.1)
       rspec-support (~> 3.2.0)
@@ -236,6 +253,7 @@ GEM
       rspec-mocks (~> 3.2.0)
       rspec-support (~> 3.2.0)
     rspec-support (3.2.2)
+    ruby-hmac (0.4.0)
     rubyzip (1.1.7)
     sass (3.4.12)
     sass-rails (5.0.1)
@@ -300,6 +318,7 @@ DEPENDENCIES
   capistrano-rvm
   capybara
   carrierwave
+  carrierwave-qiniu
   coffee-rails (~> 4.1.0)
   database_cleaner
   devise
@@ -310,6 +329,7 @@ DEPENDENCIES
   kaminari
   launchy
   mysql2
+  qiniu-rs
   rails (= 4.2.0)
   ransack
   rmagick

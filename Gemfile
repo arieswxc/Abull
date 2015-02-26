@@ -57,6 +57,8 @@ gem 'kaminari'
 
 # For user avatar
 gem 'carrierwave'
+gem 'qiniu-rs'
+gem 'carrierwave-qiniu'
 gem 'rmagick'
 
 group :development, :test do
