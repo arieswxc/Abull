@@ -61,7 +61,11 @@ gem 'qiniu-rs'
 gem 'carrierwave-qiniu'
 gem 'rmagick'
 
+# For i18n
 gem 'rails-i18n'
+
+# For comment
+gem 'acts_as_commentable'
 
 group :development, :test do
   gem 'rspec-rails'
