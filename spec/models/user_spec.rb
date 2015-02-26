@@ -16,7 +16,7 @@ RSpec.describe User, type: :model do
     user = create(:user)
     duplicate_email_user = build(:user, email: user.email)
     duplicate_email_user.valid?
-    expect(duplicate_email_user.errors[:email]).to include('has already been taken')
+    expect(duplicate_email_user.errors[:email]).to include(I18n.t('errors.messages.taken'))
   end
 
   # avatar
@@ -32,7 +32,7 @@ RSpec.describe User, type: :model do
   it "is invalid if password too short: minimum is 8 characters" do
     user = build(:user, password: "111111")
     user.valid?
-    expect(user.errors[:password]).to include('is too short (minimum is 8 characters)')
+    expect(user.errors[:password]).to include(I18n.t('errors.messages.too_short.other', count: 8))
   end
 
   # cell

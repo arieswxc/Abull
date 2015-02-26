@@ -61,6 +61,8 @@ gem 'qiniu-rs'
 gem 'carrierwave-qiniu'
 gem 'rmagick'
 
+gem 'rails-i18n'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'

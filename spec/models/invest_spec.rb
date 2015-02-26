@@ -25,6 +25,6 @@ RSpec.describe Invest, type: :model do
     invest = build(:invest, number: "invalid")
     invest.valid?
     expect(invest).to be_invalid
-    expect(invest.errors[:number]).to include("is not a number")
+    expect(invest.errors[:number]).to include(I18n.t('errors.messages.not_a_number'))
   end
 end

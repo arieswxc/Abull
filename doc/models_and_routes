@@ -75,13 +75,13 @@ record:(交易记录)
   account_id
   ??(invest)
 
-peizi（某人在某时向平台配资多少）
-  user_id
-  date
-  number
-  description
-  deadline
-  status: apply/confirm/finish
+Leverage（某人在某时向平台配资多少）
+  user_id:references
+  date:datetime
+  number:decimal{12,2}
+  description:text
+  deadline:datetime
+  state: apply/confirm/finish
 comment:
   user_id
   commentable_type

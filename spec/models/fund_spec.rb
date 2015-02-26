@@ -26,7 +26,7 @@ RSpec.describe Fund, type: :model do
     fund = build(:fund, amount: "invalid")
     fund.valid?
     expect(fund).to be_invalid
-    expect(fund.errors[:amount]).to include("is not a number")
+    expect(fund.errors[:amount]).to include(I18n.t('errors.messages.not_a_number'))
   end
 
   # collection_deadline
@@ -39,21 +39,21 @@ RSpec.describe Fund, type: :model do
     fund = build(:fund, earning: nil)
     fund.valid?
     expect(fund).to be_invalid
-    expect(fund.errors[:earning]).to include("is not a number")
+    expect(fund.errors[:earning]).to include(I18n.t('errors.messages.not_a_number'))
   end
 
   # state
   it "is invalid without state" do
     fund = build(:fund, state: nil)
     expect(fund).to be_invalid
-    expect(fund.errors[:state]).to include("can't be blank")
+    expect(fund.errors[:state]).to include(I18n.t('errors.messages.blank'))
   end
 
   it "is invalid without state: only 'on' and 'off'" do
     fund = build(:fund, state: "invalid")
     fund.valid?
     expect(fund).to be_invalid
-    expect(fund.errors[:state]).to include("is not included in the list")
+    expect(fund.errors[:state]).to include(I18n.t('errors.messages.inclusion'))
   end
 
   it "is valid when state is 'on' or 'off' " do
@@ -66,7 +66,7 @@ RSpec.describe Fund, type: :model do
     fund = build(:fund, private_check: nil)
     fund.valid?
     expect(fund).to be_invalid
-    expect(fund.errors[:private_check]).to include("is not included in the list")
+    expect(fund.errors[:private_check]).to include(I18n.t('errors.messages.inclusion'))
   end
 
   # minimum

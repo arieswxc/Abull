@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150225051808) do
+ActiveRecord::Schema.define(version: 20150226065304) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -71,6 +71,19 @@ ActiveRecord::Schema.define(version: 20150225051808) do
   add_index "invests", ["fund_id"], name: "index_invests_on_fund_id", using: :btree
   add_index "invests", ["user_id"], name: "index_invests_on_user_id", using: :btree
 
+  create_table "leverages", force: :cascade do |t|
+    t.integer  "user_id",     limit: 4
+    t.datetime "date"
+    t.decimal  "number",                    precision: 12, scale: 2
+    t.text     "description", limit: 65535
+    t.datetime "deadline"
+    t.string   "state",       limit: 255
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+  end
+
+  add_index "leverages", ["user_id"], name: "index_leverages_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
@@ -96,4 +109,5 @@ ActiveRecord::Schema.define(version: 20150225051808) do
   add_foreign_key "funds", "users"
   add_foreign_key "invests", "funds"
   add_foreign_key "invests", "users"
+  add_foreign_key "leverages", "users"
 end
