@@ -1,11 +1,11 @@
 models
 
 user:(use devise用户)
-  avatar
-  email
-  password(8位，必须是字母和数字的混合,前端设个强度指示的检查,jiecheng(2/24))
-  nick_name
-  real_name(姓名不用分开jiecheng(2/24))
+  avatar:string
+  email:string
+  password:string(8位，必须是字母和数字的混合,前端设个强度指示的检查,jiecheng(2/24))
+  nick_name:string
+  real_name:string(姓名不用分开jiecheng(2/24))
   id_card_number
   abstract
   has_many :followings
@@ -83,11 +83,11 @@ Leverage（某人在某时向平台配资多少）
   deadline:datetime
   state: apply/confirm/finish
 comment:
-  user_id
-  commentable_type
-  commentable_id
-  title
-  comment
+  user_id:references
+  commentable_type:string
+  commentable_id:reference
+  title:string
+  comment:text
 
 routes:
 resources: user

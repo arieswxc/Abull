@@ -46,6 +46,7 @@ end
 
 gem 'activeadmin', github: 'activeadmin'
 gem 'devise'
+gem 'devise-i18n-views'
 # follower relationship
 gem "acts_as_follower"
 gem 'bootstrap-sass'
