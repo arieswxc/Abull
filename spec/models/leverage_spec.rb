@@ -45,6 +45,11 @@ RSpec.describe Leverage, type: :model do
     expect(leverage.errors[:deadline]).to include(I18n.t('errors.messages.blank'))
   end
 
+  it "should be invalid when deadline is before date (TODO add the case)" do
+    expect(false).to be_true 
+    # TODO add the case
+  end
+    
   # state
   it "is invalid when state is nil" do
     leverage = build(:leverage, state: nil)
@@ -62,6 +67,8 @@ RSpec.describe Leverage, type: :model do
 
   it "is valid when state is included" do
     expect(create(:leverage, state: "confirm")).to be_valid
+    expect(create(:leverage, state: "apply")).to be_valid
+    expect(create(:leverage, state: "closed")).to be_valid
   end
 
   # description
