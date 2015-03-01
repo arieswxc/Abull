@@ -31,30 +31,17 @@ jbuilder
 		helps implement multiple-table-inheritance (MTI) methods to your ActiveRecord models
 https://github.com/hzamani/acts_as_relation
 
-## follower
-https://github.com/tcocca/acts_as_follower
-
-## comment支持
-https://github.com/jackdempsey/acts_as_commentable
-
 ## 投票
 https://github.com/ryanto/acts_as_votable
 
 ## Supported Payment Gateways
 https://github.com/Shopify/active_merchant
 
-## 把投标视为一个single item shop cart
-https://github.com/crowdint/acts_as_shopping_cart
 
 ## 简单地理位置获取
 https://github.com/collectiveidea/acts_as_geocodable
 
-## 数据库搜索组件
-gem "ransack"
-
 ## cancan 权限处理
-
-## devise 用户处理
 
 ## FriendlyId 
 		把数字id改为有意义id
