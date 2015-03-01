@@ -62,4 +62,19 @@ RSpec.describe User, type: :model do
   it "is valid without nick_name" do
     expect(build(:user, nick_name: nil)).to be_valid
   end
+
+  # id_card_number
+  it "is valid without id_card_number" do
+    expect(build(:user, id_card_number: nil)).to be_valid
+  end
+
+  # abstract
+  it "is valid without abstract" do
+    expect(build(:user, abstract: nil)).to be_valid
+  end
+
+  # level
+  it "is valid without level" do
+    expect(build(:user, level: nil)).to be_valid
+  end
 end

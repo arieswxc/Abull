@@ -6,39 +6,21 @@ user:(use devise用户)
   password:string(8位，必须是字母和数字的混合,前端设个强度指示的检查,jiecheng(2/24))
   nick_name:string
   real_name:string(姓名不用分开jiecheng(2/24))
-  id_card_number
-  abstract
+  id_card_number:string
+  abstract:text
   has_many :followings
   id_card_check(3 pics)
-  cell
-user增加身份证图片、正面、反面、手持身份证。
+  cell:string
+  level:string enum
+  has_many :comments
+  has_many :messages
+  user增加身份证图片、正面、反面、手持身份证。
 
 account:（某个用户的账户，余额、角色、评论、私信）
   user_id
   balance
-  role: investing fund
-  has_many :comments
-  has_many :messages
   has_many :check
-  level
 
-##fund:（发标，标的名字、操盘手、额度、到期时间、收益、收益率、状态、投标s）
-```ruby
-  name:string
-  user_id:references
-  amount:decimal{12,2}
-  colleciton_deadline:datetime
-  earning:decimal{12,2}
-  earning_rate:decimal{6,4}
-  state:string in {on, off}
-  has_many: invests
-  has_many: comments
-  private_item:boolean
-  minimum:decimal{12,2}
-  invest_starting_date:datetime
-  invest_ending_date:datetime
-  industry??
-```
 homs
 子账户用户名、密码、
 has_many properties
@@ -48,11 +30,35 @@ property(关联到历史)
   date
   amount(总资产)。
 
+##fund:（发标，标的名字、操盘手、额度、到期时间、收益、收益率、状态、投标s）
+```ruby
+  name:string
+  user_id:references
+  amount:decimal{12,2}
+  colleciton_deadline:datetime
+  earning:decimal{12,2}
+  expected_earning_rate:decimal{12,4}
+  earning_rate:decimal{12,4}
+  state:string in {on, off}
+  has_many: invests
+  has_many: comments
+  private_item:string
+  minimum:decimal{12,2}
+  invest_starting_date:datetime
+  invest_ending_date:datetime
+  description:text(投资方向)
+  risk_method:text(风控措施)
+  homs_id
+  initial_amount:decimal{12,2}
+```
+
 invest:（投资:某人在某天投资某个标，以及投入的钱数）
   user_id(investing)
-  number
-  fund_id
-  date
+  amount:decimal{12,2}
+  fund_id:references
+  date:datetime
+  payback:decimal{12,2}(回报)
+  close_day:datetime(清算日期)
 
 news:（动态）
   title
@@ -66,14 +72,10 @@ topic: （热门话题）
   datetime
   
 check:（充值、提现）
-  account_id
-  number
-  date
-  type: in out
-
-record:(交易记录)
-  account_id
-  ??(invest)
+  account_id:references
+  amount:decimal{12,2}
+  date:datetime
+  type:string(描述交易类型)
 
 Leverage（某人在某时向平台配资多少）
   user_id:references
@@ -81,7 +83,9 @@ Leverage（某人在某时向平台配资多少）
   number:decimal{12,2}
   description:text
   deadline:datetime
-  state: apply/confirm/finish
+  state: applied/confirmed/closed
+  homs_id:references
+
 comment:
   user_id:references
   commentable_type:string

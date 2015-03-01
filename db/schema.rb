@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150226124903) do
+ActiveRecord::Schema.define(version: 20150301080823) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -57,19 +57,23 @@ ActiveRecord::Schema.define(version: 20150226124903) do
   add_index "follows", ["follower_id", "follower_type"], name: "fk_follows", using: :btree
 
   create_table "funds", force: :cascade do |t|
-    t.string   "name",                 limit: 255
-    t.integer  "user_id",              limit: 4
-    t.decimal  "amount",                           precision: 12, scale: 2
+    t.string   "name",                  limit: 255
+    t.integer  "user_id",               limit: 4
+    t.decimal  "amount",                              precision: 12, scale: 2
     t.datetime "collection_deadline"
-    t.decimal  "earning",                          precision: 12, scale: 2, default: 0.0
-    t.decimal  "earning_rate",                     precision: 6,  scale: 4
-    t.string   "state",                limit: 255
-    t.boolean  "private_check",        limit: 1,                            default: true
-    t.decimal  "minimum",                          precision: 12, scale: 2
+    t.decimal  "earning",                             precision: 12, scale: 2, default: 0.0
+    t.decimal  "earning_rate",                        precision: 12, scale: 4
+    t.string   "state",                 limit: 255
+    t.string   "private_check",         limit: 255,                            default: "private"
+    t.decimal  "minimum",                             precision: 12, scale: 2
     t.datetime "invest_starting_date"
     t.datetime "invest_ending_date"
-    t.datetime "created_at",                                                               null: false
-    t.datetime "updated_at",                                                               null: false
+    t.datetime "created_at",                                                                       null: false
+    t.datetime "updated_at",                                                                       null: false
+    t.decimal  "expected_earning_rate",               precision: 12, scale: 4
+    t.text     "description",           limit: 65535
+    t.text     "risk_method",           limit: 65535
+    t.decimal  "initial_amount",                      precision: 12, scale: 2
   end
 
   add_index "funds", ["user_id"], name: "index_funds_on_user_id", using: :btree
@@ -77,10 +81,12 @@ ActiveRecord::Schema.define(version: 20150226124903) do
   create_table "invests", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
     t.integer  "fund_id",    limit: 4
-    t.decimal  "number",               precision: 12, scale: 2, default: 0.0
+    t.decimal  "amount",               precision: 12, scale: 2, default: 0.0
     t.datetime "date"
     t.datetime "created_at",                                                  null: false
     t.datetime "updated_at",                                                  null: false
+    t.decimal  "payback",              precision: 12, scale: 2
+    t.datetime "close_day"
   end
 
   add_index "invests", ["fund_id"], name: "index_invests_on_fund_id", using: :btree
@@ -100,12 +106,12 @@ ActiveRecord::Schema.define(version: 20150226124903) do
   add_index "leverages", ["user_id"], name: "index_leverages_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
+    t.string   "email",                  limit: 255,   default: "", null: false
+    t.string   "encrypted_password",     limit: 255,   default: "", null: false
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.integer  "sign_in_count",          limit: 4,     default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
@@ -116,6 +122,9 @@ ActiveRecord::Schema.define(version: 20150226124903) do
     t.string   "cell",                   limit: 255
     t.string   "nick_name",              limit: 255
     t.string   "real_name",              limit: 255
+    t.string   "id_card_number",         limit: 255
+    t.text     "abstract",               limit: 65535
+    t.string   "level",                  limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

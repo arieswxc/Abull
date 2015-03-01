@@ -5,6 +5,6 @@ FactoryGirl.define do
     number      "9.99"
     description "MyText"
     deadline    "2015-02-26 14:53:04"
-    state       "apply"
+    state       "applied"
   end
 end

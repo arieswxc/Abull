@@ -66,8 +66,8 @@ RSpec.describe Leverage, type: :model do
   end
 
   it "is valid when state is included" do
-    expect(create(:leverage, state: "confirm")).to be_valid
-    expect(create(:leverage, state: "apply")).to be_valid
+    expect(create(:leverage, state: "applied")).to be_valid
+    expect(create(:leverage, state: "confirmed")).to be_valid
     expect(create(:leverage, state: "closed")).to be_valid
   end
 

@@ -7,7 +7,7 @@ class Fund < ActiveRecord::Base
   validates :earning,             numericality: true
   validates :state,               presence: true
   validates :state,               inclusion: { in: ["on", "off"] }
-  validates :private_check,       inclusion: { in: [true, false] }
+  validates :private_check,       inclusion: { in: ["private", "public"] }
   validates :invest_starting_date, presence: true
   validates :invest_ending_date,  presence: true
   belongs_to  :user

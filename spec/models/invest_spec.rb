@@ -16,15 +16,15 @@ RSpec.describe Invest, type: :model do
     expect(build(:invest, date: nil)).to be_invalid
   end
 
-  # number
-  it "is invalid when number is nil" do
-    expect(build(:invest, number: nil)).to be_invalid
+  # amount
+  it "is invalid when amount is nil" do
+    expect(build(:invest, amount: nil)).to be_invalid
   end
 
-  it "is invalid when number is not a number" do
-    invest = build(:invest, number: "invalid")
+  it "is invalid when amount is not a number" do
+    invest = build(:invest, amount: "invalid")
     invest.valid?
     expect(invest).to be_invalid
-    expect(invest.errors[:number]).to include(I18n.t('errors.messages.not_a_number'))
+    expect(invest.errors[:amount]).to include(I18n.t('errors.messages.not_a_number'))
   end
 end
