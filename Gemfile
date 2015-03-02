@@ -32,6 +32,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 gem 'capistrano-rails', group: :development
 gem 'capistrano-rvm', group: :development
+gem 'capistrano-passenger'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -68,6 +69,9 @@ gem 'rails-i18n'
 
 # For comment
 gem 'acts_as_commentable'
+
+# User thin to replace of webrick
+gem 'thin'
 
 group :development, :test do
   gem 'rspec-rails'
