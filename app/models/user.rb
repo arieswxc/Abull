@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, 
          :recoverable, :rememberable, :trackable, :validatable
+  validates :password, format: { with: /(?=.*[a-z])(?=.*\d)/i}
   mount_uploader :avatar, AvatarUploader
   has_many :funds
   has_many :invests

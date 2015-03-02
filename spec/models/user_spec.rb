@@ -37,13 +37,14 @@ RSpec.describe User, type: :model do
     expect(user.errors[:password]).to include(I18n.t('errors.messages.too_short.other', count: 8))
   end
 
-  it "should contian both characters and numbers (@ken pls check the case first)" do
+  it "should contian both characters and numbers" do
     #TODO pls check the case first
     user = build(:user, password:"1234abcd")
     expect(user).to be_valid
-    user = build(:user, password:"121334545")
+    user = build(:user, password:"123456789")
+    user.valid?
     expect(user).to be_invalid
-    #TODO @ken add some assert
+    expect(user.errors[:password]).to include(I18n.t("errors.messages.invalid"))
   end
 
   # cell
