@@ -4,7 +4,7 @@ FactoryGirl.define do
     date        "2015-02-26 14:53:04"
     number      "9.99"
     description "MyText"
-    deadline    "2015-02-26 14:53:04"
+    deadline    Time.now + 1.days
     state       "applied"
   end
 end
