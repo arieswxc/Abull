@@ -61,15 +61,15 @@ invest:（投资:某人在某天投资某个标，以及投入的钱数）
   close_day:datetime(清算日期)
 
 news:（动态）
-  title
-  content
-  date
+  title:string
+  content:text
+  datetime:datetime
 
 topic: （热门话题）
-  title
-  user_id
-  content
-  datetime
+  title:string
+  user_id:references
+  content:text
+  datetime:datetime
   
 check:（充值、提现）
   account_id:references
