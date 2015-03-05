@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :fund do
-    name                  "MyString"
+    name                  {Faker::Name.title}
     association           :user
     amount                "9.99"
     collection_deadline   "2015-02-24 22:20:20"

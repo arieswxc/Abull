@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :news do
-    title "MyString"
-    content "MyText"
-    date "2015-03-05 12:43:45"
+    title   {Faker::Name.title}
+    content {Faker::Lorem.paragraph}
+    date    {Faker::Time.between(2.days.ago, Time.now)}
   end
 end
