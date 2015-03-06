@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
   has_many :funds
   has_many :invests
+  has_many :photos
 
   acts_as_followable
   acts_as_follower

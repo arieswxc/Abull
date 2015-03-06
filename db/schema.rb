@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305050157) do
+ActiveRecord::Schema.define(version: 20150305065735) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -131,6 +131,16 @@ ActiveRecord::Schema.define(version: 20150305050157) do
     t.datetime "updated_at",               null: false
   end
 
+  create_table "photos", force: :cascade do |t|
+    t.string   "title",      limit: 255
+    t.string   "photo",      limit: 255
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "photos", ["user_id"], name: "index_photos_on_user_id", using: :btree
+
   create_table "topics", force: :cascade do |t|
     t.string   "title",      limit: 255
     t.text     "content",    limit: 65535
@@ -171,5 +181,6 @@ ActiveRecord::Schema.define(version: 20150305050157) do
   add_foreign_key "invests", "funds"
   add_foreign_key "invests", "users"
   add_foreign_key "leverages", "users"
+  add_foreign_key "photos", "users"
   add_foreign_key "topics", "users"
 end

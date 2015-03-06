@@ -49,33 +49,48 @@ RSpec.describe User, type: :model do
 
   # cell
   it "is valid without cell" do
-    expect(build(:user, cell: nil)).to be_valid
+    expect(create(:user, cell: nil)).to be_valid
   end
 
   # real_name
   it "is valid without real_name" do
-    expect(build(:user, real_name: nil)).to be_valid
+    expect(create(:user, real_name: nil)).to be_valid
   end
 
 
 
   # nick_name
   it "is valid without nick_name" do
-    expect(build(:user, nick_name: nil)).to be_valid
+    expect(create(:user, nick_name: nil)).to be_valid
   end
 
   # id_card_number
   it "is valid without id_card_number" do
-    expect(build(:user, id_card_number: nil)).to be_valid
+    expect(create(:user, id_card_number: nil)).to be_valid
   end
 
   # abstract
   it "is valid without abstract" do
-    expect(build(:user, abstract: nil)).to be_valid
+    expect(create(:user, abstract: nil)).to be_valid
   end
 
   # level
   it "is valid without level" do
-    expect(build(:user, level: nil)).to be_valid
+    expect(create(:user, level: nil)).to be_valid
+  end
+
+  # photos
+  it "has many photos" do
+    user  = create(:user)
+    photo = create(:photo, user_id: user.id)
+    expect(user.photos.first).to eq photo
+  end
+
+  it "has unique photo title" do
+    user    = create(:user)
+    photo   = create(:photo, user_id: user.id, title: "id card")
+    photo1  = build(:photo, user_id: user.id, title: "id card")
+    expect(photo1).to be_invalid
+    expect(photo1.errors[:title]).to include(I18n.t("errors.messages.taken"))
   end
 end
