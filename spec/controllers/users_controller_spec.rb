@@ -12,7 +12,9 @@ RSpec.describe UsersController, type: :controller do
 
   describe "POST #update_real_name" do
     context "with valid params" do
-      it "updates the requested user with real_name" do
+      it "updates the requested user with real_name,
+          assgin the requested user as @user,
+          redirect_to the user" do
         user = create(:user)
         put :update_real_name, {id: user.to_param, user: {real_name: "new_real_name", password: user.password}}
         user.reload
@@ -23,7 +25,13 @@ RSpec.describe UsersController, type: :controller do
     end
 
     context "with invalid params" do
-      #
+      it "assigns the user as @user,
+          re_renders the 'edit' template" do
+        user = create(:user)
+        put :update_real_name, {id: user.to_param, user: {real_name: "new_real_name", password: "wrongpassword"}}
+        expect(assigns(:user)).to eq user
+        expect(response).to       render_template("edit_real_name")
+      end
     end
   end
 end
