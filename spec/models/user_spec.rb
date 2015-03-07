@@ -122,4 +122,11 @@ RSpec.describe User, type: :model do
     follwer.follow(user)
     expect(follwer.following_users.first).to eq user
   end
+
+  # topics
+  it "has many topics" do
+    user  = create(:user)
+    topic = create(:topic, user_id: user.id)
+    expect(user.topics.first).to eq topic
+  end
 end

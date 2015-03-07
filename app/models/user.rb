@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :invests
   has_many :leverages
   has_many :photos
+  has_many :topics
 
   acts_as_followable
   acts_as_follower
