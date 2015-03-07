@@ -12,7 +12,7 @@ RSpec.describe LeveragesController, type: :controller do
       get :index, {user_id: user.to_param}
       expect(assigns(:user)).to               eq user
       expect(assigns(:leverages).count).to      eq 20
-      expect(assigns(:total_leverage_value)).to eq user.leverages.sum(:number)
+      expect(assigns(:total_leverage_value)).to eq user.leverages.sum(:amount)
     end
   end
 end

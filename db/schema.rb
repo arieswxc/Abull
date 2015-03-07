@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305065735) do
+ActiveRecord::Schema.define(version: 20150307055700) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(version: 20150305065735) do
   create_table "leverages", force: :cascade do |t|
     t.integer  "user_id",     limit: 4
     t.datetime "date"
-    t.decimal  "number",                    precision: 12, scale: 2
+    t.decimal  "amount",                    precision: 12, scale: 2
     t.text     "description", limit: 65535
     t.datetime "deadline"
     t.string   "state",       limit: 255
