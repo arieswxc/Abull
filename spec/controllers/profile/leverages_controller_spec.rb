@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe LeveragesController, type: :controller do
+RSpec.describe Profile::LeveragesController, type: :controller do
   describe "GET #index" do
     it "assigns user                as @user,
         assigns all leverages         as @leverages,

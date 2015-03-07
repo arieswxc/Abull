@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe FollowingTopicsController, type: :controller do
+RSpec.describe Profile::FollowingTopicsController, type: :controller do
   describe "GET #index" do
     it "assigns user                  as @user,
         assigns followings            as @followings,

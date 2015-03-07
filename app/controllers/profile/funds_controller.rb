@@ -1,4 +1,4 @@
-class FundsController < ApplicationController
+class Profile::FundsController < ApplicationController
   def index
     @user             = User.find(params[:user_id])
     @funds            = @user.funds

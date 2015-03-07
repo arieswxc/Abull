@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe InvestsController, type: :controller do
+RSpec.describe Profile::InvestsController, type: :controller do
   describe "GET #index" do
     it "assigns user                as @user,
         assigns all invests         as @invests,

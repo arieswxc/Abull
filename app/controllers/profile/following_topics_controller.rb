@@ -1,4 +1,4 @@
-class FollowingTopicsController < ApplicationController
+class Profile::FollowingTopicsController < ApplicationController
   def index
     @user             = User.find(params[:user_id])
     @followings       = @user.following_users
