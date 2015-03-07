@@ -6,18 +6,26 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   
     <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="assets/one.css">
     <link rel="stylesheet" href="assets/plugins/bootstrap.min.css">
     <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/one.style.css">
 
     <!-- CSS Implementing Plugins -->
     <link rel="stylesheet" href="assets/plugins/line-icons.css">
-    <link rel="stylesheet" href="assets/plugins/font-awesome.min.css">
-
+    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/plugins/img-hover.css">
+    
     <!-- CSS Page Style -->    
     <link rel="stylesheet" href="assets/pages/blog.css">
     
     <!-- CSS Theme -->    
     <link rel="stylesheet" href="assets/theme-colors/default.css">
+    <link rel="stylesheet" href="assets/shop.style.css">
+    <link rel="stylesheet" href="assets/plugins/perfect-scrollbar.css">
+    <link rel="stylesheet" href="assets/plugins/owl.carousel.css">
+    <link rel="stylesheet" href="assets/plugins/settings.css">
+    <link rel="stylesheet" href="assets/pages/page_job.css">
 
     <!-- CSS Customization -->
     <link rel="stylesheet" href="assets/custom.css">
@@ -30,24 +38,39 @@
 	<script type="text/javascript" src="assets/plugins/bootstrap.min.js"></script> 
 	<!-- JS Implementing Plugins -->
 	<script type="text/javascript" src="assets/plugins/back-to-top.js"></script>
+	<script src="assets/plugins/owl.carousel.js"></script>
+	<script src="assets/plugins/jquery.mousewheel.js"></script>
+	<script src="assets/plugins/perfect-scrollbar.js"></script>
+	<script src="assets/plugins/jquery.parallax.js"></script>
+	<script src="assets/plugins/jquery.themepunch.tools.min.js"></script>
+	<script src="assets/plugins/jquery.themepunch.revolution.min.js"></script>
 	<!-- JS Customization -->
-	<script type="text/javascript" src="assets/custom.js"></script>
-	<!-- JS Page Level -->           
-	<script type="text/javascript" src="assets/app.js"></script>
-	<script type="text/javascript">
-	    jQuery(document).ready(function() {
-	        App.init();      
-	    });
-	</script>
+	<script src="assets/custom.js"></script>
+	<!-- JS Page Level -->
+	<script src="assets/shop.app.js"></script>
+	<script src="assets/plugins/owl-carousel.js"></script>
+	<script src="assets/plugins/revolution-slider.js"></script>
 
+	<!-- JS Page Level -->           
+	<script>
+    jQuery(document).ready(function() {
+        App.init();
+        App.initParallaxBg();
+        OwlCarousel.initOwlCarousel();
+	    RevolutionSlider.initRSfullWidth();      
+	});
+	</script>
 
 	
   <script src="/assets/common.js"></script>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <%=render "shares/navbar" %>
-  <%= yield %>
-  <%=render "shares/footer" %>
+	<div class="wapper">
+		<%=render "shares/navbar" %>
+  		<%= yield %>
+  		<%=render "shares/footer" %>
+	</div>  
+	<%=render "shares/topcontrol" %>
 </body>
 </html>

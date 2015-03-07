@@ -2033,6 +2033,9 @@ i.icon-bg-light-grey {
 .service-block p,
 .service-block h2 {
   color: #fff;
+  margin-bottom: initial;
+  font-size: initial;
+  font-weight: initial;
 }
 
 .service-block h2 a:hover{

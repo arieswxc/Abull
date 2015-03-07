@@ -177,5 +177,83 @@ a:focus, a:hover {
   font-size: 16px;
   float: right;
 }
+.jumbotron {
+  background: 0 0;
+  font-size: 14px;
+  margin-bottom: 0;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.jumbotron.home .int-box {
+  width: 100%;
+  position: absolute;
+  top: 0;
+}
+.jumbotron.home .int-box>.container {
+  position: relative;
+}
+.jumbotron .container {
+  max-width: 100%;
+}
+.jumbotron.home .int-box .int-wrapper {
+  position: absolute;
+  top: 125px;
+  right: 0;
+  z-index: 100;
+  padding: 20px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-color: rgba(255,255,255,.65);
+}
+.jumbotron.home .int-box .int-wrapper .int-title {
+  color: #1c232e;
+}
+.jumbotron.home .int-box .int-wrapper p .big-int {
+  font-size: 28px;
+  color: #0dba8f;
+  padding-left: 10px;
+}
+.jumbotron.home .int-box .int-wrapper .amount .big-int, .jumbotron.home .int-box .int-wrapper p em.multi {
+  padding-left: 0;
+}
+.jumbotron.home .int-box .int-wrapper p em {
+  font-size: 20px;
+  color: #0dba8f;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.jumbotron.home .int-box .int-wrapper a.btn {
+  margin-bottom: 10px;
+}
+.btn-block {
+  white-space: normal;
+}
+.btn-secondary {
+  color: #fff;
+}
+.jumbotron.home .int-box .int-wrapper p {
+  font-size: 13px;
+  color: #1c232e;
+}
+.jumbotron.home .int-box .int-wrapper .account-title {
+  margin-top: 35px;
+  margin-bottom: 0;
+}
+.jumbotron.home .int-box .int-wrapper .amount {
+  font-size: 20px;
+  color: #0dba8f;
+  min-width: 231px;
+}
+.jumbotron.home .int-box .int-wrapper .amount .top-up {
+  margin-left: 20px;
+  font-size: 14px;
+}
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide {
+  display: none !important;
+}
+.header {
+  z-index: 200;
+}
 
 /* index site-menu end */
