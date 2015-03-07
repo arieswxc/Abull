@@ -93,4 +93,33 @@ RSpec.describe User, type: :model do
     expect(photo1).to be_invalid
     expect(photo1.errors[:title]).to include(I18n.t("errors.messages.taken"))
   end
+
+  # funds
+  it "has many funds" do
+    user  = create(:user)
+    fund  = create(:fund, user_id: user.id)
+    expect(user.funds.first).to eq fund
+  end
+
+  # invests
+  it "has many invests" do
+    user    = create(:user)
+    invest  = create(:invest, user_id: user.id)
+    expect(user.invests.first).to eq invest
+  end
+
+  # leverages
+  it "has many leverages" do
+    user      = create(:user)
+    leverage  = create(:leverage, user_id: user.id)
+    expect(user.leverages.first).to eq leverage
+  end
+
+  # following_users
+  it "has many following_users" do
+    follwer = create(:user)
+    user    = create(:user)
+    follwer.follow(user)
+    expect(follwer.following_users.first).to eq user
+  end
 end

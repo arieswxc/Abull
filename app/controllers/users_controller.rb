@@ -16,6 +16,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    @user             = User.find(params[:id])
+    @funds            = @user.funds
+    @invests          = @user.invests
+    @leverages        = @user.leverages
+    @topics           = Topic.where(user_id: @user.following_users.ids)
+    @recommend_funds  = Fund.where(user_id: @user.following_users.ids)
+  end
+
   private
     def user_params
       params.require(:user).permit(:real_name, :id_card_number, :email, :password)

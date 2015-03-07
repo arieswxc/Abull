@@ -34,4 +34,28 @@ RSpec.describe UsersController, type: :controller do
       end
     end
   end
+
+  describe "GET #show" do
+    it "assigns the requested user as @user" do
+      user = create(:user)
+      10.times do 
+        create(:fund, user_id: user.id)
+        create(:invest, user_id: user.id)
+        create(:leverage, user_id: user.id)
+      end
+      
+      # following
+      following       = create(:user)
+      topic           = create(:topic, user_id: following.id)
+      recommend_fund  = create(:fund, user_id: following.id)
+      user.follow(following)
+
+      get :show, {id: user.to_param}
+      expect(assigns(:funds).count).to            eq 10
+      expect(assigns(:invests).count).to          eq 10
+      expect(assigns(:leverages).count).to        eq 10
+      expect(assigns(:topics).first).to           eq topic
+      expect(assigns(:recommend_funds).first).to  eq recommend_fund
+    end
+  end
 end
