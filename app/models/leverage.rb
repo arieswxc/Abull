@@ -9,7 +9,7 @@ class Leverage < ActiveRecord::Base
   validates :state,     inclusion: { in: ["applied", "confirmed", "closed"] }
   belongs_to :user
 
-
+  acts_as_commentable
 
   private
     def valid_deadline

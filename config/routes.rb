@@ -14,5 +14,15 @@ Rails.application.routes.draw do
     end
     get   :edit_real_name,    on: :member
     post  :update_real_name,  on: :member
+
+    shallow do
+      resources :funds do
+        resources :invests
+      end
+    end
   end
+
+  resources :funds,     only: [:index, :new, :create, :edit, :update]
+  resources :leverages,  only: [:show, :new, :create, :edit, :update]
+  resources :topics,    only: [:show]
 end
