@@ -259,5 +259,34 @@ a:focus, a:hover {
   height: 48px;
   margin-top: 12px;
 }
-
+.header .mega-menu .collapse.nav-menu {
+  padding-top: 20px;
+}
+.ui-side-withicon .ui-side-item-link {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.relative {
+  position: relative;
+}
+a.fn-left.ui-button.ui-button-green.ui-button-mid.mr4 {
+  position: absolute;
+  right: 83px;
+}
+a.fn-left.ui-button.ui-button-blue.ui-button-mid.last {
+  position: absolute;
+  right: 0px;
+}
+.img-section.pr20.float-r {
+  position: absolute;
+  right: 0;
+}
+.user-info-container {
+  display: inline-block;
+  width: 700px;
+}
 /* index site-menu end */

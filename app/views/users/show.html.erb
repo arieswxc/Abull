@@ -1,0 +1,386 @@
+<div class="pg-container-content">
+      
+  <div id="pg-account-index" class="pg-account">
+    <div class="container_12 mt10 fn-clear">
+      <div class="grid_2">
+        
+
+        <div class="ui-side ui-side-withicon" id="sidebar">
+          <ul class="ui-side-list nav nav-list bs-docs-sidenav">
+            <li class="ui-side-item active">
+              <a class="ui-side-item-link" href="/account/index.action"><i class="fn-left ui-icon-mid index"></i>我的人人贷</a>
+            </li>
+            <li class="ui-side-item ">
+              <a class="ui-side-item-link"><i class="fn-left ui-icon-mid capital"></i>资金管理</a>
+              <ul class="ui-side-sub-list">
+                <li class="ui-side-sub-item ">
+                  <a class="ui-side-sub-item-link" href="/account/capital.action">交易记录</a>
+                </li>
+                <li class="ui-side-sub-item ">
+                  <a class="ui-side-sub-item-link" href="/account/capital!recharge.action">充值</a>
+                </li>
+                <li class="ui-side-sub-item ">
+                  <a class="ui-side-sub-item-link last" href="/account/capital!withdraw.action">提现</a>
+                </li>
+              </ul>
+            </li>
+            <li class="ui-side-item ">
+              <a class="ui-side-item-link"><i class="fn-left ui-icon-mid invest"></i>理财管理</a>
+              <ul class="ui-side-sub-list">
+                <li class="ui-side-sub-item ">
+                  <a class="ui-side-sub-item-link" href="/account/invest!loan.action">我的债权</a>
+                </li>
+                <li class="ui-side-sub-item ">
+                  <a class="ui-side-sub-item-link" href="/account/invest!plan.action">U计划</a>
+                </li>
+                <li class="ui-side-sub-item ">
+                  <a class="ui-side-sub-item-link" href="/account/invest!transfer.action">债权转让</a>
+                </li>
+                <li class="ui-side-sub-item ">
+                  <a class="ui-side-sub-item-link" href="/account/invest!statistics.action">理财统计</a>
+                </li>
+                <li class="ui-side-sub-item ">
+                  <a class="ui-side-sub-item-link last" href="/account/invest!tool.action">自动投标工具</a>
+                </li>
+              </ul>
+            </li>
+            <li class="ui-side-item ">
+              <a class="ui-side-item-link"><i class="fn-left ui-icon-mid borrow"></i>借款管理</a>
+              <ul class="ui-side-sub-list">
+                <li class="ui-side-sub-item ">
+                  <a class="ui-side-sub-item-link" href="/account/borrow!toMyLoans.action">我的借款</a>
+                </li>
+                <li class="ui-side-sub-item ">
+                  <a class="ui-side-sub-item-link" href="/account/borrow!applications.action">借款申请查询</a>
+                </li>
+                <li class="ui-side-sub-item ">
+                  <a class="ui-side-sub-item-link last" href="/account/borrow!statistics.action">借款统计</a>
+                </li>
+              </ul>
+            </li>
+            <li class="ui-side-item ">
+              <a class="ui-side-item-link"><i class="fn-left ui-icon-mid account"></i>账户管理</a>
+              <ul class="ui-side-sub-list">
+                <li class="ui-side-sub-item ">
+                  <a class="ui-side-sub-item-link" href="/account/info!basicInfo.action">个人基础信息</a>
+                </li>
+                <li class="ui-side-sub-item ">
+                  <a class="ui-side-sub-item-link" href="/account/info!verification.action">认证信息</a>
+                </li>
+                <li class="ui-side-sub-item ">
+                  <a class="ui-side-sub-item-link" href="/account/info!security.action">安全信息</a>
+                </li>
+                <li class="ui-side-sub-item ">
+                  <a class="ui-side-sub-item-link last" href="/account/info!bank.action">银行卡信息</a>
+                </li>
+              </ul>
+            </li>
+            <li class="ui-side-item ">
+              <a class="ui-side-item-link"><i class="fn-left ui-icon-mid comm"></i>互动管理</a>
+              <ul class="ui-side-sub-list">
+                <li class="ui-side-sub-item ">
+                  <a class="ui-side-sub-item-link" href="/account/comm!mail.action">站内消息</a>
+                </li>
+                <li class="ui-side-sub-item ">
+                  <a class="ui-side-sub-item-link last" href="/account/comm!settings.action">通知设置</a>
+                </li>
+              </ul>
+            </li>
+            <li class="ui-side-item last ">
+                  <a class="ui-side-item-link"><i class="fn-left ui-icon-mid coupons"></i>优惠券管理</a>
+                  <ul class="ui-side-sub-list">
+                  	  <li class="ui-side-sub-item ">
+                          <a class="ui-side-sub-item-link" href="/account/coupon!toCoupon.action">我的优惠券</a>
+                      </li>
+                      <li class="ui-side-sub-item ">
+                          <a class="ui-side-sub-item-link" href="/account/coupon!toBindcoupon.action">优惠券兑换</a>
+                      </li>
+                      <li class="ui-side-sub-item ">
+                          <a class="ui-side-sub-item-link" href="/account/coupon.action">U-code兑换</a>
+                      </li>
+                  </ul>
+             </li>
+          </ul>
+          <div class="ui-side-img mt20">
+        		<a style="display: block; width:140px;overflow:hidden;"><img style="width: 140px; display: none !important; visibility: hidden !important; opacity: 0 !important; background-position: 1px 1px;" src="/upload/cms/advertising/accountIndexRight/2f529bde-554f-4f7b-afbe-2240c5fd573b.jpg?20140401a" alt="账单" width="0" height="0"></a>
+          </div>
+        </div>
+        <script>
+          $(".ui-side-list > li > a").click(function() {
+            $(this).parent().children().each(function() {
+              if ($(this).hasClass("ui-side-sub-list")) {
+                $(this).toggle();
+              }
+            })
+          });
+        </script>
+      </div>
+
+      <div class="inline-block relative">
+        <div class="img-section pr20 float-r">
+          
+             <a href="/account/monthlyBill.action" target="_blank"><i class="icon icon-bill icon-bill-link mr5"></i>人人贷电子账单</a>
+          
+        </div>
+
+        <div class="box box-user-info">
+          <div class="user-avatar-container inline-block">
+            
+            <a href="/account/info!basicInfo.action"><img width="96" height="96" src="/static/img/account/default-avatar-96.png"></a>
+            
+            
+          </div>
+          <div class="user-info-container">
+            <h3 title="zjs18">zjs18</h3>
+            <div class="fn-clear relative">
+              <div class="fn-left user-security-container mr10" id="info-box">
+                <div class="safe fn-clear">
+                  <span class="fn-left color-gray-text">安全等级</span>
+                  <div id="safe-progressbar" class="safe-progressbar fn-left" title="25%"><div class="bar" style="width: 25px;"></div></div>
+                </div>
+                <div class="icons fn-clear mt5">
+                  <div class="fn-left icon-box light">
+                    <a data-txt="为了您的账户更安全，请您绑定手机号。||立即绑定" title="绑定手机，已绑定" href="/account/info!security.action" class="fn-left safe-rank cellphone light"></a>
+                  </div>
+                  <div class="fn-left icon-box ">
+                    <a data-txt="进行实名认证后，您才可以进行投资、借款。||立即认证" title="实名认证，未设置" href="/account/info!security.action" class="fn-left safe-rank man "></a>
+                  </div>
+                  <div class="fn-left icon-box ">
+                    <a data-txt="为了您的资金更加安全，请您设置交易密码。||立即设置" title="交易密码，未设置" href="/account/info!security.action" class="fn-left safe-rank lock "></a>
+                  </div>
+                  <div class="fn-left icon-box ">
+                    <a data-txt="为了使您的账户有更多的安全保障，请您绑定邮箱。||立即绑定" title="绑定邮箱，未绑定" href="/account/info!security.action" class="fn-left safe-rank mail "></a>
+                  </div>
+                </div>
+              </div>
+              <div class="fn-left last">
+                <div class="surplus fn-clear">
+                  <span class="fn-left text-l mr10">账户余额</span>
+                  <span class="fn-left num-xl color-orange-text">
+                    <em>0.00</em>元
+                  </span>
+                  <a class="fn-left ui-button ui-button-green ui-button-mid mr4" href="/account/capital!recharge.action">充值</a>
+                  <a class="fn-left ui-button ui-button-blue ui-button-mid last" href="/account/capital!withdraw.action">提现</a>
+                </div>
+                <div class="surplus-detail fn-clear">
+                  <div class="fn-left mr40">
+                    <span class="fn-left text mr10">冻结金额</span>
+                    <span class="fn-left num last">
+                      <em>0.00</em>元
+                    </span>
+                  </div>
+                  <div class="fn-left last">
+                    <span class="fn-left text mr10">可用金额</span>
+                    <span class="fn-left num last">
+                      <em>0.00</em>元
+                    </span>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="box mt20 p20">
+          <div class="fn-clear equation">
+            <div class="fn-left text-center">
+              <h5>账户净资产</h5>
+              <p class="num-l">
+                <em>0.00</em>元
+              </p>
+            </div>
+            <div class="fn-left symbol">=</div>
+            <div class="fn-left text-center">
+              <h5>理财资产<i id="tips_1" class="iconfont tips"></i></h5>
+              <p class="num-l">
+                <em>0.00</em>元
+              </p>
+            </div>
+            <div class="fn-left symbol">+</div>
+            <div class="fn-left text-center">
+              <h5>借款负债</h5>
+              <p class="num-l rrdcolor-red-text">
+                <em>-0.00</em>元
+              </p>
+            </div>
+            <div class="fn-left symbol">+</div>
+            <div class="fn-left text-center">
+              <h5>账户余额</h5>
+              <p class="num-l">
+                <em>0.00</em>元
+              </p>
+            </div>
+          </div>
+          
+        </div>
+
+
+        <div class="box mt20 p20">
+          <h3>投标记录图</h3>
+        </div>
+        <div class="box mt20 p20">
+          <h3>发标记录图</h3>
+        </div>
+        <div class="box mt20 p20">
+          <h3>配资记录图</h3>
+        </div>
+
+
+        <div class="box mt20 p20">
+          <h3>理财推荐</h3>
+          <!-- U计划A -->
+          <div class="plan mt10 ph10 fn-clear">
+            <div class="fn-left w230 mr20">
+              <h4 class="plan-title w250 fn-text-overflow">
+                <a href="/financeplan/listPlan!detailPlan.action?financePlanId=193" target="_blank">U计划-A150309期</a>
+              </h4>
+              <p class="fn-clear">
+                <span class="fn-left mr10">加入条件</span>
+                <span class="fn-left num-s last"><em>1,000</em>元</span>
+              </p>
+            </div>
+            <div class="fn-left plan-conditions mr20">
+              <p class="fn-clear">
+                <span class="fn-left mr10">计划金额</span>
+                <span class="fn-left num-s last"><em>4,000,000</em>元</span>
+              </p>
+              <p class="fn-clear">
+                <span class="fn-left mr10">预期收益</span>
+                <span class="fn-left num-s last"><em>7%</em>/年</span>
+              </p>
+            </div>
+            <div class="fn-left plan-conditions mr20">
+              <p class="fn-clear">
+                <span class="fn-left mr10">剩余金额</span>
+
+                <span class="fn-left num-s last"><em>0</em>元</span>
+              </p>
+              <p class="fn-clear">
+                <span class="fn-left mr10">加入进度</span>
+                <span class="fn-left num-s last"><em>100</em>%</span>
+              </p>
+            </div>
+         
+            
+             
+            <a class="ui-button ui-button-mid ui-button-disabled fn-right last" target="_blank">预定满额</a>
+            
+             
+             
+             
+             
+             
+             
+          </div>
+          
+          <!-- U计划B -->
+          <div class="plan mt10 ph10 fn-clear">
+            <div class="fn-left w230 mr20">
+              <h4 class="plan-title w250 fn-text-overflow">
+                <a href="/financeplan/listPlan!detailPlan.action?financePlanId=194" target="_blank">U计划-B150309期</a>
+              </h4>
+              <p class="fn-clear">
+                <span class="fn-left mr10">加入条件</span>
+                <span class="fn-left num-s last"><em>10,000</em>元</span>
+              </p>
+            </div>
+            <div class="fn-left plan-conditions mr20">
+              <p class="fn-clear">
+                <span class="fn-left mr10">计划金额</span>
+                <span class="fn-left num-s last"><em>6,000,000</em>元</span>
+              </p>
+              <p class="fn-clear">
+                <span class="fn-left mr10">预期收益</span>
+                <span class="fn-left num-s last"><em>9%</em>/年</span>
+              </p>
+            </div>
+            <div class="fn-left plan-conditions mr20">
+              <p class="fn-clear">
+                <span class="fn-left mr10">剩余金额</span>
+
+                <span class="fn-left num-s last"><em>0</em>元</span>
+              </p>
+              <p class="fn-clear">
+                <span class="fn-left mr10">加入进度</span>
+                <span class="fn-left num-s last"><em>100</em>%</span>
+              </p>
+            </div>
+
+         
+            
+             
+            <a class="ui-button ui-button-mid ui-button-disabled fn-right last" target="_blank">预定满额</a>
+            
+             
+             
+             
+             
+             
+             
+
+
+          </div>
+          
+
+          <!-- U计划C -->
+          <div class="plan mt10 ph10 fn-clear">
+            <div class="fn-left w230 mr20">
+              <h4 class="plan-title w250 fn-text-overflow">
+                <a href="/financeplan/listPlan!detailPlan.action?financePlanId=195" target="_blank">U计划-C150309期</a>
+              </h4>
+              <p class="fn-clear">
+                <span class="fn-left mr10">加入条件</span>
+                <span class="fn-left num-s last"><em>10,000</em>元</span>
+              </p>
+            </div>
+            <div class="fn-left plan-conditions mr20">
+              <p class="fn-clear">
+                <span class="fn-left mr10">计划金额</span>
+                <span class="fn-left num-s last"><em>20,000,000</em>元</span>
+              </p>
+              <p class="fn-clear">
+                <span class="fn-left mr10">预期收益</span>
+                <span class="fn-left num-s last"><em>11%</em>/年</span>
+              </p>
+            </div>
+            <div class="fn-left plan-conditions mr20">
+              <p class="fn-clear">
+                <span class="fn-left mr10">剩余金额</span>
+
+                <span class="fn-left num-s last"><em>0</em>元</span>
+              </p>
+              <p class="fn-clear">
+                <span class="fn-left mr10">加入进度</span>
+                <span class="fn-left num-s last"><em>100</em>%</span>
+              </p>
+            </div>
+             
+            <a class="ui-button ui-button-mid ui-button-disabled fn-right last" target="_blank">预定满额</a>
+
+          </div>
+
+          
+          <ul class="ui-list ui-list-invest loan-s mt20 mb20" id="loan-list">
+            
+            <li class="ui-list-header fn-clear">
+              <span class="ui-list-title fn-left color-gray-text w260">借款标题</span>
+              <span class="ui-list-title fn-left color-gray-text w60">信用等级</span>
+              <span class="ui-list-title fn-left color-gray-text w90">年利率</span>
+              <span class="ui-list-title fn-left color-gray-text w120">金额</span>
+              <span class="ui-list-title fn-left color-gray-text w80">期限</span>
+              <span class="ui-list-title fn-left color-gray-text w50">进度</span>
+              <span class="ui-list-title fn-left color-gray-text w75 last"></span>
+            </li>
+            
+            
+            <li class="ui-list-status">
+              <p class="color-gray-text">暂时没有可推荐的散标</p>
+            </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
