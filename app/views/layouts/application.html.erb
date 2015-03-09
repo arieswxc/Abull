@@ -50,17 +50,7 @@
 	<script src="/assets/plugins/owl-carousel.js"></script>
 	<script src="/assets/plugins/revolution-slider.js"></script>
 
-	<!-- JS Page Level -->           
-	<script>
-    jQuery(document).ready(function() {
-        App.init();
-        App.initParallaxBg();
-        OwlCarousel.initOwlCarousel();
-	    RevolutionSlider.initRSfullWidth();      
-	});
-	</script>
-
-	
+	<!-- JS Page Level -->   
   <script src="/assets/common.js"></script>
   <%= csrf_meta_tags %>
 </head>
@@ -69,6 +59,14 @@
 		  <%=render "shares/navbar" %>
   		<%= yield %>
   		<%=render "shares/footer" %>
-	</div>  
+	</div>
+  <script>
+    jQuery(document).ready(function() {
+        App.init();
+        App.initParallaxBg();
+        OwlCarousel.initOwlCarousel();
+      RevolutionSlider.initRSfullWidth();      
+  });
+  </script>  
 </body>
 </html>

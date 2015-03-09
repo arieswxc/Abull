@@ -28,12 +28,21 @@
 	                </li>
 	            </ul>
 	            <ul id="nonLoginBar" class="nav navbar-nav navbar-right navbar-sm site-nav-login ng-scope">
-	                <li>
-	                	<%= link_to("登录",new_user_session_path,id: "login-panel",class: "btn btn-sm",rel: "nofollow") %>
-	                </li>
-	                <li>
-	                	<%= link_to("注册账户",new_user_registration_path,id: "create-account",class: "btn btn-sm",rel: "nofollow") %>
-	                </li>
+	            	<% if user_signed_in? %>
+	            		<li>
+		                	<%= link_to(current_user.email,user_path(current_user),id: "login-panel",class: "btn btn-sm",rel: "nofollow") %>
+		                </li>
+		                <li>
+		                	<%= link_to "登出", destroy_user_session_path, :method => :delete, :id => "sign-out" %>
+		                </li>
+	            	<% else %>
+		                <li>
+		                	<%= link_to("登录",new_user_session_path,id: "login-panel",class: "btn btn-sm",rel: "nofollow") %>
+		                </li>
+		                <li>
+		                	<%= link_to("注册账户",new_user_registration_path,id: "create-account",class: "btn btn-sm",rel: "nofollow") %>
+		                </li>
+		            <% end %>
 	            </ul>
 
 	        </div>
