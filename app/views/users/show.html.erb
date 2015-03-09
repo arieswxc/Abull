@@ -8,21 +8,12 @@
         <div class="ui-side ui-side-withicon" id="sidebar">
           <ul class="ui-side-list nav nav-list bs-docs-sidenav">
             <li class="ui-side-item active">
-              <a class="ui-side-item-link" href="/account/index.action"><i class="fn-left ui-icon-mid index"></i>我的人人贷</a>
+              <%= link_to(current_user,class: "ui-side-item-link") do %>
+                <i class="fn-left ui-icon-mid index"></i>我的人人贷
+              <% end %>
             </li>
             <li class="ui-side-item ">
               <a class="ui-side-item-link"><i class="fn-left ui-icon-mid capital"></i>资金管理</a>
-              <ul class="ui-side-sub-list">
-                <li class="ui-side-sub-item ">
-                  <a class="ui-side-sub-item-link" href="/account/capital.action">交易记录</a>
-                </li>
-                <li class="ui-side-sub-item ">
-                  <a class="ui-side-sub-item-link" href="/account/capital!recharge.action">充值</a>
-                </li>
-                <li class="ui-side-sub-item ">
-                  <a class="ui-side-sub-item-link last" href="/account/capital!withdraw.action">提现</a>
-                </li>
-              </ul>
             </li>
             <li class="ui-side-item ">
               <a class="ui-side-item-link"><i class="fn-left ui-icon-mid invest"></i>理财管理</a>
