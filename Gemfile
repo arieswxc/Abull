@@ -73,6 +73,8 @@ gem 'acts_as_commentable'
 # User thin to replace of webrick
 gem 'thin'
 
+gem 'state_machines-activerecord'
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl_rails'
