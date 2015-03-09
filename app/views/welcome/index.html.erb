@@ -55,9 +55,8 @@
 	            <small>平均</small>
 	            <span class="big-int">14.07%</span></p>
 	          <p><em class="multi">40</em>倍活期存款收益<em>3</em>倍货币基金收益</p>
-	          <a href="/account/create" class="btn btn-block btn-secondary" rel="nofollow">立即注册</a>
-
-	          <p class="text-right">已有账号？<a href="/account/login" rel="nofollow">立即登录</a></p>
+			  <%= link_to("立即注册",new_user_registration_path,class: "btn btn-block btn-secondary",rel: "nofollow") %>
+	          <p class="text-right">已有账号？<%= link_to("立即登录",new_user_session_path,rel: "nofollow") %></p>
 	        </div>
 
 	        <div ng-show="isAuthenticated()" class="ng-hide">
