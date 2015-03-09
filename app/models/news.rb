@@ -4,6 +4,6 @@ class News < ActiveRecord::Base
 
   private
     def save_date
-      self.date = Time.now
+      self.date = Time.now unless self.date
     end
 end

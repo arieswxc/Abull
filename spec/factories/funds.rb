@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :fund do
     name                  {Faker::Name.title}
     association           :user
-    amount                "9.99"
+    amount                {rand(10000)}
     collection_deadline   "2015-02-24 22:20:20"
     earning               "9.99"
     earning_rate          "9.99"

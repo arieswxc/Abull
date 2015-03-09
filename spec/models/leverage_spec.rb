@@ -22,19 +22,19 @@ RSpec.describe Leverage, type: :model do
     expect(leverage.errors[:date]).to include(I18n.t('errors.messages.blank'))
   end
 
-  # number
-  it "is invalid without number" do
-    leverage = build(:leverage, number: nil)
+  # amount
+  it "is invalid without amount" do
+    leverage = build(:leverage, amount: nil)
     leverage.valid?
     expect(leverage).to be_invalid
-    expect(leverage.errors[:number]).to include(I18n.t('errors.messages.blank'))
+    expect(leverage.errors[:amount]).to include(I18n.t('errors.messages.blank'))
   end
 
-  it "is invalid when number not a number" do
-    leverage = build(:leverage, number: "invalid")
+  it "is invalid when amount not a number" do
+    leverage = build(:leverage, amount: "invalid")
     leverage.valid?
     expect(leverage).to be_invalid
-    expect(leverage.errors[:number]).to include(I18n.t('errors.messages.not_a_number'))
+    expect(leverage.errors[:amount]).to include(I18n.t('errors.messages.not_a_number'))
   end
 
   # deadline
