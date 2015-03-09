@@ -255,5 +255,9 @@ a:focus, a:hover {
 .header {
   z-index: 200;
 }
+#logo-header {
+  height: 48px;
+  margin-top: 12px;
+}
 
 /* index site-menu end */
