@@ -28,8 +28,12 @@
 	                </li>
 	            </ul>
 	            <ul id="nonLoginBar" class="nav navbar-nav navbar-right navbar-sm site-nav-login ng-scope">
-	                <li><a id="login-panel" href="javascript:;" rel="nofollow">登录</a></li>
-	                <li><a id="create-account" href="javascript:;" class="btn btn-sm" rel="nofollow">注册账户</a></li>
+	                <li>
+	                	<%= link_to("登录",new_user_session_path,id: "login-panel",class: "btn btn-sm",rel: "nofollow") %>
+	                </li>
+	                <li>
+	                	<%= link_to("注册账户",new_user_registration_path,id: "create-account",class: "btn btn-sm",rel: "nofollow") %>
+	                </li>
 	            </ul>
 
 	        </div>
