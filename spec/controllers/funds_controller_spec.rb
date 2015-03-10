@@ -94,10 +94,10 @@ RSpec.describe FundsController, type: :controller do
         @request.env["devise.mapping"] = Devise.mappings[:user]
         sign_in user
 
-        fund = create(:fund, state: "on", user_id: user.id)
-        put :update, {id: fund.to_param, fund: {state: "off"}}
+        fund = create(:fund, state: "pending", user_id: user.id)
+        put :update, {id: fund.to_param, fund: {state: "applied"}}
         fund.reload
-        expect(fund.state).to eq "off"
+        expect(fund.state).to eq "applied"
         expect(assigns(:fund)).to eq fund
         expect(response).to redirect_to fund
       end
@@ -110,7 +110,7 @@ RSpec.describe FundsController, type: :controller do
         @request.env["devise.mapping"] = Devise.mappings[:user]
         sign_in user
 
-        fund = create(:fund, state: "on", user_id: user.id)
+        fund = create(:fund, state: "pending", user_id: user.id)
         put :update, {id: fund.to_param, fund: {state: "invalid_state"}}
         fund.reload
         expect(assigns(:fund)).to eq fund

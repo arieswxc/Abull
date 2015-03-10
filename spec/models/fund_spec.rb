@@ -49,16 +49,22 @@ RSpec.describe Fund, type: :model do
     expect(fund.errors[:state]).to include(I18n.t('errors.messages.blank'))
   end
 
-  it "is invalid without state: only 'on' and 'off'" do
+  it "is invalid when state not included" do
     fund = build(:fund, state: "invalid")
     fund.valid?
     expect(fund).to be_invalid
     expect(fund.errors[:state]).to include(I18n.t('errors.messages.inclusion'))
   end
 
-  it "is valid when state is 'on' or 'off' " do
-    expect(build(:fund, state: "on")).to be_valid
-    expect(build(:fund, state: "off")).to be_valid
+  it "is valid when state is included " do
+    expect(build(:fund, state: "pending")).to be_valid
+    expect(build(:fund, state: "applied")).to be_valid
+    expect(build(:fund, state: "gathering")).to be_valid
+    expect(build(:fund, state: "reached")).to be_valid
+    expect(build(:fund, state: "opened")).to be_valid
+    expect(build(:fund, state: "running")).to be_valid
+    expect(build(:fund, state: "finished")).to be_valid
+    expect(build(:fund, state: "closed")).to be_valid
   end
 
   # private_check
