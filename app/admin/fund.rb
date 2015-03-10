@@ -1,15 +1,15 @@
 ActiveAdmin.register Fund do
-  scope_to do
-    Fund.where(state: "还未审核") if current_user.type  == "?"
-    Fund.where(state: "待审核")   if current_user.type  == "?"
-    Fund.all                     if current_user.type  == "?"
-  end
+  # scope_to do
+  #   Fund.where(state: "还未审核") if current_user.type  == "?"
+  #   Fund.where(state: "待审核")   if current_user.type  == "?"
+  #   Fund.all                     if current_user.type  == "?"
+  # end
 
-  # permit_params :name, :user_id, :amount, :collection_deadline, :earning, :expected_earning_rate, :earning_rate, :state, :private_check, :minimum, :invest_starting_date, :invest_ending_date, :description, :risk_method, :initial_amount, :created_at, :updated_at
-  permit_params :state
+  permit_params :name, :user_id, :amount, :collection_deadline, :earning, :expected_earning_rate, :earning_rate, :state, :private_check, :minimum, :invest_starting_date, :invest_ending_date, :description, :risk_method, :initial_amount, :created_at, :updated_at
+  # permit_params :state
   
-  filter :state, as: :select, :collection => ["还未审核", "待审核", "已审核", "审核失败"]
-  
+  # filter :state, as: :select, :collection => ["还未审核", "待审核", "已审核", "审核失败"]
+  scope 
   index do
     selectable_column
     column "标名*", :name
@@ -28,7 +28,14 @@ ActiveAdmin.register Fund do
   # page of new and edit
   form do |f|
       f.inputs t('Edit') do
-        f.input :state, as: :select, collection: ["还未审核", "待审核", "已审核", "审核失败"], :label => "状态"
+        # f.input :name
+        # f.input :amount
+        # f.input :collection_deadline
+        # f.input :minimum
+        # f.input :invest_starting_date
+        # f.input :invest_ending_date
+        # f.input :state, as: :select, collection: ["还未审核", "待审核", "已审核", "审核失败"], :label => "状态"
+        f.input :state
         # f.input :reject_reason, :label => "退回说明"
       end
       f.actions
