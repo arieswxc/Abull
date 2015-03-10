@@ -289,4 +289,16 @@ a.fn-left.ui-button.ui-button-blue.ui-button-mid.last {
   display: inline-block;
   width: 700px;
 }
+.pt0 {
+  padding-top: 0!important;
+}
+#pg-account-index .pg-account-detail {
+  width: 800px;
+}
+.sky-form {
+  border: none;
+}
+.float-left {
+  float: left;
+}
 /* index site-menu end */

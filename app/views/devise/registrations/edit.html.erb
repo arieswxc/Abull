@@ -1,39 +1,98 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+<div class="pg-container-content">
+  <div id="pg-account-index" class="pg-account">
+    <div class="container_12 mt10 fn-clear">
+      
+      <%=render "shares/profile_side_navbar", {activeItem: "useredit"} %>
+      
+      <div class="inline-block relative pg-account-detail">
+          <div class="tab-v1">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#baseProfile" data-toggle="tab">基本信息</a></li>
+                <li class=""><a href="#authenticationProfile" data-toggle="tab">认证信息</a></li>
+            </ul>                
+            <div class="tab-content">
+                <div class="tab-pane fade active in" id="baseProfile">
+                        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'sky-form'}) do |f| %>
+
+                            <%= devise_error_messages! %>
+                            <div class="row">
+                              <div class="ml40 col-md-2 text-center">
+                                <img src="/assets/testimonials/img1.jpg" class="img-thumbnail img-rounded w70">
+                                <div class="mb40">上传头像</div>
+                              </div>
+                              <div class="col-md-8">
+                                <a href="javascript:;" class="btn-u btn-u-blue mt10">申请认证</a>
+                                <div class="border-all mt10">个人简介：</div>
+                              </div>
+                            </div>
+
+                            <dl class="dl-horizontal">
+                                <dt>昵称</dt>
+                                <dd>
+                                    <section>
+                                        <label class="input">
+                                            <i class="icon-append fa fa-user"></i>
+                                            <input type="text" placeholder="Username" name="user[nick_name]" value="<%= resource.nick_name %>">
+                                            <b class="tooltip tooltip-bottom-right">登录网站所用</b>
+                                        </label>
+                                    </section>
+                                </dd>
+                                <dt>真实姓名</dt>
+                                <dd>
+                                    <section>
+                                        <label class="input">
+                                            <i class="icon-append fa fa-user"></i>
+                                            <input type="text" placeholder="Real name" name="user[real_name]">
+                                            <b class="tooltip tooltip-bottom-right">你的真实姓名</b>
+                                        </label>
+                                    </section>
+                                </dd>
+                                <dt>邮箱</dt>
+                                <dd>
+                                    <section>
+                                        <label class="input">
+                                            <i class="icon-append fa fa-envelope"></i>
+                                            <input type="email" placeholder="Email address" name="user[email]" value="<%= resource.email %>">
+                                            <b class="tooltip tooltip-bottom-right">验证账户所用</b>
+                                        </label>
+                                    </section>
+                                </dd>
+                                <dt>密码</dt>
+                                <dd>
+                                    <section>
+                                        <label class="input">
+                                            <i class="icon-append fa fa-lock"></i>
+                                            <input type="password" id="password" name="user[password]" placeholder="Password">
+                                            <b class="tooltip tooltip-bottom-right">不要忘了你的密码</b>
+                                        </label>
+                                    </section>
+                                </dd>
+                                <dt>确认密码</dt>
+                                <dd>
+                                    <section>
+                                        <label class="input">
+                                            <i class="icon-append fa fa-lock"></i>
+                                            <input type="password" name="user[passwordConfirm]" placeholder="Confirm password">
+                                            <b class="tooltip tooltip-bottom-right">不要忘了你的密码</b>
+                                        </label>
+                                    </section>
+                                </dd>    
+                            </dl>
+                            <button type="reset" class="btn-u btn-u-default ml100">Cancel</button>
+                            <button class="btn-u" type="submit">保存修改</button>
+                        <% end %>
+                </div>
+                <div class="tab-pane fade" id="authenticationProfile">
+
+                </div>
+            </div>
+        </div>
+        
+      </div>
+    </div>
   </div>
+</div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
-
-<h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
