@@ -10,7 +10,9 @@ class User < ActiveRecord::Base
   has_many :leverages
   has_many :photos
   has_many :topics
-
+  
+  accepts_nested_attributes_for :photos, allow_destroy: true
+  
   acts_as_followable
   acts_as_follower
 end
