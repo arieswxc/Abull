@@ -1,3 +1,5 @@
 class HomsAccount < ActiveRecord::Base
-	belongs_to :fund
+	validates :title,    presence: true
+  validates :password, presence: true
+  belongs_to :fund
 end
