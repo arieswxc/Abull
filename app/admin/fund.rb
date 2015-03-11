@@ -5,17 +5,17 @@ ActiveAdmin.register Fund do
     
   index do
     selectable_column
-    column "标名*", :name
-    column "募集数额*", :amount
-    column "最小值*", :minimum
-    column "明(暗)标*", :private_check
-    column "投资方向", :description
-    column "风控措施自述", :frontend_risk_method
-    column "平台风控措施", :backend_risk_method
-    column "募集截止时间*", :collection_deadline
-    column "操盘开始时间*", :invest_starting_date
-    column "操盘结束时间*", :invest_ending_date
-    column "状态", :state
+    column :name
+    column :amount
+    column :minimum
+    column :private_check
+    column :description
+    column :frontend_risk_method
+    column :backend_risk_method
+    column :collection_deadline
+    column :invest_starting_date
+    column :invest_ending_date
+    column :state
     actions defaults: false do |fund|
       item "Preview", admin_fund_path(fund), class: "member_link"
       item "Edit", edit_admin_fund_path(fund), class: "member_link"
@@ -25,17 +25,17 @@ ActiveAdmin.register Fund do
   # page of show
   show do |fund|
     attributes_table  do 
-      row('标名')           { |f| f.name }
-      row('募集资金')      { |f| f.amount }
-      row('募集截止时间')   { |f| f.collection_deadline }
-      row('最小值')        { |f| f.minimum }
-      row('明(暗)标')      { |f| f.private_check }
-      row('操盘开始时间')   { |f| f.invest_starting_date }
-      row('操盘结束时间')   { |f| f.invest_ending_date }      
-      row('投资方向')      { |f| f.description}
-      row('风控措施自述')      { |f| f.frontend_risk_method }
-      row('平台风控措施')      { |f| f.backend_risk_method }
-      row('状态')          { |f| f.state }   
+      row :name
+      row :amount
+      row :collection_deadline
+      row :minimum
+      row :private_check
+      row :invest_starting_date
+      row :invest_ending_date
+      row :description
+      row :frontend_risk_method
+      row :backend_risk_method
+      row :state
     end
 
     panel t('操盘手个人信息') do 
@@ -73,10 +73,10 @@ ActiveAdmin.register Fund do
       f.inputs t('Edit') do
         f.input :name
         f.input :amount
-        f.input :collection_deadline
+        f.input :collection_deadline, as: :datepicker
         f.input :minimum
-        f.input :invest_starting_date
-        f.input :invest_ending_date
+        f.input :invest_starting_date, as: :datepicker
+        f.input :invest_ending_date, as: :datepicker
         f.input :state, as: :select, collection: ["pending", "applied", "gathering", "reached", "opened", "running", "finished", "closed", "denied"]
       end
       f.actions
