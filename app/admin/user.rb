@@ -87,9 +87,12 @@ ActiveAdmin.register User do
 
   member_action :confirm_user, :method => :put do
     user = User.find(params[:id])
-    # user.level = "14"
-    # user.save!
-    redirect_to admin_users_path
+    if user.level == 'pending'
+      user.check
+    elsif user.level == 'checked'
+      user.confirm
+    end
+    redirect_to admin_user_path(user)
   end
 
 end

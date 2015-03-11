@@ -15,4 +15,19 @@ class User < ActiveRecord::Base
   
   acts_as_followable
   acts_as_follower
+
+  state_machine :level, :initial => :pending do
+    event :check do
+      transition [:pending]  => :checked
+    end
+
+    event :deny do
+      transition [:pending, :checked] => :denied
+    end
+
+    event :confirm do 
+      transition [:denied] => :investor
+    end
+  end
+
 end
