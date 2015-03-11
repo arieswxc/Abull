@@ -9,9 +9,9 @@ ActiveAdmin.register User do
       image_tag user.avatar.thumb.url
     end
     column "电子邮件", :email
-    column "昵称", :nick_name
+    column "昵称",     :nick_name
     column "真实姓名", :real_name
-    column :cell
+    column "手机",     :cell
     column "身份证号", :id_card_number
     column :abstract
     column "用户等级", :level
@@ -37,10 +37,13 @@ ActiveAdmin.register User do
       row('电子邮件')  { |u| u.email }
       row('昵称')     { |u| u.nick_name }
       row('真实姓名')  { |u| u.real_name }
-      row :cell
+      row('手机')     { |u| u.cell }
       row('身份证号')  { |u| u.id_card_number }
       row :abstract
       row('用户等级')  { |u| u.level }
+      row("确认")     do 
+        link_to t('confirm'), confirm_user_admin_user_path(user), :method => :put, :class => 'button'
+      end
       row :current_sign_in_at
       row :sign_in_count
       row('用户创建日期') { |u| u.created_at }
@@ -73,13 +76,20 @@ ActiveAdmin.register User do
       f.input :password
       f.input :password_confirmation
     end
-      f.inputs do
-        f.has_many :photos do |t|
-          t.input :title
-          t.input :photo
-        end
-      end
+      # f.inputs do
+      #   f.has_many :photos,heading: 'Id Photos', allow_destroy: true do |t|
+      #     t.input :title
+      #     t.input :photo
+      #   end
+      # end
     f.actions
+  end
+
+  member_action :confirm_user, :method => :put do
+    user = User.find(params[:id])
+    # user.level = "14"
+    # user.save!
+    redirect_to admin_users_path
   end
 
 end
