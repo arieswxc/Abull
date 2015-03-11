@@ -52,4 +52,6 @@ class Fund < ActiveRecord::Base
       transition :closed => :pending
     end
   end
+
+  has_one :homs_account
 end

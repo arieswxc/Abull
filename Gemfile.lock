@@ -355,6 +355,7 @@ DEPENDENCIES
   qiniu-rs
   rails (= 4.2.0)
   rails-i18n
+  rake
   ransack
   rmagick
   rspec-rails
