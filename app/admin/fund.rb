@@ -23,7 +23,7 @@ ActiveAdmin.register Fund do
   show do |fund|
     attributes_table  do 
       row('标名')           { |f| f.name }
-      row('募集资金')       { |f| f.amount }
+      row('募集资金')      { |f| f.amount }
       row('募集截止时间')   { |f| f.collection_deadline }
       row('最小值')        { |f| f.minimum }
       row('明(暗)标')      { |f| f.private_check }
@@ -73,9 +73,7 @@ ActiveAdmin.register Fund do
         f.input :minimum
         f.input :invest_starting_date
         f.input :invest_ending_date
-        f.input :state, as: :select, collection: ["还未审核", "待审核", "已审核", "审核失败"], :label => "状态"
         f.input :state, as: :select, collection: ["pending", "applied", "gathering", "reached", "opened", "running", "finished", "closed", "denied"]
-        f.input :reject_reason, :label => "退回说明"
       end
       f.actions
   end

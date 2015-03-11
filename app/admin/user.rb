@@ -41,9 +41,9 @@ ActiveAdmin.register User do
       row('身份证号')  { |u| u.id_card_number }
       row :abstract
       row('用户等级')  { |u| u.level }
-      row("确认")     do 
-        link_to t('confirm'), confirm_user_admin_user_path(user), :method => :put, :class => 'button'
-      end
+      # row("确认")     do 
+      #   link_to t('update'), confirm_user_admin_user_path(user), :method => :put, :class => 'button'
+      # end
       row :current_sign_in_at
       row :sign_in_count
       row('用户创建日期') { |u| u.created_at }
@@ -54,8 +54,21 @@ ActiveAdmin.register User do
         row('真实姓名') { |u| u.real_name }
         row('身份证号') { |u| u.id_card_number }
         user.photos.each do |p|
-            row("#{p.title}") { image_tag p.photo }
+            row("#{p.title}") { image_tag p.photo, width: '400', height: '400' }
         end
+      end
+    end
+  end
+
+
+  #侧边窗口
+  sidebar "User level变更", only: :show do
+    attributes_table_for user do
+      row('升级')  do 
+        link_to t('Update'), update_user_admin_user_path(user), :method => :put, :class => 'button'
+      end
+      row('降级')  do
+        link_to t('Degrade'), degrade_user_admin_user_path(user), :method => :put, :class => 'button'
       end
     end
   end
@@ -85,12 +98,22 @@ ActiveAdmin.register User do
     f.actions
   end
 
-  member_action :confirm_user, :method => :put do
+  member_action :update_user, :method => :put do
     user = User.find(params[:id])
-    if user.level == 'pending'
-      user.check
-    elsif user.level == 'checked'
-      user.confirm
+    if user.level == 'unverified'
+      user.up_to_inv
+    elsif user.level == 'investor'
+      user.up_to_td
+    end
+    redirect_to admin_user_path(user)
+  end
+
+  member_action :degrade_user, :method => :put do
+    user = User.find(params[:id])
+    if user.level == 'trader'
+      user.down_to_inv
+    elsif user.level == 'investor'
+      user.down_to_un
     end
     redirect_to admin_user_path(user)
   end
