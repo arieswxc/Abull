@@ -13,7 +13,7 @@ FactoryGirl.define do
     invest_ending_date    "2015-02-24 22:20:20"
     expected_earning_rate "10.0"
     description           "This is a fund description."
-    risk_method           "This is a fund risk method."
+    frontend_risk_method  "This is a fund risk method."
     initial_amount        "9.99"
   end
 end
