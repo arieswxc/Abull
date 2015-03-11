@@ -1,7 +1,7 @@
 ActiveAdmin.register User do
   permit_params :email, :password, :password_confirmation, :nick_name, :real_name, :avatar, :cell, :id_card_number, :abstract, :level,
                 photos_attributes:[ :title, :photo ]
-
+ 
   index do
     selectable_column
     id_column

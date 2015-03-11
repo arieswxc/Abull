@@ -13,14 +13,6 @@ ActiveAdmin.register Fund do
     column "操盘开始时间*", :invest_starting_date
     column "操盘结束时间*", :invest_ending_date
     column "状态", :state
-    column "确认" do |fund|
-      link_to t('confirm'), confirm_fund_admin_fund_path(fund), :method => :put, :class => 'button'
-    end
-    column "拒绝" do |fund|
-      if fund.state == 'pending'
-        link_to t('deny'), deny_fund_admin_fund_path(fund), :method => :put, :class => 'button'
-      end
-    end
     actions defaults: false do |fund|
       item "Preview", admin_fund_path(fund), class: "member_link"
       item "Edit", edit_admin_fund_path(fund), class: "member_link"
@@ -39,7 +31,7 @@ ActiveAdmin.register Fund do
       row('操盘结束时间')   { |f| f.invest_ending_date }      
       row('投资方向')      { |f| f.description}
       row('风控措施')      { |f| f.risk_method }
-      row('状态')          { |f| f.state }      
+      row('状态')          { |f| f.state }   
     end
 
     panel t('操盘手个人信息') do 
@@ -56,21 +48,34 @@ ActiveAdmin.register Fund do
         row('用户创建日期') { |u| u.created_at }
       end
     end
+  end
 
+  #侧边窗口
+  sidebar "状态变更", only: :show do
+    attributes_table_for fund do
+      row('确认')  do 
+        link_to t('confirm'), confirm_fund_admin_fund_path(fund), :method => :put, :class => 'button'
+      end
+      row('拒绝')  do
+        if fund.state == 'applied'
+          link_to t('deny'), deny_fund_admin_fund_path(fund), :method => :put, :class => 'button'
+        end
+      end
+    end
   end
  
   # page of new and edit
   form do |f|
       f.inputs t('Edit') do
-        # f.input :name
-        # f.input :amount
-        # f.input :collection_deadline
-        # f.input :minimum
-        # f.input :invest_starting_date
-        # f.input :invest_ending_date
-        # f.input :state, as: :select, collection: ["还未审核", "待审核", "已审核", "审核失败"], :label => "状态"
-        f.input :state, as: :select, collection: ["pending", "applied", "gathering", "reached", "opened", "running", "finished", "closed"]
-        # f.input :reject_reason, :label => "退回说明"
+        f.input :name
+        f.input :amount
+        f.input :collection_deadline
+        f.input :minimum
+        f.input :invest_starting_date
+        f.input :invest_ending_date
+        f.input :state, as: :select, collection: ["还未审核", "待审核", "已审核", "审核失败"], :label => "状态"
+        f.input :state, as: :select, collection: ["pending", "applied", "gathering", "reached", "opened", "running", "finished", "closed", "denied"]
+        f.input :reject_reason, :label => "退回说明"
       end
       f.actions
   end
@@ -78,6 +83,8 @@ ActiveAdmin.register Fund do
   member_action :confirm_fund, :method => :put do 
     fund = Fund.find(params[:id])
     if fund.state == 'pending'
+      fund.apply
+    elsif fund.state == 'denied'
       fund.apply
     elsif fund.state == 'applied'
       fund.approve
@@ -89,16 +96,18 @@ ActiveAdmin.register Fund do
       fund.run 
     elsif fund.state == 'running'
       fund.finish
-    else fund.state == 'finished'
+    elsif fund.state == 'finished'
       fund.close
+    elsif fund.state == 'closed'
+      fund.reset
     end      
-    redirect_to admin_funds_path
+    redirect_to admin_fund_path(fund)
   end
 
   member_action :deny_fund, :method => :put do
     fund = Fund.find(params[:id])
     fund.deny
-    redirect_to admin_funds_path
+    redirect_to admin_fund_path(fund)
   end
 
 end

@@ -6,7 +6,7 @@ class Fund < ActiveRecord::Base
   validates :collection_deadline, presence: true
   validates :earning,             numericality: true
   validates :state,               presence: true
-  validates :state,               inclusion: { in: ["pending", "applied", "gathering", "reached", "opened", "running", "finished", "closed"] }
+  validates :state,               inclusion: { in: ["pending", "applied", "gathering", "reached", "opened", "running", "finished", "closed", "denied"] }
   validates :private_check,       inclusion: { in: ["private", "public"] }
   validates :invest_starting_date, presence: true
   validates :invest_ending_date,  presence: true
