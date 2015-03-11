@@ -70,7 +70,7 @@ ActiveAdmin.register Fund do
  
   # page of new and edit
   form do |f|
-      f.inputs t('Edit') do
+      f.inputs do
         f.input :name
         f.input :amount
         f.input :collection_deadline, as: :datepicker
@@ -78,6 +78,7 @@ ActiveAdmin.register Fund do
         f.input :invest_starting_date, as: :datepicker
         f.input :invest_ending_date, as: :datepicker
         f.input :state, as: :select, collection: ["pending", "applied", "gathering", "reached", "opened", "running", "finished", "closed", "denied"]
+        f.input :user_id, as: :select, collection: User.order(:email).map{|u| [u.email, u.id]}
       end
       f.actions
   end
