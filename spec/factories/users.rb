@@ -8,6 +8,6 @@ FactoryGirl.define do
     nick_name       "foobar"
     id_card_number  "123456789012345678"
     abstract        "Good Guy."
-    level           "junior"
+    level           "unverified"
   end
 end
