@@ -13,7 +13,7 @@ Rails.application.routes.draw do
       resources :following_topics,  only: [:index, :show]
     end
     get   :edit_real_name,    on: :member
-    post  :update_real_name,  on: :member
+    put   :update_real_name,  on: :member
 
     shallow do
       resources :funds do
