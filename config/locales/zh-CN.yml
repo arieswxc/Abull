@@ -2,16 +2,36 @@ zh-CN:
   invalid_date: "无效日期"
   activerecord:
     models:
+      admin_user: 后台用户
       user: 用户
       fund: 发标
+      topic: 话题
+      comment: 评论
+      follow: 关注
+      homs_account: HOMS账号
+      invest: 投标
+      leverage: 配资
+      news: 动态
+      photo: 照片
     attributes:
+      admin_user:
+        email: 电子邮件
+        current_sign_in_at: 当前登录时间
+        sign_in_count: 登录次数
+        created_at: 用户创建日期
+        role: 角色
       user:
-        nickname: 昵称
+        avatar: 头像
+        nick_name: 昵称
         real_name: 真实姓名
         cell: 手机
         id_card_number: 身份证号
         level: 用户等级
-        created_at: 创建日期
+        current_sign_in_at: 当前登录时间
+        sign_in_count: 登录次数
+        abstract: 摘要
+        created_at: 用户创建日期
+        level: 用户等级
       fund:
         name: 标名
         amount: 募集数额
@@ -26,6 +46,62 @@ zh-CN:
         expected_earning_rate: 预期年化收益率
         state: 状态
         user_id: 用户
+        earning: 收益
+        earning_rate: 收益率
+        initial_amount: 初始募集数额
+        homs_account: HOMS账号
+      comment:
+        title: 标题
+        comment: 评论
+        user_id: 用户
+        role: 角色
+        created_at: 创建日期
+        updated_at: 更新日期
+      follow:
+        blocked: 屏蔽
+        followable_type: 被关注类型
+        followable_id: 被关注id
+        follower_id: 关注id
+        follower_type: 关注类型
+      invest:
+        user_id: 用户
+        fund_id: 发标
+        amount: 数额
+        date: 日期
+        payback: 回报
+        close_day: 清算日期
+      homs_account:
+        title: 账号名
+        password: 密码
+        fund_id: 发标
+        created_at: 创建日期
+        updated_at: 更新日期
+      leverage:
+        user_id:
+        date: 配资时间
+        amount: 配资数额
+        description: 配资说明
+        deadline: 到期时间
+        state: 状态
+        created_at: 创建日期
+        updated_at: 更新日期
+      news:
+        title: 标题
+        content: 内容
+        date: 时间
+        created_at: 创建日期
+        updated_at: 更新日期
+      photo:
+        title: 标题
+        photo: 照片
+        user_id: 用户
+      topic:
+        user_id: 用户
+        title: 标题
+        content: 内容
+        date: 时间
+        created_at: 创建日期
+        updated_at: 更新日期
   formtastic:
     yes: "YES"
     no: "NO"
