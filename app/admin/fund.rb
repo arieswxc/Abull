@@ -62,7 +62,10 @@ ActiveAdmin.register Fund do
       end
       row('拒绝')  do
         if fund.state == 'applied'
-          link_to t('deny'), deny_fund_admin_fund_path(fund), :method => :put, :class => 'button'
+          form_for "reject_reason", url: deny_fund_admin_fund_path(fund), method: :post do |f|
+            f.text_area :reason
+            f.submit
+          end        
         end
       end
     end
@@ -83,6 +86,7 @@ ActiveAdmin.register Fund do
       f.actions
   end
 
+  
   member_action :confirm_fund, :method => :put do 
     fund = Fund.find(params[:id])
     if fund.state == 'pending'
@@ -107,8 +111,9 @@ ActiveAdmin.register Fund do
     redirect_to admin_fund_path(fund)
   end
 
-  member_action :deny_fund, :method => :put do
+  member_action :deny_fund, :method => :post do
     fund = Fund.find(params[:id])
+    ActiveAdmin::Comment.create("resource" => fund, "body"=>"#{params[:reject_reason][:reason]}", "namespace": "admin")
     fund.deny
     redirect_to admin_fund_path(fund)
   end
