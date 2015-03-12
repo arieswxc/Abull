@@ -1,5 +1,5 @@
 class Fund < ActiveRecord::Base
-  validates :name,                presence: true
+  # validates :name,                presence: true
   validates :user_id,             presence: true
   validates :amount,              presence: true
   validates :amount,              numericality: true
