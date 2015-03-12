@@ -3,4 +3,6 @@ class AdminUser < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, 
          :recoverable, :rememberable, :trackable, :validatable
+  validates :role, presence: true
+  validates :role, inclusion: { in: ["risk_controller", "teller", "account_manager", "customer_service"] }
 end

@@ -76,7 +76,7 @@ RSpec.describe User, type: :model do
 
   # level
   it "is valid without level" do
-    expect(create(:user, level: nil)).to be_valid
+    expect(build(:user, level: nil)).to be_invalid
   end
 
   # photos

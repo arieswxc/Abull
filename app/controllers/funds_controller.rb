@@ -43,6 +43,6 @@ class FundsController < ApplicationController
         :name, :amount, :collection_deadline,
         :private_check, :minimum, :invest_starting_date,
         :invest_ending_date, :expected_earning_rate, :description,
-        :risk_method, :initial_amount, :state)
+        :frontend_risk_method, :backend_risk_method, :homs_account, :initial_amount, :state)
     end
 end

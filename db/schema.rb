@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150307055700) do
+ActiveRecord::Schema.define(version: 20150311072253) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20150307055700) do
     t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "role",                   limit: 255
   end
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
@@ -90,11 +91,20 @@ ActiveRecord::Schema.define(version: 20150307055700) do
     t.datetime "updated_at",                                                                       null: false
     t.decimal  "expected_earning_rate",               precision: 12, scale: 4
     t.text     "description",           limit: 65535
-    t.text     "risk_method",           limit: 65535
+    t.text     "frontend_risk_method",  limit: 65535
     t.decimal  "initial_amount",                      precision: 12, scale: 2
+    t.text     "back_end_risk_method",  limit: 65535
+    t.integer  "homs_account",          limit: 4
   end
 
   add_index "funds", ["user_id"], name: "index_funds_on_user_id", using: :btree
+
+  create_table "homs_accounts", force: :cascade do |t|
+    t.string   "title",      limit: 255
+    t.string   "password",   limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "invests", force: :cascade do |t|
     t.integer  "user_id",    limit: 4

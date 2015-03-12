@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
-
-
+#source 'http://ruby.taobao.org'
+gem 'rake'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use mysql as the database for Active Record
@@ -72,6 +72,8 @@ gem 'acts_as_commentable'
 
 # User thin to replace of webrick
 gem 'thin'
+
+gem 'state_machines-activerecord'
 
 group :development, :test do
   gem 'rspec-rails'

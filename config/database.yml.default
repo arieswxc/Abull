@@ -1,3 +1,18 @@
+Skip to content
+ This repository
+Explore
+Gist
+Blog
+Help
+zxnicv zxnicv
+ 
+8  Unwatch 
+  Unstar 2
+ Fork 0JiechengZhao/bull PRIVATE
+ branch: master  bull/config/database.yml.default
+ken wongken-wong 28 days ago Set database configuration
+1 contributor
+RawBlameHistory     55 lines (51 sloc)  1.59 kb
 # MySQL.  Versions 5.0+ are recommended.
 #
 # Install the MYSQL driver
@@ -52,3 +67,5 @@ production:
   database: bull_production
   username: bull
   password: <%= ENV['BULL_DATABASE_PASSWORD'] %>
+Status API Training Shop Blog About
+© 2015 GitHub, Inc. Terms Privacy Security Contact
