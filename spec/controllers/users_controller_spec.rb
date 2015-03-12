@@ -10,7 +10,7 @@ RSpec.describe UsersController, type: :controller do
   end
 
 
-  describe "POST #update_real_name" do
+  describe "PUT #update_real_name" do
     context "with valid params" do
       it "updates the requested user with real_name,
           assgin the requested user as @user,
