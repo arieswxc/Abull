@@ -1,0 +1,123 @@
+<div class="nav-box">
+	<header class="sl-header ng-scope">
+		<nav class="navbar navbar-inverse navbar-static-top site-nav">
+			<div class="container">
+	            <!-- Contact info -->
+	            <ul class="nav navbar-nav site-nav-sns">
+	                <li class="site-nav-sns-phone"><span class="navbar-text">客服热线：400-921-9218</span></li>
+	                <li>
+	                    <a href="#" class="icon-sns qq">
+	                        <div class="social-content">
+	                            <p class="social-title">点融网官方QQ群</p>
+
+	                            <p>141444867</p>
+	                        </div>
+	                    </a>
+	                </li>
+	                <li>
+	                    <a href="http://weibo.com/dianrongwang" target="_blank" class="icon-sns weibo" rel="nofollow"></a>
+	                </li>
+	                <li>
+	                    <a href="#" class="icon-sns wechat">
+	                        <div class="social-content">
+	                            <p class="social-title">扫描关注微信公众号</p>
+
+	                            <p><img src="/assets/qr-code.jpg"></p>
+	                        </div>
+	                    </a>
+	                </li>
+	            </ul>
+	            <ul id="nonLoginBar" class="nav navbar-nav navbar-right navbar-sm site-nav-login ng-scope">
+	            	<% if user_signed_in? %>
+	            		<li>
+		                	<%= link_to(current_user.email,user_path(current_user),id: "login-panel",class: "btn btn-sm",rel: "nofollow") %>
+		                </li>
+		                <li>
+		                	<%= link_to "登出", destroy_user_session_path, :method => :delete, :id => "sign-out" %>
+		                </li>
+	            	<% else %>
+		                <li>
+		                	<%= link_to("登录",new_user_session_path,id: "login-panel",class: "btn btn-sm",rel: "nofollow") %>
+		                </li>
+		                <li>
+		                	<%= link_to("注册账户",new_user_registration_path,id: "create-account",class: "btn btn-sm",rel: "nofollow") %>
+		                </li>
+		            <% end %>
+	            </ul>
+
+	        </div>
+		</nav>
+	</header>
+	<div class="header">
+		<div class="navbar navbar-default mega-menu" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="fa fa-bars"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">
+                        <img id="logo-header" src="/assets/logo.jpg" alt="Logo">
+                    </a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse navbar-responsive-collapse nav-menu">
+                    <ul class="nav navbar-nav">
+                        <li><%= link_to "首页",root_path %></li>
+                        <li class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                                我要投标
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="javascript:void(0);">规则说明</a></li>
+
+                                <li><a href="javascript:void(0);">定向委托操盘</a></li>
+                                
+                                <li><a href="javascript:void(0);">集合委托操盘</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                                我要发标
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="javascript:void(0);">规则说明</a></li>
+
+                                <li><a href="javascript:void(0);">定向委托标</a></li>
+                                
+                                <li><a href="javascript:void(0);">集合委托标</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                                我要配资
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="javascript:void(0);">规则说明</a></li>
+							</ul>
+						</li>
+						<li><a>交流互动</a></li>
+						<li class="dropdown">
+                            <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                                关于我们
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="javascript:void(0);">公司简介</a></li>
+                                <li><a href="javascript:void(0);">团队介绍</a></li>
+                                <li><a href="javascript:void(0);">专家顾问</a></li>
+                                <li><a href="javascript:void(0);">业绩报告</a></li>
+                                <li><a href="javascript:void(0);">社会责任</a></li>
+                                <li><a href="javascript:void(0);">资质荣誉</a></li>
+                                <li><a href="javascript:void(0);">媒体报道</a></li>
+                                <li><a href="javascript:void(0);">证金大事记</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

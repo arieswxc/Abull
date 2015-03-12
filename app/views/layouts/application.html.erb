@@ -2,14 +2,73 @@
 <html>
 <head>
   <title>Bull</title>
+	
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="/assets/one.css">
+    <link rel="stylesheet" href="/assets/plugins/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/one.style.css">
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="/assets/plugins/line-icons.css">
+    <link rel="stylesheet" href="/assets/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/plugins/img-hover.css">
+    <link rel="stylesheet" href="/assets/sky-forms.css">
+    <link rel="stylesheet" href="/assets/custom-sky-forms.css">
+    <!-- CSS Page Style -->    
+    <link rel="stylesheet" href="/assets/pages/blog.css">
+    <link rel="stylesheet" href="/assets/pages/page_log_reg_v1.css">
+    <!-- CSS Theme -->    
+    <link rel="stylesheet" href="/assets/theme-colors/default.css">
+    <link rel="stylesheet" href="/assets/shop.style.css">
+    <link rel="stylesheet" href="/assets/plugins/perfect-scrollbar.css">
+    <link rel="stylesheet" href="/assets/plugins/owl.carousel.css">
+    <link rel="stylesheet" href="/assets/plugins/settings.css">
+    <link rel="stylesheet" href="/assets/pages/page_job.css">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="/assets/custom.css">
+
+
+  <link rel="stylesheet" href="/assets/common.css">
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+	<script type="text/javascript" src="/assets/plugins/jquery-migrate.min.js"></script>
+	<script type="text/javascript" src="/assets/plugins/bootstrap.min.js"></script> 
+	<!-- JS Implementing Plugins -->
+	<script type="text/javascript" src="/assets/plugins/back-to-top.js"></script>
+	<script src="/assets/plugins/owl.carousel.js"></script>
+	<script src="/assets/plugins/jquery.mousewheel.js"></script>
+	<script src="/assets/plugins/perfect-scrollbar.js"></script>
+	<script src="/assets/plugins/jquery.parallax.js"></script>
+	<script src="/assets/plugins/jquery.themepunch.tools.min.js"></script>
+	<script src="/assets/plugins/jquery.themepunch.revolution.min.js"></script>
+  
+	<!-- JS Customization -->
+	<script src="/assets/custom.js"></script>
+	<!-- JS Page Level -->
+	<script src="/assets/shop.app.js"></script>
+	<script src="/assets/plugins/owl-carousel.js"></script>
+	<script src="/assets/plugins/revolution-slider.js"></script>
+
+	<!-- JS Page Level -->   
+  <script src="/assets/common.js"></script>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-  <%= yield %>
-
+	<div class="wapper">
+		  <%=render "shares/navbar" %>
+  		<%= yield %>
+  		<%=render "shares/footer" %>
+	</div>
+  <script>
+    jQuery(document).ready(function() {
+        App.init();
+        App.initParallaxBg();
+        OwlCarousel.initOwlCarousel();
+      RevolutionSlider.initRSfullWidth();      
+  });
+  </script>  
 </body>
 </html>

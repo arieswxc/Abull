@@ -1,0 +1,38 @@
+<div class="container content">   
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+             <%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'reg-page'}) do |f| %>
+                <div class="reg-header">            
+                    <h2>登录</h2>
+                </div>
+
+                <div class="input-group margin-bottom-20">
+                  <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                  <%= f.email_field :email, autofocus: true, placeholder: "Username", class: "form-control" %>
+                </div>                  
+                <div class="input-group margin-bottom-20">
+                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                    <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "form-control"%>
+                </div>               
+
+                <div class="row">
+                    <div class="col-md-6 checkbox">
+                      <% if devise_mapping.rememberable? -%>
+                       <label><input type="checkbox">记住我</label>
+                      <% end -%>                      
+                    </div>
+                    <div class="col-md-6">
+                        <button class="btn-u pull-right" type="submit">登录</button>                        
+                    </div>
+                </div>
+
+                <hr>
+
+                <h4>Forget your Password ?</h4>
+                <p>no worries, <a class="color-green" href="#">click here</a> to reset your password.</p>
+            <% end %>         
+        </div>
+    </div><!--/row-->
+</div>
+
+<%= render "devise/shared/links" %>

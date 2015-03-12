@@ -1,0 +1,313 @@
+p {
+  font-size: 14px;
+  line-height: 1.72222;
+  margin: 0 0 12px;
+}
+ol, ul {
+  list-style: none;
+}
+a:focus, a:hover {
+  color: #47b095;
+  text-decoration: none;
+}
+.navbar-static-top {
+  z-index: 1000;
+  border-width: 0;
+  border-radius: 0;
+}
+.navbar {
+  font-size: 14px;
+  min-height: 35px;
+  border-radius: 3px;
+}
+.navbar-collapse {
+  box-shadow: none;
+  padding-right: 21px;
+  padding-left: 21px;
+}
+/* header start */
+.sl-header .site-nav {
+  margin-bottom: 0;
+  background-color: #2e3a4b;
+  z-index: 1005;
+}
+.navbar-inverse .navbar-nav>li>a {
+  color: #d7dadb;
+}
+.sl-header .site-nav .site-nav-sns>li>.icon-sns {
+  width: 20px;
+  height: 18px;
+  margin: 7px 6px;
+  padding: 0;
+  background-image: url(../assets/logo-sprite.png);
+  background-repeat: no-repeat;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+.sl-header .site-nav .site-nav-sns>li>.icon-sns.qq {
+  background-position: 2px 2px;
+}
+.sl-header .site-nav .site-nav-sns>li>.icon-sns.qq:hover {
+  background-position: 2px -15px;
+}
+.sl-header .site-nav .site-nav-sns>li>.icon-sns.weibo {
+  background-position: -28px 2px;
+}
+.sl-header .site-nav .site-nav-sns>li>.icon-sns.weibo:hover {
+  background-position: -28px -15px;
+}
+.sl-header .site-nav .site-nav-sns>li>.icon-sns.wechat {
+  background-position: -57px 2px;
+}
+.sl-header .site-nav .site-nav-sns>li>.icon-sns.wechat:hover {
+  background-position: -57px -15px;
+}
+.nav.navbar-nav > li > a .social-content {
+  position: absolute;
+  top: 30px;
+  left: -65px;
+  width: 150px;
+  color: #0dba8f;
+  background-color: #fff;
+  border: 1px solid #d7dadb;
+  display: none;
+  padding: 5px;
+  text-align: center;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+.nav.navbar-nav > li > a .social-content .social-title, .sl-header .site-nav .site-nav-user .shopping-cart-widget .dropdown-menu p {
+  font-size: 12px;
+}
+.nav.navbar-nav > li > a .social-content:before {
+  content: "";
+  position: absolute;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent #DEE5D1;
+  line-height: 1;
+  display: inline-block;
+  left: 65px;
+  top: -20px;
+}
+.nav.navbar-nav > li > a .social-content:after {
+  content: "";
+  position: absolute;
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent transparent #fff;
+  line-height: 1;
+  display: inline-block;
+  left: 66px;
+  top: -19px;
+}
+
+/* header end */
+
+/* index site-menu */
+.index .site-menu {
+  position: relative;
+  height: 475px;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  -webkit-box-shadow: inset 0 -1px 5px rgba(0,0,0,.1);
+  box-shadow: inset 0 -1px 5px rgba(0,0,0,.1);
+}
+.sl-header .sl-nav-wrapper {
+  position: relative;
+  z-index: 10;
+}
+.sl-navbar, .sl-navbar.navbar {
+  margin-bottom: 0;
+}
+.sl-navbar {
+  padding: 0;
+  border-bottom: 1px solid #d7dadb;
+  -webkit-transition: .5s;
+  -moz-transition: .5s;
+  transition: .5s;
+  background-color: transparent;
+}
+.sl-navbar:before {
+  content: "";
+  position: absolute;
+  background-color: #fff;
+  opacity: .8;
+  filter: alpha(opacity=80);
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.sl-navbar>.container {
+  position: relative;
+  z-index: 1;
+}
+.sl-navbar .sl-logo {
+  background: url(../assets/dianrong-logo-header.png)0 -48px no-repeat;
+  overflow: hidden;
+  width: 118px;
+  height: 43px;
+}
+.sl-navbar .sl-nav {
+  margin-top: 8px;
+}
+.sl-navbar .logo-text, .sl-navbar .sl-logo, .sl-navbar .sl-nav .sl-user-nav .shopping-cart-widget .dropdown-menu>li>div.title span {
+  display: inline-block;
+}
+.media-21cbh-logo, .media-cnstock-logo, .media-fc-logo, .media-gemag-logo, .media-nbd-logo, .media-pedaily-logo, .media-stockstar-logo, .media-yicai-logo, .sl-navbar .sl-logo {
+  white-space: nowrap;
+  text-indent: 100%;
+}
+.navbar-nav .open>a:focus, .navbar-nav .open>a:hover, .navbar-nav>.open>.dropdown-toggle, .navbar-nav>.open>.dropdown-toggle:focus, .navbar-nav>.open>.dropdown-toggle:hover, .navbar-nav>li>a:focus, .navbar-nav>li>a:hover {
+  background-color: transparent;
+}
+.navbar-brand .sl-logo {
+  background: url(../assets/dianrong-logo-header.png)0 -48px no-repeat;
+  overflow: hidden;
+  width: 118px;
+  height: 43px;
+  display: inline-block;
+  white-space: nowrap;
+  text-indent: 100%;
+  margin-top: -10px;
+}
+.sl-top-nav {
+  font-size: 16px;
+  float: right;
+}
+.jumbotron {
+  background: 0 0;
+  font-size: 14px;
+  margin-bottom: 0;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.jumbotron.home .int-box {
+  width: 100%;
+  position: absolute;
+  top: 0;
+}
+.jumbotron.home .int-box>.container {
+  position: relative;
+}
+.jumbotron .container {
+  max-width: 100%;
+}
+.jumbotron.home .int-box .int-wrapper {
+  position: absolute;
+  top: 200px;
+  right: 0;
+  z-index: 100;
+  padding: 20px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  background-color: rgba(255,255,255,.65);
+}
+.jumbotron.home .int-box .int-wrapper .int-title {
+  color: #1c232e;
+}
+.jumbotron.home .int-box .int-wrapper p .big-int {
+  font-size: 28px;
+  color: #0dba8f;
+  padding-left: 10px;
+}
+.jumbotron.home .int-box .int-wrapper .amount .big-int, .jumbotron.home .int-box .int-wrapper p em.multi {
+  padding-left: 0;
+}
+.jumbotron.home .int-box .int-wrapper p em {
+  font-size: 20px;
+  color: #0dba8f;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.jumbotron.home .int-box .int-wrapper a.btn {
+  margin-bottom: 10px;
+}
+.btn-block {
+  white-space: normal;
+}
+.btn-secondary {
+  color: #fff;
+}
+.jumbotron.home .int-box .int-wrapper p {
+  font-size: 13px;
+  color: #1c232e;
+}
+.jumbotron.home .int-box .int-wrapper .account-title {
+  margin-top: 35px;
+  margin-bottom: 0;
+}
+.jumbotron.home .int-box .int-wrapper .amount {
+  font-size: 20px;
+  color: #0dba8f;
+  min-width: 231px;
+}
+.jumbotron.home .int-box .int-wrapper .amount .top-up {
+  margin-left: 20px;
+  font-size: 14px;
+}
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak, .ng-hide {
+  display: none !important;
+}
+.header {
+  z-index: 200;
+}
+#logo-header {
+  height: 48px;
+  margin-top: 12px;
+}
+.header .mega-menu .collapse.nav-menu {
+  padding-top: 20px;
+}
+.ui-side-withicon .ui-side-item-link {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.relative {
+  position: relative;
+}
+a.fn-left.ui-button.ui-button-green.ui-button-mid.mr4 {
+  position: absolute;
+  right: 83px;
+}
+a.fn-left.ui-button.ui-button-blue.ui-button-mid.last {
+  position: absolute;
+  right: 0px;
+}
+.img-section.pr20.float-r {
+  position: absolute;
+  right: 0;
+}
+.user-info-container {
+  display: inline-block;
+  width: 700px;
+}
+.pt0 {
+  padding-top: 0!important;
+}
+#pg-account-index .pg-account-detail {
+  width: 800px;
+}
+.sky-form {
+  border: none;
+}
+.float-left {
+  float: left;
+}
+.float-right {
+  float: right;
+}
+.padding0 {
+  padding: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* index site-menu end */
