@@ -1,0 +1,14 @@
+zh-CN:
+  simple_form:
+    "yes": '是'
+    "no": '否'
+    required:
+      text: '必须的'
+      mark: '*'
+    options:
+      fund:
+        private_check:
+          private: 暗标
+          public: 明标
+    error_notification:
+      default_message: "Please review the problems below:"
