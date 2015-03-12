@@ -1,19 +1,25 @@
 <!--https://github.com/plataformatec/simple_form-->
-<%= simple_form_for @fund do |f| %>
+<%= simple_form_for(@fund, html: { class: 'form-horizontal' }, 
+        wrapper: :horizontal_form,
+        wrapper_mappings: {
+        check_boxes: :horizontal_radio_and_checkboxes,
+        radio_buttons: :horizontal_radio_and_checkboxes,
+        file: :horizontal_file_input,
+        boolean: :horizontal_boolean}) do |f| %>
   <%= f.input :private_check, collection: [:private, :public] %>
-  <%= f.label :name %>
+  <%= f.input :name %>
   <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
   <%= f.input :amount %>
-  <%= f.input :collection_deadline %>
+  <%= f.input :collection_deadline, as: :date, html5: true %>
   <%= f.input :earning, as: :hidden %>
   <%= f.input :earning_rate, as: :hidden %>
   <%= f.input :minimum %>
-  <%= f.input :invest_starting_date %>
-  <%= f.input :invest_ending_date %>
+  <%= f.input :invest_starting_date, as: :date, html5: true %>
+  <%= f.input :invest_ending_date, as: :date, html5: true %>
   <%= f.input :expected_earning_rate %>
   <%= f.input :description %>
   <%= f.input :frontend_risk_method %>
-  <%= f.label :backend_risk_method %>
+  <%= f.input :backend_risk_method, disabled: true %>
   <%= f.input :initial_amount, as: :hidden %>
   <%= f.submit %>
 <% end %>

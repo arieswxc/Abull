@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150311072253) do
+ActiveRecord::Schema.define(version: 20150312064006) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 20150311072253) do
     t.text     "description",           limit: 65535
     t.text     "frontend_risk_method",  limit: 65535
     t.decimal  "initial_amount",                      precision: 12, scale: 2
-    t.text     "back_end_risk_method",  limit: 65535
+    t.text     "backend_risk_method",   limit: 65535
     t.integer  "homs_account",          limit: 4
   end
 
