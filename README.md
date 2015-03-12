@@ -116,7 +116,7 @@ batch_action_admin_admin_users POST       /admin/admin_users/batch_action(.:form
          user_following_topics GET        /users/:user_id/following_topics(.:format)     profile/following_topics#index 用户好友话题index页
           user_following_topic GET        /users/:user_id/following_topics/:id(.:format) profile/following_topics#show 	用户好友话题show页
            edit_real_name_user GET        /users/:id/edit_real_name(.:format)            users#edit_real_name		实名认证
-         update_real_name_user POST       /users/:id/update_real_name(.:format)          users#update_real_name		提交实名认证
+         update_real_name_user PUT        /users/:id/update_real_name(.:format)          users#update_real_name		提交实名认证
                   fund_invests GET        /funds/:fund_id/invests(.:format)              invests#index			投资index页
                                POST       /funds/:fund_id/invests(.:format)              invests#create			创建投资
                new_fund_invest GET        /funds/:fund_id/invests/new(.:format)          invests#new			投资的new页
