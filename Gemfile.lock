@@ -147,6 +147,8 @@ GEM
     formtastic_i18n (0.1.1)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
+    haml (4.0.6)
+      tilt
     has_scope (0.6.0)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
@@ -347,6 +349,7 @@ DEPENDENCIES
   devise-i18n-views
   factory_girl_rails
   faker
+  haml
   jbuilder (~> 2.0)
   jquery-rails
   kaminari
