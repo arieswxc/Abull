@@ -304,4 +304,10 @@ a.fn-left.ui-button.ui-button-blue.ui-button-mid.last {
 .float-right {
   float: right;
 }
+.padding0 {
+  padding: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
 /* index site-menu end */
