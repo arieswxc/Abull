@@ -63,7 +63,7 @@ gem 'carrierwave'
 gem 'qiniu-rs'
 gem 'carrierwave-qiniu'
 gem 'rmagick'
-
+gem 'haml'
 # For i18n
 gem 'rails-i18n'
 

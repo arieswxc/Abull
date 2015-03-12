@@ -1,0 +1,19 @@
+<!--https://github.com/plataformatec/simple_form-->
+<%= simple_form_for @fund do |f| %>
+  <%= f.input :private_check, collection: [:private, :public] %>
+  <%= f.label :name, hint: '标的代号' #代号后台审核输入%>
+  <%= f.hidden :user_id, input_html: { value: current_user.id } %>
+  <%= f.input :amount, hint: '募集金额'%>
+  <%= f.input :collection_deadline, hint: '标的操作截制日' %>
+  <%= f.hidden :earning %>
+  <%= f.hidden :earning_rate %>
+  <%= f.input :minimum, hint: '最小投资额度' %>
+  <%= f.input :invest_starting_date, hint: '标的开始日期' %>
+  <%= f.input :invest_ending_date, hint: '标的到期时间' %>
+  <%= f.input :expected_earning_rate, hint: '预期年化收益率' %>
+  <%= f.input :descripition, hint: '标的详细介绍（包括投资策略）' %>
+  <%= f.input :frontend_risk_method, hint: '发起人风控自述' %>
+  <%= f.label :backend_risk_method, hint: '后台风控审核' %>
+  <%= f.hidden :initial_amount %>
+  <%= f.submit %>
+<% end %>
