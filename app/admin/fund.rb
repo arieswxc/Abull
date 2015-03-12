@@ -40,16 +40,16 @@ ActiveAdmin.register Fund do
 
     panel t('操盘手个人信息') do 
       attributes_table_for fund.user do
-        row('电子邮件')  { |u| u.email }
-        row('昵称')     { |u| u.nick_name }
-        row('真实姓名')  { |u| u.real_name }
-        row('手机')     { |u| u.cell }
-        row('身份证号')  { |u| u.id_card_number }
+        row :email
+        row :nick_name
+        row :real_name
+        row :cell
+        row :id_card_number
         row :abstract
-        row('用户等级')  { |u| u.level }
+        row :level
         row :current_sign_in_at
         row :sign_in_count
-        row('用户创建日期') { |u| u.created_at }
+        row :created_at
       end
     end
   end
