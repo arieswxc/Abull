@@ -67,6 +67,7 @@ gem 'haml'
 # For i18n
 gem 'rails-i18n'
 gem 'simple_form'
+gem 'country_select'
 
 # For comment
 gem 'acts_as_commentable'
