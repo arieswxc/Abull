@@ -9,14 +9,14 @@
       <li class="ui-side-item <%= 'active' if activeItem=='account' %>">
         <a class="ui-side-item-link pt0"><i class="glyphicon glyphicon-usd index mr10 ml10"></i>资金管理</a>
       </li>
-      <li class="ui-side-item <%= 'active' if activeItem=='fund' %>">
-        <%= link_to(user_funds_path(current_user),class: "ui-side-item-link pt0") do %>
-          <i class="glyphicon glyphicon-usd index mr10 ml10"></i>发标管理
-        <% end %>
-      </li>
       <li class="ui-side-item <%= 'active' if activeItem=='invest' %>">
         <%= link_to(user_invests_path(current_user),class: "ui-side-item-link pt0") do %>
           <i class="glyphicon glyphicon-usd index mr10 ml10"></i>投标管理
+        <% end %>
+      </li>
+      <li class="ui-side-item <%= 'active' if activeItem=='fund' %>">
+        <%= link_to(user_funds_path(current_user),class: "ui-side-item-link pt0") do %>
+          <i class="glyphicon glyphicon-usd index mr10 ml10"></i>发标管理
         <% end %>
       </li>
       <li class="ui-side-item <%= 'active' if activeItem=='leverage' %>">
