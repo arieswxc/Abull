@@ -60,20 +60,20 @@
                   %i.fa.fa-share
                   分享(141)
     .col-md-3
-      .tab-v1
+      .tab-v2
         %ul.nav.nav-tabs
           %li.active
             %a{"data-toggle" => "tab", :href => "#me-following-1"} 我关注的
-        .tab-content.row
+        .tab-content
           #me-following-1.tab-pane.fade.active.in
             .row.p20
-              .col-md-4.text-center
+              .col-md-6.text-center.mb20
                 %img.img-thumbnail.img-rounded.w70{:src => "/assets/testimonials/img1.jpg"}/
                 %div 巴菲特
-              .col-md-4.text-center
+              .col-md-6.text-center.mb20
                 %img.img-thumbnail.img-rounded.w70{:src => "/assets/testimonials/img1.jpg"}/
                 %div 巴菲特
-              .col-md-4.text-center
+              .col-md-6.text-center.mb20
                 %img.img-thumbnail.img-rounded.w70{:src => "/assets/testimonials/img1.jpg"}/
                 %div 巴菲特
-            %div.mt20= link_to "更多","#",class: "ml40"
+            %div= link_to "更多","#",class: "ml40"
