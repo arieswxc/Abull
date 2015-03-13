@@ -16,12 +16,14 @@ RSpec.describe FundsController, type: :controller do
         assigns the requested comments as @comments" do
       user    = create(:user)
       fund    = create(:fund, user_id: user.id)
+      3.times { create(:invest, fund_id: fund.id)}
       comment = create(:comment, commentable: fund, user_id: fund.user.id)
       get :show, {id: fund.to_param, user_id: user.to_param}
       expect(assigns(:fund)).to eq fund
       expect(assigns(:private)).to eq fund.private_check
       expect(assigns(:user)).to eq user
       expect(assigns(:comments).first).to eq comment
+      expect(assigns(:rate_of_progress)).to eq ((fund.invests.sum(:amount) * 100) / fund.amount)
     end
   end
 
