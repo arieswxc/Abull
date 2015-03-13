@@ -4,12 +4,15 @@ ActiveAdmin.register Topic do
   index do
     selectable_column
     id_column
-    column "标题", :title
-    column "日期", :date
-    column "用户ID", :user_id
-    column "内容" do |topic|
-      topic.content.slice(0,140)
+    column :title
+    column "用户" do |topic|
+      user = AdminUser.find(topic.user_id)
+      link_to user.email, admin_admin_user_path(user)
     end
+    column "内容" do |topic|
+      topic.content.slice(0,500) + "..."
+    end
+    column :date
     actions
   end
 
@@ -17,7 +20,11 @@ ActiveAdmin.register Topic do
     attributes_table do
       row('标题')    { |t| t.title }
       row('内容')    { |t| t.content }
-      row('用户ID')  { |t| t.user_id }
+      row('用户') do 
+        user = AdminUser.find(topic.user_id)
+        link_to user.email, admin_admin_user_path(user)
+      end
+      row :date
     end
   end
 
@@ -25,8 +32,9 @@ ActiveAdmin.register Topic do
     f.inputs "topic Details" do
       f.input :title
       f.input :content
-      f.input :user_id
+      f.input :user_id, as: :select, collection: [ current_admin_user.id ]
     end
     f.actions
   end
+  
 end

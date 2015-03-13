@@ -51,7 +51,7 @@ ActiveAdmin.register User do
         row :real_name
         row :id_card_number
         user.photos.each do |p|
-            row("#{p.title}") { link_to image_tag(p.thumb.photo), p.photo }
+            row("#{p.title}") { link_to image_tag(p.photo, width:400, height:400), p.photo.url }      
         end
       end
     end
@@ -83,12 +83,6 @@ ActiveAdmin.register User do
       f.input :password
       f.input :password_confirmation
     end
-      # f.inputs do
-      #   f.has_many :photos,heading: 'Id Photos', allow_destroy: true do |t|
-      #     t.input :title
-      #     t.input :photo
-      #   end
-      # end
     f.actions
   end
 
