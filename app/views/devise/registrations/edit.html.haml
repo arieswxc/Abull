@@ -1,0 +1,61 @@
+.pg-container-content
+  #pg-account-index.pg-account
+    .container_12.mt10.fn-clear
+      = render "shares/profile_side_navbar", {activeItem: "useredit"}
+      .inline-block.relative.pg-account-detail
+        .tab-v1
+          %ul.nav.nav-tabs
+            %li.active
+              %a{"data-toggle" => "tab", :href => "#baseProfile"} 基本信息
+            %li
+              %a{"data-toggle" => "tab", :href => "#authenticationProfile"} 认证信息
+          .tab-content
+            #baseProfile.tab-pane.fade.active.in
+              = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'sky-form'}) do |f|
+                = devise_error_messages!
+                .row
+                  .ml40.col-md-2.text-center
+                    %img.img-thumbnail.img-rounded.w70{:src => "/assets/testimonials/img1.jpg"}/
+                    .mb40 上传头像
+                  .col-md-8
+                    %a.btn-u.btn-u-blue.mt10{:href => "javascript:;"} 申请认证
+                    .border-all.mt10 个人简介：
+                %dl.dl-horizontal
+                  %dt 昵称
+                  %dd
+                    %section
+                      %label.input
+                        %i.icon-append.fa.fa-user
+                        %input{:name => "user[nick_name]", :placeholder => "Username", :type => "text", :value => "#{resource.nick_name}"}/
+                        %b.tooltip.tooltip-bottom-right 登录网站所用
+                  %dt 真实姓名
+                  %dd
+                    %section
+                      %label.input
+                        %i.icon-append.fa.fa-user
+                        %input{:name => "user[real_name]", :placeholder => "Real name", :type => "text"}/
+                        %b.tooltip.tooltip-bottom-right 你的真实姓名
+                  %dt 邮箱
+                  %dd
+                    %section
+                      %label.input
+                        %i.icon-append.fa.fa-envelope
+                        %input{:name => "user[email]", :placeholder => "Email address", :type => "email", :value => "#{resource.email}"}/
+                        %b.tooltip.tooltip-bottom-right 验证账户所用
+                  %dt 密码
+                  %dd
+                    %section
+                      %label.input
+                        %i.icon-append.fa.fa-lock
+                        %input#password{:name => "user[password]", :placeholder => "Password", :type => "password"}/
+                        %b.tooltip.tooltip-bottom-right 不要忘了你的密码
+                  %dt 确认密码
+                  %dd
+                    %section
+                      %label.input
+                        %i.icon-append.fa.fa-lock
+                        %input{:name => "user[password_confirmation]", :placeholder => "Confirm password", :type => "password"}/
+                        %b.tooltip.tooltip-bottom-right 不要忘了你的密码
+                %button.btn-u.btn-u-default.ml100{:type => "reset"} Cancel
+                %button.btn-u{:type => "submit"} 保存修改
+            #authenticationProfile.tab-pane.fade

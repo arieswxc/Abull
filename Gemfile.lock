@@ -136,6 +136,8 @@ GEM
     devise-i18n (0.11.4)
     devise-i18n-views (0.3.4)
     diff-lcs (1.2.5)
+    erb2haml (0.1.5)
+      html2haml
     erubis (2.7.0)
     eventmachine (1.0.7)
     execjs (2.4.0)
@@ -158,6 +160,11 @@ GEM
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
     hike (1.2.3)
+    html2haml (2.0.0)
+      erubis (~> 2.7.0)
+      haml (~> 4.0.0)
+      nokogiri (~> 1.6.0)
+      ruby_parser (~> 3.5)
     i18n (0.7.0)
     inherited_resources (1.6.0)
       actionpack (>= 3.2, < 5)
@@ -269,6 +276,8 @@ GEM
       rspec-support (~> 3.2.0)
     rspec-support (3.2.2)
     ruby-hmac (0.4.0)
+    ruby_parser (3.6.5)
+      sexp_processor (~> 4.1)
     rubyzip (1.1.7)
     sass (3.4.13)
     sass-rails (5.0.1)
@@ -285,6 +294,7 @@ GEM
       multi_json (~> 1.0)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
+    sexp_processor (4.5.0)
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
@@ -356,6 +366,7 @@ DEPENDENCIES
   devise
   devise-i18n
   devise-i18n-views
+  erb2haml
   factory_girl_rails
   faker
   haml

@@ -91,3 +91,4 @@ group :test do
 end
 
 gem 'simple_form'
+gem "erb2haml", :group => :development

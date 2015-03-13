@@ -1,0 +1,40 @@
+.pg-container-content
+  #pg-account-index.pg-account
+    .container_12.mt10.fn-clear
+      = render "shares/profile_side_navbar", {activeItem: "invest"}
+      .inline-block.relative.pg-account-detail
+        = render "shares/profile"
+        .tag-box.tag-box-v3.mt40
+          %h2 已投资金额：14,000,000
+          %table.table.table-striped.table-bordered.mt40
+            %thead
+              %tr
+                %th 标的名字
+                %th 操盘手
+                %th 投标额度
+                %th 到期时间
+                %th 冻结资金
+                %th 承诺收益率
+                %th 状态
+                %th 合同
+            %tbody
+              %tr
+                %th A股平衡基金
+                %th 索罗宾
+                %th 200w
+                %th 2017-01-01
+                %th 100w
+                %th 200%
+                %th 募集期
+                %th
+                  %a{:href => "javascript:;"} 委托操盘合同
+              %tr
+                %th B股平衡基金
+                %th 索罗宾
+                %th 200w
+                %th 2017-01-01
+                %th 100w
+                %th 200%
+                %th 募集期
+                %th
+                  %a{:href => "javascript:;"} 委托操盘合同
