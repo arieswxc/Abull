@@ -53,19 +53,12 @@
                 %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "javascript:void(0);"}
                   关于我们
                 %ul.dropdown-menu
-                  %li
-                    %a{:href => "javascript:void(0);"} 公司简介
-                  %li
-                    %a{:href => "javascript:void(0);"} 团队介绍
-                  %li
-                    %a{:href => "javascript:void(0);"} 专家顾问
-                  %li
-                    %a{:href => "javascript:void(0);"} 业绩报告
-                  %li
-                    %a{:href => "javascript:void(0);"} 社会责任
-                  %li
-                    %a{:href => "javascript:void(0);"} 资质荣誉
-                  %li
-                    %a{:href => "javascript:void(0);"} 媒体报道
-                  %li
-                    %a{:href => "javascript:void(0);"} 证金大事记
+                  %li= link_to "公司简介",page_path("about/about_us")
+                  %li= link_to "员工风采",page_path("about/about_staff")
+                  %li= link_to "团队介绍",page_path("about/our_team")
+                  %li= link_to "专家顾问",page_path("about/our_advisors")
+                  %li= link_to "业绩报告",page_path("about/performance_report")
+                  %li= link_to "社会责任",page_path("about/corporate_social_responsibility")
+                  %li= link_to "资质荣誉",page_path("about/qualification_and_honors")
+                  %li= link_to "媒体报道",page_path("about/media_reports")
+                  %li= link_to "证金大事记",page_path("about/our_events")
