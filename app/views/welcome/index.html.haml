@@ -43,19 +43,10 @@
             倍活期存款收益
             %em> 3
             倍货币基金收益
-          = link_to("立即注册",new_user_registration_path,class: "btn btn-block btn-secondary",rel: "nofollow")
-          %p.text-right
-            已有账号？#{link_to("立即登录",new_user_session_path,rel: "nofollow")}
-        .ng-hide{"ng-show" => "isAuthenticated()"}
-          %h6.int-title
-            欢迎回来，
-            %span.userName.ng-binding
-          %p.account-title 账户可用余额
-          %p.amount
-            %span.big-int.ng-binding{"ng-bind-html" => "cart.availableToInvest|slMoney"}
-              %small 元
-            %a.top-up{:href => "/account/my-account#/transfer?recharge=true"} 充值
-          %a.btn.btn-block.btn-secondary{:href => "/account/my-account"} 我的账户
+          - unless user_signed_in?
+            = link_to("立即注册",new_user_registration_path,class: "btn btn-block btn-secondary",rel: "nofollow")
+            %p.text-right
+              已有账号？#{link_to("立即登录",new_user_session_path,rel: "nofollow")}
   / 安全  收益 保障
   .container.content
     / Begin Service Block
@@ -87,140 +78,44 @@
           %span.on 投资列表
         %ul#loan-list.ui-list.ui-list-m.ui-list-invest
           %li#loan-list-header.ui-list-header.fn-clear
-            %span.ui-list-title.fn-left.color-gray-text.w260 借款标题
-            %span.ui-list-title.fn-left.color-gray-text.text-center.w80{:title => "借款人在人人贷的个人信用评级"} 信用等级
-            %span.ui-list-title.fn-left.color-gray-text.text-center.w120 年利率
+            %span.ui-list-title.fn-left.color-gray-text.w260 标的代号
+            %span.ui-list-title.fn-left.color-gray-text.text-center.w120 预期收益率
             %span.ui-list-title.fn-left.color-gray-text.text-center.w160 金额
             %span.ui-list-title.fn-left.color-gray-text.text-center.w100 期限
             %span.ui-list-title.fn-left.color-gray-text.text-center.w110 进度
             %span.ui-list-title.fn-left.color-gray-text.text-center.w80
-          %li.ui-list-item.fn-clear
-            %span.ui-list-field.fn-left.text-big.w260
-              %em.ui-loantype.XYRZ{:title => "信用认证标"}
-              %a.fn-left.w210.rrd-dimgray.fn-text-overflow{:href => "/lend/detailPage.action?loanId=488977", :target => "_blank", :title => "网上投资创业"} 网上投资创业
-            %span.ui-list-field.fn-left.w80
-              %a.ui-creditlevel.HR.snow HR
-            %span.ui-list-field.fn-left.num.text-right.w90.pr30
-              %em.value> 12.00
-              \%
-            %span.ui-list-field.fn-left.num.text-right.w130.pr30
-              %em.value> 10,000
-              元
-            %span.ui-list-field.fn-left.num.text-right.w80.pr30
-              %em.value> 12
-              个月
-            %span.ui-list-field.fn-left.w110
-              %strong.ui-progressbar-mid.ui-progressbar-mid-100
-                %em> 100
-                \%
-            %span.ui-list-field.fn-left.w80
-              %a.ui-button.ui-button-mid.ui-button-blue.ui-list-invest-button.ui-list-invest-button-IN_PROGRESS
-                %span.OPEN 投标
-                %span.READY.FIRST_READY 已满标
-                %span.IN_PROGRESS 还款中
-            /
-              <div class="ui-poptip ui-poptip-white" style="display: none;" data-ui-name="ui-poptip">
-              <div class="ui-poptip-container">
-              <div class="ui-poptip-arrow ui-poptip-arrow-10"><em></em><span></span></div>
-              <div class="ui-poptip-content">信用认证标</div>
-              </div>
-              </div>
-          %li.ui-list-item.fn-clear
-            %span.ui-list-field.fn-left.text-big.w260
-              %em.ui-loantype.JGDB{:title => "机构担保标"}
-              %a.fn-left.w210.rrd-dimgray.fn-text-overflow{:href => "/lend/detailPage.action?loanId=495211", :target => "_blank", :title => "个人消费"} 个人消费
-            %span.ui-list-field.fn-left.w80
-              %a.ui-creditlevel.A.snow A
-            %span.ui-list-field.fn-left.num.text-right.w90.pr30
-              %em.value> 11.50
-              \%
-            %span.ui-list-field.fn-left.num.text-right.w130.pr30
-              %em.value> 41,900
-              元
-            %span.ui-list-field.fn-left.num.text-right.w80.pr30
-              %em.value> 24
-              个月
-            %span.ui-list-field.fn-left.w110
-              %strong.ui-progressbar-mid.ui-progressbar-mid-100
-                %em> 100
-                \%
-            %span.ui-list-field.fn-left.w80
-              %a.ui-button.ui-button-mid.ui-button-blue.ui-list-invest-button.ui-list-invest-button-IN_PROGRESS
-                %span.OPEN 投标
-                %span.READY.FIRST_READY 已满标
-                %span.IN_PROGRESS 还款中
-            /
-              <div class="ui-poptip ui-poptip-white" style="display: none;" data-ui-name="ui-poptip">
-              <div class="ui-poptip-container">
-              <div class="ui-poptip-arrow ui-poptip-arrow-10"><em></em><span></span></div>
-              <div class="ui-poptip-content">机构担保标</div>
-              </div>
-              </div>
-          %li.ui-list-item.fn-clear
-            %span.ui-list-field.fn-left.text-big.w260
-              %em.ui-loantype.SDRZ{:title => "实地认证标"}
-              %a.fn-left.w210.rrd-dimgray.fn-text-overflow{:href => "/lend/detailPage.action?loanId=495299", :target => "_blank", :title => "资金周转"} 资金周转
-            %span.ui-list-field.fn-left.w80
-              %a.ui-creditlevel.A.snow A
-            %span.ui-list-field.fn-left.num.text-right.w90.pr30
-              %em.value> 12.60
-              \%
-            %span.ui-list-field.fn-left.num.text-right.w130.pr30
-              %em.value> 94,200
-              元
-            %span.ui-list-field.fn-left.num.text-right.w80.pr30
-              %em.value> 36
-              个月
-            %span.ui-list-field.fn-left.w110
-              %strong.ui-progressbar-mid.ui-progressbar-mid-100
-                %em> 100
-                \%
-            %span.ui-list-field.fn-left.w80
-              %a.ui-button.ui-button-mid.ui-button-blue.ui-list-invest-button.ui-list-invest-button-IN_PROGRESS
-                %span.OPEN 投标
-                %span.READY.FIRST_READY 已满标
-                %span.IN_PROGRESS 还款中
-            /
-              <div class="ui-poptip ui-poptip-white" style="display: none;" data-ui-name="ui-poptip">
-              <div class="ui-poptip-container">
-              <div class="ui-poptip-arrow ui-poptip-arrow-10"><em></em><span></span></div>
-              <div class="ui-poptip-content">实地认证标</div>
-              </div>
-              </div>
-          %li.ui-list-item.fn-clear
-            %span.ui-list-field.fn-left.text-big.w260
-              %em.ui-loantype.SDRZ{:title => "实地认证标"}
-              %a.fn-left.w210.rrd-dimgray.fn-text-overflow{:href => "/lend/detailPage.action?loanId=495291", :target => "_blank", :title => "装修"} 装修
-            %span.ui-list-field.fn-left.w80
-              %a.ui-creditlevel.A.snow A
-            %span.ui-list-field.fn-left.num.text-right.w90.pr30
-              %em.value> 12.60
-              \%
-            %span.ui-list-field.fn-left.num.text-right.w130.pr30
-              %em.value> 38,100
-              元
-            %span.ui-list-field.fn-left.num.text-right.w80.pr30
-              %em.value> 36
-              个月
-            %span.ui-list-field.fn-left.w110
-              %strong.ui-progressbar-mid.ui-progressbar-mid-100
-                %em> 100
-                \%
-            %span.ui-list-field.fn-left.w80
-              %a.ui-button.ui-button-mid.ui-button-blue.ui-list-invest-button.ui-list-invest-button-IN_PROGRESS
-                %span.OPEN 投标
-                %span.READY.FIRST_READY 已满标
-                %span.IN_PROGRESS 还款中
-            /
-              <div class="ui-poptip ui-poptip-white" style="display: none;" data-ui-name="ui-poptip">
-              <div class="ui-poptip-container">
-              <div class="ui-poptip-arrow ui-poptip-arrow-10"><em></em><span></span></div>
-              <div class="ui-poptip-content">实地认证标</div>
-              </div>
-              </div>
+          - @last_ten_funds.each do |f|
+            %li.ui-list-item.fn-clear
+              %a{:href => fund_path(f.id)}
+                %span.ui-list-field.fn-left.text-big.w260
+                  %em.ui-loantype.XYRZ{:title => "信用认证标"}
+                  %span.fn-left.w210.rrd-dimgray.fn-text-overflow{:href => "/lend/detailPage.action?loanId=488977", :target => "_blank", :title => "网上投资创业"}= f.name
+                %span.ui-list-field.fn-left.num.text-right.w90.pr30
+                  %em.value>= f.expected_earning_rate
+                  \%
+                %span.ui-list-field.fn-left.num.text-right.w130.pr30
+                  %em.value>= f.amount
+                  元
+                %span.ui-list-field.fn-left.num.text-right.w110.pr0.ellipsis
+                  %em.value>= f.invest_ending_date
+                  个月
+                %span.ui-list-field.fn-left.w110
+                  %strong.ui-progressbar-mid.ui-progressbar-mid-100
+                    %em> 100
+                    \%
+                %span.ui-list-field.fn-left.w80
+                  %button.ui-button.ui-button-mid.ui-button-blue.ui-list-invest-button.ui-list-invest-button-IN_PROGRESS
+                    = f.state
+              /
+                <div class="ui-poptip ui-poptip-white" style="display: none;" data-ui-name="ui-poptip">
+                <div class="ui-poptip-container">
+                <div class="ui-poptip-arrow ui-poptip-arrow-10"><em></em><span></span></div>
+                <div class="ui-poptip-content">信用认证标</div>
+                </div>
+                </div>
           %li.ui-list-more
-            %a.darkgray{:href => "/lend/loanList.action", :target => "_blank"} 查看更多投资理财项目
-  / 
+            =link_to "查看更多投资理财项目",funds_path
+  /
   .block-v1
     .container
       .row.content-boxes-v3
@@ -239,62 +134,32 @@
           .content-boxes-in-v3
             %h2.heading-sm xx用户
             %p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
-  / 
+  /
   .container.content
     .col-md-3
       .posts
         .headline.headline-md
           %h2 热门话题
-        %dl.dl-horizontal
-          %dt
-            %a{:href => "#"}
-              %img{:alt => "", :src => "assets/sliders/elastislide/6.jpg"}/
-          %dd
-            %p
-              %a{:href => "#"} Responsive Bootstrap 3 Template placerat idelo alac eratamet.
-        %dl.dl-horizontal
-          %dt
-            %a{:href => "#"}
-              %img{:alt => "", :src => "assets/sliders/elastislide/10.jpg"}/
-          %dd
-            %p
-              %a{:href => "#"} 100+ Amazing Features Layer Slider, Layer Slider, Icons, 60+ Pages etc.
-        %dl.dl-horizontal
-          %dt
-            %a{:href => "#"}
-              %img{:alt => "", :src => "assets/sliders/elastislide/11.jpg"}/
-          %dd
-            %p
-              %a{:href => "#"} Developer Friendly Code imperdiet condime ntumi mperdiet condim.
+        - @last_ten_topics.each do |f|
+          %dl.dl-horizontal
+            %dt
+              %a{:href => "#"}
+                %img{:alt => "", :src => f.user.avatar}/
+            %dd
+              %p
+                %a{:href => "#"}= f.content
     .col-md-9
       #news-section.news.mb.fn-clear
-        .grid_12
+        .mt10
           .list-title.news
-            %span.on 最新动态
+            %h2.on 最新动态
           %ul#news-list.ui-list.ui-list-m.ui-list-news
-            %li.ui-list-item.fn-clear
-              %p.fn-left.field.decoration
-              %p.fn-left.field.text.color-silver-text.fn-text-overflow
-                %a.title.text-big.rrd-dimgray{:href => "/about/detail.action?news_id=news_327", :target => "_blank"} 人人贷携手民生银行 推进P2P资金托管全面升级
-                %span.content.text-small
-              %p.fn-left.field.date.color-darkgray-text 2015-02-10
-            %li.ui-list-item.fn-clear
-              %p.fn-left.field.decoration
-              %p.fn-left.field.text.color-silver-text.fn-text-overflow
-                %a.title.text-big.rrd-dimgray{:href => "/about/detail.action?news_id=news_326", :target => "_blank"} 人人贷荣获中国互联网金融最具竞争力企业奖
-                %span.content.text-small
-              %p.fn-left.field.date.color-darkgray-text 2015-02-02
-            %li.ui-list-item.fn-clear
-              %p.fn-left.field.decoration
-              %p.fn-left.field.text.color-silver-text.fn-text-overflow
-                %a.title.text-big.rrd-dimgray{:href => "/about/detail.action?news_id=news_325", :target => "_blank"} 人人贷荣获2014年度互联网金融企业社会责任优秀企业奖
-                %span.content.text-small
-              %p.fn-left.field.date.color-darkgray-text 2014-09-22
-            %li.ui-list-item.fn-clear
-              %p.fn-left.field.decoration
-              %p.fn-left.field.text.color-silver-text.fn-text-overflow
-                %a.title.text-big.rrd-dimgray{:href => "/about/detail.action?news_id=news_324", :target => "_blank"} 人人贷管理团队荣登2014中国40位40岁以下商界精英前四强
-                %span.content.text-small
-              %p.fn-left.field.date.color-darkgray-text 2014-09-02
+            - @last_ten_news.each do |f|
+              %li.ui-list-item.fn-clear
+                %p.fn-left.field.decoration
+                %p.fn-left.field.text.color-silver-text.fn-text-overflow
+                  = link_to "#{f.title}","#",class: "title text-big rrd-dimgray"
+                  %span.content.text-small
+                %p.fn-left.field.date.color-darkgray-text= f.datetime
             %li.ui-list-more
-              %a.darkgray{:href => "/about/about.action?flag=news"} 查看更多网站动态
+              = link_to "查看更多网站动态","#",class: "darkgray"

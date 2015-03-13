@@ -337,4 +337,16 @@ a.fn-left.ui-button.ui-button-blue.ui-button-mid.last {
 .table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th {
   vertical-align: middle;
 }
+.ui-list-item:hover {
+  background-color: #E2E2E2;
+}
+.ui-list-news .field.text {
+  width: 650px;
+}
+.ellipsis {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-word;
+  overflow-x: hidden;
+}
 /* index site-menu end */
