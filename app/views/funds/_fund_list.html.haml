@@ -1,25 +1,33 @@
 
 - if @funds.blank?
-  %h2 没有找到合适标的
+  %h2.text-center 没有找到合适标的
 
-%table
-  %tr
-    %th 标的代号
-    %th 发标人
-    %th 标的价格
-    %th 操作截止日期
-    %th 最小投标金额
-    %th 标的开始时间
-    %th 标的到期时间
-    %th 状态
-  -# todo, 处理 private_check
-  - @funds.each do |f|
+%table.table.table-striped.table-bordered.mt40
+  %thead
     %tr
-      %td= f.name
-      %td= f.user.nick_name
-      %td= f.amount
-      %td= f.collection_deadline
-      %td= f.minimum
-      %td= f.invest_starting_date
-      %td= f.invest_ending_date
-      %td= f.state
+      %th 标的代号
+      %th 发标人
+      %th 标的价格
+      %th 操作截止日期
+      %th 最小投标金额
+      %th 标的开始时间
+      %th 标的到期时间
+      %th 状态
+      %th
+      %th
+  -# todo, 处理 private_check
+  %tbody
+    - @funds.each do |f|
+      %tr
+        %td= f.name
+        %td= f.user.nick_name
+        %td= f.amount
+        %td= f.collection_deadline
+        %td= f.minimum
+        %td= f.invest_starting_date
+        %td= f.invest_ending_date
+        %td= f.state
+        %td
+          = link_to "详细",fund_path(f.id),class: "btn-u btn-u-xs btn-u-blue"
+        %td
+          %a.btn-u.btn-u-xs.btn-u-blue{:href => "javascript:;"} 我要投标
