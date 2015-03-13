@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :funds do
     resources :invests
   end
-  resources :leverages,  only: [:show, :new, :create, :edit, :update]
-  resources :topics,    only: [:show]
+  resources :leverages, only: [:show, :new, :create, :edit, :update]
+  resources :topics,    only: [:show, :index]
+  resources :news,      only: [:show, :index]
 end

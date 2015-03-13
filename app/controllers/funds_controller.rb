@@ -5,10 +5,11 @@ class FundsController < ApplicationController
   end
 
   def show
-    @fund     = Fund.find(params[:id])
-    @private  = @fund.private_check
-    @user     = @fund.user
-    @comments = @fund.comments
+    @fund             = Fund.find(params[:id])
+    @private          = @fund.private_check
+    @user             = @fund.user
+    @comments         = @fund.comments
+    @rate_of_progress = (@fund.amount == 0 || @fund == nil) ? "undefined" : ((@fund.invests.sum(:amount) * 100) / @fund.amount )
   end
 
   def new
