@@ -1,0 +1,16 @@
+/ https://github.com/plataformatec/simple_form
+.container.content
+  .col-md-10
+    = simple_form_for(@leverage, html: { class: 'form-horizontal' }, |
+      wrapper: :horizontal_form,                                 |
+      wrapper_mappings: {                                        |
+      check_boxes: :horizontal_radio_and_checkboxes,             |
+      radio_buttons: :horizontal_radio_and_checkboxes,           |
+      file: :horizontal_file_input,                              |
+      boolean: :horizontal_boolean}) do |f|                      |
+      = f.input :description
+      = f.input :amount
+      = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
+      = f.input :deadline, as: :date, html5: true
+      .row.mt40.mb20.text-center
+        = f.submit class: "btn-u btn-u-blue"

@@ -1,0 +1,79 @@
+.container.content
+  .row.pl0
+    .col-md-8.mr40
+      %h2 最新动态
+      %ul
+        %li.row.mt10
+          .col-md-3.text-center
+            %img.img-thumbnail.img-rounded.w70{:src => "/assets/testimonials/img1.jpg"}/
+            %div 巴菲特
+          .col-md-9.padding0.p10
+            %label.bold 大鹏基金设立
+            %span.float-right 2015－02-10
+            %div 大鹏基金2012设立了，欢迎大家来投标
+            %ul.list-inline.grid-boxes-news.mt10
+              %li
+                %a{:href => "#"}
+                  %i.fa.fa-star-o
+                  关注
+              %li= "|"
+              %li
+                %a{:href => "#"}
+                  %i.fa.fa-comments-o
+                  评论(14)
+              %li= "|"
+              %li
+                %a{:href => "#"}
+                  %i.fa.fa-heart-o
+                  收藏(141)
+              %li= "|"
+              %li
+                %a{:href => "#"}
+                  %i.fa.fa-share
+                  分享(141)
+        %li.row.mt10
+          .col-md-3.text-center
+            %img.img-thumbnail.img-rounded.w70{:src => "/assets/testimonials/img1.jpg"}/
+            %div 巴菲特
+          .col-md-9.padding0.p10
+            %label.bold 大鹏基金设立
+            %span.float-right 2015－02-10
+            %div 大鹏基金2012设立了，欢迎大家来投标
+            %ul.list-inline.grid-boxes-news.mt10
+              %li
+                %a{:href => "#"}
+                  %i.fa.fa-star-o
+                  关注
+              %li= "|"
+              %li
+                %a{:href => "#"}
+                  %i.fa.fa-comments-o
+                  评论(14)
+              %li= "|"
+              %li
+                %a{:href => "#"}
+                  %i.fa.fa-heart-o
+                  收藏(141)
+              %li= "|"
+              %li
+                %a{:href => "#"}
+                  %i.fa.fa-share
+                  分享(141)
+    .col-md-3
+      .tab-v1
+        %ul.nav.nav-tabs
+          %li.active
+            %a{"data-toggle" => "tab", :href => "#me-following-1"} 我关注的
+        .tab-content.row
+          #me-following-1.tab-pane.fade.active.in
+            .row.p20
+              .col-md-4.text-center
+                %img.img-thumbnail.img-rounded.w70{:src => "/assets/testimonials/img1.jpg"}/
+                %div 巴菲特
+              .col-md-4.text-center
+                %img.img-thumbnail.img-rounded.w70{:src => "/assets/testimonials/img1.jpg"}/
+                %div 巴菲特
+              .col-md-4.text-center
+                %img.img-thumbnail.img-rounded.w70{:src => "/assets/testimonials/img1.jpg"}/
+                %div 巴菲特
+            %div.mt20= link_to "更多","#",class: "ml40"
