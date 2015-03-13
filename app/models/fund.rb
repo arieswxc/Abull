@@ -12,7 +12,6 @@ class Fund < ActiveRecord::Base
   validates :invest_ending_date,  presence: true
   belongs_to  :user
   has_many    :invests
-
   acts_as_commentable
 
   state_machine :state, :initial => :pending do

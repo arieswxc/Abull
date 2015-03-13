@@ -40,16 +40,16 @@ ActiveAdmin.register Fund do
 
     panel t('操盘手个人信息') do 
       attributes_table_for fund.user do
-        row('电子邮件')  { |u| u.email }
-        row('昵称')     { |u| u.nick_name }
-        row('真实姓名')  { |u| u.real_name }
-        row('手机')     { |u| u.cell }
-        row('身份证号')  { |u| u.id_card_number }
+        row :email
+        row :nick_name
+        row :real_name
+        row :cell
+        row :id_card_number
         row :abstract
-        row('用户等级')  { |u| u.level }
+        row :level
         row :current_sign_in_at
         row :sign_in_count
-        row('用户创建日期') { |u| u.created_at }
+        row :created_at
       end
     end
   end
@@ -62,7 +62,10 @@ ActiveAdmin.register Fund do
       end
       row('拒绝')  do
         if fund.state == 'applied'
-          link_to t('deny'), deny_fund_admin_fund_path(fund), :method => :put, :class => 'button'
+          form_for "reject_reason", url: deny_fund_admin_fund_path(fund), method: :post do |f|
+            f.text_area :reason
+            f.submit
+          end        
         end
       end
     end
@@ -83,6 +86,7 @@ ActiveAdmin.register Fund do
       f.actions
   end
 
+  
   member_action :confirm_fund, :method => :put do 
     fund = Fund.find(params[:id])
     if fund.state == 'pending'
@@ -107,8 +111,9 @@ ActiveAdmin.register Fund do
     redirect_to admin_fund_path(fund)
   end
 
-  member_action :deny_fund, :method => :put do
+  member_action :deny_fund, :method => :post do
     fund = Fund.find(params[:id])
+    ActiveAdmin::Comment.create("resource" => fund, "body"=>"#{params[:reject_reason][:reason]}", "namespace": "admin")
     fund.deny
     redirect_to admin_fund_path(fund)
   end
