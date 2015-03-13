@@ -8,8 +8,8 @@ RSpec.describe Fund, type: :model do
   end
 
   # name
-  it "is invalid without name" do
-    expect(build(:fund, name: nil)).to be_invalid
+  it "is valid without name" do
+    expect(create(:fund, name: nil)).to be_valid
   end
 
   # user

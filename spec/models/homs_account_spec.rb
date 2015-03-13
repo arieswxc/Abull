@@ -18,4 +18,11 @@ RSpec.describe HomsAccount, type: :model do
     expect(homs_account).to be_invalid
     expect(homs_account.errors[:password]).to include(I18n.t('errors.messages.blank'))
   end
+
+  it "is invalid without fund_id" do
+    homs_account = build(:homs_account, fund_id: nil)
+    homs_account.valid?
+    expect(homs_account).to be_invalid
+    expect(homs_account.errors[:fund_id]).to include(I18n.t('errors.messages.blank'))
+  end
 end

@@ -1,0 +1,25 @@
+
+- if @funds.blank?
+  %h2 没有找到合适标的
+
+%table
+  %tr
+    %th 标的代号
+    %th 发标人
+    %th 标的价格
+    %th 操作截止日期
+    %th 最小投标金额
+    %th 标的开始时间
+    %th 标的到期时间
+    %th 状态
+  -# todo, 处理 private_check
+  - @funds.each do |f|
+    %tr
+      %td= f.name
+      %td= f.user.nick_name
+      %td= f.amount
+      %td= f.collection_deadline
+      %td= f.minimum
+      %td= f.invest_starting_date
+      %td= f.invest_ending_date
+      %td= f.state

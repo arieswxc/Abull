@@ -63,9 +63,11 @@ gem 'carrierwave'
 gem 'qiniu-rs'
 gem 'carrierwave-qiniu'
 gem 'rmagick'
-
+gem 'haml'
 # For i18n
 gem 'rails-i18n'
+gem 'simple_form'
+gem 'country_select'
 
 # For comment
 gem 'acts_as_commentable'
@@ -87,3 +89,5 @@ group :test do
   gem 'launchy'
   gem 'selenium-webdriver'
 end
+
+gem 'simple_form'
