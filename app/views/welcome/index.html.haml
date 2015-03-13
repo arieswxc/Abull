@@ -97,7 +97,7 @@
                   %em.value>= f.amount
                   元
                 %span.ui-list-field.fn-left.num.text-right.w110.pr0.ellipsis
-                  %em.value>= f.invest_ending_date
+                  %em.value.formattime>= f.invest_ending_date
                   个月
                 %span.ui-list-field.fn-left.w110
                   %strong.ui-progressbar-mid.ui-progressbar-mid-100
@@ -160,6 +160,6 @@
                 %p.fn-left.field.text.color-silver-text.fn-text-overflow
                   = link_to "#{f.title}","#",class: "title text-big rrd-dimgray"
                   %span.content.text-small
-                %p.fn-left.field.date.color-darkgray-text= f.datetime
+                %p.fn-left.field.date.color-darkgray-text.formattime= f.datetime
             %li.ui-list-more
               = link_to "查看更多网站动态","#",class: "darkgray"
