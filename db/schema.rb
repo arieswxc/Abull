@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150312130022) do
+ActiveRecord::Schema.define(version: 20150313083220) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -108,6 +108,16 @@ ActiveRecord::Schema.define(version: 20150312130022) do
   end
 
   add_index "homs_accounts", ["fund_id"], name: "index_homs_accounts_on_fund_id", using: :btree
+
+  create_table "interests", force: :cascade do |t|
+    t.integer  "leverage_time",   limit: 4,                                        null: false
+    t.decimal  "amount",                    precision: 12, scale: 2, default: 0.0, null: false
+    t.integer  "duration",        limit: 4,                                        null: false
+    t.decimal  "interest_rate",             precision: 12, scale: 2,               null: false
+    t.decimal  "managerment_fee",           precision: 12, scale: 2
+    t.datetime "created_at",                                                       null: false
+    t.datetime "updated_at",                                                       null: false
+  end
 
   create_table "invests", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
