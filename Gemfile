@@ -68,6 +68,7 @@ gem 'haml'
 gem 'rails-i18n'
 gem 'simple_form'
 gem 'country_select'
+gem 'high_voltage'
 
 # For comment
 gem 'acts_as_commentable'
@@ -89,5 +90,3 @@ group :test do
   gem 'launchy'
   gem 'selenium-webdriver'
 end
-
-gem 'simple_form'
