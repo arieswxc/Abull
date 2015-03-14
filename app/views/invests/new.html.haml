@@ -1,6 +1,9 @@
 .container.content
   =# ToDo user_info partial
-  = render 'shares/profile'
-  = render 'funds/fund_base_info'
-  .mt40
-    = render 'form'
+  .ml40.pr80
+    = render 'shares/profile'
+  .row.col-md-12.mt40
+    .col-md-6
+      = render 'funds/fund_base_info'
+    .col-md-6
+      = render 'form'

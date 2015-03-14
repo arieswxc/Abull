@@ -1,7 +1,7 @@
 
-.panel.panel-primary.mt40
+.panel.panel-primary
   .panel-heading
-    .panel-title=@fund.name
+    = link_to @fund.name,fund_path(@fund), class: "panel-title"
   .panel-title
     %table.table.table-striped.table-bordered
       %tbody
@@ -10,16 +10,16 @@
           %td= @fund.amount
         %tr
           %td= Fund.human_attribute_name('collection_deadline')
-          %td= @fund.collection_deadline
+          %td.formattime= @fund.collection_deadline
         %tr
           %td= Fund.human_attribute_name('expected_earning_rate')
           %td= @fund.expected_earning_rate
         %tr
           %td= Fund.human_attribute_name('invest_starting_date')
-          %td= @fund.invest_starting_date
+          %td.formattime= @fund.invest_starting_date
         %tr
           %td= Fund.human_attribute_name('invest_ending_date')
-          %td= @fund.invest_ending_date
+          %td.formattime= @fund.invest_ending_date
         %tr
           %td= Fund.human_attribute_name('description')
           %td= @fund.description

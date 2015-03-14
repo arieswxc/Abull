@@ -1,7 +1,8 @@
 
 .panel.panel-primary
   .panel-heading
-    .panel-title=@fund.name
+    .panel-title
+      =@fund.name
   .panel-title
     %table.table.table-striped.table-bordered
       %tbody
@@ -10,7 +11,7 @@
           %td= @fund.amount
         %tr
           %td= Fund.human_attribute_name('collection_deadline')
-          %td= @fund.collection_deadline
+          %td.formattime= @fund.collection_deadline
         %tr
           %td= Fund.human_attribute_name('earning')
           %td= @fund.earning
@@ -19,10 +20,10 @@
           %td= @fund.earning_rate
         %tr
           %td= Fund.human_attribute_name('invest_starting_date')
-          %td= @fund.invest_starting_date
+          %td.formattime= @fund.invest_starting_date
         %tr
           %td= Fund.human_attribute_name('invest_ending_date')
-          %td= @fund.invest_ending_date
+          %td.formattime= @fund.invest_ending_date
         %tr
           %td= Fund.human_attribute_name('description')
           %td= @fund.description
