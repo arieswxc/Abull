@@ -1,7 +1,7 @@
-/ TODO: hzz
-/ if state
-.container.content.fund-show-pending
-  %h2 发标完成，等待审核
-  %a.float-right{:href => "javascript:;"} 去个人中心查看进度
-/ else
-/ end
+- if @fund.state == 'pending'
+	= render 'share/result'
+- else
+	= render 'fund_info'
+	=# todo other more
+	= link_to '投标', new_fund_invest_path(fund_id: @fund)
+- end
