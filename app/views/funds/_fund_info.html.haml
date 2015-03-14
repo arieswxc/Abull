@@ -1,0 +1,36 @@
+.panel.panel-primary
+  .panel-heading
+    .panel-title=@fund.name
+  .panel-title
+    %ul
+      %li
+        %label 募集资金
+        .content= @fund.amount
+      %li
+        %label 操作截止日
+        .content= @fund.collection_deadline
+      %li
+        %label 预期收益
+        .content= @fund.earning
+      %li
+        %label 预期收益率
+        .content= @fund.earning_rate
+      %li
+        %label 标的开始时间
+        .content= @fund.invest_starting_date
+      %li
+        %label 标的结束时间
+        .content= @fund.invest_ending_date
+      %li
+        %label 基本情况
+        .content= @fund.description
+      %li
+        %label 风控自述
+        .content= @fund.frontend_risk_method 
+      %li
+        %label 平台审核
+        .content= @fund.backend_risk_method   
+      %li
+        %label 当前状态
+        .content= @fund.state
+                                                     
