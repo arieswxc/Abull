@@ -1,7 +1,11 @@
 / TODO: hzz
-/ if state
-.container.content.fund-show-pending
-  %h2 发标完成，等待审核
-  %a.float-right{:href => "javascript:;"} 去个人中心查看进度
+- if @result_type == 'invest'
+	.container.content.fund-show-pending
+		%h2 投标成功
+		= link_to '去个人中心查看进度', user_invests_path(current_user), class: 'float-right'
+- if @result_type == 'fund'
+	.container.content.fund-show-pending
+		%h2 发标完成，等待审核
+		= link_to '去个人中心查看进度', user_funds_path(current_user), class: 'float-right'
 / else
 / end

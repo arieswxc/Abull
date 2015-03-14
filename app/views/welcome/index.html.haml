@@ -4,30 +4,11 @@
     .tp-banner
       %ul
         / SLIDE
-        %li.revolution-mch-1{"data-masterspeed" => "1000", "data-slotamount" => "5", "data-title" => "Slide 1", "data-transition" => "fade"}
-          / MAIN IMAGE
-          %img{:alt => "darkblurbg", "data-bgfit" => "cover", "data-bgposition" => "left top", "data-bgrepeat" => "no-repeat", :src => "/assets/1.jpg"}/
-        / END SLIDE
-        / SLIDE
-        %li.revolution-mch-1{"data-masterspeed" => "1000", "data-slotamount" => "5", "data-title" => "Slide 2", "data-transition" => "fade"}
-          / MAIN IMAGE
-          %img{:alt => "darkblurbg", "data-bgfit" => "cover", "data-bgposition" => "left top", "data-bgrepeat" => "no-repeat", :src => "/assets/5.jpg"}/
-        / END SLIDE
-        / SLIDE
-        %li.revolution-mch-1{"data-masterspeed" => "1000", "data-slotamount" => "5", "data-title" => "Slide 3", "data-transition" => "fade"}
-          / MAIN IMAGE
-          %img{:alt => "darkblurbg", "data-bgfit" => "cover", "data-bgposition" => "right top", "data-bgrepeat" => "no-repeat", :src => "/assets/3.jpg"}/
-        / END SLIDE
-        / SLIDE
-        %li.revolution-mch-1{"data-masterspeed" => "1000", "data-slotamount" => "5", "data-title" => "Slide 4", "data-transition" => "fade"}
-          / MAIN IMAGE
-          %img{:alt => "darkblurbg", "data-bgfit" => "cover", "data-bgposition" => "left top", "data-bgrepeat" => "no-repeat", :src => "/assets/2.jpg"}/
-        / END SLIDE
-        / SLIDE
-        %li.revolution-mch-1{"data-masterspeed" => "1000", "data-slotamount" => "5", "data-title" => "Slide 5", "data-transition" => "fade"}
-          / MAIN IMAGE
-          %img{:alt => "darkblurbg", "data-bgfit" => "cover", "data-bgposition" => "right top", "data-bgrepeat" => "no-repeat", :src => "/assets/4.jpg"}/
-        / END SLIDE
+        - [1,2,3,4,5].each do |i|
+          %li.revolution-mch-1{"data-masterspeed" => "1000", "data-slotamount" => "5", "data-title" => "Slide #{i}", "data-transition" => "fade"}
+            / MAIN IMAGE
+            = image_tag "#{i}.jpg", :alt => "darkblurbg", "data-bgfit" => "cover", "data-bgposition" => "left top", "data-bgrepeat" => "no-repeat"
+          / END SLIDE
       .tp-bannertimer.tp-bottom
   / === End Slider ===
   .int-box

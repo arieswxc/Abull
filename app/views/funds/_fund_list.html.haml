@@ -5,29 +5,33 @@
 %table.table.table-striped.table-bordered.mt40
   %thead
     %tr
-      %th 标的代号
-      %th 发标人
-      %th 标的价格
-      %th 操作截止日期
-      %th 最小投标金额
-      %th 标的开始时间
-      %th 标的到期时间
-      %th 状态
-      %th
-      %th
+      %th= Fund.human_attribute_name('state')
+      %th= Fund.human_attribute_name('name')
+      / %th 发标人
+      %th= Fund.human_attribute_name('amount')
+      %th= Fund.human_attribute_name('collection_deadline')
+      / %th Fund.human_attribute_name('minimum')
+      %th= Fund.human_attribute_name('invest_starting_date')
+      %th= Fund.human_attribute_name('invest_ending_date')
+      %th 详细
+      %th 操作
+      %th 电子合同
   -# todo, 处理 private_check
   %tbody
     - @funds.each do |f|
       %tr
+        %td= f.state
         %td= f.name
-        %td= f.user.nick_name
+        / %td= f.user.nick_name
         %td= f.amount
         %td.formattime= f.collection_deadline
-        %td= f.minimum
+        / %td= f.minimum
         %td.formattime= f.invest_starting_date
         %td.formattime= f.invest_ending_date
-        %td= f.state
+        
         %td
           = link_to "详细",fund_path(f.id),class: "btn-u btn-u-xs btn-u-blue"
         %td
-          = link_to "我要投标",new_fund_invest_path(f.id),class: "btn-u btn-u-xs btn-u-blue"
+          = link_to "我要投标",new_fund_invest_path(f.id),class: "btn-u btn-u-xs btn-u-blue" unless @invest
+        %td
+          %a{:href => "javascript:;"} 委托操盘合同
