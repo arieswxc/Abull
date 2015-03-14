@@ -53,4 +53,8 @@ class Fund < ActiveRecord::Base
   end
 
   has_one :homs_account
+
+  def invest_ending_date
+    self.invest_starting_date.advance(days: self.duration)
+  end
 end
