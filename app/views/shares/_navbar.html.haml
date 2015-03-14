@@ -31,6 +31,22 @@
                 = link_to("登录",new_user_session_path,id: "login-panel",class: "btn btn-sm",rel: "nofollow")
               %li
                 = link_to("注册账户",new_user_registration_path,id: "create-account",class: "btn btn-sm",rel: "nofollow")
+        :javascript
+          jQuery(document).ready(function() {
+            $(".nav.navbar-nav > li > a").hover(function(){
+          		$(this).children().each(function() {
+          			if ($(this).hasClass("social-content")) {
+          				$(this).toggle(true);
+          			}
+          		})
+          	},function() {
+          		$(this).children().each(function() {
+          			if ($(this).hasClass("social-content")) {
+          				$(this).toggle(false);
+          			}
+          		})
+          	});
+          });
     .header
       .navbar.navbar-default.mega-menu{:role => "navigation"}
         .container
