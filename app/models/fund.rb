@@ -12,6 +12,8 @@ class Fund < ActiveRecord::Base
   validates :invest_ending_date,  presence: true
   belongs_to  :user
   has_many    :invests
+
+  before_validation :generate_fundname, on: :create 
   acts_as_commentable
 
   state_machine :state, :initial => :pending do
@@ -53,4 +55,17 @@ class Fund < ActiveRecord::Base
   end
 
   has_one :homs_account
+
+  private
+  def generate_fundname
+    if self.name.blank?
+      record = true
+      while record
+        random = rand(1000000000).to_s.rjust(9, '0')
+        record = Fund.where(name: random).first
+      end
+      self.name = random
+    end
+    self.name
+  end
 end

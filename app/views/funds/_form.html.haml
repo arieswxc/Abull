@@ -8,6 +8,7 @@
       radio_buttons: :horizontal_radio_and_checkboxes,           |
       file: :horizontal_file_input,                              |
       boolean: :horizontal_boolean}) do |f|                      |
+      = f.input :name, disabled: true
       = f.input :private_check, collection: [:private, :public],as: :radio_buttons
       = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
       = f.input :amount
