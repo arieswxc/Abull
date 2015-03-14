@@ -35,7 +35,7 @@ zh-CN:
       fund:
         name: 标名
         amount: 募集数额
-        minimum: 最小值
+        minimum: 最小投资
         private_check: 明(暗)标
         description: 投资方向
         frontend_risk_method: 风控措施自述
