@@ -5,13 +5,16 @@ RSpec.describe LeveragesController, type: :controller do
     it "assigns the requested leverage  as @leverage,
         assigns the requested user      as @user,
         assigns the requested comments  as @comments" do
-      user    = create(:user)
-      leverage    = create(:leverage, user_id: user.id)
-      comment = create(:comment, commentable: leverage, user_id: leverage.user.id)
+      user          = create(:user)
+      leverage      = create(:leverage, user_id: user.id)
+      comment       = create(:comment, commentable: leverage, user_id: leverage.user.id)
+      3.times { create(:interest)}
+      2.times { create(:interest, show: "true")}
       get :show, {id: leverage.to_param, user_id: user.to_param}
-      expect(assigns(:leverage)).to eq leverage
-      expect(assigns(:user)).to eq user
-      expect(assigns(:comments).first).to eq comment
+      expect(assigns(:leverage)).to         eq leverage
+      expect(assigns(:user)).to             eq user
+      expect(assigns(:comments).first).to   eq comment
+      expect(assigns(:interests).count).to  eq 2
     end
   end
 

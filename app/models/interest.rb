@@ -8,4 +8,8 @@ class Interest < ActiveRecord::Base
   validates :interest_rate, presence: true
   validates :interest_rate, numericality: true
   validates :managerment_fee, numericality: true
+  validates :show, presence: true
+  validates :show, inclusion: {in: ["true", "false"]}
+
+  has_many :leverages
 end

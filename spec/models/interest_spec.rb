@@ -67,4 +67,23 @@ RSpec.describe Interest, type: :model do
     expect(interest).to be_invalid
     expect(interest.errors[:managerment_fee]).to include(I18n.t("errors.messages.not_a_number"))
   end
+
+  it "is invalid when show is nil " do
+    interest = build(:interest, show: nil)
+    interest.valid?
+    expect(interest).to be_invalid
+    expect(interest.errors[:show]).to include(I18n.t("errors.messages.blank"))
+  end
+
+  it "is invalid when show is not included" do
+    interest = build(:interest, show: "invalid")
+    interest.valid?
+    expect(interest).to be_invalid
+    expect(interest.errors[:show]).to include(I18n.t('errors.messages.inclusion'))
+  end
+
+  it "is valid when show is included" do
+    expect(create(:interest, show: "true")).to be_valid
+    expect(create(:interest, show: "false")).to be_valid
+  end
 end
