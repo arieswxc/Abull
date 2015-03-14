@@ -1,0 +1,5 @@
+= simple_form_for @invest do |f|
+	= f.input :fund_id, value: @fund.id, as: :hidden
+	= f.input :user_id, value: current_user, as: :hidden
+	= f.input :amount, label: '金额'
+	= f.submit
