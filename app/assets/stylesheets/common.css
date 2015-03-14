@@ -15,6 +15,9 @@ a:focus, a:hover {
   border-width: 0;
   border-radius: 0;
 }
+.share{
+  padding-top:8px;
+}
 .navbar {
   font-size: 14px;
   min-height: 35px;
@@ -348,5 +351,14 @@ a.fn-left.ui-button.ui-button-blue.ui-button-mid.last {
   white-space: nowrap;
   word-break: break-word;
   overflow-x: hidden;
+}
+
+.footer-v1 .footer .container .row .col-md-3 {
+  visibility: hidden;
+  width:0;
+}
+
+.footer-v1 .copyright{
+  visibility: hidden;
 }
 /* index site-menu end */
