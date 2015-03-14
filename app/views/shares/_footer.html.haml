@@ -1,0 +1,110 @@
+.footer-v1
+  .footer
+    .container
+      .row
+        / About
+        .col-md-3.md-margin-bottom-40
+          %a{:href => "index.html"}
+            %img#logo-footer.footer-logo{:alt => "", :src => "/assets/logo2-default.png"}/
+          %p About Unify dolor sit amet, consectetur adipiscing elit. Maecenas eget nisl id libero tincidunt sodales.
+          %p Duis eleifend fermentum ante ut aliquam. Cras mi risus, dignissim sed adipiscing ut, placerat non arcu.
+        / /col-md-3
+        / End About
+        / Link List
+        .col-md-2.md-margin-bottom-40
+          %ul.list-unstyled.link-list
+            %li
+              = link_to "公司简介",page_path("about/about_us")
+              %i.fa.fa-angle-right
+            %li
+              = link_to "员工风采",page_path("about/about_staff")
+              %i.fa.fa-angle-right
+            %li
+              = link_to "加入我们",page_path("about/join_us")
+              %i.fa.fa-angle-right
+            %li
+              = link_to "联系我们",page_path("about/contact_us")
+              %i.fa.fa-angle-right
+        / /col-md-3
+        / End Link List
+        / Address
+        .col-md-2.md-margin-bottom-40
+          %ul.list-unstyled.link-list
+            %li
+              = link_to "信息安全",page_path("security/information_security")
+              %i.fa.fa-angle-right
+            %li
+              = link_to "资金安全",page_path("security/money_safety")
+              %i.fa.fa-angle-right
+            %li
+              = link_to "操作安全",page_path("security/processing_safety")
+              %i.fa.fa-angle-right
+            %li
+              = link_to "风控保障",page_path("security/risk_management")
+              %i.fa.fa-angle-right
+            %li
+              = link_to "自我保障",page_path("security/self_reliance")
+              %i.fa.fa-angle-right
+        / /col-md-3
+        / End Address
+        .col-md-2.md-margin-bottom-40
+          %ul.list-unstyled.link-list
+            %li
+              = link_to "新手指南",page_path("guides/beginners_guide")
+              %i.fa.fa-angle-right
+            %li
+              = link_to "操作指引",page_path("guides/operating_procedure")
+              %i.fa.fa-angle-right
+            %li
+              = link_to "常见问题",page_path("guides/faq")
+              %i.fa.fa-angle-right
+            %li
+              = link_to "意见反馈",page_path("guides/feedback")
+              %i.fa.fa-angle-right
+            %li
+              = link_to "软件下载",page_path("guides/download")
+              %i.fa.fa-angle-right
+        .col-md-2.md-margin-bottom-40
+          %ul.list-unstyled.link-list
+            %li
+              = link_to "负责声明",page_path("statment/statement")
+              %i.fa.fa-angle-right
+            %li
+              = link_to "费率说明",page_path("statment/tariff")
+              %i.fa.fa-angle-right
+  / /footer
+  .copyright
+    .container
+      .row
+        .col-md-6
+          %p
+            2014 © All Rights Reserved.
+            %a{:href => "#"} Privacy Policy
+            |
+            %a{:href => "#"} Terms of Service
+        / Social Links
+        .col-md-6
+          %ul.footer-socials.list-inline
+            %li
+              %a.tooltips{"data-original-title" => "Facebook", "data-placement" => "top", "data-toggle" => "tooltip", :href => "#", :title => ""}
+                %i.fa.fa-facebook
+            %li
+              %a.tooltips{"data-original-title" => "Skype", "data-placement" => "top", "data-toggle" => "tooltip", :href => "#", :title => ""}
+                %i.fa.fa-skype
+            %li
+              %a.tooltips{"data-original-title" => "Google Plus", "data-placement" => "top", "data-toggle" => "tooltip", :href => "#", :title => ""}
+                %i.fa.fa-google-plus
+            %li
+              %a.tooltips{"data-original-title" => "Linkedin", "data-placement" => "top", "data-toggle" => "tooltip", :href => "#", :title => ""}
+                %i.fa.fa-linkedin
+            %li
+              %a.tooltips{"data-original-title" => "Pinterest", "data-placement" => "top", "data-toggle" => "tooltip", :href => "#", :title => ""}
+                %i.fa.fa-pinterest
+            %li
+              %a.tooltips{"data-original-title" => "Twitter", "data-placement" => "top", "data-toggle" => "tooltip", :href => "#", :title => ""}
+                %i.fa.fa-twitter
+            %li
+              %a.tooltips{"data-original-title" => "Dribbble", "data-placement" => "top", "data-toggle" => "tooltip", :href => "#", :title => ""}
+                %i.fa.fa-dribbble
+        / End Social Links
+  / /copyright

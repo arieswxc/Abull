@@ -1,0 +1,40 @@
+.box.box-user-info
+  .user-avatar-container.inline-block
+    %a{:href => "/account/info!basicInfo.action"}
+      %img{:height => "96", :src => "/static/img/account/default-avatar-96.png", :width => "96"}/
+  .user-info-container
+    %h3{:title => "zjs18"} zjs18
+    .fn-clear.relative
+      #info-box.fn-left.user-security-container.mr10
+        .safe.fn-clear
+          %span.fn-left.color-gray-text 安全等级
+          #safe-progressbar.safe-progressbar.fn-left{:title => "25%"}
+            .bar{:style => "width: 25px;"}
+        .icons.fn-clear.mt5
+          .fn-left.icon-box.light
+            %a.fn-left.safe-rank.cellphone.light{"data-txt" => "为了您的账户更安全，请您绑定手机号。||立即绑定", :href => "/account/info!security.action", :title => "绑定手机，已绑定"}
+          .fn-left.icon-box
+            %a.fn-left.safe-rank.man{"data-txt" => "进行实名认证后，您才可以进行投资、借款。||立即认证", :href => "/account/info!security.action", :title => "实名认证，未设置"}
+          .fn-left.icon-box
+            %a.fn-left.safe-rank.lock{"data-txt" => "为了您的资金更加安全，请您设置交易密码。||立即设置", :href => "/account/info!security.action", :title => "交易密码，未设置"}
+          .fn-left.icon-box
+            %a.fn-left.safe-rank.mail{"data-txt" => "为了使您的账户有更多的安全保障，请您绑定邮箱。||立即绑定", :href => "/account/info!security.action", :title => "绑定邮箱，未绑定"}
+      .fn-left.last
+        .surplus.fn-clear
+          %span.fn-left.text-l.mr10 账户余额
+          %span.fn-left.num-xl.color-orange-text
+            %em> 0.00
+            元
+          %a.fn-left.ui-button.ui-button-green.ui-button-mid.mr4{:href => "/account/capital!recharge.action"} 充值
+          %a.fn-left.ui-button.ui-button-blue.ui-button-mid.last{:href => "/account/capital!withdraw.action"} 提现
+        .surplus-detail.fn-clear
+          .fn-left.mr40
+            %span.fn-left.text.mr10 冻结金额
+            %span.fn-left.num.last
+              %em> 0.00
+              元
+          .fn-left.last
+            %span.fn-left.text.mr10 可用金额
+            %span.fn-left.num.last
+              %em> 0.00
+              元

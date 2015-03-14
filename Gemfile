@@ -66,6 +66,9 @@ gem 'rmagick'
 gem 'haml'
 # For i18n
 gem 'rails-i18n'
+gem 'simple_form'
+gem 'country_select'
+gem 'high_voltage'
 
 # For comment
 gem 'acts_as_commentable'
@@ -87,3 +90,5 @@ group :test do
   gem 'launchy'
   gem 'selenium-webdriver'
 end
+
+gem "erb2haml", group: :development

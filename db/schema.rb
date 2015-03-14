@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150311072253) do
+ActiveRecord::Schema.define(version: 20150313083220) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 20150311072253) do
     t.text     "description",           limit: 65535
     t.text     "frontend_risk_method",  limit: 65535
     t.decimal  "initial_amount",                      precision: 12, scale: 2
-    t.text     "back_end_risk_method",  limit: 65535
+    t.text     "backend_risk_method",   limit: 65535
     t.integer  "homs_account",          limit: 4
   end
 
@@ -104,6 +104,19 @@ ActiveRecord::Schema.define(version: 20150311072253) do
     t.string   "password",   limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.integer  "fund_id",    limit: 4
+  end
+
+  add_index "homs_accounts", ["fund_id"], name: "index_homs_accounts_on_fund_id", using: :btree
+
+  create_table "interests", force: :cascade do |t|
+    t.integer  "leverage_time",   limit: 4,                                        null: false
+    t.decimal  "amount",                    precision: 12, scale: 2, default: 0.0, null: false
+    t.integer  "duration",        limit: 4,                                        null: false
+    t.decimal  "interest_rate",             precision: 12, scale: 2,               null: false
+    t.decimal  "managerment_fee",           precision: 12, scale: 2
+    t.datetime "created_at",                                                       null: false
+    t.datetime "updated_at",                                                       null: false
   end
 
   create_table "invests", force: :cascade do |t|
@@ -188,6 +201,7 @@ ActiveRecord::Schema.define(version: 20150311072253) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "funds", "users"
+  add_foreign_key "homs_accounts", "funds"
   add_foreign_key "invests", "funds"
   add_foreign_key "invests", "users"
   add_foreign_key "leverages", "users"

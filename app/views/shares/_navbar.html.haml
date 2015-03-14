@@ -1,0 +1,64 @@
+%body
+  .nav-box
+    %header.sl-header.ng-scope
+      %nav.navbar.navbar-inverse.navbar-static-top.site-nav
+        .container
+          / Contact info
+          %ul.nav.navbar-nav.site-nav-sns
+            %li.site-nav-sns-phone
+              %span.navbar-text 客服热线：400-921-9218
+            %li
+              %a.icon-sns.qq{:href => "#"}
+                .social-content
+                  %p.social-title 点融网官方QQ群
+                  %p 141444867
+            %li
+              %a.icon-sns.weibo{:href => "http://weibo.com/dianrongwang", :rel => "nofollow", :target => "_blank"}
+            %li
+              %a.icon-sns.wechat{:href => "#"}
+                .social-content
+                  %p.social-title 扫描关注微信公众号
+                  %p
+                    %img{:src => "/assets/qr-code.jpg"}/
+          %ul#nonLoginBar.nav.navbar-nav.navbar-right.navbar-sm.site-nav-login.ng-scope
+            - if user_signed_in?
+              %li
+                = link_to(current_user.email,user_path(current_user),id: "login-panel",class: "btn btn-sm",rel: "nofollow")
+              %li
+                = link_to "登出", destroy_user_session_path, :method => :delete, :id => "sign-out"
+            - else
+              %li
+                = link_to("登录",new_user_session_path,id: "login-panel",class: "btn btn-sm",rel: "nofollow")
+              %li
+                = link_to("注册账户",new_user_registration_path,id: "create-account",class: "btn btn-sm",rel: "nofollow")
+    .header
+      .navbar.navbar-default.mega-menu{:role => "navigation"}
+        .container
+          / Brand and toggle get grouped for better mobile display
+          .navbar-header
+            %button.navbar-toggle{"data-target" => ".navbar-responsive-collapse", "data-toggle" => "collapse", :type => "button"}
+              %span.sr-only Toggle navigation
+              %span.fa.fa-bars
+            %a.navbar-brand{:href => "/"}
+              %img#logo-header{:alt => "Logo", :src => "/assets/logo.jpg"}/
+          / Collect the nav links, forms, and other content for toggling
+          .collapse.navbar-collapse.navbar-responsive-collapse.nav-menu
+            %ul.nav.navbar-nav
+              %li= link_to "首页",root_path
+              %li= link_to "我要投标",funds_path
+              %li= link_to "我要发标",new_fund_path
+              %li= link_to "我要配资",new_leverage_path
+              %li= link_to "交流互动",topics_path
+              %li.dropdown
+                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "javascript:void(0);"}
+                  关于我们
+                %ul.dropdown-menu
+                  %li= link_to "公司简介",page_path("about/about_us")
+                  %li= link_to "员工风采",page_path("about/about_staff")
+                  %li= link_to "团队介绍",page_path("about/our_team")
+                  %li= link_to "专家顾问",page_path("about/our_advisors")
+                  %li= link_to "业绩报告",page_path("about/performance_report")
+                  %li= link_to "社会责任",page_path("about/corporate_social_responsibility")
+                  %li= link_to "资质荣誉",page_path("about/qualification_and_honors")
+                  %li= link_to "媒体报道",page_path("about/media_reports")
+                  %li= link_to "证金大事记",page_path("about/our_events")

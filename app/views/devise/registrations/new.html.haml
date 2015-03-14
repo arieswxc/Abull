@@ -1,0 +1,36 @@
+.container.content
+  .row
+    .col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => 'reg-page'}) do |f|
+        .reg-header
+          %h2 Register a new account
+          %p
+            Already Signed Up? Click #{link_to("立即登录",new_user_session_path,rel: "nofollow", class: "color-green")} to login your account.
+        = devise_error_messages!
+        %label
+          Email Address
+          %span.color-red *
+        %br/
+        = f.email_field(:email, autofocus: true, class: "form-control margin-bottom-20")
+        %label
+          Password
+          %span.color-red *
+        - if @validatable
+          %em
+            (#{@minimum_password_length} characters minimum)
+        %br/
+        = f.password_field(:password, autocomplete: "off", class: "form-control margin-bottom-20")
+        %label
+          Confirm Password
+          %span.color-red *
+        %br/
+        = f.password_field(:password_confirmation, autocomplete: "off", class: "form-control margin-bottom-20")
+        %hr/
+        .row
+          .col-lg-6.checkbox
+            %label
+              %input{:type => "checkbox"}/
+              I read
+              %a.color-green{:href => "page_terms.html"} Terms and Conditions
+          .col-lg-6.text-right
+            %button.btn-u{:name => "commit", :type => "submit", :value => "Sign up"} 注册

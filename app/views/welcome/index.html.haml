@@ -1,0 +1,165 @@
+.jumbotron.home
+  / === Slider ===
+  .tp-banner-container
+    .tp-banner
+      %ul
+        / SLIDE
+        %li.revolution-mch-1{"data-masterspeed" => "1000", "data-slotamount" => "5", "data-title" => "Slide 1", "data-transition" => "fade"}
+          / MAIN IMAGE
+          %img{:alt => "darkblurbg", "data-bgfit" => "cover", "data-bgposition" => "left top", "data-bgrepeat" => "no-repeat", :src => "/assets/1.jpg"}/
+        / END SLIDE
+        / SLIDE
+        %li.revolution-mch-1{"data-masterspeed" => "1000", "data-slotamount" => "5", "data-title" => "Slide 2", "data-transition" => "fade"}
+          / MAIN IMAGE
+          %img{:alt => "darkblurbg", "data-bgfit" => "cover", "data-bgposition" => "left top", "data-bgrepeat" => "no-repeat", :src => "/assets/5.jpg"}/
+        / END SLIDE
+        / SLIDE
+        %li.revolution-mch-1{"data-masterspeed" => "1000", "data-slotamount" => "5", "data-title" => "Slide 3", "data-transition" => "fade"}
+          / MAIN IMAGE
+          %img{:alt => "darkblurbg", "data-bgfit" => "cover", "data-bgposition" => "right top", "data-bgrepeat" => "no-repeat", :src => "/assets/3.jpg"}/
+        / END SLIDE
+        / SLIDE
+        %li.revolution-mch-1{"data-masterspeed" => "1000", "data-slotamount" => "5", "data-title" => "Slide 4", "data-transition" => "fade"}
+          / MAIN IMAGE
+          %img{:alt => "darkblurbg", "data-bgfit" => "cover", "data-bgposition" => "left top", "data-bgrepeat" => "no-repeat", :src => "/assets/2.jpg"}/
+        / END SLIDE
+        / SLIDE
+        %li.revolution-mch-1{"data-masterspeed" => "1000", "data-slotamount" => "5", "data-title" => "Slide 5", "data-transition" => "fade"}
+          / MAIN IMAGE
+          %img{:alt => "darkblurbg", "data-bgfit" => "cover", "data-bgposition" => "right top", "data-bgrepeat" => "no-repeat", :src => "/assets/4.jpg"}/
+        / END SLIDE
+      .tp-bannertimer.tp-bottom
+  / === End Slider ===
+  .int-box
+    .container
+      .int-wrapper
+        %div{"ng-show" => "!isAuthenticated()"}
+          %h6.int-title 点融网历史年化收益率
+          %p
+            %small 平均
+            %span.big-int 14.07%
+          %p
+            %em.multi> 40
+            倍活期存款收益
+            %em> 3
+            倍货币基金收益
+          - unless user_signed_in?
+            = link_to("立即注册",new_user_registration_path,class: "btn btn-block btn-secondary",rel: "nofollow")
+            %p.text-right
+              已有账号？#{link_to("立即登录",new_user_session_path,rel: "nofollow")}
+  / 安全  收益 保障
+  .container.content
+    / Begin Service Block
+    .row.margin-bottom-40
+      .col-md-4.col-sm-6
+        .service-block.service-block-sea.service-or
+          .service-bg
+          %i.icon-custom.icon-color-light.rounded-x.fa.fa-lightbulb-o
+          %h2.heading-md 安全
+          %p Donec id elit non mi porta gravida at eget metus id elit mi egetine. Fusce dapibus
+      .col-md-4.col-sm-6
+        .service-block.service-block-red.service-or
+          .service-bg
+          %i.icon-custom.icon-color-light.rounded-x.icon-line.icon-fire
+          %h2.heading-md 收益
+          %p Donec id elit non mi porta gravida at eget metus id elit mi egetine usce dapibus elit nondapibus
+      .col-md-4.col-sm-12
+        .service-block.service-block-blue.service-or
+          .service-bg
+          %i.icon-custom.icon-color-light.rounded-x.icon-line.icon-rocket
+          %h2.heading-md 保障
+          %p Donec id elit non mi porta gravida at eget metus id elit mi egetine. Fusce dapibus
+    / End Begin Service Block
+  / 投资操盘列表
+  .container_12
+    .loan.mb.fn-clear
+      .grid_12
+        .list-title.loan
+          %span.on 投资列表
+        %ul#loan-list.ui-list.ui-list-m.ui-list-invest
+          %li#loan-list-header.ui-list-header.fn-clear
+            %span.ui-list-title.fn-left.color-gray-text.w260 标的代号
+            %span.ui-list-title.fn-left.color-gray-text.text-center.w120 预期收益率
+            %span.ui-list-title.fn-left.color-gray-text.text-center.w160 金额
+            %span.ui-list-title.fn-left.color-gray-text.text-center.w100 期限
+            %span.ui-list-title.fn-left.color-gray-text.text-center.w110 进度
+            %span.ui-list-title.fn-left.color-gray-text.text-center.w80
+          - @last_ten_funds.each do |f|
+            %li.ui-list-item.fn-clear
+              %a{:href => fund_path(f.id)}
+                %span.ui-list-field.fn-left.text-big.w260
+                  %em.ui-loantype.XYRZ{:title => "信用认证标"}
+                  %span.fn-left.w210.rrd-dimgray.fn-text-overflow{:href => "/lend/detailPage.action?loanId=488977", :target => "_blank", :title => "网上投资创业"}= f.name
+                %span.ui-list-field.fn-left.num.text-right.w90.pr30
+                  %em.value>= f.expected_earning_rate
+                  \%
+                %span.ui-list-field.fn-left.num.text-right.w130.pr30
+                  %em.value>= f.amount
+                  元
+                %span.ui-list-field.fn-left.num.text-right.w110.pr0.ellipsis
+                  %em.value.formattime>= f.invest_ending_date
+                  个月
+                %span.ui-list-field.fn-left.w110
+                  %strong.ui-progressbar-mid.ui-progressbar-mid-100
+                    %em> 100
+                    \%
+                %span.ui-list-field.fn-left.w80
+                  %button.ui-button.ui-button-mid.ui-button-blue.ui-list-invest-button.ui-list-invest-button-IN_PROGRESS
+                    = f.state
+              /
+                <div class="ui-poptip ui-poptip-white" style="display: none;" data-ui-name="ui-poptip">
+                <div class="ui-poptip-container">
+                <div class="ui-poptip-arrow ui-poptip-arrow-10"><em></em><span></span></div>
+                <div class="ui-poptip-content">信用认证标</div>
+                </div>
+                </div>
+          %li.ui-list-more
+            =link_to "查看更多投资理财项目",funds_path
+  /
+  .block-v1
+    .container
+      .row.content-boxes-v3
+        .col-md-4.md-margin-bottom-30
+          %i.icon-custom.rounded-x.icon-bg-dark.fa.fa-lightbulb-o
+          .content-boxes-in-v3
+            %h2.heading-sm xx用户
+            %p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+        .col-md-4.md-margin-bottom-30
+          %i.icon-custom.rounded-x.icon-bg-dark.fa.fa-flask
+          .content-boxes-in-v3
+            %h2.heading-sm xx用户
+            %p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+        .col-md-4
+          %i.icon-custom.rounded-x.icon-bg-dark.fa.fa-bolt
+          .content-boxes-in-v3
+            %h2.heading-sm xx用户
+            %p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+  /
+  .container.content
+    .col-md-3
+      .posts
+        .headline.headline-md
+          %h2 热门话题
+        - @last_ten_topics.each do |f|
+          %dl.dl-horizontal
+            %dt
+              %a{:href => "#"}
+                %img{:alt => "", :src => f.user.avatar}/
+            %dd
+              %p
+                %a{:href => "#"}= f.content
+    .col-md-9
+      #news-section.news.mb.fn-clear
+        .mt10
+          .list-title.news
+            %h2.on 最新动态
+          %ul#news-list.ui-list.ui-list-m.ui-list-news
+            - @last_ten_news.each do |f|
+              %li.ui-list-item.fn-clear
+                %p.fn-left.field.decoration
+                %p.fn-left.field.text.color-silver-text.fn-text-overflow
+                  = link_to "#{f.title}","#",class: "title text-big rrd-dimgray"
+                  %span.content.text-small
+                %p.fn-left.field.date.color-darkgray-text.formattime= f.datetime
+            %li.ui-list-more
+              = link_to "查看更多网站动态","#",class: "darkgray"

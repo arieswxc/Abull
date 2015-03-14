@@ -1,0 +1,53 @@
+.pg-container-content
+  #pg-account-index.pg-account
+    .container_12.mt10.fn-clear
+      = render "shares/profile_side_navbar", {activeItem: "leverage"}
+      .inline-block.relative.pg-account-detail
+        = render "shares/profile"
+        .tag-box.tag-box-v3.mt20.p20
+          %h2 配资累计：14,000,000
+          .row.mt20.mb40.pl40
+            .col-md-8
+              %label 当前配资进度
+              .progress
+                .progress-bar.progress-bar-info.progress-bar-striped{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "70", :role => "progressbar", :style => "width: 70%"}
+                  70%
+              %div 2015-02-02 配资申请300w［等待审核］
+              %label.mt20 配资历史
+              %a.float-right.mt20{:href => "javascript:;"} 详细
+              %table.table.table-striped.table-bordered
+                %thead
+                  %tr
+                    %th 配资说明
+                    %th 本金
+                    %th 申请配资
+                    %th 到期时间
+                    %th 状态
+                %tbody
+                  %tr
+                    %th 2015年春季配资
+                    %th 20w
+                    %th 200w
+                    %th 2017-01-01
+                    %th 通过
+          .tag-box.tag-box-v3.mt20.p20
+            %h3 2015年春季配资
+            .tab-v1
+              %ul.nav.nav-tabs
+                %li.active
+                  %a{"data-toggle" => "tab", :href => "#leverage-home-1"} 基金首页
+                %li
+                  %a{"data-toggle" => "tab", :href => "#leverage-edit-1"} 更新资料
+                %li
+                  %a{"data-toggle" => "tab", :href => "#leverage-comment-1"} 相关评论
+              .tab-content.row
+                #leverage-home-1.tab-pane.fade.active.in
+                  .ml70
+                    %h4 配资总额：1000w
+                    %span 到期时间：2022-11-11
+                    .mt20.ml20
+                      %div 操盘账号: x200x
+                      %div 操盘密码: xxxxxxxxxx
+                      %a.btn-u.btn-u-blue.mt10{:href => "javascript:;"} 操盘入口
+                #leverage-edit-1.tab-pane.fade
+                #leverage-comment-1.tab-pane.fade

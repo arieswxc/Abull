@@ -1,3 +1,33 @@
 -# 这里应该创建局部模板
-= link_to 'new', new_fund_path
-= render partial: 'fund_list' 
+
+%div.container.content
+  %h2.text-center 项目投标
+  %div.tag-box.tag-box-v3.mt20.p20.pt0
+    %label 项目筛选
+    %div.container.content
+      %form.sky-form
+        %section.col.col-2
+          %label.select
+            %select.w100
+              %option{:value => "volvo"} Volvo
+              %option{:value => "volvo1"} Volvo1
+            %i
+        %section.col.col-2
+          %label.select
+            %select.w100
+              %option{:value => "volvo"} Volvo
+              %option{:value => "volvo1"} Volvo1
+            %i
+        %section.col.col-2
+          %label.select
+            %select.w100
+              %option{:value => "volvo"} Volvo
+              %option{:value => "volvo1"} Volvo1
+            %i
+        %section.col.col-3
+          %div.input-group
+            %span.input-group-btn.custom-right
+              %button.btn.btn-danger{:type => "button"}
+                %i.fa.fa-search
+              %input.form-control{:type => "text"}
+  = render partial: 'fund_list'

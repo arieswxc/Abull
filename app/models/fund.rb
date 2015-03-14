@@ -1,5 +1,5 @@
 class Fund < ActiveRecord::Base
-  validates :name,                presence: true
+  # validates :name,                presence: true
   validates :user_id,             presence: true
   validates :amount,              presence: true
   validates :amount,              numericality: true
@@ -12,7 +12,6 @@ class Fund < ActiveRecord::Base
   validates :invest_ending_date,  presence: true
   belongs_to  :user
   has_many    :invests
-
   acts_as_commentable
 
   state_machine :state, :initial => :pending do

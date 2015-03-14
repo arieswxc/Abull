@@ -1,0 +1,66 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Bull
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    / CSS Global Compulsory
+    %link{:href => "/assets/one.css", :rel => "stylesheet"}/
+    %link{:href => "/assets/plugins/bootstrap.min.css", :rel => "stylesheet"}/
+    %link{:href => "/assets/style.css", :rel => "stylesheet"}/
+    %link{:href => "/assets/one.style.css", :rel => "stylesheet"}/
+    / CSS Implementing Plugins
+    %link{:href => "/assets/plugins/line-icons.css", :rel => "stylesheet"}/
+    %link{:href => "/assets/plugins/font-awesome/css/font-awesome.min.css", :rel => "stylesheet"}/
+    %link{:href => "/assets/plugins/img-hover.css", :rel => "stylesheet"}/
+    %link{:href => "/assets/sky-forms.css", :rel => "stylesheet"}/
+    %link{:href => "/assets/custom-sky-forms.css", :rel => "stylesheet"}/
+    / CSS Page Style
+    %link{:href => "/assets/pages/blog.css", :rel => "stylesheet"}/
+    %link{:href => "/assets/pages/page_log_reg_v1.css", :rel => "stylesheet"}/
+    / CSS Theme
+    %link{:href => "/assets/theme-colors/default.css", :rel => "stylesheet"}/
+    %link{:href => "/assets/shop.style.css", :rel => "stylesheet"}/
+    %link{:href => "/assets/plugins/perfect-scrollbar.css", :rel => "stylesheet"}/
+    %link{:href => "/assets/plugins/owl.carousel.css", :rel => "stylesheet"}/
+    %link{:href => "/assets/plugins/settings.css", :rel => "stylesheet"}/
+    %link{:href => "/assets/pages/page_job.css", :rel => "stylesheet"}/
+    / CSS Customization
+    %link{:href => "/assets/custom.css", :rel => "stylesheet"}/
+    %link{:href => "/assets/common.css", :rel => "stylesheet"}/
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    %script{:src => "/assets/plugins/jquery-migrate.min.js", :type => "text/javascript"}
+    %script{:src => "/assets/plugins/bootstrap.min.js", :type => "text/javascript"}
+    / JS Implementing Plugins
+    %script{:src => "/assets/plugins/back-to-top.js", :type => "text/javascript"}
+    %script{:src => "/assets/plugins/owl.carousel.js"}
+    %script{:src => "/assets/plugins/jquery.mousewheel.js"}
+    %script{:src => "/assets/plugins/perfect-scrollbar.js"}
+    %script{:src => "/assets/plugins/jquery.parallax.js"}
+    %script{:src => "/assets/plugins/jquery.themepunch.tools.min.js"}
+    %script{:src => "/assets/plugins/jquery.themepunch.revolution.min.js"}
+    %script{:src => "/assets/plugins/moment-with-locales.js"}
+    / JS Customization
+    %script{:src => "/assets/custom.js"}
+    / JS Page Level
+    %script{:src => "/assets/shop.app.js"}
+    %script{:src => "/assets/plugins/owl-carousel.js"}
+    %script{:src => "/assets/plugins/revolution-slider.js"}
+    / JS Page Level
+    %script{:src => "/assets/common.js"}
+    = csrf_meta_tags
+  %body
+    .wapper
+      = render "shares/navbar"
+      = yield
+      = render "shares/footer"
+    :javascript
+      jQuery(document).ready(function() {
+              App.init();
+              App.initParallaxBg();
+              OwlCarousel.initOwlCarousel();
+            RevolutionSlider.initRSfullWidth();
+        });
+      $(".formattime").each(function() {
+        $(this).text(moment($(this).text()).format('YYYY-MM-DD'));
+      });
