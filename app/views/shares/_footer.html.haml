@@ -14,16 +14,16 @@
         .col-md-2.md-margin-bottom-40
           %ul.list-unstyled.link-list
             %li
-              %a{:href => "#"} 公司简介
+              = link_to "公司简介",page_path("about/about_us")
               %i.fa.fa-angle-right
             %li
-              %a{:href => "#"} 员工风采
+              = link_to "员工风采",page_path("about/about_staff")
               %i.fa.fa-angle-right
             %li
-              %a{:href => "#"} 加入我们
+              = link_to "加入我们",page_path("about/join_us")
               %i.fa.fa-angle-right
             %li
-              %a{:href => "#"} 联系我们
+              = link_to "联系我们",page_path("about/contact_us")
               %i.fa.fa-angle-right
         / /col-md-3
         / End Link List
@@ -31,49 +31,46 @@
         .col-md-2.md-margin-bottom-40
           %ul.list-unstyled.link-list
             %li
-              %a{:href => "#"} 信息安全
+              = link_to "信息安全",page_path("security/information_security")
               %i.fa.fa-angle-right
             %li
-              %a{:href => "#"} 资金安全
+              = link_to "资金安全",page_path("security/money_safety")
               %i.fa.fa-angle-right
             %li
-              %a{:href => "#"} 操作安全
+              = link_to "操作安全",page_path("security/processing_safety")
               %i.fa.fa-angle-right
             %li
-              %a{:href => "#"} 风控保障
+              = link_to "风控保障",page_path("security/risk_management")
               %i.fa.fa-angle-right
             %li
-              %a{:href => "#"} 自我保障
+              = link_to "自我保障",page_path("security/self_reliance")
               %i.fa.fa-angle-right
         / /col-md-3
         / End Address
         .col-md-2.md-margin-bottom-40
           %ul.list-unstyled.link-list
             %li
-              %a{:href => "#"} 新手指南
+              = link_to "新手指南",page_path("guides/beginners_guide")
               %i.fa.fa-angle-right
             %li
-              %a{:href => "#"} 操作指引
+              = link_to "操作指引",page_path("guides/operating_procedure")
               %i.fa.fa-angle-right
             %li
-              %a{:href => "#"} 常见问题
+              = link_to "常见问题",page_path("guides/faq")
               %i.fa.fa-angle-right
             %li
-              %a{:href => "#"} 意见反馈
+              = link_to "意见反馈",page_path("guides/feedback")
               %i.fa.fa-angle-right
             %li
-              %a{:href => "#"} 软件下载
+              = link_to "软件下载",page_path("guides/download")
               %i.fa.fa-angle-right
         .col-md-2.md-margin-bottom-40
           %ul.list-unstyled.link-list
             %li
-              %a{:href => "#"} 法律文本
+              = link_to "负责声明",page_path("statment/statement")
               %i.fa.fa-angle-right
             %li
-              %a{:href => "#"} 负责声明
-              %i.fa.fa-angle-right
-            %li
-              %a{:href => "#"} 费率说明
+              = link_to "费率说明",page_path("statment/tariff")
               %i.fa.fa-angle-right
   / /footer
   .copyright

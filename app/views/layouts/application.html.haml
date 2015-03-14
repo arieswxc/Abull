@@ -39,6 +39,7 @@
     %script{:src => "/assets/plugins/jquery.parallax.js"}
     %script{:src => "/assets/plugins/jquery.themepunch.tools.min.js"}
     %script{:src => "/assets/plugins/jquery.themepunch.revolution.min.js"}
+    %script{:src => "/assets/plugins/moment-with-locales.js"}
     / JS Customization
     %script{:src => "/assets/custom.js"}
     / JS Page Level
@@ -60,3 +61,6 @@
               OwlCarousel.initOwlCarousel();
             RevolutionSlider.initRSfullWidth();
         });
+      $(".formattime").each(function() {
+        $(this).text(moment($(this).text()).format('YYYY-MM-DD'));
+      });
