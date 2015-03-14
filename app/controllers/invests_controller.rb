@@ -7,7 +7,7 @@ class InvestsController < ApplicationController
 
   def new
     @fund   = Fund.find(params[:fund_id])
-    @invest = @fund.invests.build
+    @invest = @fund.invests.build()
   end
 
   def create
