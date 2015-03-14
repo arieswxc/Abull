@@ -1,3 +1,4 @@
+include ApplicationHelper
 ActiveAdmin.register User do
   permit_params :email, :password, :password_confirmation, :nick_name, :real_name, :avatar, :cell, :id_card_number, :abstract, :level,
                 photos_attributes: [:title, :photo]
@@ -41,6 +42,12 @@ ActiveAdmin.register User do
       row :id_card_number
       row :abstract
       row :level
+      row('升级')  do 
+          link_to t('Upgrade'), upgrade_user_admin_user_path(user), :method => :put, :class => 'button' 
+      end  if check_user(current_admin_user)
+      row('降级')  do 
+          link_to t('Degrade'), degrade_user_admin_user_path(user), :method => :put, :class => 'button' 
+      end  if check_user(current_admin_user)
       row :current_sign_in_at
       row :sign_in_count
       row :created_at
@@ -51,7 +58,8 @@ ActiveAdmin.register User do
         row :real_name
         row :id_card_number
         user.photos.each do |p|
-            row("#{p.title}") { link_to image_tag(p.photo, width:400, height:400), p.photo.url }      
+          row("#{p.title}") { link_to image_tag(p.photo, width:400, height:400), p.photo.url }    
+          # row("#{p.title}") { link_to image_tag(p.photo.thumb), p.photo.url }        
         end
       end
     end
@@ -59,14 +67,13 @@ ActiveAdmin.register User do
 
 
   #侧边窗口
-  sidebar "User level变更", only: :show do
-    attributes_table_for user do
-      row('升级')  do 
-        link_to t('Upgrade'), upgrade_user_admin_user_path(user), :method => :put, :class => 'button'
+  sidebar "User List", only: :show do
+    table_for User.all do
+      column :email do |u|
+        link_to u.email, admin_user_path(u)
       end
-      row('降级')  do
-        link_to t('Degrade'), degrade_user_admin_user_path(user), :method => :put, :class => 'button'
-      end
+      column :real_name
+      column :level
     end
   end
 

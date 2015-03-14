@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150313083220) do
+ActiveRecord::Schema.define(version: 20150314083811) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -86,7 +86,6 @@ ActiveRecord::Schema.define(version: 20150313083220) do
     t.string   "private_check",         limit: 255,                            default: "private"
     t.decimal  "minimum",                             precision: 12, scale: 2
     t.datetime "invest_starting_date"
-    t.datetime "invest_ending_date"
     t.datetime "created_at",                                                                       null: false
     t.datetime "updated_at",                                                                       null: false
     t.decimal  "expected_earning_rate",               precision: 12, scale: 4
@@ -95,6 +94,7 @@ ActiveRecord::Schema.define(version: 20150313083220) do
     t.decimal  "initial_amount",                      precision: 12, scale: 2
     t.text     "backend_risk_method",   limit: 65535
     t.integer  "homs_account",          limit: 4
+    t.integer  "duration",              limit: 4
   end
 
   add_index "funds", ["user_id"], name: "index_funds_on_user_id", using: :btree
@@ -110,13 +110,14 @@ ActiveRecord::Schema.define(version: 20150313083220) do
   add_index "homs_accounts", ["fund_id"], name: "index_homs_accounts_on_fund_id", using: :btree
 
   create_table "interests", force: :cascade do |t|
-    t.integer  "leverage_time",   limit: 4,                                        null: false
-    t.decimal  "amount",                    precision: 12, scale: 2, default: 0.0, null: false
-    t.integer  "duration",        limit: 4,                                        null: false
-    t.decimal  "interest_rate",             precision: 12, scale: 2,               null: false
-    t.decimal  "managerment_fee",           precision: 12, scale: 2
-    t.datetime "created_at",                                                       null: false
-    t.datetime "updated_at",                                                       null: false
+    t.integer  "leverage_time",   limit: 4,                                              null: false
+    t.decimal  "amount",                      precision: 12, scale: 2, default: 0.0,     null: false
+    t.integer  "duration",        limit: 4,                                              null: false
+    t.decimal  "interest_rate",               precision: 12, scale: 2,                   null: false
+    t.decimal  "managerment_fee",             precision: 12, scale: 2
+    t.datetime "created_at",                                                             null: false
+    t.datetime "updated_at",                                                             null: false
+    t.string   "show",            limit: 255,                          default: "false"
   end
 
   create_table "invests", force: :cascade do |t|
@@ -142,8 +143,10 @@ ActiveRecord::Schema.define(version: 20150313083220) do
     t.string   "state",       limit: 255
     t.datetime "created_at",                                         null: false
     t.datetime "updated_at",                                         null: false
+    t.integer  "interest_id", limit: 4
   end
 
+  add_index "leverages", ["interest_id"], name: "index_leverages_on_interest_id", using: :btree
   add_index "leverages", ["user_id"], name: "index_leverages_on_user_id", using: :btree
 
   create_table "news", force: :cascade do |t|
@@ -204,6 +207,7 @@ ActiveRecord::Schema.define(version: 20150313083220) do
   add_foreign_key "homs_accounts", "funds"
   add_foreign_key "invests", "funds"
   add_foreign_key "invests", "users"
+  add_foreign_key "leverages", "interests"
   add_foreign_key "leverages", "users"
   add_foreign_key "photos", "users"
   add_foreign_key "topics", "users"

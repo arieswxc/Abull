@@ -7,7 +7,7 @@ ActiveAdmin.register Topic do
     column :title
     column "用户" do |topic|
       user = AdminUser.find(topic.user_id)
-      link_to user.email, admin_admin_user_path(user)
+      link_to user.email, admin_user_path(user)
     end
     column "内容" do |topic|
       topic.content.slice(0,500) + "..."
@@ -22,19 +22,10 @@ ActiveAdmin.register Topic do
       row('内容')    { |t| t.content }
       row('用户') do 
         user = AdminUser.find(topic.user_id)
-        link_to user.email, admin_admin_user_path(user)
+        link_to user.email, admin_user_path(user)
       end
       row :date
     end
-  end
-
-  form do |f|
-    f.inputs "topic Details" do
-      f.input :title
-      f.input :content
-      f.input :user_id, as: :select, collection: [ current_admin_user.id ]
-    end
-    f.actions
   end
   
 end

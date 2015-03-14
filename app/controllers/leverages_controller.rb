@@ -3,7 +3,7 @@ class LeveragesController < ApplicationController
     @leverage   = Leverage.find(params[:id])
     @user       = @leverage.user
     @comments   = @leverage.comments
-    @interests  = Interest.all
+    @interests  = Interest.where(show: "true")
   end
 
   def new
@@ -34,6 +34,6 @@ class LeveragesController < ApplicationController
 
   private
     def leverage_params
-      params.require(:leverage).permit(:user_id, :date, :amount, :description, :deadline, :state)
+      params.require(:leverage).permit(:user_id, :date, :amount, :description, :deadline, :state, :interest_id)
     end
 end

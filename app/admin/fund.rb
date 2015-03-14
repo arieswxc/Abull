@@ -1,6 +1,6 @@
 ActiveAdmin.register Fund do
   permit_params :name, :user_id, :amount, :collection_deadline, :earning, :expected_earning_rate, :earning_rate, :state, :private_check, :minimum, :invest_starting_date, :invest_ending_date, :description, 
-    	:frontend_risk_method, 
+    	:frontend_risk_method, :duration,
   		:backend_risk_method, :initial_amount, :created_at, :updated_at
     
   index do
@@ -36,6 +36,17 @@ ActiveAdmin.register Fund do
       row :frontend_risk_method
       row :backend_risk_method
       row :state
+      row('确认')  do 
+          link_to t('confirm'), confirm_fund_admin_fund_path(fund), :method => :put, :class => 'button'
+      end    
+      row('拒绝')  do
+        if fund.state == 'applied'
+          form_for "reject_reason", url: deny_fund_admin_fund_path(fund), method: :post do |f|
+            f.text_area :reason
+            f.submit
+          end        
+        end
+      end
     end
 
     panel t('操盘手个人信息') do 
@@ -55,19 +66,12 @@ ActiveAdmin.register Fund do
   end
 
   #侧边窗口
-  sidebar "状态变更", only: :show do
-    attributes_table_for fund do
-      row('确认')  do 
-        link_to t('confirm'), confirm_fund_admin_fund_path(fund), :method => :put, :class => 'button'
+  sidebar "Fund List", only: :show do
+    table_for Fund.all do 
+      column :name do |f|
+        link_to f.name, admin_fund_path(f)
       end
-      row('拒绝')  do
-        if fund.state == 'applied'
-          form_for "reject_reason", url: deny_fund_admin_fund_path(fund), method: :post do |f|
-            f.text_area :reason
-            f.submit
-          end        
-        end
-      end
+      column :state
     end
   end
  
@@ -79,7 +83,8 @@ ActiveAdmin.register Fund do
         f.input :collection_deadline, as: :datepicker
         f.input :minimum
         f.input :invest_starting_date, as: :datepicker
-        f.input :invest_ending_date, as: :datepicker
+        f.input :duration
+        # f.input :invest_ending_date, as: :datepicker
         f.input :state, as: :select, collection: ["pending", "applied", "gathering", "reached", "opened", "running", "finished", "closed", "denied"]
         f.input :user_id, as: :select, collection: User.order(:email).map{|u| [u.email, u.id]}
       end

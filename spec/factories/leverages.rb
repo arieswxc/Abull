@@ -6,5 +6,6 @@ FactoryGirl.define do
     description "MyText"
     deadline    Time.now + 1.days
     state       "applied"
+    association :interest
   end
 end

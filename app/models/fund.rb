@@ -13,7 +13,7 @@ class Fund < ActiveRecord::Base
   belongs_to  :user
   has_many    :invests
 
-  before_validation :generate_fundname, on: :create 
+  before_validation :generate_fundname, on: :create
   acts_as_commentable
 
   state_machine :state, :initial => :pending do
@@ -56,6 +56,10 @@ class Fund < ActiveRecord::Base
 
   has_one :homs_account
 
+  def invest_ending_date
+    self.invest_starting_date.advance(days: self.duration)
+  end
+
   private
   def generate_fundname
     if self.name.blank?
@@ -68,4 +72,5 @@ class Fund < ActiveRecord::Base
     end
     self.name
   end
+
 end
