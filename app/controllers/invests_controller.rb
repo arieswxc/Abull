@@ -8,14 +8,17 @@ class InvestsController < ApplicationController
   def new
     @fund   = Fund.find(params[:fund_id])
     @invest = @fund.invests.build()
+    @invest.user_id = current_user.id 
+    @invest.date = Time.now()
   end
 
   def create
     @fund   = Fund.find(params[:fund_id])
     @invest = @fund.invests.build(invest_params)
+
     if @invest.save
       @invest.user.follow(@fund.user)
-      redirect_to @fund
+      redirect_to fund_invest_path(@fund, @invest)
     else
       render :new
     end
