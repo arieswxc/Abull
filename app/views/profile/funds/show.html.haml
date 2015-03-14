@@ -5,7 +5,10 @@
       .inline-block.relative.pg-account-detail
         = render "shares/profile"
         .tag-box.tag-box-v3.mt20.p20
-          %h3 A股平衡基金
+          %h3
+            A股平衡基金
+            = link_to user_funds_path(current_user),class: "ml10" do
+              %span.icon-action-undo
           .progress
             .progress-bar.progress-bar-info.progress-bar-striped{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "70", :role => "progressbar", :style => "width: 70%"}
               70%
