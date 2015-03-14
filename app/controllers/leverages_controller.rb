@@ -1,8 +1,9 @@
 class LeveragesController < ApplicationController
   def show
-    @leverage = Leverage.find(params[:id])
-    @user     = @leverage.user
-    @comments = @leverage.comments
+    @leverage   = Leverage.find(params[:id])
+    @user       = @leverage.user
+    @comments   = @leverage.comments
+    @interests  = Interest.all
   end
 
   def new
