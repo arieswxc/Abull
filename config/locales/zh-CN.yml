@@ -13,6 +13,7 @@ zh-CN:
       leverage: 配资
       news: 动态
       photo: 照片
+      interest: 利率
     attributes:
       admin_user:
         email: 电子邮件
@@ -100,6 +101,15 @@ zh-CN:
         title: 标题
         content: 内容
         date: 时间
+        created_at: 创建日期
+        updated_at: 更新日期
+      interest:
+        leverage_time: 杠杆
+        amount: 金额
+        duration: 时间
+        interest_rate: 利率
+        managerment_fee: 管理费率
+        show: 显示
         created_at: 创建日期
         updated_at: 更新日期
   formtastic:
