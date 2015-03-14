@@ -4,7 +4,7 @@
       = render "shares/profile_side_navbar", {activeItem: "fund"}
       .inline-block.relative.pg-account-detail
         = render "shares/profile"
-        .tag-box.tag-box-v3.mt20.p20
+        #profile-fund-show.tag-box.tag-box-v3.mt20.p20
           %h2 发标资金总额：14,000,000
           .col-md-8.mt20.mb40
             %label 当前发标：全球主权基金
@@ -68,3 +68,13 @@
                       %a.btn-u.btn-u-blue.mt10{:href => "javascript:;"} 操盘入口
                 #fund-edit-1.tab-pane.fade
                 #fund-comment-1.tab-pane.fade
+
+
+:javascript
+  jQuery(document).ready(function() {
+    $("#profile-fund-show tbody tr").click(function() {
+      $(this).children().css("background","#C8C8C8");
+      var invest_id = this.dataset.index;
+      window.location.href = "/users/" + "#{current_user.id}" +"/invests/" + invest_id;
+    });
+  });

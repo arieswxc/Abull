@@ -4,7 +4,7 @@
       = render "shares/profile_side_navbar", {activeItem: "invest"}
       .inline-block.relative.pg-account-detail
         = render "shares/profile"
-        .tag-box.tag-box-v3.mt40
+        #profile-invest-show.tag-box.tag-box-v3.mt40
           %h2 已投资金额：14,000,000
           %table.table.table-striped.table-bordered.mt40
             %thead
@@ -18,7 +18,8 @@
                 %th 状态
                 %th 合同
             %tbody
-              %tr
+
+              %tr{'data-index' => 2}
                 %th A股平衡基金
                 %th 索罗宾
                 %th 200w
@@ -28,13 +29,12 @@
                 %th 募集期
                 %th
                   %a{:href => "javascript:;"} 委托操盘合同
-              %tr
-                %th B股平衡基金
-                %th 索罗宾
-                %th 200w
-                %th 2017-01-01
-                %th 100w
-                %th 200%
-                %th 募集期
-                %th
-                  %a{:href => "javascript:;"} 委托操盘合同
+
+:javascript
+  jQuery(document).ready(function() {
+    $("#profile-invest-show tbody tr").click(function() {
+      $(this).children().css("background","#C8C8C8");
+      var invest_id = this.dataset.index;
+      window.location.href = "/users/" + "#{current_user.id}" +"/invests/" + invest_id;
+    });
+  });
