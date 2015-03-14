@@ -1,7 +1,6 @@
 - if @fund.state == 'pending'
-	= render 'share/result'
+	= render 'shares/result'
 - else
 	= render 'fund_info'
 	=# todo other more
 	= link_to '投标', new_fund_invest_path(fund_id: @fund)
-- end
