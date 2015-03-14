@@ -1,0 +1,25 @@
+.user-info.row.p20.pt0
+  .col-md-2.text-center
+    .avatar
+      %img.img-thumbnail.img-rounded.w70{:src => "/assets/testimonials/img1.jpg"}
+    .username.mt5
+      %span 基金发起人：
+      %span 林桑
+    .btn-group.mt5
+      %a.btn-u.btn-u-blue{:href => "javascript:;"} 关注
+      %a.btn-u.btn-u-red{:href => "javascript:;"} 私信
+  .col-md-9
+    .panel.panel-primary
+      .panel-heading
+        .panel-title
+          个人简介
+          %a.float-right{:href => "javascript:;"} 编辑
+      .panel-title.p20
+        .abstract= user.abstract
+    .panel.panel-primary
+      .panel-heading
+        .panel-title
+          投资策略
+          %a.float-right{:href => "javascript:;"} 编辑
+      .panel-title.p20
+        .abstract= user.abstract

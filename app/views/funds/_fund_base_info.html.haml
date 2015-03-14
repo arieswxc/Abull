@@ -1,0 +1,31 @@
+
+.panel.panel-primary.mt40
+  .panel-heading
+    .panel-title=@fund.name
+  .panel-title
+    %table.table.table-striped.table-bordered
+      %tbody
+        %tr
+          %td= Fund.human_attribute_name('amount')
+          %td= @fund.amount
+        %tr
+          %td= Fund.human_attribute_name('collection_deadline')
+          %td= @fund.collection_deadline
+        %tr
+          %td= Fund.human_attribute_name('expected_earning_rate')
+          %td= @fund.expected_earning_rate
+        %tr
+          %td= Fund.human_attribute_name('invest_starting_date')
+          %td= @fund.invest_starting_date
+        %tr
+          %td= Fund.human_attribute_name('invest_ending_date')
+          %td= @fund.invest_ending_date
+        %tr
+          %td= Fund.human_attribute_name('description')
+          %td= @fund.description
+        %tr
+          %td= Fund.human_attribute_name('frontend_risk_method')
+          %td= @fund.frontend_risk_method
+        %tr
+          %td= Fund.human_attribute_name('backend_risk_method')
+          %td= @fund.backend_risk_method

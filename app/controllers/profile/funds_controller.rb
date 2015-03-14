@@ -4,4 +4,9 @@ class Profile::FundsController < ApplicationController
     @funds            = @user.funds
     @total_fund_value = @funds.sum(:amount)
   end
+
+  def show
+    @user               = User.find(params[:user_id])
+    @fund               = @user.funds.find(params[:id])
+  end
 end

@@ -3,35 +3,35 @@
   .panel-heading
     .panel-title=@fund.name
   .panel-title
-    %ul
-      %li
-        %label Fund.human_attribute_name(amount)
-        .content= @fund.amount
-      %li
-        %label Fund.human_attribute_name(collection_deadline)
-        .content= @fund.collection_deadline
-      %li
-        %label Fund.human_attribute_name(earning)
-        .content= @fund.earning
-      %li
-        %label Fund.human_attribute_name(earning_rate)
-        .content= @fund.earning_rate
-      %li
-        %label Fund.human_attribute_name(invest_starting_date)
-        .content= @fund.invest_starting_date
-      %li
-        %label Fund.human_attribute_name(invest_ending_date)
-        .content= @fund.invest_ending_date
-      %li
-        %label Fund.human_attribute_name(description)
-        .content= @fund.description
-      %li
-        %label Fund.human_attribute_name(frontend_risk_method)
-        .content= @fund.frontend_risk_method 
-      %li
-        %label Fund.human_attribute_name(backend_risk_method)
-        .content= @fund.backend_risk_method   
-      %li
-        %label Fund.human_attribute_name(state)
-        .content= @fund.state
-     
+    %table.table.table-striped.table-bordered
+      %tbody
+        %tr
+          %td= Fund.human_attribute_name('amount')
+          %td= @fund.amount
+        %tr
+          %td= Fund.human_attribute_name('collection_deadline')
+          %td= @fund.collection_deadline
+        %tr
+          %td= Fund.human_attribute_name('earning')
+          %td= @fund.earning
+        %tr
+          %td= Fund.human_attribute_name('earning_rate')
+          %td= @fund.earning_rate
+        %tr
+          %td= Fund.human_attribute_name('invest_starting_date')
+          %td= @fund.invest_starting_date
+        %tr
+          %td= Fund.human_attribute_name('invest_ending_date')
+          %td= @fund.invest_ending_date
+        %tr
+          %td= Fund.human_attribute_name('description')
+          %td= @fund.description
+        %tr
+          %td= Fund.human_attribute_name('frontend_risk_method')
+          %td= @fund.frontend_risk_method
+        %tr
+          %td= Fund.human_attribute_name('backend_risk_method')
+          %td= @fund.backend_risk_method
+        %tr
+          %td= Fund.human_attribute_name('state')
+          %td= @fund.state

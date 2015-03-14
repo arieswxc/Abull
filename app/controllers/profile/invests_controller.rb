@@ -4,4 +4,10 @@ class Profile::InvestsController < ApplicationController
     @invests            = @user.invests
     @total_invest_value = @invests.sum(:amount)
   end
+
+  def show
+    @user               = User.find(params[:user_id])
+    @invest             = @user.invests.find(params[:id])
+  end
+
 end

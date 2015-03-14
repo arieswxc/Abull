@@ -1,6 +1,8 @@
-- if @fund.state == 'pending'
-	= render 'shares/result'
-- else
+-# - if @fund.state == 'pending'
+-# 	= render 'shares/result'
+-# - else
+.container.content
+	= render 'users/funder_info',{user: @fund.user}
 	= render 'fund_info'
 	=# todo other more
-	= link_to '投标', new_fund_invest_path(fund_id: @fund)
+	= link_to '投标', new_fund_invest_path(fund_id: @fund), class: "btn-u btn-u-blue"
