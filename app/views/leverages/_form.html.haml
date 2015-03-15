@@ -10,7 +10,7 @@
       boolean: :horizontal_boolean}) do |f|                      |
       = f.input :description
       = f.input :amount
-      = f.association :interest,label_method: :interest_rate
+      = f.association :interest, label_method: :leverage_time, value_method: :id
       = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
       = f.input :deadline, as: :date, html5: true
       .row.mt40.mb20.text-center
