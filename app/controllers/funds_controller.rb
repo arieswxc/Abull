@@ -1,7 +1,8 @@
 class FundsController < ApplicationController
   def index
-    @q      = Fund.search(params[:q])
-    @funds  = @q.result
+    # @q      = Fund.search(params[:q])
+    # @funds  = @q.result
+    @funds = Fund.search_by_conditions(params[:duration], params[:amount], params[:deadline])
   end
 
   def show

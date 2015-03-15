@@ -16,6 +16,10 @@ class Fund < ActiveRecord::Base
   before_validation :generate_fundname, on: :create
   acts_as_commentable
 
+  # scope :search_by_duration, ->(duration) { where("duration < ?", duration) }
+  # scope :search_by_deadline, ->(deadline) { where("collection_deadline < ?", deadline) }
+  # scope :search_by_amount, ->(amount) { where("amount < ?", amount) }
+
   state_machine :state, :initial => :pending do
     event :apply do
       transition [:pending, :denied]  => :applied
@@ -58,6 +62,13 @@ class Fund < ActiveRecord::Base
 
   def invest_ending_date
     self.invest_starting_date.advance(days: self.duration)
+  end
+
+  def self.search_by_conditions(duration, amount, deadline)
+    duration = 10000 if duration.nil? 
+    deadline = "21000101".to_date if deadline.nil?
+    amount = 10000000000 if amount.nil?
+    funds = Fund.where("duration < ? and amount < ? and collection_deadline < ?", duration, amount, deadline)
   end
 
   private
