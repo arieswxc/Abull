@@ -8,26 +8,29 @@
       %form.sky-form
         %section.col.col-2
           %label.select
-            %select.w100
+            %select.w100{:name => "v1"}
+              %option{:value => ""}
               %option{:value => "volvo"} Volvo
               %option{:value => "volvo1"} Volvo1
             %i
         %section.col.col-2
           %label.select
-            %select.w100
+            %select.w100{:name => "v2"}
+              %option{:value => ""}
               %option{:value => "volvo"} Volvo
               %option{:value => "volvo1"} Volvo1
             %i
         %section.col.col-2
           %label.select
-            %select.w100
+            %select.w100{:name => "v3"}
+              %option{:value => ""}
               %option{:value => "volvo"} Volvo
               %option{:value => "volvo1"} Volvo1
             %i
         %section.col.col-3
           %div.input-group
             %span.input-group-btn.custom-right
-              %button.btn.btn-danger{:type => "button"}
+              %button.btn.btn-danger{:type => "submit"}
                 %i.fa.fa-search
               %input.form-control{:type => "text"}
   = render partial: 'fund_list'
