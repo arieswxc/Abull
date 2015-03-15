@@ -65,10 +65,10 @@ class Fund < ActiveRecord::Base
   end
 
   def self.search_by_conditions(duration, amount, deadline)
-    duration = 10000 if duration.nil? 
-    deadline = "21000101".to_date if deadline.nil?
-    amount = 10000000000 if amount.nil?
-    funds = Fund.where("duration < ? and amount < ? and collection_deadline < ?", duration, amount, deadline)
+    duration = 0 if duration.blank? 
+    deadline = "21000101".to_date if deadline.blank?
+    amount = 0 if amount.blank?
+    funds = Fund.where("duration > ? and amount > ? and collection_deadline < ?", duration, amount, deadline)
   end
 
   private
