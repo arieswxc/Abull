@@ -6,31 +6,22 @@
     %label 项目筛选
     %div.container.content
       %form.sky-form
-        %section.col.col-2
-          %label.select
-            %select.w100{:name => "v1"}
-              %option{:value => ""}
-              %option{:value => "volvo"} Volvo
-              %option{:value => "volvo1"} Volvo1
-            %i
-        %section.col.col-2
-          %label.select
-            %select.w100{:name => "v2"}
-              %option{:value => ""}
-              %option{:value => "volvo"} Volvo
-              %option{:value => "volvo1"} Volvo1
-            %i
-        %section.col.col-2
-          %label.select
-            %select.w100{:name => "v3"}
-              %option{:value => ""}
-              %option{:value => "volvo"} Volvo
-              %option{:value => "volvo1"} Volvo1
-            %i
         %section.col.col-3
-          %div.input-group
-            %span.input-group-btn.custom-right
-              %button.btn.btn-danger{:type => "submit"}
-                %i.fa.fa-search
-              %input.form-control{:type => "text"}
+          %label 持续时间(>)
+          %input.form-control{:type => "text",:name => "duration"}
+        %section.col.col-3
+          %label 募集总额(>)
+          %input.form-control{:type => "text",:name => "amount"}
+        %section.col.col-3
+          %label 截止日期(<)
+          %input.form-control{:type => "text",:name => "deadline"}
+        %button.btn.btn-danger.mt25{:type => "submit"}
+          %i.fa.fa-search
+        -# %section.col.col-3
+        -#   %div.input-group
+        -#     %span.input-group-btn.custom-right
+        -#       %input.form-control{:type => "text",:name => "v4"}
+        -#       %button.btn.btn-danger{:type => "submit"}
+        -#         %i.fa.fa-search
+
   = render partial: 'fund_list'
