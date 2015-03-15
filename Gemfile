@@ -69,7 +69,7 @@ gem 'rails-i18n'
 gem 'simple_form'
 gem 'country_select'
 gem 'high_voltage'
-
+gem "less-rails"
 # For comment
 gem 'acts_as_commentable'
 
