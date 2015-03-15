@@ -3,15 +3,10 @@
     .container
       .row
         / About
-        .col-md-3.md-margin-bottom-40
-          %a{:href => "index.html"}
-            %img#logo-footer.footer-logo{:alt => "", :src => "/assets/logo2-default.png"}/
-          %p About Unify dolor sit amet, consectetur adipiscing elit. Maecenas eget nisl id libero tincidunt sodales.
-          %p Duis eleifend fermentum ante ut aliquam. Cras mi risus, dignissim sed adipiscing ut, placerat non arcu.
-        / /col-md-3
+
         / End About
         / Link List
-        .col-md-2.md-margin-bottom-40
+        .col-md-3.md-margin-bottom-40
           %ul.list-unstyled.link-list
             %li
               = link_to "公司简介",page_path("about/about_us")
@@ -28,7 +23,7 @@
         / /col-md-3
         / End Link List
         / Address
-        .col-md-2.md-margin-bottom-40
+        .col-md-3.md-margin-bottom-40
           %ul.list-unstyled.link-list
             %li
               = link_to "信息安全",page_path("security/information_security")
@@ -47,7 +42,7 @@
               %i.fa.fa-angle-right
         / /col-md-3
         / End Address
-        .col-md-2.md-margin-bottom-40
+        .col-md-3.md-margin-bottom-40
           %ul.list-unstyled.link-list
             %li
               = link_to "新手指南",page_path("guides/beginners_guide")
@@ -64,7 +59,7 @@
             %li
               = link_to "软件下载",page_path("guides/download")
               %i.fa.fa-angle-right
-        .col-md-2.md-margin-bottom-40
+        .col-md-3.md-margin-bottom-40
           %ul.list-unstyled.link-list
             %li
               = link_to "负责声明",page_path("statment/statement")

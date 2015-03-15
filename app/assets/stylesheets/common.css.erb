@@ -42,7 +42,7 @@ a:focus, a:hover {
   height: 18px;
   margin: 7px 6px;
   padding: 0;
-  background-image: url(../assets/logo-sprite.png);
+  background-image: url(<%= asset_path 'logo-sprite.png' %>);
   background-repeat: no-repeat;
   -webkit-transition: all .3s ease-in-out;
   -moz-transition: all .3s ease-in-out;
@@ -148,7 +148,7 @@ a:focus, a:hover {
   z-index: 1;
 }
 .sl-navbar .sl-logo {
-  background: url(../assets/dianrong-logo-header.png)0 -48px no-repeat;
+  background: url(<%= asset_path 'dianrong-logo-header.png' %>)0 -48px no-repeat;
   overflow: hidden;
   width: 118px;
   height: 43px;
@@ -354,11 +354,11 @@ a.fn-left.ui-button.ui-button-blue.ui-button-mid.last {
 }
 
 .footer-v1 .footer .container .row .col-md-3 {
-  visibility: hidden;
-  width:0;
+  /*visibility: hidden;
+  width:0;*/
 }
 
 .footer-v1 .copyright{
-  visibility: hidden;
+  /*visibility: hidden;*/
 }
 /* index site-menu end */
