@@ -1,4 +1,5 @@
 class LeveragesController < ApplicationController
+  before_action :authenticate_user!, only: [:new,:edit]
   def show
     @leverage   = Leverage.find(params[:id])
     @user       = @leverage.user
