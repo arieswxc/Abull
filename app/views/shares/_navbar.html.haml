@@ -19,7 +19,7 @@
                 .social-content
                   %p.social-title 扫描关注微信公众号
                   %p
-                    %img{:src => "/assets/qr-code.jpg"}/
+                    %img{:src => asset_path("qr-code.jpg")}/
           %ul#nonLoginBar.nav.navbar-nav.navbar-right.navbar-sm.site-nav-login.ng-scope
             - if user_signed_in?
               %li
@@ -56,7 +56,7 @@
               %span.sr-only Toggle navigation
               %span.fa.fa-bars
             %a.navbar-brand{:href => "/"}
-              %img#logo-header{:alt => "Logo", :src => "/assets/logo.jpg"}/
+              %img#logo-header{:alt => "Logo", :src => asset_path("logo.jpg")}/
           / Collect the nav links, forms, and other content for toggling
           .collapse.navbar-collapse.navbar-responsive-collapse.nav-menu
             %ul.nav.navbar-nav
