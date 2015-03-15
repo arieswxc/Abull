@@ -10,7 +10,7 @@ FactoryGirl.define do
     private_check         "private"
     minimum               "9.99"
     invest_starting_date  "2015-02-24 22:20:20"
-    invest_ending_date    "2015-02-24 22:20:20"
+    duration              {rand(10000)}
     expected_earning_rate "10.0"
     description           "This is a fund description."
     frontend_risk_method  "This is a fund risk method."

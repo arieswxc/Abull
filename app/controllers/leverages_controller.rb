@@ -8,6 +8,7 @@ class LeveragesController < ApplicationController
 
   def new
     @leverage = current_user.leverages.build
+    @interests  = Interest.where(show: "true")
   end
 
   def create
@@ -21,6 +22,7 @@ class LeveragesController < ApplicationController
 
   def edit
     @leverage = current_user.leverages.find(params[:id])
+    @interests  = Interest.where(show: "true")
   end
 
   def update

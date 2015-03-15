@@ -86,7 +86,7 @@ RSpec.describe Fund, type: :model do
     expect(build(:fund, invest_starting_date: nil)).to be_invalid
   end
 
-  it "is invalid when invest_ending_date is nil" do
-    expect(build(:fund, invest_ending_date: nil)).to be_invalid
+  it "is invalid when duration is nil" do
+    expect(build(:fund, duration: nil)).to be_invalid
   end
 end
