@@ -5,7 +5,6 @@
 %table.table.table-striped.table-bordered.mt40
   %thead
     %tr
-      %th= Fund.human_attribute_name('state')
       %th= Fund.human_attribute_name('name')
       / %th 发标人
       %th= Fund.human_attribute_name('amount')
@@ -19,16 +18,15 @@
       %th 电子合同
   -# todo, 处理 private_check
   %tbody
-    - @funds.each do |f|
+    - @invests.each do |f|
       %tr{'data-index' => f.id}
-        %td= f.state
-        %td= f.name
+        %td= f.fund.name
         / %td= f.user.nick_name
-        %td= f.amount
-        %td.formattime= f.collection_deadline
+        %td= f.fund.amount
+        %td.formattime= f.fund.collection_deadline
         / %td= f.minimum
-        %td.formattime= f.invest_starting_date
-        %td.formattime= f.invest_ending_date
+        %td.formattime= f.fund.invest_starting_date
+        %td.formattime= f.fund.invest_ending_date
         - unless @current=="xxx"
           %td
             = link_to "详细",fund_path(f.id),class: "btn-u btn-u-xs btn-u-blue"

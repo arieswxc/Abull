@@ -1,0 +1,23 @@
+
+- if @funds.blank?
+  %h2.text-center 没有找到合适标的
+
+%table.table.table-striped.table-bordered.mt40
+  %thead
+    %tr
+      / %th 发标人
+      %th= Leverage.human_attribute_name('amount')
+      %th= Leverage.human_attribute_name('deadline')
+      / %th Fund.human_attribute_name('minimum')
+      %th= Leverage.human_attribute_name('state')
+      %th= Leverage.human_attribute_name('interest_id')
+  -# todo, 处理 private_check
+  %tbody
+    - @leverages.each do |f|
+      %tr{'data-index' => f.id}
+        / %td= f.user.nick_name
+        %td= f.amount
+        %td.formattime= f.deadline
+        / %td= f.minimum
+        %td= f.state
+        %td.formattime= f.interest.leverage_time

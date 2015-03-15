@@ -13,5 +13,7 @@
       = f.association :interest, label_method: :leverage_time, value_method: :id
       = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
       = f.input :deadline, as: :date, html5: true
+      = f.input :date, as: :hidden, input_html: { value: Time.now() }
+      = f.input :state, as: :hidden, input_html: { value: 'applied' }
       .row.mt40.mb20.text-center
         = f.submit class: "btn-u btn-u-blue"

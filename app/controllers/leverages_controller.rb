@@ -9,6 +9,7 @@ class LeveragesController < ApplicationController
   def new
     @leverage = current_user.leverages.build
     @interests  = Interest.where(show: "true")
+    @leverage.user_id = current_user.id
   end
 
   def create

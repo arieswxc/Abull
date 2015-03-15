@@ -6,29 +6,7 @@
         = render "shares/profile"
         #profile-fund-show.tag-box.tag-box-v3.mt20.p20
           %h2 发标资金总额：14,000,000
-          %table.table.table-striped.table-bordered.mt40
-            %thead
-              %tr
-                %th 标的名字
-                %th 操盘手
-                %th 投标额度
-                %th 到期时间
-                %th 冻结资金
-                %th 承诺收益率
-                %th 状态
-                %th 合同
-            %tbody
-            - @funds.each do |f|
-              %tr{'data-index' => f.id}
-                %th A股平衡基金
-                %th 索罗宾
-                %th 200w
-                %th 2017-01-01
-                %th 100w
-                %th 200%
-                %th 募集期
-                %th
-                  %a{:href => "javascript:;"} 委托操盘合同
+          = render "funds/fund_list", ojbect: @current="xxx"
 
 :javascript
   jQuery(document).ready(function() {
