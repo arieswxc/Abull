@@ -67,7 +67,7 @@ zh-CN:
       invest:
         user_id: 用户
         fund_id: 发标
-        amount: 数额
+        amount: 投资数额
         date: 日期
         payback: 回报
         close_day: 清算日期
@@ -86,6 +86,7 @@ zh-CN:
         state: 状态
         created_at: 创建日期
         updated_at: 更新日期
+        interest: 杠杆
       news:
         title: 标题
         content: 内容

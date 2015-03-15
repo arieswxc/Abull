@@ -5,7 +5,7 @@
 %table.table.table-striped.table-bordered.mt40
   %thead
     %tr
-      %th= Fund.human_attribute_name('state')
+
       %th= Fund.human_attribute_name('name')
       / %th 发标人
       %th= Fund.human_attribute_name('amount')
@@ -13,6 +13,7 @@
       / %th Fund.human_attribute_name('minimum')
       %th= Fund.human_attribute_name('invest_starting_date')
       %th= Fund.human_attribute_name('invest_ending_date')
+      %th= Fund.human_attribute_name('state')
       - unless @current=="xxx"
         %th 详细
         %th 操作
@@ -21,7 +22,7 @@
   %tbody
     - @funds.each do |f|
       %tr{'data-index' => f.id}
-        %td= f.state
+
         %td= f.name
         / %td= f.user.nick_name
         %td= f.amount
@@ -29,6 +30,7 @@
         / %td= f.minimum
         %td.formattime= f.invest_starting_date
         %td.formattime= f.invest_ending_date
+        %td= f.state
         - unless @current=="xxx"
           %td
             = link_to "详细",fund_path(f.id),class: "btn-u btn-u-xs btn-u-blue"

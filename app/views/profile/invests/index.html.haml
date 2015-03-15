@@ -5,7 +5,9 @@
       .inline-block.relative.pg-account-detail
         = render "shares/profile"
         #profile-invest-show.tag-box.tag-box-v3.mt40
-          %h2 已投资金额：14,000,000
+          %h2
+            已投资金额：
+            = @invests.sum(:amount)
           = render "invests/invest_list", ojbect: @current="xxx"
 
 :javascript
