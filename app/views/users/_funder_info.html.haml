@@ -1,5 +1,5 @@
 .user-info.row.p20.pt0
-  .col-md-2.text-center
+  .col-md-2.text-center.ml20.mb40
     .avatar
       %img.img-thumbnail.img-rounded.w70{:src => asset_path("testimonials/img1.jpg")}
     .username.mt5
@@ -9,17 +9,17 @@
       %a.btn-u.btn-u-blue{:href => "javascript:;"} 关注
       %a.btn-u.btn-u-red{:href => "javascript:;"} 私信
   .col-md-9
-    .panel.panel-primary
-      .panel-heading
-        .panel-title
-          个人简介
-          %a.float-right{:href => "javascript:;"} 编辑
-      .panel-title.p20
+    .tag-box.tag-box-v3.col-md-6.mr20
+      %h4
+        个人简介
+        %a.float-right{:href => "javascript:;"} 编辑
+      %hr
+      .p20
         .abstract= user.abstract
-    .panel.panel-primary
-      .panel-heading
-        .panel-title
-          投资策略
-          %a.float-right{:href => "javascript:;"} 编辑
-      .panel-title.p20
+    .tag-box.tag-box-v3.col-md-5.mr20
+      %h4
+        投资策略
+        %a.float-right{:href => "javascript:;"} 编辑
+      %hr
+      .p20
         .abstract= user.abstract

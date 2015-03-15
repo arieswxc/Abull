@@ -4,6 +4,8 @@
 .container.content
 	- @result_type = 'fund'
 	= render 'users/funder_info',{user: @fund.user,ojbect: @result_type}
-	= render 'fund_info'
-	=# todo other more
-	= link_to '投标', new_fund_invest_path(fund_id: @fund), class: "btn-u btn-u-blue"
+	.pl60.pr90
+		= render 'fund_info'
+		=# todo other more
+		.text-center.mt40
+			= link_to '投标', new_fund_invest_path(fund_id: @fund), class: "btn-u btn-u-blue"
