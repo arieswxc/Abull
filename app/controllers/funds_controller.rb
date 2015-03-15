@@ -1,4 +1,5 @@
 class FundsController < ApplicationController
+  before_action :authenticate_user!, only: [:new,:edit]
   def index
     # @q      = Fund.search(params[:q])
     # @funds  = @q.result
