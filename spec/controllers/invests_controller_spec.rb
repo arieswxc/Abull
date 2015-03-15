@@ -46,7 +46,7 @@ RSpec.describe InvestsController, type: :controller do
         expect(assigns(:fund)).to   eq fund
         expect(assigns(:invest)).to be_a Invest
         expect(assigns(:invest)).to be_persisted
-        expect(response).to         redirect_to(fund)
+        expect(response).to         redirect_to(fund_invest_path(fund_id: fund, id: Invest.last))
       end
     end
 

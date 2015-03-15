@@ -43,7 +43,7 @@ class FundsController < ApplicationController
       params.require(:fund).permit(
         :name, :amount, :collection_deadline,
         :private_check, :minimum, :invest_starting_date,
-        :invest_ending_date, :expected_earning_rate, :description,
+        :duration, :expected_earning_rate, :description,
         :frontend_risk_method, :backend_risk_method, :homs_account, :initial_amount, :state)
     end
 end

@@ -9,7 +9,7 @@ class Fund < ActiveRecord::Base
   validates :state,               inclusion: { in: ["pending", "applied", "gathering", "reached", "opened", "running", "finished", "closed", "denied"] }
   validates :private_check,       inclusion: { in: ["private", "public"] }
   validates :invest_starting_date, presence: true
-  validates :invest_ending_date,  presence: true
+  validates :duration,  presence: true
   belongs_to  :user
   has_many    :invests
 
