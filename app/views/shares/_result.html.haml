@@ -7,5 +7,9 @@
 	.container.content.fund-show-pending
 		%h2 发标完成，等待审核
 		= link_to '去个人中心查看进度', user_funds_path(current_user), class: 'float-right'
+- if @result_type == 'leverage'
+	.container.content.fund-show-pending
+		%h2 配资完成，等待审核
+		= link_to '去个人中心查看进度', user_leverages_path(current_user), class: 'float-right'
 / else
 / end
