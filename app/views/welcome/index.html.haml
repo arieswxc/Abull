@@ -62,9 +62,9 @@
             %span.ui-list-title.fn-left.color-gray-text.w260 标的代号
             %span.ui-list-title.fn-left.color-gray-text.text-center.w120 预期收益率
             %span.ui-list-title.fn-left.color-gray-text.text-center.w160 金额
-            %span.ui-list-title.fn-left.color-gray-text.text-center.w100 期限
+            %span.ui-list-title.fn-left.color-gray-text.text-center.w100 截止时间
             %span.ui-list-title.fn-left.color-gray-text.text-center.w110 进度
-            %span.ui-list-title.fn-left.color-gray-text.text-center.w80
+            %span.ui-list-title.fn-left.color-gray-text.text-center.w80  状态
           - @last_ten_funds.each do |f|
             %li.ui-list-item.fn-clear
               %a{:href => fund_path(f.id)}
@@ -73,19 +73,18 @@
                   %span.fn-left.w210.rrd-dimgray.fn-text-overflow{:href => "/lend/detailPage.action?loanId=488977", :target => "_blank", :title => "网上投资创业"}= f.name
                 %span.ui-list-field.fn-left.num.text-right.w90.pr30
                   %em.value>= f.expected_earning_rate
-                  \%
+                  = "%" if f.expected_earning_rate
                 %span.ui-list-field.fn-left.num.text-right.w130.pr30
                   %em.value>= f.amount
                   元
                 %span.ui-list-field.fn-left.num.text-right.w110.pr0.ellipsis
                   %em.value.formattime>= f.invest_ending_date
-                  个月
                 %span.ui-list-field.fn-left.w110
                   %strong.ui-progressbar-mid.ui-progressbar-mid-100
                     %em> 100
                     \%
                 %span.ui-list-field.fn-left.w80
-                  %button.ui-button.ui-button-mid.ui-button-blue.ui-list-invest-button.ui-list-invest-button-IN_PROGRESS
+                  %button.ui-button.ui-button-mid.ui-button-blue.ui-list-invest-button
                     = f.state
               /
                 <div class="ui-poptip ui-poptip-white" style="display: none;" data-ui-name="ui-poptip">
