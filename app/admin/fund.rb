@@ -1,7 +1,7 @@
 ActiveAdmin.register Fund do
   permit_params :name, :user_id, :amount, :collection_deadline, :earning, :expected_earning_rate, :earning_rate, :state, :private_check, :minimum, :invest_starting_date, :invest_ending_date, :description, 
     	:frontend_risk_method, :duration,
-  		:backend_risk_method, :initial_amount, :created_at, :updated_at
+  		:backend_risk_method, :initial_amount, :created_at, :updated_at, :raised_amount
     
   index do
     selectable_column
@@ -27,6 +27,7 @@ ActiveAdmin.register Fund do
     attributes_table  do 
       row :name
       row :amount
+      row :raised_amount
       row :collection_deadline
       row :minimum
       row :private_check

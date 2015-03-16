@@ -64,6 +64,15 @@ class Fund < ActiveRecord::Base
     self.invest_starting_date.advance(days: self.duration)
   end
 
+  def raised_amount
+    sum = 0
+    self.invests.each do |inv|
+      sum = sum + inv.amount
+    end
+    sum.to_f
+  end
+
+
   def self.search_by_conditions(duration, amount, deadline)
     duration = 0 if duration.blank? 
     deadline = "21000101".to_date if deadline.blank?

@@ -38,6 +38,6 @@ class LeveragesController < ApplicationController
 
   private
     def leverage_params
-      params.require(:leverage).permit(:user_id, :date, :amount, :description, :deadline, :state, :interest_id)
+      params.require(:leverage).permit(:user_id, :date, :amount, :description, :duration, :state, :interest_id)
     end
 end
