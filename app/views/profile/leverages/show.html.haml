@@ -6,12 +6,9 @@
         = render "shares/profile"
         .tag-box.tag-box-v3.mt20.p20
           %h3
-            A股平衡基金
+            = @leverage.description
             = link_to user_leverages_path(current_user),class: "ml10" do
               %span.icon-action-undo
-          .progress
-            .progress-bar.progress-bar-info.progress-bar-striped{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "70", :role => "progressbar", :style => "width: 70%"}
-              70%
           .tab-v1
             %ul.nav.nav-tabs
               %li.active
@@ -21,11 +18,15 @@
             .tab-content.row
               #fund-home-1.tab-pane.fade.active.in
                 .col-md-2.col-sm-2.text-center
-                  .red 5389
-                  %span.counter 投标人数
                 .col-md-9.col-sm-9
-                  %h4 募集总额：1000w
-                  %span 到期时间：2022-11-11
+                  %h4
+                    = Leverage.human_attribute_name('amount')
+                    \：
+                    = @leverage.amount
+                  %span
+                    = Leverage.human_attribute_name('deadline')
+                    \：
+                    %span.formattime= @leverage.deadline
                   .mt20
                     %div 操盘账号: x200x
                     %div 操盘密码: xxxxxxxxxx
