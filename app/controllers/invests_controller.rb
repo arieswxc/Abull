@@ -16,7 +16,6 @@ class InvestsController < ApplicationController
   def create
     @fund   = Fund.find(params[:fund_id])
     @invest = @fund.invests.build(invest_params)
-
     if @fund.state == "gathering" && @invest.save
       @invest.user.follow(@fund.user)
       redirect_to fund_invest_path(@fund, @invest)
