@@ -17,10 +17,11 @@ class InvestsController < ApplicationController
     @fund   = Fund.find(params[:fund_id])
     @invest = @fund.invests.build(invest_params)
 
-    if @fund.state == "gathering" && @invest.save
+    if @fund.state == "gathering" && @fund.raised_amount + @invest.amount <= @fund.amount && @invest.save
       @invest.user.follow(@fund.user)
       redirect_to fund_invest_path(@fund, @invest)
     else
+      flash[:error] = "投标的金额超过该标剩余的额度，请重填" if @fund.raised_amount + @invest.amount > @fund.amount
       render :new
     end
   end
