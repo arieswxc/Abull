@@ -48,6 +48,7 @@ zh-CN:
         expected_earning_rate: 预期年化收益率
         state: 状态
         user_id: 用户
+        user: 用户
         earning: 收益
         earning_rate: 收益率
         initial_amount: 初始募集数额
@@ -57,6 +58,7 @@ zh-CN:
         title: 标题
         comment: 评论
         user_id: 用户
+        user: 用户
         role: 角色
         created_at: 创建日期
         updated_at: 更新日期
@@ -68,6 +70,7 @@ zh-CN:
         follower_type: 关注类型
       invest:
         user_id: 用户
+        user: 用户
         fund_id: 发标
         amount: 投资数额
         date: 日期
@@ -80,7 +83,8 @@ zh-CN:
         created_at: 创建日期
         updated_at: 更新日期
       leverage:
-        user_id:
+        user_id: 用户
+        user: 用户
         date: 配资时间
         amount: 配资数额
         description: 配资说明
@@ -100,8 +104,10 @@ zh-CN:
         title: 标题
         photo: 照片
         user_id: 用户
+        user: 用户
       topic:
         user_id: 用户
+        user: 用户
         title: 标题
         content: 内容
         date: 时间
