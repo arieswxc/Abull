@@ -14,6 +14,7 @@ zh-CN:
       news: 动态
       photo: 照片
       interest: 利率
+      account: 账户
     attributes:
       admin_user:
         email: 电子邮件
@@ -115,6 +116,10 @@ zh-CN:
         show: 显示
         created_at: 创建日期
         updated_at: 更新日期
+      account:
+        balance: 余额
+        user_id: 用户
+        user: 用户
   formtastic:
     yes: "YES"
     no: "NO"
