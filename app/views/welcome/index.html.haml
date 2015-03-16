@@ -77,11 +77,11 @@
                 %span.ui-list-field.fn-left.num.text-right.w130.pr30
                   %em.value>= f.amount
                   元
-                %span.ui-list-field.fn-left.num.text-right.w110.pr0.ellipsis
+                %span.ui-list-field.fn-left.num.text-center.w130.pr0.ellipsis
                   %em.value.formattime>= f.invest_ending_date
-                %span.ui-list-field.fn-left.w110
-                  %strong.ui-progressbar-mid.ui-progressbar-mid-100
-                    %em> 100
+                %span.ui-list-field.fn-left.w60.pr30
+                  %strong.ui-progressbar-mid{:class => "ui-progressbar-mid-"+"#{(f.raised_amount/f.amount * 100).floor}"}
+                    %em>= (f.raised_amount/f.amount * 100).floor
                     \%
                 %span.ui-list-field.fn-left.w80
                   %button.ui-button.ui-button-mid.ui-button-blue.ui-list-invest-button
