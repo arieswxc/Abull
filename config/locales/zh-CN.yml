@@ -51,6 +51,7 @@ zh-CN:
         earning_rate: 收益率
         initial_amount: 初始募集数额
         homs_account: HOMS账号
+        duration: 持续时间（月）
       comment:
         title: 标题
         comment: 评论
@@ -87,6 +88,7 @@ zh-CN:
         created_at: 创建日期
         updated_at: 更新日期
         interest: 杠杆
+        duration: 持续时间（月）
       news:
         title: 标题
         content: 内容
