@@ -13,6 +13,11 @@ class Leverage < ActiveRecord::Base
 
   acts_as_commentable
 
+  def deadline 
+    self.date.advance(months: self.duration, days: -1)
+  end
+
+
   private
     def valid_deadline
       if deadline && deadline <= Time.now

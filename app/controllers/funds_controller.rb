@@ -3,7 +3,7 @@ class FundsController < ApplicationController
   def index
     # @q      = Fund.search(params[:q])
     # @funds  = @q.result
-    @funds = Fund.search_by_conditions(params[:duration], params[:amount], params[:deadline])
+    @funds = Fund.search_by_conditions(params[:duration], params[:amount], params[:deadline]).order('created_at')
   end
 
   def show

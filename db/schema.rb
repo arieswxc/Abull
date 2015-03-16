@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150314083811) do
+ActiveRecord::Schema.define(version: 20150316044650) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -139,11 +139,11 @@ ActiveRecord::Schema.define(version: 20150314083811) do
     t.datetime "date"
     t.decimal  "amount",                    precision: 12, scale: 2
     t.text     "description", limit: 65535
-    t.datetime "deadline"
     t.string   "state",       limit: 255
     t.datetime "created_at",                                         null: false
     t.datetime "updated_at",                                         null: false
     t.integer  "interest_id", limit: 4
+    t.integer  "duration",    limit: 4
   end
 
   add_index "leverages", ["interest_id"], name: "index_leverages_on_interest_id", using: :btree
