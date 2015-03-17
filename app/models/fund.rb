@@ -10,6 +10,8 @@ class Fund < ActiveRecord::Base
   validates :private_check,       inclusion: { in: ["private", "public"] }
   validates :invest_starting_date, presence: true
   validates :duration,  presence: true
+  validates :expected_earning_rate, presence: true
+  validates :expected_earning_rate, numericality: true
   belongs_to  :user
   has_many    :invests
 
@@ -60,8 +62,10 @@ class Fund < ActiveRecord::Base
 
   has_one :homs_account
 
+  #虚拟属性
   def invest_ending_date
-    self.invest_starting_date.advance(days: self.duration)
+    # self.invest_starting_date.advance(days: self.duration)
+    self.invest_starting_date.advance(months: self.duration, days: -1)
   end
 
   def raised_amount
@@ -72,7 +76,7 @@ class Fund < ActiveRecord::Base
     sum.to_f
   end
 
-
+  #类方法
   def self.search_by_conditions(duration, amount, deadline)
     duration = 0 if duration.blank? 
     deadline = "21000101".to_date if deadline.blank?

@@ -37,18 +37,12 @@ RSpec.describe Leverage, type: :model do
     expect(leverage.errors[:amount]).to include(I18n.t('errors.messages.not_a_number'))
   end
 
-  # deadline
-  it "is invalid when deadline is nil" do
-    leverage = build(:leverage, deadline: nil)
+  # duration
+  it "is invalid when duration is nil" do
+    leverage = build(:leverage, duration: nil)
     leverage.valid?
     expect(leverage).to be_invalid
-    expect(leverage.errors[:deadline]).to include(I18n.t('errors.messages.blank'))
-  end
-
-  it "should be invalid when deadline is before date" do
-    leverage = build(:leverage, deadline: Time.now - 1.day)
-    expect(leverage).to be_invalid
-    expect(leverage.errors[:deadline]).to include(I18n.t('invalid_date'))
+    expect(leverage.errors[:duration]).to include(I18n.t('errors.messages.blank'))
   end
     
   # state

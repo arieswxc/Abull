@@ -129,4 +129,11 @@ RSpec.describe User, type: :model do
     topic = create(:topic, user_id: user.id)
     expect(user.topics.first).to eq topic
   end
+
+  # account
+  it "has one account" do
+    user    = create(:user)
+    account = user.create_account
+    expect(user.account).to eq account
+  end
 end

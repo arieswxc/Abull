@@ -95,9 +95,9 @@ ActiveAdmin.register User do
 
   member_action :upgrade_user, :method => :put do
     user = User.find(params[:id])
-    if user.level == 'unverified'
+    if user.level == 'investor_applied'
       user.up_to_inv
-    elsif user.level == 'investor'
+    elsif user.level == 'trader_applied'
       user.up_to_td
     end
     redirect_to admin_user_path(user)
