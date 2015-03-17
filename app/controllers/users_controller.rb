@@ -1,12 +1,18 @@
 class UsersController < ApplicationController
-  def edit_real_name
+  def investor_apply
     @user = User.find(params[:id])
   end
 
-  def update_real_name
+  def trader_apply
+    @user = User.find(params[:id])
+  end
+
+  def applied
     @user = User.find(params[:id])
     respond_to do |format|
       if @user.update(user_params)
+        @user.investor_apply if @user.level == "unverified" || @user.level == "investor_applied"
+        @user.trader_apply if @user.level == "investor" || @user.level == "trader_applied"
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -27,6 +33,9 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:real_name, :id_card_number, :email, :password, :nick_name)
+      params.require(:user).permit(
+        :real_name, :id_card_number, :email, :password, :nick_name, 
+        :birthday, :gender, :education, :address, :job,
+        photos_attributes: [:id, :title, :photo, :destroy])
     end
 end
