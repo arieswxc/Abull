@@ -23,12 +23,12 @@
           .mt20
           .row.mt20
             %h3= Leverage.human_attribute_name('interest')
-            - @interests.each do |f1|
+            - (1..5).each do |index|
               .col-md-4
-                .service-block.rounded-2x.service-block-default.leverage-interest-item.relative{:class => "#{'active' if @interests.last==f1}"}
-                  %input{:type => "radio",:name => "leverage[interest_id]",:checked => "#{'checked' if @interests.last==f1}", :value => "#{f1.id}", "data-index" => "#{f1.leverage_time}"}
+                .service-block.rounded-2x.service-block-default.leverage-interest-item.relative{:class => "#{'active' if 5==index}"}
+                  %input{:type => "radio",:name => "leverage[leverage_time]",:value => "#{index}",:checked => "#{'checked' if 5==index}",:class => "leverage_time"}
                   %h3
-                    = f1.leverage_time
+                    = index
                     倍
         .col.col-md-4.border-left
           .row.mt20.pl40
@@ -46,8 +46,8 @@
                   %span ：
                 .cnt.select
                   %select{:name => "leverage[duration]"}
-                    - (1..12).each do |index|
-                      %option{:value => "#{index}", :selected => "#{'selected' if index == 12}"}= "#{index}个月"
+                    - (1..6).each do |index|
+                      %option{:value => "#{index}", :selected => "#{'selected' if index == 6}"}= "#{index}个月"
               %li.info_item
                 .lbl
                   %span 总操盘资金
@@ -140,7 +140,7 @@
       }
     }
 
-    $("input[name='leverage[interest_id]']").click(function(){
+    $("input[name='leverage[leverage_time]']").click(function(){
       getOrderMonthRate();
     });
     $("select[name='leverage[duration]']").change(function(){
@@ -150,7 +150,7 @@
     //ajax
     function getOrderMonthRate() {
       var amount = parseInt($("#leverage_amount").val());
-      var leverage_time = $("input[name='leverage[interest_id]']:checked")[0].dataset.index;
+      var leverage_time = $("input[name='leverage[leverage_time]']:checked").val();
       var duration = $("select[name='leverage[duration]']  option:selected").val();
       var postdata = {
         "amount": amount,
