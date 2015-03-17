@@ -188,9 +188,9 @@ a:focus, a:hover {
   padding-bottom: 30px;
 }
 .jumbotron.home .int-box {
-  width: 100%;
   position: absolute;
   top: 0;
+  left: 100px;
 }
 .jumbotron.home .int-box>.container {
   position: relative;
@@ -355,6 +355,94 @@ a.fn-left.ui-button.ui-button-blue.ui-button-mid.last {
 }
 .navbar-default .navbar-nav > li > a:before {
   content: "";
+}
+.leverage-interest-item.active {
+  background: #FDBA40;
+}
+.leverage-interest-item:hover {
+  background: #FDBA40;
+}
+.leverage-interest-item input[type="radio"] {
+  opacity: 0;
+  filter: alpha(opacity=0);
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+.leverage-interest-item h3 {
+  white-space: nowrap;
+}
+.leverage-new {
+  margin: auto;
+  width: 800px;
+}
+.border-left {
+  border-left: 1px solid #e1e1e1;
+}
+.leverage-new .info_item {
+  font-size: 16px;
+  height: 40px;
+  line-height: 40px;
+  margin-bottom: 30px;
+  width: 370px;
+}
+.leverage-new .info_item .lbl {
+  float: left;
+  width: 170px;
+  padding-right: 10px;
+  text-align: right;
+  font-size: 16px;
+  color: #999;
+}
+.leverage-new .info_item .cnt {
+  float: left;
+  width: 195px;
+}
+.pz_tips_1 {
+  display: inline-block;
+  position: relative;
+}
+.pz_tips_1 .pz_tips_hd {
+  cursor: help;
+}
+.ui_ico {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  color: #1BA1D2;
+}
+.pz_tips_1 .pz_tips_bd {
+  display: none;
+  text-align: left;
+  background-color: #fafafa;
+  border: 1px solid #ccc;
+  width: 200px;
+  position: absolute;
+  left: 7px;
+  top: 35px;
+  font-size: 14px;
+  line-height: 21px;
+  padding: 8px 15px;
+  z-index: 999;
+}
+.pz_tips_1 .pz_tips_bd .caret {
+  display: block;
+  width: 14px;
+  height: 0;
+  font-size: 0;
+  position: absolute;
+  left: -3px;
+  top: -11px;
+  border-bottom: 11px solid;
+  border-right: 9px solid transparent;
+  border-left: 9px solid transparent;
+  border-top: none;
 }
 
 .footer-v1 .footer .container .row .col-md-3 {
