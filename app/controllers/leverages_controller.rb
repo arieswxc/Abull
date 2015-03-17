@@ -4,18 +4,19 @@ class LeveragesController < ApplicationController
     @leverage   = Leverage.find(params[:id])
     @user       = @leverage.user
     @comments   = @leverage.comments
-    @interests  = Interest.where(show: "true")
+    # @interests  = Interest.where(show: "true")
   end
 
   def new
     @leverage = current_user.leverages.build
-    @interests  = Interest.where(show: "true")
+    # @interests  = Interest.where(show: "true")
     @leverage.user_id = current_user.id
   end
 
   def create
     @leverage = current_user.leverages.build(leverage_params)
-    @interests  = Interest.where(show: "true")
+    # @interests  = Interest.where(show: "true")
+    @leverage.interest_id = Interest.where("amount = ? and leverage_time = ? and duration = ?", amount, leverage_time, duration).first.id
     if @leverage.save
       redirect_to @leverage
     else
@@ -53,6 +54,6 @@ class LeveragesController < ApplicationController
 
   private
     def leverage_params
-      params.require(:leverage).permit(:user_id, :date, :amount, :description, :duration, :state, :interest_id)
+      params.require(:leverage).permit(:user_id, :date, :amount, :description, :duration, :state)
     end
 end
