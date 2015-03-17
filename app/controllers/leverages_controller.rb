@@ -42,7 +42,11 @@ class LeveragesController < ApplicationController
     duration = params[:duration].blank? ? 1 : params[:duration]
 
     rate = Interest.query(amount, leverage_time, duration)
-    render json: {rate: rate}
+    total_amount = amount.to_f * (leverage_time.to_f + 1)
+    loss_warning_line = total_amount * 0.9
+    loss_making_line = total_amount * 0.87
+    total_interests = total_amount * leverage_time.to_f * rate
+    render json: {rate: rate, total_amount: total_amount, loss_warning_line: loss_warning_line, total_interests: total_interests}
   end
 
   private
