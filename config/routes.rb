@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   root 'welcome#index'
-  
+
   resources :users, only: [:show] do
     scope module: 'profile' do
       resources :invests,           only: [:index, :show]
@@ -19,8 +19,8 @@ Rails.application.routes.draw do
   resources :funds do
     resources :invests
   end
-  resources :leverages, only: [:show, :new, :create, :edit, :update] do 
-    get :query_rate, on: :collection
+  resources :leverages, only: [:show, :new, :create, :edit, :update] do
+    post :query_rate, on: :collection
   end
   resources :topics,    only: [:show, :index]
   resources :news,      only: [:show, :index]

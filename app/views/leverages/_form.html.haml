@@ -26,7 +26,7 @@
             - @interests.each do |f1|
               .col-md-4
                 .service-block.rounded-2x.service-block-default.leverage-interest-item.relative{:class => "#{'active' if @interests.last==f1}"}
-                  %input{:type => "radio",:name => "leverage[interest_id]",:checked => "#{'checked' if @interests.last==f1}", :value => "#{f1.id}"}
+                  %input{:type => "radio",:name => "leverage[interest_id]",:checked => "#{'checked' if @interests.last==f1}", :value => "#{f1.leverage_time}"}
                   %h3
                     = f1.leverage_time
                     倍
@@ -170,7 +170,8 @@
         },
         contentType: "application/json; charset=UTF-8",
         success: function(data) {
-          $(".leverage_total_amount").text(data.totol_amount);
+          console.log(data)
+          $(".leverage_total_amount").text(data.total_amount);
           $(".leverage_lose_warning").text(data.loss_warning_line);
           $(".leverage_lose_making").text(data.loss_making_line);
           $(".leverage_total_interests").text(data.total_interests);
