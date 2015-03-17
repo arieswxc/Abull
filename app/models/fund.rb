@@ -69,10 +69,12 @@ class Fund < ActiveRecord::Base
   end
 
   def raised_amount
-    sum = 0
-    self.invests.each do |inv|
-      sum = sum + inv.amount
-    end
+    # sum = 0
+    # self.invests.each do |inv|
+    #   sum = sum + inv.amount
+    # end
+    # sum.to_f
+    sum = self.invests.sum(:amount) || 0
     sum.to_f
   end
 

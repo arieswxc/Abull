@@ -1,5 +1,6 @@
 class FundsController < ApplicationController
   before_action :authenticate_user!, only: [:new,:edit]
+  before_action :check_fund_user, only: [:new, :create]
   def index
     # @q      = Fund.search(params[:q])
     # @funds  = @q.result
@@ -47,5 +48,13 @@ class FundsController < ApplicationController
         :private_check, :minimum, :invest_starting_date,
         :duration, :expected_earning_rate, :description,
         :frontend_risk_method, :backend_risk_method, :homs_account, :initial_amount, :state)
+    end
+
+    def check_fund_user
+      if current_user.level == 'unverified'
+        render json: { message: '请进行用户身份验证' }
+      else current_user.level == 'investor'
+        render json: { message: '请填写申请trader申请资料'}
+      end
     end
 end
