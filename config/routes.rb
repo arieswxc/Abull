@@ -19,7 +19,9 @@ Rails.application.routes.draw do
   resources :funds do
     resources :invests
   end
-  resources :leverages, only: [:show, :new, :create, :edit, :update]
+  resources :leverages, only: [:show, :new, :create, :edit, :update] do 
+    get :query_rate, on: :collection
+  end
   resources :topics,    only: [:show, :index]
   resources :news,      only: [:show, :index]
 end
