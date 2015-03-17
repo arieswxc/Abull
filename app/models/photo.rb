@@ -1,5 +1,5 @@
 class Photo < ActiveRecord::Base
-  validates :photo, presence: true
+  validates :photo, presence: true, on: :update
   validates :title, presence: true
   validates :title, uniqueness: {scope: :user_id}
   belongs_to :user

@@ -1,7 +1,7 @@
 include ApplicationHelper
 ActiveAdmin.register User do
   permit_params :email, :password, :password_confirmation, :nick_name, :real_name, :avatar, :cell, :id_card_number, :abstract, :level,
-                photos_attributes: [:title, :photo]
+                :birthday, :gender, :education, :address, :job, photos_attributes: [:title, :photo]
  
   index do
     selectable_column
@@ -16,6 +16,11 @@ ActiveAdmin.register User do
     column :id_card_number
     column :abstract
     column :level
+    column :birthday
+    column :gender
+    column :education
+    column :address
+    column :job
     column :current_sign_in_at
     column :sign_in_count
     column :created_at
@@ -57,6 +62,11 @@ ActiveAdmin.register User do
       attributes_table_for user do
         row :real_name
         row :id_card_number
+        row :birthday
+        row :education
+        row :gender
+        row :address
+        row :job
         user.photos.each do |p|
           row("#{p.title}") { link_to image_tag(p.photo, width:400, height:400), p.photo.url }    
           # row("#{p.title}") { link_to image_tag(p.photo.thumb), p.photo.url }        

@@ -34,6 +34,11 @@ zh-CN:
         abstract: 摘要
         created_at: 用户创建日期
         level: 用户等级
+        birthday: 生日
+        gender: 性别
+        education: 学历
+        address: 地址
+        job: 工作
       fund:
         name: 标名
         amount: 募集数额
