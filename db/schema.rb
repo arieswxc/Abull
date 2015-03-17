@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20150317025827) do
 
   create_table "accounts", force: :cascade do |t|
@@ -208,6 +209,11 @@ ActiveRecord::Schema.define(version: 20150317025827) do
     t.string   "id_card_number",         limit: 255
     t.text     "abstract",               limit: 65535
     t.string   "level",                  limit: 255
+    t.date     "birthday"
+    t.string   "gender",                 limit: 255
+    t.string   "education",              limit: 255
+    t.string   "address",                limit: 255
+    t.string   "job",                    limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

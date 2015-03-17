@@ -1,5 +1,5 @@
 #source 'https://rubygems.org'
-source 'http://ruby.taobao.org'
+source 'https://ruby.taobao.org'
 gem 'rake'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
@@ -69,6 +69,8 @@ gem 'rails-i18n'
 gem 'simple_form'
 gem 'country_select'
 gem 'high_voltage'
+gem "nested_form"
+gem 'china_city'
 
 # For comment
 gem 'acts_as_commentable'

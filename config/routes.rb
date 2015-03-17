@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :users, controllers: { registrations: 'registrations'}
   ActiveAdmin.routes(self)
-
+  mount ChinaCity::Engine => '/china_city'
   root 'welcome#index'
 
   resources :users, only: [:show] do
@@ -12,8 +12,9 @@ Rails.application.routes.draw do
       resources :leverages,         only: [:index, :show]
       resources :following_topics,  only: [:index, :show]
     end
-    get   :edit_real_name,    on: :member
-    put   :update_real_name,  on: :member
+    get   :investor_apply,    on: :member
+    get   :trader_apply,    on: :member
+    patch :applied,  on: :member
   end
 
   resources :funds do

@@ -17,7 +17,7 @@
           .row.mt20
             %h3= Leverage.human_attribute_name('amount')
             .input-group
-              %input.form-control{:name => "leverage[amount]",
+              %input.form-control.text-center{:name => "leverage[amount]",
                 :id => "leverage_amount", :maxlength => 7}
               %span.input-group-addon  元
           .mt20
@@ -26,7 +26,7 @@
             - @interests.each do |f1|
               .col-md-4
                 .service-block.rounded-2x.service-block-default.leverage-interest-item.relative{:class => "#{'active' if @interests.last==f1}"}
-                  %input{:type => "radio",:name => "leverage[interest_id]",:checked => "#{'checked' if @interests.last==f1}", :value => "#{f1.leverage_time}"}
+                  %input{:type => "radio",:name => "leverage[interest_id]",:checked => "#{'checked' if @interests.last==f1}", :value => "#{f1.id}", "data-index" => "#{f1.leverage_time}"}
                   %h3
                     = f1.leverage_time
                     倍
@@ -150,7 +150,7 @@
     //ajax
     function getOrderMonthRate() {
       var amount = parseInt($("#leverage_amount").val());
-      var leverage_time = $("input[name='leverage[interest_id]']:checked").val();
+      var leverage_time = $("input[name='leverage[interest_id]']:checked")[0].dataset.index;
       var duration = $("select[name='leverage[duration]']  option:selected").val();
       var postdata = {
         "amount": amount,
