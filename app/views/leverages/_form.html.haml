@@ -133,18 +133,25 @@
     leverage_amount.oninput = function() {
       if (!isNaN(parseInt($("#leverage_amount").val()))){
         $("#leverage_amount").val(parseInt($("#leverage_amount").val()));
-        var amount = parseInt($("#leverage_amount").val());
-        var leverage_time = $("input[name='leverage[interest_id]']:checked").val();
-        var duration = $("select[name='leverage[duration]']  option:selected").val();
-        getOrderMonthRate(amount,leverage_time,duration);
+        getOrderMonthRate();
       }else {
         $("#leverage_amount").val("");
         getOrderMonthRate(0,"","");
       }
     }
 
+    $("input[name='leverage[interest_id]']").click(function(){
+      getOrderMonthRate();
+    });
+    $("select[name='leverage[duration]']").change(function(){
+      getOrderMonthRate();
+    });
+
     //ajax
-    function getOrderMonthRate(amount,leverage_time,duration) {
+    function getOrderMonthRate() {
+      var amount = parseInt($("#leverage_amount").val());
+      var leverage_time = $("input[name='leverage[interest_id]']:checked").val();
+      var duration = $("select[name='leverage[duration]']  option:selected").val();
       var postdata = {
         "amount": amount,
         "leverage_time": leverage_time,
@@ -158,6 +165,9 @@
         dataType: 'json',
         data: JSON.stringify(postdata),
         processData: false,
+        headers: {
+          'X-CSRF-Token': $("input[name='authenticity_token']").val()
+        },
         contentType: "application/json; charset=UTF-8",
         success: function(data) {
           $(".leverage_total_amount").text(data.totol_amount);
