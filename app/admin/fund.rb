@@ -1,7 +1,7 @@
 ActiveAdmin.register Fund do
   permit_params :name, :user_id, :amount, :collection_deadline, :earning, :expected_earning_rate, :earning_rate, :state, :private_check, :minimum, :invest_starting_date, :invest_ending_date, :description, 
     	:frontend_risk_method, :duration,
-  		:backend_risk_method, :initial_amount, :created_at, :updated_at, :raised_amount
+  		:backend_risk_method, :initial_amount, :created_at, :updated_at, :raised_amount, :genre
     
   index do
     selectable_column
@@ -31,6 +31,7 @@ ActiveAdmin.register Fund do
       row :collection_deadline
       row :minimum
       row :private_check
+      row :genre
       row :invest_starting_date
       row :invest_ending_date
       row :description
@@ -85,6 +86,7 @@ ActiveAdmin.register Fund do
         f.input :minimum
         f.input :invest_starting_date, as: :datepicker
         f.input :duration
+        f.input :genre
         # f.input :invest_ending_date, as: :datepicker
         f.input :state, as: :select, collection: ["pending", "applied", "gathering", "reached", "opened", "running", "finished", "closed", "denied"]
         f.input :user_id, as: :select, collection: User.order(:email).map{|u| [u.email, u.id]}
