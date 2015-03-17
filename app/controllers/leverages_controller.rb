@@ -15,6 +15,7 @@ class LeveragesController < ApplicationController
 
   def create
     @leverage = current_user.leverages.build(leverage_params)
+    @interests  = Interest.where(show: "true")
     if @leverage.save
       redirect_to @leverage
     else
