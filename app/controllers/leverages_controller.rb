@@ -36,6 +36,15 @@ class LeveragesController < ApplicationController
     end
   end
 
+  def query_rate
+    amount = params[:amount].blank? ? 2000 : params[:amount]
+    leverage_time = params[:leverage_time].blank? ? 5 : params[:leverage_time]
+    duration = params[:duration].blank? ? 1 : params[:duration]
+
+    rate = Interest.query(amount, leverage_time, duration)
+    render json: {rate: rate}
+  end
+
   private
     def leverage_params
       params.require(:leverage).permit(:user_id, :date, :amount, :description, :duration, :state, :interest_id)

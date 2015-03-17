@@ -4,7 +4,7 @@ class FundsController < ApplicationController
   def index
     # @q      = Fund.search(params[:q])
     # @funds  = @q.result
-    @funds = Fund.search_by_conditions(params[:duration], params[:amount], params[:deadline]).order('created_at')
+    @funds = Fund.search_by_conditions(params[:duration], params[:amount], params[:deadline]).where("state = 'gathering' or state = 'reached'").order('created_at')
   end
 
   def show
@@ -53,8 +53,10 @@ class FundsController < ApplicationController
     def check_fund_user
       if current_user.level == 'unverified'
         render json: { message: '请进行用户身份验证' }
-      else current_user.level == 'investor'
-        render json: { message: '请填写申请trader申请资料'}
+      elsif current_user.level == 'investor'
+        render json: { message: '请填写trader申请资料'}
+      elsif current_user.level == 'trader_appiled'
+        render json: { message: '申请trader资料尚在审核' }
       end
     end
 end

@@ -12,4 +12,18 @@ class Interest < ActiveRecord::Base
   validates :show, inclusion: {in: ["true", "false"]}
 
   has_many :leverages
+  
+  def self.query(amount, leverage_time, duration)
+    amount_array = Interest.where(show: "true").order(amount: :desc)
+    amount_array.each do |item|
+      if amount.to_f >= item.amount
+        amount = item.amount
+        break
+      end
+    end
+    
+    Interest.where("amount = ? and leverage_time = ? and duration = ?", amount, leverage_time, duration).where(show: "true").first.interest_rate
+  end
+
+
 end

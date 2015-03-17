@@ -36,6 +36,8 @@ class InvestsController < ApplicationController
     def check_invest_user
       if current_user.level == 'unverified'
         render json: { message: '请进行用户身份验证' }
+      elsif current_user.level == 'investor_applied'
+        render json: { message: '用户身份尚在验证' }
       end
     end
 
