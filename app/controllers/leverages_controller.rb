@@ -16,7 +16,7 @@ class LeveragesController < ApplicationController
   def create
     @leverage = current_user.leverages.build(leverage_params)
     # @interests  = Interest.where(show: "true")
-    @leverage.interest_id = Interest.where("amount = ? and leverage_time = ? and duration = ?", amount, leverage_time, duration).first.id
+    @leverage.interest_id = Interest.where("amount = ? and leverage_time = ? and duration = ?", params[:leverage][:amount], params[:leverage][:leverage_time], params[:leverage][:duration]).first.id
     if @leverage.save
       redirect_to @leverage
     else
