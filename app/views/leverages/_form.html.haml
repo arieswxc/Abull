@@ -27,9 +27,7 @@
               .col-md-4{:class => "#{'ml70' if index == 4}"}
                 .service-block.rounded-2x.service-block-default.leverage-interest-item.relative{:class => "#{'active' if 5==index}"}
                   %input{:type => "radio",:name => "leverage[leverage_time]",:value => "#{index}",:checked => "#{'checked' if 5==index}",:class => "leverage_time"}
-                  %h3
-                    = index
-                    倍
+                  %h3{:id => "leverage_time_#{index}"} 0元
         .col.col-md-4.border-left
           .row.mt20.pl40
             %h3 确认操盘信息
@@ -131,13 +129,10 @@
       $(this).children(".pz_tips_bd").hide();
     });
     leverage_amount.oninput = function() {
-      if (!isNaN(parseInt($("#leverage_amount").val()))){
-        $("#leverage_amount").val(parseInt($("#leverage_amount").val()));
-        getOrderMonthRate();
-      }else {
-        $("#leverage_amount").val("");
-        getOrderMonthRate(0,"","");
-      }
+      var crt_amount = parseInt($("#leverage_amount").val()) || 0;
+      $("#leverage_amount").val(crt_amount);
+      getOrderMonthRate();
+      changeAmount();
     }
 
     $("input[name='leverage[leverage_time]']").click(function(){
@@ -146,6 +141,13 @@
     $("select[name='leverage[duration]']").change(function(){
       getOrderMonthRate();
     });
+
+    function changeAmount() {
+      var crt_amount = parseInt($("#leverage_amount").val()) || 0;
+      for (var i=1; i <= 5; i++){
+        $("#leverage_time_"+i).text(i*crt_amount + "元");
+      }
+    }
 
     //ajax
     function getOrderMonthRate() {
