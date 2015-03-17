@@ -14,6 +14,7 @@ zh-CN:
       news: 动态
       photo: 照片
       interest: 利率
+      account: 账户
     attributes:
       admin_user:
         email: 电子邮件
@@ -33,6 +34,11 @@ zh-CN:
         abstract: 摘要
         created_at: 用户创建日期
         level: 用户等级
+        birthday: 生日
+        gender: 性别
+        education: 学历
+        address: 地址
+        job: 工作
       fund:
         name: 标名
         amount: 募集数额
@@ -47,14 +53,17 @@ zh-CN:
         expected_earning_rate: 预期年化收益率
         state: 状态
         user_id: 用户
+        user: 用户
         earning: 收益
         earning_rate: 收益率
         initial_amount: 初始募集数额
         homs_account: HOMS账号
+        duration: 持续时间（月）
       comment:
         title: 标题
         comment: 评论
         user_id: 用户
+        user: 用户
         role: 角色
         created_at: 创建日期
         updated_at: 更新日期
@@ -66,6 +75,7 @@ zh-CN:
         follower_type: 关注类型
       invest:
         user_id: 用户
+        user: 用户
         fund_id: 发标
         amount: 投资数额
         date: 日期
@@ -78,7 +88,8 @@ zh-CN:
         created_at: 创建日期
         updated_at: 更新日期
       leverage:
-        user_id:
+        user_id: 用户
+        user: 用户
         date: 配资时间
         amount: 配资数额
         description: 配资说明
@@ -87,6 +98,7 @@ zh-CN:
         created_at: 创建日期
         updated_at: 更新日期
         interest: 杠杆
+        duration: 持续时间（月）
       news:
         title: 标题
         content: 内容
@@ -97,8 +109,10 @@ zh-CN:
         title: 标题
         photo: 照片
         user_id: 用户
+        user: 用户
       topic:
         user_id: 用户
+        user: 用户
         title: 标题
         content: 内容
         date: 时间
@@ -113,6 +127,10 @@ zh-CN:
         show: 显示
         created_at: 创建日期
         updated_at: 更新日期
+      account:
+        balance: 余额
+        user_id: 用户
+        user: 用户
   formtastic:
     yes: "YES"
     no: "NO"

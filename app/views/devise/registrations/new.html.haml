@@ -4,25 +4,26 @@
     .col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
       = form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => 'reg-page'}) do |f|
         .reg-header
-          %h2 Register a new account
+          %h2 注册
           %p
-            Already Signed Up? Click #{link_to("立即登录",new_user_session_path,rel: "nofollow", class: "color-green")} to login your account.
+            已经注册 ? #{link_to("立即登录",new_user_session_path,rel: "nofollow", class: "color-green")}。
         = devise_error_messages!
         %label
-          Email Address
+          邮箱地址
           %span.color-red *
         %br/
         = f.email_field(:email, autofocus: true, class: "form-control margin-bottom-20")
         %label
-          Password
+          密码
           %span.color-red *
         - if @validatable
           %em
-            (#{@minimum_password_length} characters minimum)
+            (最少#{@minimum_password_length}个字符)
         %br/
-        = f.password_field(:password, autocomplete: "off", class: "form-control margin-bottom-20")
+        = f.password_field(:password, autocomplete: "off", |
+          class: "form-control margin-bottom-20",pattern: "(?=^.{8,}$).*$",title:"Three letter country code")
         %label
-          Confirm Password
+          确认密码
           %span.color-red *
         %br/
         = f.password_field(:password_confirmation, autocomplete: "off", class: "form-control margin-bottom-20")
@@ -31,8 +32,8 @@
           .col-lg-6.checkbox
             %label
               %input#check{:type => "checkbox"}/
-              I read
-              %a.color-green{:href => "page_terms.html"} Terms and Conditions
+              已阅读
+              %a.color-green{:href => "page_terms.html"} 条款
           .col-lg-6.text-right
             %button.btn-u#submit{:name => "commit", :type => "button", :value => "Sign up"} 注册
             %input#subbtn{:type=>"submit",:style=>"display:none;"}
@@ -46,5 +47,3 @@
         }
       });
     });
-
-    

@@ -4,7 +4,7 @@ FactoryGirl.define do
     date        "2015-02-26 14:53:04"
     amount      {rand(10000)}
     description "MyText"
-    deadline    Time.now + 1.days
+    duration    { rand(100)}
     state       "applied"
     association :interest
   end

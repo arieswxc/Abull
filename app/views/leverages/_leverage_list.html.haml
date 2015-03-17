@@ -6,6 +6,7 @@
   %thead
     %tr
       / %th 发标人
+      %th= Leverage.human_attribute_name('description')
       %th= Leverage.human_attribute_name('deadline')
       / %th Fund.human_attribute_name('minimum')
       %th= Interest.human_attribute_name('leverage_time')
@@ -15,6 +16,7 @@
   %tbody
     - @leverages.each do |f|
       %tr{'data-index' => f.id}
+        %td= f.description
         / %td= f.user.nick_name
         %td.formattime= f.deadline
         / %td= f.minimum

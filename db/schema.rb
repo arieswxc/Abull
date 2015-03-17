@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150314083811) do
+ActiveRecord::Schema.define(version: 20150317075807) do
+
+  create_table "accounts", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.decimal  "balance",              precision: 12, scale: 2, default: 0.0
+    t.datetime "created_at",                                                  null: false
+    t.datetime "updated_at",                                                  null: false
+  end
+
+  add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -95,6 +104,7 @@ ActiveRecord::Schema.define(version: 20150314083811) do
     t.text     "backend_risk_method",   limit: 65535
     t.integer  "homs_account",          limit: 4
     t.integer  "duration",              limit: 4
+    t.string   "genre",                 limit: 255
   end
 
   add_index "funds", ["user_id"], name: "index_funds_on_user_id", using: :btree
@@ -139,11 +149,11 @@ ActiveRecord::Schema.define(version: 20150314083811) do
     t.datetime "date"
     t.decimal  "amount",                    precision: 12, scale: 2
     t.text     "description", limit: 65535
-    t.datetime "deadline"
     t.string   "state",       limit: 255
     t.datetime "created_at",                                         null: false
     t.datetime "updated_at",                                         null: false
     t.integer  "interest_id", limit: 4
+    t.integer  "duration",    limit: 4
   end
 
   add_index "leverages", ["interest_id"], name: "index_leverages_on_interest_id", using: :btree
@@ -198,11 +208,17 @@ ActiveRecord::Schema.define(version: 20150314083811) do
     t.string   "id_card_number",         limit: 255
     t.text     "abstract",               limit: 65535
     t.string   "level",                  limit: 255
+    t.date     "birthday"
+    t.string   "gender",                 limit: 255
+    t.string   "education",              limit: 255
+    t.string   "address",                limit: 255
+    t.string   "job",                    limit: 255
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "accounts", "users"
   add_foreign_key "funds", "users"
   add_foreign_key "homs_accounts", "funds"
   add_foreign_key "invests", "funds"

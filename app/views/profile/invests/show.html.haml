@@ -6,12 +6,12 @@
         = render "shares/profile"
         .tag-box.tag-box-v3.mt20.p20
           %h3
-            A股平衡基金
+            = @invest.fund.name
             = link_to user_invests_path(current_user),class: "ml10" do
               %span.icon-action-undo
           .progress
-            .progress-bar.progress-bar-info.progress-bar-striped{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "70", :role => "progressbar", :style => "width: 70%"}
-              70%
+            .progress-bar.progress-bar-info.progress-bar-striped{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "#{( @invest.fund.raised_amount/ @invest.fund.amount * 100).floor}", :role => "progressbar", :style => "width: #{( @invest.fund.raised_amount/ @invest.fund.amount * 100).floor}%"}
+              = ( @invest.fund.raised_amount/ @invest.fund.amount * 100).floor.to_s + "%"
           .tab-v1
             %ul.nav.nav-tabs
               %li.active
@@ -24,8 +24,14 @@
                   .red 5389
                   %span.counter 投标人数
                 .col-md-9.col-sm-9
-                  %h4 募集总额：1000w
-                  %span 到期时间：2022-11-11
+                  %h4
+                    = Fund.human_attribute_name('amount')
+                    \：
+                    = @invest.fund.amount
+                  %span
+                    = Fund.human_attribute_name('collection_deadline')
+                    \：
+                    %span.formattime= @invest.fund.collection_deadline
                   .mt20
                     %div 操盘账号: x200x
                     %div 操盘密码: xxxxxxxxxx

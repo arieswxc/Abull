@@ -35,6 +35,9 @@
           %td
             = link_to "详细",fund_path(f.id),class: "btn-u btn-u-xs btn-u-blue"
           %td
-            = link_to "我要投标",new_fund_invest_path(f.id),class: "btn-u btn-u-xs btn-u-blue" unless @invest
+            - if f.state == "gathering"
+              = link_to "我要投标",new_fund_invest_path(f.id),class: "btn-u btn-u-xs btn-u-blue" unless @invest
+            - else
+              = link_to "我要投标","javascript:;",class: "btn-u btn-u-xs btn-u-default" unless @invest
         %td
           %a{:href => "javascript:;"} 委托操盘合同

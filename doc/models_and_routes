@@ -17,9 +17,9 @@ user:(use devise用户)
   user增加身份证图片、正面、反面、手持身份证。
 
 account:（某个用户的账户，余额、角色、评论、私信）
-  user_id
-  balance
-  has_many :check
+  user:references
+  balance:decimal{12,2}
+  has_many :billings
 
 homs
 子账户用户名、密码、
@@ -71,7 +71,7 @@ topic: （热门话题）
   content:text
   datetime:datetime
   
-check:（充值、提现）
+biling:（充值、提现）
   account_id:references
   amount:decimal{12,2}
   date:datetime

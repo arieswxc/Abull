@@ -21,6 +21,9 @@ RSpec.describe InvestsController, type: :controller do
   describe "GET #new" do
     it "assigns new invest          as @invest,
         assigns the requested fund  as @fund" do
+      user = create(:user)
+      @request.env["devise.mapping"] = Devise.mappings[:user]
+      sign_in user
       fund    = create(:fund)
       get :new, {fund_id: fund.to_param}
       expect(assigns(:invest)).to be_a_new(Invest)
@@ -32,6 +35,8 @@ RSpec.describe InvestsController, type: :controller do
     context "with valid params" do
       it "create a new Invest" do
         fund                        = create(:fund)
+        fund.apply
+        fund.approve
         valid_attributes[:fund_id]  = fund.id
         expect {
           post :create, {invest: valid_attributes, fund_id: fund.to_param}
@@ -41,6 +46,8 @@ RSpec.describe InvestsController, type: :controller do
       it "assigns a newly created invest as @invest,
       redirect to fund" do
         fund                        = create(:fund)
+        fund.apply
+        fund.approve
         valid_attributes[:fund_id]  = fund.id
         post :create, {invest: valid_attributes, fund_id: fund.to_param}
         expect(assigns(:fund)).to   eq fund
