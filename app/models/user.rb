@@ -18,20 +18,35 @@ class User < ActiveRecord::Base
   acts_as_follower
 
   state_machine :level, :initial => :unverified do
+    event :investor_apply do
+      transition :unverified => :investor_applied
+    end
     event :up_to_inv do
-      transition [:unverified]  => :investor
+      transition :investor_applied  => :investor
+    end
+
+    event :investor_deny do
+      transition :investor_applied => :unverified
+    end
+
+    event :trader_apply do
+      transition :investor => :trader_applied
     end
 
     event :up_to_td do
-      transition [:investor] => :trader
+      transition :trader_applied => :trader
+    end
+
+    event :trader_denied do
+      transition :trader_applied => :investor
     end
 
     event :down_to_inv do 
-      transition [:trader] => :investor
+      transition :trader => :investor
     end
 
     event :down_to_un do
-      transition [:investor] => :unverified
+      transition :investor => :unverified
     end 
   end
 
