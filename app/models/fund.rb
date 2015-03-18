@@ -8,7 +8,6 @@ class Fund < ActiveRecord::Base
   validates :state,               presence: true
   validates :state,               inclusion: { in: ["pending", "applied", "gathering", "reached", "opened", "running", "finished", "closed", "denied"] }
   validates :private_check,       inclusion: { in: ["private", "public"] }
-  validates :invest_starting_date, presence: true
   validates :duration,  presence: true
   validates :expected_earning_rate, presence: true
   validates :expected_earning_rate, numericality: true
@@ -62,7 +61,11 @@ class Fund < ActiveRecord::Base
   #虚拟属性
   def invest_ending_date
     # self.invest_starting_date.advance(days: self.duration)
-    self.invest_starting_date.advance(months: self.duration, days: -1)
+    self.invest_starting_date.nil? ? nil : self.invest_starting_date.advance(months: self.duration, days: -1)
+  end
+
+  def collection_deadline
+    self.created_at.advance(days: self.ending_days)
   end
 
   def raised_amount
@@ -72,7 +75,7 @@ class Fund < ActiveRecord::Base
   #类方法
   def self.search_by_conditions(duration, amount, deadline)
     duration = 0 if duration.blank? 
-    deadline = Time.zone.parse('2100-01-01') if deadline.blank?
+    deadline = deadline.blank? ? Time.zone.parse('2100-01-01') : Time.zone.parse(deadline)
     amount = 0 if amount.blank?
     ending_days = ((deadline.to_i - Time.zone.now.to_i) / 86400).to_i
     funds = Fund.where("duration > ? and amount > ? and ending_days < ?", duration, amount, ending_days)
