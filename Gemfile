@@ -71,7 +71,7 @@ gem 'country_select'
 gem 'high_voltage'
 gem "nested_form"
 gem 'china_city'
-
+gem "audited-activerecord"
 # For comment
 gem 'acts_as_commentable'
 

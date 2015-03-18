@@ -34,6 +34,10 @@ RSpec.describe InvestsController, type: :controller do
   describe "POST #create" do
     context "with valid params" do
       it "create a new Invest" do
+        user = create(:user)
+        @request.env["devise.mapping"] = Devise.mappings[:user]
+        create(:account, user_id: user.id)
+        sign_in user
         fund                        = create(:fund)
         fund.apply
         fund.approve
@@ -44,7 +48,11 @@ RSpec.describe InvestsController, type: :controller do
       end
 
       it "assigns a newly created invest as @invest,
-      redirect to fund" do
+          redirect to fund" do
+        user = create(:user)
+        @request.env["devise.mapping"] = Devise.mappings[:user]
+        create(:account, user_id: user.id)
+        sign_in user
         fund                        = create(:fund)
         fund.apply
         fund.approve

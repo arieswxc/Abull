@@ -14,7 +14,7 @@ class Leverage < ActiveRecord::Base
   acts_as_commentable
 
   def deadline 
-    self.date.advance(months: self.duration, days: -1)
+    self.date.advance(months: self.duration, days: -1) if date
   end
 
 

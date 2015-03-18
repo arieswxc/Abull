@@ -14,7 +14,6 @@ RSpec.describe LeveragesController, type: :controller do
       expect(assigns(:leverage)).to         eq leverage
       expect(assigns(:user)).to             eq user
       expect(assigns(:comments).first).to   eq comment
-      expect(assigns(:interests).count).to  eq 2
     end
   end
 
