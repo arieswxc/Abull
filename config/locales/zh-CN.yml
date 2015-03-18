@@ -60,6 +60,7 @@ zh-CN:
         homs_account: HOMS账号
         duration: 持续时间（月）
         ending_days: 募集截止天数
+        gathering: 募集
       comment:
         title: 标题
         comment: 评论

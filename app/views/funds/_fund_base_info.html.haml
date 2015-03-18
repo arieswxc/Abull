@@ -1,31 +1,47 @@
-
-.panel.panel-grey
-  .panel-heading
-    = link_to @fund.name,fund_path(@fund), class: "panel-title"
-  .panel-title
-    %table.table.table-striped.table-bordered
-      %tbody
-        %tr
-          %td= Fund.human_attribute_name('amount')
-          %td= @fund.amount
-        %tr
-          %td= Fund.human_attribute_name('collection_deadline')
-          %td.formattime= @fund.collection_deadline
-        %tr
-          %td= Fund.human_attribute_name('expected_earning_rate')
-          %td= @fund.expected_earning_rate
-        %tr
-          %td= Fund.human_attribute_name('invest_starting_date')
-          %td.formattime= @fund.invest_starting_date
-        %tr
-          %td= Fund.human_attribute_name('invest_ending_date')
-          %td.formattime= @fund.invest_ending_date
-        %tr
-          %td= Fund.human_attribute_name('description')
-          %td= @fund.description
-        %tr
-          %td= Fund.human_attribute_name('frontend_risk_method')
-          %td= @fund.frontend_risk_method
-        %tr
-          %td= Fund.human_attribute_name('backend_risk_method')
-          %td= @fund.backend_risk_method
+.tag-box.tag-box-v3.mb0
+  .ml40.mt20
+    .row
+      .float-left.bold.mr20
+        募集进度：
+      .float-left
+        .progress.w300
+          .progress-bar.progress-bar-info.progress-bar-striped{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "#{( @fund.raised_amount/ @fund.amount * 100).floor}", :role => "progressbar", :style => "width: #{( @fund.raised_amount/ @fund.amount * 100).floor}%"}
+            = ( @fund.raised_amount/ @fund.amount * 100).floor.to_s + "%"
+  .ml40.mt20
+    .row
+      .float-left.mr40
+        %span.bold
+          = Fund.human_attribute_name('name')
+          ：
+        %span.mr10= @fund.name
+      .float-left.mr40
+        %span.bold 类型：
+        %span.mr10  高撒旦
+      .float-left.mr40
+        %span.bold
+          = Fund.human_attribute_name('amount')
+          ：
+        %span.mr10= @fund.amount
+      .float-left.mr40
+        %span.bold
+          = Fund.human_attribute_name('expected_earning_rate')
+          ：
+        %span.mr10= @fund.expected_earning_rate
+      .float-left.mr40
+        %span.bold
+          = Fund.human_attribute_name('duration')
+          ：
+        %span.mr10= @fund.duration
+%table.table.table-striped.table-bordered
+  %tbody
+    %tr
+      %td
+        %h4= Fund.human_attribute_name('description')
+        .mt10
+          = @fund.description
+      %td
+        %h4= Fund.human_attribute_name('frontend_risk_method')
+        .mt10= @fund.frontend_risk_method
+      %td
+        %h4= Fund.human_attribute_name('backend_risk_method')
+        .mt10= @fund.backend_risk_method
