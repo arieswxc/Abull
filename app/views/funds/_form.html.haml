@@ -1,25 +1,107 @@
 / https://github.com/plataformatec/simple_form
-.container.content
-  .col-md-10
-    = simple_form_for(@fund, html: { class: 'form-horizontal' }, |
-      wrapper: :horizontal_form,                                 |
-      wrapper_mappings: {                                        |
-      check_boxes: :horizontal_radio_and_checkboxes,             |
-      radio_buttons: :horizontal_radio_and_checkboxes,           |
-      file: :horizontal_file_input,                              |
-      boolean: :horizontal_boolean}) do |f|                      |
-      = f.input :private_check, collection: [:private, :public],as: :radio_buttons
-      = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
-      = f.input :amount
-      = f.input :collection_deadline, as: :date, html5: true
-      = f.input :earning, as: :hidden
-      = f.input :earning_rate, as: :hidden
-      = f.input :minimum
-      = f.input :invest_starting_date, as: :date, html5: true
-      = f.input :duration
-      = f.input :expected_earning_rate
-      = f.input :description
-      = f.input :frontend_risk_method
-      = f.input :initial_amount, as: :hidden
-      .row.mt40.mb20.text-center
-        = f.submit class: "btn-u btn-u-blue"
+
+
+.col-md-1
+.col-md-10
+  = simple_form_for(@fund, html: { class: 'form-horizontal sky-form' }, |
+    wrapper: :horizontal_form,                                 |
+    wrapper_mappings: {                                        |
+    check_boxes: :horizontal_radio_and_checkboxes,             |
+    radio_buttons: :horizontal_radio_and_checkboxes,           |
+    file: :horizontal_file_input,                              |
+    boolean: :horizontal_boolean}) do |f|                      |
+    .form-group
+      .col-sm-3.control-label
+      .col-sm-9.pt5
+        %label.w130 是否为暗标：
+        %span.mr10
+          %input{:class => "radio_buttons optional", :type => "radio", :value => "private",
+           :checked => "checked", :name => "fund[private_check]", :id => "fund_private_check_private"}
+            是
+        %span.mr10
+          %input{:class => "radio_buttons optional", :type => "radio", :value => "public",
+            :name => "fund[private_check]", :id => "fund_private_check_public"}
+            否
+        %span 什么是暗标
+        .pz_tips_1
+          .pz_tips_hd
+            %span.icon-question.ui_ico
+          .pz_tips_bd
+            %em.caret
+            %p 投资本金＋配资金额
+    .form-group.private_check_control
+      .col-sm-3.control-label
+      .col-sm-9.pt5
+        %label.w130 是否账户托管：
+        %span.mr10
+          %input{:class => "radio_buttons optional", :type => "radio", :value => "yes",
+           :checked => "checked", :name => "fund[trusteeship]"}
+            是
+        %span.mr10
+          %input{:class => "radio_buttons optional", :type => "radio", :value => "no",
+            :name => "fund[trusteeship]"}
+            否
+        %span 什么是账户托管
+        .pz_tips_1
+          .pz_tips_hd
+            %span.icon-question.ui_ico
+          .pz_tips_bd
+            %em.caret
+            %p 投资本金＋配资金额
+    = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
+    %hr
+    .form-group.text-center
+      .col-sm-2
+      .col-sm-4
+        %label= Fund.human_attribute_name('amount')
+        %br
+        %input.full_input{:type => "number", :name => "fund[amount]"}
+      .col-sm-4
+        %label= Fund.human_attribute_name('expected_earning_rate')
+        %br
+        %input.full_input{:type => "number", :name => "fund[expected_earning_rate]"}
+    .form-group.text-center
+      .col-sm-2
+      .col-sm-4
+        %label= Fund.human_attribute_name('duration')
+        %br
+        .select
+          %select{:name => "fund[duration]"}
+            - (1..6).each do |index|
+              %option{:value => "#{index}", :selected => "#{'selected' if index == 6}"}= "#{index}个月"
+      .col-sm-4
+        %label= Fund.human_attribute_name('collection_deadline')
+        %br
+        .select
+          %select{:name => "fund[collection_deadline]"}
+            - (1..30).each do |index|
+              %option{:value => "#{index}", :selected => "#{'selected' if index == 30}"}= "#{index}天"
+    %hr
+      .form-group.text-center
+        .col-sm-2
+        .col-sm-8
+          %label= Fund.human_attribute_name('description')
+          %br
+          %textarea.form-control.full_with{:name => "fund[description]"}
+      .form-group.text-center
+        .col-sm-2
+        .col-sm-8
+          %label= Fund.human_attribute_name('frontend_risk_method')
+          %br
+          %textarea.form-control.full_with{:name => "fund[frontend_risk_method]"}
+    = f.input :earning, as: :hidden
+    = f.input :earning_rate, as: :hidden
+    = f.input :initial_amount, as: :hidden
+    %hr
+    .row.mt40.mb20.text-center
+      = f.submit class: "btn-u btn-u-blue"
+:javascript
+  $(function() {
+    $("input[name='fund[private_check]'").click(function() {
+      if($(this).val() === 'public') {
+        $(".private_check_control").hide();
+      }else {
+        $(".private_check_control").show();
+      }
+    });
+  });

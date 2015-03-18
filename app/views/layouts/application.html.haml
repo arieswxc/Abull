@@ -56,11 +56,18 @@
       = render "shares/footer"
     :javascript
       jQuery(document).ready(function() {
-              App.init();
-              App.initParallaxBg();
-              OwlCarousel.initOwlCarousel();
+            App.init();
+            App.initParallaxBg();
+            OwlCarousel.initOwlCarousel();
             RevolutionSlider.initRSfullWidth();
+
+            $(".formattime").each(function() {
+              $(this).text(moment($(this).text()).format('YYYY-MM-DD'));
+            });
+
+            $(".pz_tips_1").hover(function(){
+              $(this).children(".pz_tips_bd").show();
+            },function() {
+              $(this).children(".pz_tips_bd").hide();
+            });
         });
-      $(".formattime").each(function() {
-        $(this).text(moment($(this).text()).format('YYYY-MM-DD'));
-      });
