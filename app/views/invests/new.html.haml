@@ -1,9 +1,16 @@
 .container.content
-  =# ToDo user_info partial
-  .ml40.pr80
-    = render 'shares/profile'
-  .row.col-md-12.mt40
-    .col-md-6
-      = render 'funds/fund_base_info'
-    .col-md-6
-      = render 'form'
+  - if current_user.level == 'unverified'
+    .text-center.min-height300.pt80
+      %h3 请进行实名认证
+      = link_to "点此进行实名认证", investor_apply_user_path(current_user)
+  - elsif current_user.level == 'investor_applied'
+    .text-center.min-height300.pt80
+      %h3 您已提交实名认证申请，请等待审核
+  - else
+    .ml40.pr80
+      = render 'shares/profile'
+    .row.col-md-12.mt40
+      .col-md-6
+        = render 'funds/fund_base_info'
+      .col-md-6
+        = render 'form'
