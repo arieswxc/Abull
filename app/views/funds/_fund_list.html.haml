@@ -15,7 +15,6 @@
       %th= Fund.human_attribute_name('invest_ending_date')
       %th= Fund.human_attribute_name('state')
       - unless @current=="xxx"
-        %th 详细
         %th 操作
       %th 电子合同
   -# todo, 处理 private_check
@@ -32,8 +31,6 @@
         %td.formattime= f.invest_ending_date
         %td= f.state
         - unless @current=="xxx"
-          %td
-            = link_to "详细",fund_path(f.id),class: "btn-u btn-u-xs btn-u-blue"
           %td
             - if f.state == "gathering"
               = link_to "我要投标",new_fund_invest_path(f.id),class: "btn-u btn-u-xs btn-u-blue" unless @invest
