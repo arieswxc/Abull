@@ -72,7 +72,7 @@ class Fund < ActiveRecord::Base
   #类方法
   def self.search_by_conditions(duration, amount, deadline)
     duration = 0 if duration.blank? 
-    deadline = "21000101".to_date if deadline.blank?
+    deadline = Time.zone.parse('2100-01-01') if deadline.blank?
     amount = 0 if amount.blank?
     ending_days = ((deadline.to_i - Time.zone.now.to_i) / 86400).to_i
     funds = Fund.where("duration > ? and amount > ? and ending_days < ?", duration, amount, ending_days)
