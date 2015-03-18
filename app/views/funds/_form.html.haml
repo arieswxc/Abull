@@ -35,11 +35,11 @@
         %label.w130 是否账户托管：
         %span.mr10
           %input{:class => "radio_buttons optional", :type => "radio", :value => "yes",
-           :checked => "checked", :name => "fund[trusteeship]"}
+           :checked => "checked", :name => "fund[mandate]"}
             是
         %span.mr10
           %input{:class => "radio_buttons optional", :type => "radio", :value => "no",
-            :name => "fund[trusteeship]"}
+            :name => "fund[mandate]"}
             否
         %span 什么是账户托管
         .pz_tips_1
@@ -70,10 +70,10 @@
             - (1..6).each do |index|
               %option{:value => "#{index}", :selected => "#{'selected' if index == 6}"}= "#{index}个月"
       .col-sm-4
-        %label= Fund.human_attribute_name('collection_deadline')
+        %label= Fund.human_attribute_name('ending_days')
         %br
         .select
-          %select{:name => "fund[collection_deadline]"}
+          %select{:name => "fund[ending_days]"}
             - (1..30).each do |index|
               %option{:value => "#{index}", :selected => "#{'selected' if index == 30}"}= "#{index}天"
     %hr
