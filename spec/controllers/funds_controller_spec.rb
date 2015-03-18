@@ -3,7 +3,11 @@ require 'rails_helper'
 RSpec.describe FundsController, type: :controller do
   describe "GET #index" do
     it "assigns all funds as @funds" do
-      20.times {create(:fund)}
+      20.times do
+        fund = create(:fund)
+        fund.apply
+        fund.approve
+      end
       get :index
       expect(assigns(:funds).count).to      eq 20
     end

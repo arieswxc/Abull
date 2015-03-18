@@ -13,10 +13,7 @@ RSpec.describe Photo, type: :model do
     expect(photo.errors[:title]).to include(I18n.t("errors.messages.blank"))
   end
 
-  it "is invalid without photo" do
-    photo = build(:photo, photo: nil)
-    photo.valid?
-    expect(photo).to be_invalid
-    expect(photo.errors[:photo]).to include(I18n.t("errors.messages.blank"))
+  it "is valid without photo" do
+    expect(create(:photo, photo: nil)).to be_invalid
   end
 end
