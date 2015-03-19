@@ -58,23 +58,50 @@ ActiveAdmin.register User do
       row :created_at
     end
 
-    panel t('用户身份信息') do 
+    panel t('用户身份认证') do 
       attributes_table_for user do
         row :real_name
         row :id_card_number
-        row :birthday
-        row :education
-        row :gender
-        row :address
-        row :job
         user.photos.each do |p|
           row("#{p.title}") { link_to image_tag(p.photo, width:400, height:400), p.photo.url }    
           # row("#{p.title}") { link_to image_tag(p.photo.thumb), p.photo.url }        
         end
       end
     end
-  end
 
+    panel t('trader信息认证') do
+      attributes_table_for user do
+        row :birthday
+        row :education
+        row :gender
+        row :address
+        row :job
+      end
+    end
+      
+    panel '用户投标历史' do
+      table_for user.invests do
+        column "标名" do |i|
+          link_to Fund.find(i.fund_id).name, admin_fund_path(i.fund_id)
+        end
+        column "数额", :amount
+        column "日期", :date
+      end
+    end
+
+    panel '用户发标历史' do
+      table_for user.funds do
+        column "标名" do |f|
+          link_to Fund.find(f.id).name, admin_fund_path(f.id)
+        end
+        column "数额", :amount
+        column "明暗标", :private_check
+        column "状态", :state
+        column "投资开始日期", :invest_starting_date
+        column "持续月份", :duration
+      end
+    end
+  end
 
   #侧边窗口
   sidebar "User List", only: :show do

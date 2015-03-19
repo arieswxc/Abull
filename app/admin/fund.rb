@@ -69,14 +69,15 @@ ActiveAdmin.register Fund do
 
     panel t('该标的投标信息') do
       table_for fund.invests do
-        column :user_id
+        column "用户" do |i|
+          link_to User.find(i.user_id).email, admin_user_path(i.user_id)
+        end
         column :amount
-        column :payback
       end
     end
   end
 
-  #侧边窗口
+  # 侧边窗口
   sidebar "Fund List", only: :show do
     table_for Fund.all do 
       column :name do |f|
@@ -85,7 +86,7 @@ ActiveAdmin.register Fund do
       column :state
     end
   end
- 
+
   # page of new and edit
   form do |f|
       f.inputs do
@@ -98,7 +99,6 @@ ActiveAdmin.register Fund do
         f.input :duration
         f.input :genre
         f.input :expected_earning_rate
-        # f.input :invest_ending_date, as: :datepicker
         f.input :state, as: :select, collection: ["pending", "applied", "gathering", "reached", "opened", "running", "finished", "closed", "denied"]
         f.input :user_id, as: :select, collection: User.order(:email).map{|u| [u.email, u.id]}
       end

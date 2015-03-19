@@ -40,6 +40,20 @@ ActiveAdmin.register Leverage do
     end
   end
 
+  form do |f|
+    f.inputs do 
+      f.input :user_id, as: :select, collection: User.order(:email).map{|u| [u.email, u.id]}
+      f.input :date, as: :datepicker
+      f.input :amount
+      f.input :description
+      f.input :duration
+      f.input :state, as: :select, collection: ["applied", "confirmed", "closed", "denied"]
+      f.input :interest_id
+    end
+    f.actions
+  end
+
+
   member_action :agree_leverage, :method => :put do
     leverage = Leverage.find(params[:id])
     if leverage.state == 'applied' 

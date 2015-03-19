@@ -78,7 +78,7 @@ class Fund < ActiveRecord::Base
     deadline = deadline.blank? ? Time.zone.parse('2100-01-01') : Time.zone.parse(deadline)
     amount = 0 if amount.blank?
     ending_days = ((deadline.to_i - Time.zone.now.to_i) / 86400).to_i
-    funds = Fund.where("duration > ? and amount > ? and ending_days < ?", duration, amount, ending_days)
+    funds = Fund.where("duration >= ? and amount >= ? and ending_days <= ?", duration, amount, ending_days)
   end
 
   private
