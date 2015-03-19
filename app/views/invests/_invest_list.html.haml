@@ -26,11 +26,15 @@
         - else
           %td= f.fund.name
           / %td= f.user.nick_name
-          %td= f.fund.amount
+          %td
+            = f.fund.amount
+            元
 
           %td.formattime= f.fund.collection_deadline
           / %td= f.minimum
           %td.formattime= f.fund.invest_starting_date
           %td.formattime= f.fund.invest_ending_date
         %td.formattime= f.date
-        %td= f.amount
+        %td
+          = f.amount
+          元
