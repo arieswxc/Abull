@@ -1,6 +1,6 @@
 class FundsController < ApplicationController
   before_action :authenticate_user!, only: [:new,:edit]
-  before_action :check_fund_user, only: [:new, :create]
+  # before_action :check_fund_user, only: [:new, :create]
   def index
     # @q      = Fund.search(params[:q])
     # @funds  = @q.result
@@ -44,7 +44,7 @@ class FundsController < ApplicationController
   private
     def fund_params
       params.require(:fund).permit(
-        :name, :amount, :collection_deadline,
+        :name, :amount, :ending_days,
         :private_check, :minimum, :invest_starting_date,
         :duration, :expected_earning_rate, :description,
         :frontend_risk_method, :backend_risk_method, :homs_account, :initial_amount, :state)

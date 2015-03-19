@@ -1,25 +1,55 @@
-.user-info.row.p20.pt0
-  .col-md-2.text-center.ml20.mb40
-    .avatar
-      %img.img-thumbnail.img-rounded.w70{:src => asset_path("testimonials/img1.jpg")}
-    .username.mt5
-      %span 基金发起人：
-      %span 林桑
-    .btn-group.mt5
-      %a.btn-u.btn-u-blue{:href => "javascript:;"} 关注
-      %a.btn-u.btn-u-red{:href => "javascript:;"} 私信
-  .col-md-9
-    .tag-box.tag-box-v3.col-md-6.mr20
-      %h4
-        个人简介
-        %a.float-right{:href => "javascript:;"} 编辑
-      %hr
-      .p20
-        .abstract= user.abstract
-    .tag-box.tag-box-v3.col-md-5.mr20
-      %h4
-        投资策略
-        %a.float-right{:href => "javascript:;"} 编辑
-      %hr
-      .p20
-        .abstract= user.abstract
+.p20.col-md-12
+  .row
+    .col-md-3.text-center.mb40
+      .avatar
+        = image_tag user.avatar.url,class: "img-thumbnail img-rounded w70"
+      .username.mt5
+        %span 基金发起人：
+        %span= user.nick_name
+      .btn-group.mt5
+        %a.btn-u.btn-u-blue{:href => "javascript:;"} 关注
+        %a.btn-u.btn-u-red{:href => "javascript:;"} 私信
+    .col-md-9
+      .tag-box.tag-box-v3.col-md-12.mr20
+        .row
+          .col-md-5
+            姓名：
+            = user.real_name
+          .col-md-3
+            年龄：
+            = user.age
+            岁
+          .col-md-4
+            性别：
+            = I18n.t(user.gender)
+        .row.mt10
+          .col-md-5
+            用户ID：
+            = user.id
+          .col-md-3
+            学历：
+            = user.education
+          .col-md-4
+            工作：
+            = user.job
+        .row.mt10
+          .col-md-12
+            现居地：
+            = user.address
+  .row.mlr0
+    %table.table.table-striped.table-bordered
+      %tbody
+        %tr
+          %td
+            %div
+              自我介绍
+            .border-top.p20
+              = user.abstract
+          %td
+            %div
+              历史折线图
+            .border-top.p20
+          %td
+            %div
+              证明图片
+            .border-top.p20

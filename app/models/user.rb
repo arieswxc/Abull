@@ -50,4 +50,9 @@ class User < ActiveRecord::Base
     end 
   end
 
+  #虚拟属性
+  def age 
+    Time.now.to_date.year - self.birthday.year
+  end
+
 end

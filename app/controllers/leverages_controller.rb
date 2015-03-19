@@ -15,8 +15,8 @@ class LeveragesController < ApplicationController
 
   def create
     @leverage = current_user.leverages.build(leverage_params)
-    # @interests  = Interest.where(show: "true")
-    @leverage.interest_id = Interest.where("amount = ? and leverage_time = ? and duration = ?", params[:leverage][:amount], params[:leverage][:leverage_time], params[:leverage][:duration]).first.id
+    @leverage.interest_id = Interest.query(params[:leverage][:amount], params[:leverage][:leverage_time], params[:leverage][:duration]).id
+    
     if @leverage.save
       redirect_to @leverage
     else
@@ -43,7 +43,8 @@ class LeveragesController < ApplicationController
     leverage_time = params[:leverage_time].blank? ? 5 : params[:leverage_time]
     duration = params[:duration].blank? ? 1 : params[:duration]
 
-    rate = Interest.query(amount, leverage_time, duration)
+    interest = Interest.query(amount, leverage_time, duration)
+    rate = interest.interest_rate
     total_amount = amount.to_f * (leverage_time.to_f + 1)
     loss_warning_line = (total_amount * 0.9).to_i
     loss_making_line = (total_amount * 0.87).to_i

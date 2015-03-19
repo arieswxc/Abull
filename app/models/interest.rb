@@ -22,7 +22,7 @@ class Interest < ActiveRecord::Base
       end
     end
     
-    Interest.where("amount = ? and leverage_time = ? and duration = ?", amount, leverage_time, duration).where(show: "true").first.interest_rate
+    Interest.where("amount = ? and leverage_time = ? and duration = ?", amount, leverage_time, duration).where(show: "true").first
   end
 
 

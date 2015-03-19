@@ -29,9 +29,9 @@ RSpec.describe Fund, type: :model do
     expect(fund.errors[:amount]).to include(I18n.t('errors.messages.not_a_number'))
   end
 
-  # collection_deadline
-  it "is invalid without collection_deadline" do
-    expect(build(:fund, collection_deadline: nil)).to be_invalid
+  # ending_days
+  it "is invalid without ending_days" do
+    expect(build(:fund, ending_days: nil)).to be_invalid
   end
 
   # earning
@@ -82,8 +82,8 @@ RSpec.describe Fund, type: :model do
     expect(fund).to be_valid
   end
 
-  it "is invalid when invest_starting_date is nil" do
-    expect(build(:fund, invest_starting_date: nil)).to be_invalid
+  it "is valid when invest_starting_date is nil" do
+    expect(build(:fund, invest_starting_date: nil)).to be_valid
   end
 
   it "is invalid when duration is nil" do

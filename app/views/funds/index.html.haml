@@ -8,15 +8,24 @@
       %form.sky-form
         %section.col.col-3
           %label 持续时间(>)
-          %input.form-control{:type => "text",:name => "duration"}
+          .input-group
+            .select
+              %select{:name => "duration"}
+                - (1..6).each do |index|
+                  %option{:value => "#{index}", :selected => "#{'selected' if index == 6}"}= "#{index}"
+              %i
+            %span.input-group-addon  个月
         %section.col.col-3
           %label 募集总额(>)
-          %input.form-control{:type => "text",:name => "amount"}
+          .input-group
+            %input.form-control.text-center{:type => "text",:name => "amount",:maxlength => 7}
+            %span.input-group-addon  元
         %section.col.col-3
           %label 截止日期(<)
           %input.form-control{:type => "date",:name => "deadline"}
-        %button.btn.btn-danger.mt25{:type => "submit"}
+        %button.btn.btn-danger.mt25.mr20{:type => "submit"}
           %i.fa.fa-search
+        %a.btn.btn-danger.mt25{:href => "/funds"} 查看所有
         -# %section.col.col-3
         -#   %div.input-group
         -#     %span.input-group-btn.custom-right

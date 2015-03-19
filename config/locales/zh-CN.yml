@@ -59,6 +59,8 @@ zh-CN:
         initial_amount: 初始募集数额
         homs_account: HOMS账号
         duration: 持续时间（月）
+        ending_days: 募集截止天数
+        gathering: 募集
       comment:
         title: 标题
         comment: 评论
@@ -78,7 +80,7 @@ zh-CN:
         user: 用户
         fund_id: 发标
         amount: 投资数额
-        date: 日期
+        date: 投标日期
         payback: 回报
         close_day: 清算日期
       homs_account:
@@ -144,3 +146,5 @@ zh-CN:
     comments:
         resource_type: 资源类型
         author_type: 作者类型
+  female: 女
+  male: 男

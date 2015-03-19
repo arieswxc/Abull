@@ -1,40 +1,40 @@
-
-- if @invests.blank?
-  %h2.text-center 没有找到合适标的
-
-%table.table.table-striped.table-bordered.mt40
+%table.table.table-striped.table-bordered
   %thead
     %tr
-      %th= Fund.human_attribute_name('name')
-      / %th 发标人
-      %th= Fund.human_attribute_name('amount')
-
-      %th= Fund.human_attribute_name('collection_deadline')
-      / %th Fund.human_attribute_name('minimum')
-      %th= Fund.human_attribute_name('invest_starting_date')
-      %th= Fund.human_attribute_name('invest_ending_date')
-      %th= Invest.human_attribute_name('amount')
       - unless @current=="xxx"
-        %th 详细
-        %th 操作
-      %th 电子合同
+        %th= Invest.human_attribute_name('user')
+      - else
+        %th= Fund.human_attribute_name('name')
+        / %th 发标人
+        %th= Fund.human_attribute_name('amount')
+
+        %th= Fund.human_attribute_name('collection_deadline')
+        / %th Fund.human_attribute_name('minimum')
+        %th= Fund.human_attribute_name('invest_starting_date')
+        %th= Fund.human_attribute_name('invest_ending_date')
+      / %th 发标人
+
+      %th= Invest.human_attribute_name('date')
+
+      %th= Invest.human_attribute_name('amount')
   -# todo, 处理 private_check
   %tbody
     - @invests.each do |f|
       %tr{'data-index' => f.id}
-        %td= f.fund.name
-        / %td= f.user.nick_name
-        %td= f.fund.amount
-
-        %td.formattime= f.fund.collection_deadline
-        / %td= f.minimum
-        %td.formattime= f.fund.invest_starting_date
-        %td.formattime= f.fund.invest_ending_date
-        %td= f.amount
         - unless @current=="xxx"
+          %th= f.user.email
+        - else
+          %td= f.fund.name
+          / %td= f.user.nick_name
           %td
-            = link_to "详细",fund_path(f.id),class: "btn-u btn-u-xs btn-u-blue"
-          %td
-            = link_to "我要投标",new_fund_invest_path(f.id),class: "btn-u btn-u-xs btn-u-blue" unless @invest
+            = f.fund.amount
+            元
+
+          %td.formattime= f.fund.collection_deadline
+          / %td= f.minimum
+          %td.formattime= f.fund.invest_starting_date
+          %td.formattime= f.fund.invest_ending_date
+        %td.formattime= f.date
         %td
-          %a{:href => "javascript:;"} 委托操盘合同
+          = f.amount
+          元

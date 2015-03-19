@@ -1,6 +1,6 @@
 class InvestsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit]
-  before_action :check_invest_user, only: [:new, :create]
+  # before_action :check_invest_user, only: [:new, :create]
   def index
     @fund         = Fund.find(params[:fund_id])
     @invests      = @fund.invests
@@ -10,17 +10,20 @@ class InvestsController < ApplicationController
   def new
     @fund   = Fund.find(params[:fund_id])
     @invest = @fund.invests.build()
-    @invest.user_id = current_user.id 
+    @invest.user_id = current_user.id
     @invest.date = Time.now()
+    @invests = @fund.invests
   end
 
   def create
     @fund   = Fund.find(params[:fund_id])
     @invest = @fund.invests.build(invest_params)
+    @invests = @fund.invests
 
-    if @fund.state == "gathering" && @fund.raised_amount <= @fund.amount && @invest.save
-      @invest.user.follow(@fund.user)
-      @invest.user.account.balance -= @invest.amount
+    if @fund.state == "gathering" && @fund.raised_amount + params[:invest][:amount].to_i <= @fund.amount && @invest.save
+      current_user.follow(@fund.user)
+      @invest.update(user_id: current_user.id)
+      # current_user.account.balance -= @invest.amount
       redirect_to fund_invest_path(@fund, @invest)
     else
       # flash[:error] = "投标的金额超过该标剩余的额度，请重填" if @fund.raised_amount > @fund.amount

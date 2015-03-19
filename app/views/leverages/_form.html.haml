@@ -28,6 +28,9 @@
                 .service-block.rounded-2x.service-block-default.leverage-interest-item.relative{:class => "#{'active' if 5==index}"}
                   %input{:type => "radio",:name => "leverage[leverage_time]",:value => "#{index}",:checked => "#{'checked' if 5==index}",:class => "leverage_time"}
                   %h3{:id => "leverage_time_#{index}"} 0元
+                  %span
+                    x
+                    = index
         .col.col-md-4.border-left
           .row.mt20.pl40
             %h3 确认操盘信息
@@ -42,10 +45,13 @@
                       %em.caret
                       %p 每月按30天计算，如使用1个月，11月16日至12月15日
                   %span ：
-                .cnt.select
-                  %select{:name => "leverage[duration]"}
-                    - (1..6).each do |index|
-                      %option{:value => "#{index}", :selected => "#{'selected' if index == 6}"}= "#{index}个月"
+                .cnt.input-group
+                  .select
+                    %select{:name => "leverage[duration]"}
+                      - (1..6).each do |index|
+                        %option{:value => "#{index}", :selected => "#{'selected' if index == 6}"}= "#{index}"
+                    %i
+                  %span.input-group-addon  个月
               %li.info_item
                 .lbl
                   %span 总操盘资金

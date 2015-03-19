@@ -1,7 +1,7 @@
 .box.box-user-info
   .user-avatar-container.inline-block
     %a{:href => "/account/info!basicInfo.action"}
-      %img{:height => "96", :src => asset_path("testimonials/img1.jpg"), :width => "96"}/
+      = image_tag current_user.avatar.url,class: "img-thumbnail img-rounded w96",alt: "选取头像"
   .user-info-container
     %h3{:title => "zjs18"} zjs18
     .fn-clear.relative
@@ -11,15 +11,22 @@
           #safe-progressbar.safe-progressbar.fn-left{:title => "25%"}
             .bar{:style => "width: 25px;"}
         .icons.fn-clear.mt5
-          .fn-left.icon-box.light
-            %a.fn-left.safe-rank.cellphone.light{"data-txt" => "为了您的账户更安全，请您绑定手机号。||立即绑定", :href => "/account/info!security.action", :title => "绑定手机，已绑定"}
-          .fn-left.icon-box
-            %a.fn-left.safe-rank.man{"data-txt" => "进行实名认证后，您才可以进行投资、借款。||立即认证", :href => "/account/info!security.action", :title => "实名认证，未设置"}
-          .fn-left.icon-box
-            %a.fn-left.safe-rank.lock{"data-txt" => "为了您的资金更加安全，请您设置交易密码。||立即设置", :href => "/account/info!security.action", :title => "交易密码，未设置"}
-          .fn-left.icon-box
-            %a.fn-left.safe-rank.mail{"data-txt" => "为了使您的账户有更多的安全保障，请您绑定邮箱。||立即绑定", :href => "/account/info!security.action", :title => "绑定邮箱，未绑定"}
-      .fn-left.last
+          .row
+            .col-md-12
+              %a.btn-u.btn-u-xs{:class => "#{'btn-u-default direct_to_tab2' if current_user.cell.blank?}" "#{'btn-u-yellow' if !current_user.cell.blank?}",
+                :href => "#{edit_user_registration_path+'/#authencation' if current_user.cell.blank?}"} 手机
+              %a.btn-u.btn-u-xs{:class => "#{'btn-u-default direct_to_tab2' if current_user.email.blank?}" "#{'btn-u-yellow' if !current_user.email.blank?}",
+                :href => "#{edit_user_registration_path+'/#authencation' if current_user.email.blank?}"} 邮箱
+              - @authenticated = !(current_user.level == 'unverified' || current_user.level == 'investor_applied')
+              %a.btn-u.btn-u-xs{:class => "#{'btn-u-default direct_to_tab2' if !@authenticated}" "#{'btn-u-yellow' if @authenticated}",
+                :href => "#{edit_user_registration_path+'/#authencation' if !@authenticated}"} 身份证
+          .row.mt5
+            .col-md-12
+              %a.btn-u.btn-u-xs{:class => "#{'btn-u-default direct_to_tab2' if current_user.address.blank?}" "#{'btn-u-yellow' if !current_user.address.blank?}",
+                :href => "#{edit_user_registration_path+'/#authencation' if current_user.address.blank?}"} 住址
+              %a.btn-u.btn-u-xs{:class => "#{'btn-u-default direct_to_tab2' if current_user.education.blank?}" "#{'btn-u-yellow' if !current_user.education.blank?}",
+                :href => "#{edit_user_registration_path+'/#authencation' if current_user.education.blank?}"} 学历
+      .fn-left.last.border-left.pl10
         .surplus.fn-clear
           %span.fn-left.text-l.mr10 账户余额
           %span.fn-left.num-xl.color-orange-text

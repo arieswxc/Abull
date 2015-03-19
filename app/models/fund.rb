@@ -3,12 +3,11 @@ class Fund < ActiveRecord::Base
   validates :user_id,             presence: true
   validates :amount,              presence: true
   validates :amount,              numericality: true
-  validates :collection_deadline, presence: true
+  validates :ending_days,         numericality: true
   validates :earning,             numericality: true
   validates :state,               presence: true
   validates :state,               inclusion: { in: ["pending", "applied", "gathering", "reached", "opened", "running", "finished", "closed", "denied"] }
   validates :private_check,       inclusion: { in: ["private", "public"] }
-  validates :invest_starting_date, presence: true
   validates :duration,  presence: true
   validates :expected_earning_rate, presence: true
   validates :expected_earning_rate, numericality: true
@@ -18,9 +17,6 @@ class Fund < ActiveRecord::Base
   before_validation :generate_fundname, on: :create
   acts_as_commentable
 
-  # scope :search_by_duration, ->(duration) { where("duration < ?", duration) }
-  # scope :search_by_deadline, ->(deadline) { where("collection_deadline < ?", deadline) }
-  # scope :search_by_amount, ->(amount) { where("amount < ?", amount) }
 
   state_machine :state, :initial => :pending do
     event :apply do
@@ -65,25 +61,24 @@ class Fund < ActiveRecord::Base
   #虚拟属性
   def invest_ending_date
     # self.invest_starting_date.advance(days: self.duration)
-    self.invest_starting_date.advance(months: self.duration, days: -1)
+    self.invest_starting_date.nil? ? nil : self.invest_starting_date.advance(months: self.duration, days: -1)
+  end
+
+  def collection_deadline
+    self.created_at.advance(days: self.ending_days)
   end
 
   def raised_amount
-    # sum = 0
-    # self.invests.each do |inv|
-    #   sum = sum + inv.amount
-    # end
-    # sum.to_f
-    sum = self.invests.sum(:amount) || 0
-    sum.to_f
+    invests.sum(:amount) || 0
   end
 
   #类方法
   def self.search_by_conditions(duration, amount, deadline)
     duration = 0 if duration.blank? 
-    deadline = "21000101".to_date if deadline.blank?
+    deadline = deadline.blank? ? Time.zone.parse('2100-01-01') : Time.zone.parse(deadline)
     amount = 0 if amount.blank?
-    funds = Fund.where("duration > ? and amount > ? and collection_deadline < ?", duration, amount, deadline)
+    ending_days = ((deadline.to_i - Time.zone.now.to_i) / 86400).to_i
+    funds = Fund.where("duration >= ? and amount >= ? and ending_days <= ?", duration, amount, ending_days)
   end
 
   private

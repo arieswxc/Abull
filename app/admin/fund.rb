@@ -1,6 +1,6 @@
 ActiveAdmin.register Fund do
-  permit_params :name, :user_id, :amount, :collection_deadline, :earning, :expected_earning_rate, :earning_rate, :state, :private_check, :minimum, :invest_starting_date, :invest_ending_date, :description, 
-    	:frontend_risk_method, :duration,
+  permit_params :name, :user_id, :amount, :ending_days, :earning, :expected_earning_rate, :earning_rate, :state, :private_check, :minimum, :invest_starting_date, :invest_ending_date, :description, 
+    	:frontend_risk_method, :duration, :mandate,
   		:backend_risk_method, :initial_amount, :created_at, :updated_at, :raised_amount, :genre
     
   index do
@@ -12,7 +12,7 @@ ActiveAdmin.register Fund do
     column :description
     column :frontend_risk_method
     column :backend_risk_method
-    column :collection_deadline
+    column :ending_days
     column :invest_starting_date
     column :invest_ending_date
     column :state
@@ -28,9 +28,10 @@ ActiveAdmin.register Fund do
       row :name
       row :amount
       row :raised_amount
-      row :collection_deadline
+      row :ending_days
       row :minimum
       row :private_check
+      row :expected_earning_rate
       row :genre
       row :invest_starting_date
       row :invest_ending_date
@@ -65,9 +66,18 @@ ActiveAdmin.register Fund do
         row :created_at
       end
     end
+
+    panel t('该标的投标信息') do
+      table_for fund.invests do
+        column "用户" do |i|
+          link_to User.find(i.user_id).email, admin_user_path(i.user_id)
+        end
+        column :amount
+      end
+    end
   end
 
-  #侧边窗口
+  # 侧边窗口
   sidebar "Fund List", only: :show do
     table_for Fund.all do 
       column :name do |f|
@@ -76,18 +86,19 @@ ActiveAdmin.register Fund do
       column :state
     end
   end
- 
+
   # page of new and edit
   form do |f|
       f.inputs do
         f.input :name
         f.input :amount
-        f.input :collection_deadline, as: :datepicker
+        f.input :ending_days
+        f.input :mandate, as: :select, collection: [ 'true', 'false' ]
         f.input :minimum
         f.input :invest_starting_date, as: :datepicker
         f.input :duration
         f.input :genre
-        # f.input :invest_ending_date, as: :datepicker
+        f.input :expected_earning_rate
         f.input :state, as: :select, collection: ["pending", "applied", "gathering", "reached", "opened", "running", "finished", "closed", "denied"]
         f.input :user_id, as: :select, collection: User.order(:email).map{|u| [u.email, u.id]}
       end

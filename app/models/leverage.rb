@@ -6,15 +6,28 @@ class Leverage < ActiveRecord::Base
   validates :duration,      presence: true
   validate  :valid_deadline
   validates :state,         presence: true
-  validates :state,         inclusion: { in: ["applied", "confirmed", "closed"] }
+  validates :state,         inclusion: { in: ["applied", "confirmed", "denied", "closed"] }
   validates :interest_id,   presence: true
   belongs_to :user
   belongs_to :interest
 
   acts_as_commentable
 
+  state_machine :state, :initial => :applied do
+    event :confirm do
+      transition :applied => :confirmed
+    end
+    event :deny do
+      transition :applied  => :denied
+    end
+    event :close do 
+      transition :confirmed => :closed
+    end
+  end
+
+
   def deadline 
-    self.date.advance(months: self.duration, days: -1)
+    self.date.advance(months: self.duration, days: -1) if date
   end
 
 

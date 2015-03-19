@@ -52,50 +52,52 @@
           %p Donec id elit non mi porta gravida at eget metus id elit mi egetine. Fusce dapibus
     / End Begin Service Block
   / 投资操盘列表
-  .container_12
+  .container.content
     .loan.mb.fn-clear
       .grid_12
         .list-title.loan
           %span.on 投资列表
         %ul#loan-list.ui-list.ui-list-m.ui-list-invest
           %li#loan-list-header.ui-list-header.fn-clear
+            %span.ui-list-title.fn-left.color-gray-text.w110 发标人
             %span.ui-list-title.fn-left.color-gray-text.w260 标的代号
-            %span.ui-list-title.fn-left.color-gray-text.text-center.w120 预期收益率
+            %span.ui-list-title.fn-left.color-gray-text.w90 类型
             %span.ui-list-title.fn-left.color-gray-text.text-center.w160 金额
-            %span.ui-list-title.fn-left.color-gray-text.text-center.w100 截止时间
+            %span.ui-list-title.fn-left.color-gray-text.text-center.w120 预期收益率
+            %span.ui-list-title.fn-left.color-gray-text.text-center.w100 操作期限
             %span.ui-list-title.fn-left.color-gray-text.text-center.w110 进度
             %span.ui-list-title.fn-left.color-gray-text.text-center.w80  状态
           - @last_ten_funds.each do |f|
             %li.ui-list-item.fn-clear
-              %a{:href => fund_path(f.id)}
-                %span.ui-list-field.fn-left.text-big.w260
-                  %em.ui-loantype.XYRZ{:title => "信用认证标"}
-                  %span.fn-left.w210.rrd-dimgray.fn-text-overflow{:href => "/lend/detailPage.action?loanId=488977", :target => "_blank", :title => "网上投资创业"}= f.name
+              %a{:href => "#{new_fund_invest_path(f.id) if f.state == 'gathering'} #{'javascript:;' if f.state != 'gathering'}"}
+                %span.ui-list-field.fn-left.text-big.w110.text-center
+                  %img.img-circle.ui-progressbar-mid{:height => "50", :src => asset_path("testimonials/img1.jpg"), :width => "50"}/
+                %span.ui-list-field.fn-left.text-big.w260.text-center
+                  %span.fn-left.w260.rrd-dimgray.fn-text-overflow{:href => "/lend/detailPage.action?loanId=488977", :target => "_blank", :title => "网上投资创业"}= f.name
+                %span.ui-list-field.fn-left.text-big.w90
+                %span.ui-list-field.fn-left.num.text-right.w160.text-center
+                  %em.value>= f.amount
+                  元
                 %span.ui-list-field.fn-left.num.text-right.w90.pr30
                   %em.value>= f.expected_earning_rate
                   = "%" if f.expected_earning_rate
-                %span.ui-list-field.fn-left.num.text-right.w130.pr30
-                  %em.value>= f.amount
-                  元
                 %span.ui-list-field.fn-left.num.text-center.w130.pr0.ellipsis
-                  %em.value.formattime>= f.invest_ending_date
+                  %em.value>= f.duration
+                  个月
                 %span.ui-list-field.fn-left.w60.pr30
                   %strong.ui-progressbar-mid{:class => "ui-progressbar-mid-"+"#{(f.raised_amount/f.amount * 100).floor}"}
                     %em>= (f.raised_amount/f.amount * 100).floor
                     \%
                 %span.ui-list-field.fn-left.w80
                   %button.ui-button.ui-button-mid.ui-button-blue.ui-list-invest-button
-                    = f.state
-              /
-                <div class="ui-poptip ui-poptip-white" style="display: none;" data-ui-name="ui-poptip">
-                <div class="ui-poptip-container">
-                <div class="ui-poptip-arrow ui-poptip-arrow-10"><em></em><span></span></div>
-                <div class="ui-poptip-content">信用认证标</div>
-                </div>
-                </div>
+                    - if f.state == 'gathering'
+                      募集中
+                    - elsif f.state == 'reached'
+                      已投满
+                    - else
+                      = f.state
           %li.ui-list-more
             =link_to "查看更多投资理财项目",funds_path
-  /
   .block-v1
     .container
       .row.content-boxes-v3

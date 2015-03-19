@@ -1,9 +1,32 @@
 .container.content
-  =# ToDo user_info partial
-  .ml40.pr80
-    = render 'shares/profile'
-  .row.col-md-12.mt40
-    .col-md-6
-      = render 'funds/fund_base_info'
-    .col-md-6
-      = render 'form'
+  - if current_user.level == 'unverified'
+    .text-center.min-height300.pt80
+      %h3 请进行实名认证
+      = link_to "点此进行实名认证", "#{edit_user_registration_path}/#authencation"
+  - elsif current_user.level == 'investor_applied'
+    .text-center.min-height300.pt80
+      %h3 您已提交实名认证申请，请等待审核
+  - else
+    .p20.text-center
+      %label 暗号:
+      %input
+      %a.btn-u.btn-u-orange.btn-u-xs UNLOCK
+    .row.mt10
+      = render 'users/funder_info',{user: @fund.user}
+    .row
+      .col-md-8
+        = render 'funds/fund_base_info'
+      .col-md-4
+        = render 'form'
+    .row
+      .col-md-12
+        .panel.panel-grey
+          .panel-heading
+            .panel-title 申购记录
+          .panel-title
+            = render "invest_list"
+
+    .row
+      .col-md-12
+        .tag-box.tag-box-v3
+          评论。。
