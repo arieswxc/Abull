@@ -21,8 +21,13 @@
         = render 'form'
     .row
       .col-md-12
-        .tag-box.tag-box-v3
-          申购记录
+        .panel.panel-grey
+          .panel-heading
+            .panel-title
+              =@fund.name
+          .panel-title
+            = render "invest_list"
+
     .row
       .col-md-12
         .tag-box.tag-box-v3
