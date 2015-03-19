@@ -28,6 +28,9 @@
                 .service-block.rounded-2x.service-block-default.leverage-interest-item.relative{:class => "#{'active' if 5==index}"}
                   %input{:type => "radio",:name => "leverage[leverage_time]",:value => "#{index}",:checked => "#{'checked' if 5==index}",:class => "leverage_time"}
                   %h3{:id => "leverage_time_#{index}"} 0元
+                  %span
+                    x
+                    = index
         .col.col-md-4.border-left
           .row.mt20.pl40
             %h3 确认操盘信息

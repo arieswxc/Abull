@@ -1,7 +1,7 @@
 .box.box-user-info
   .user-avatar-container.inline-block
     %a{:href => "/account/info!basicInfo.action"}
-      %img{:height => "96", :src => asset_path("testimonials/img1.jpg"), :width => "96"}/
+      = image_tag current_user.avatar.url,class: "img-thumbnail img-rounded w96",alt: "选取头像"
   .user-info-container
     %h3{:title => "zjs18"} zjs18
     .fn-clear.relative
