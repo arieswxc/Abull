@@ -69,6 +69,7 @@
           %select{:name => "fund[duration]"}
             - (1..6).each do |index|
               %option{:value => "#{index}", :selected => "#{'selected' if index == 6}"}= "#{index}个月"
+          %i
       .col-sm-4
         %label= Fund.human_attribute_name('ending_days')
         %br
@@ -76,6 +77,7 @@
           %select{:name => "fund[ending_days]"}
             - (1..30).each do |index|
               %option{:value => "#{index}", :selected => "#{'selected' if index == 30}"}= "#{index}天"
+          %i
     %hr
       .form-group.text-center
         .col-sm-2

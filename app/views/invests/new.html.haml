@@ -7,11 +7,23 @@
     .text-center.min-height300.pt80
       %h3 您已提交实名认证申请，请等待审核
   - else
-    .ml40.pr80
+    .p20.text-center
+      %label 暗号:
+      %input
+      %a.btn-u.btn-u-orange.btn-u-xs UNLOCK
+    .row.mt10
       - @result_type = 'fund'
       = render 'users/funder_info',{user: @fund.user,ojbect: @result_type}
-    .row.col-md-12.mt40
-      .col-md-6
+    .row
+      .col-md-8
         = render 'funds/fund_base_info'
-      .col-md-6
+      .col-md-4
         = render 'form'
+    .row
+      .col-md-12
+        .tag-box.tag-box-v3
+          申购记录
+    .row
+      .col-md-12
+        .tag-box.tag-box-v3
+          评论。。

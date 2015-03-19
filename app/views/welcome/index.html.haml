@@ -94,6 +94,8 @@
                       募集中
                     - elsif f.state == 'reached'
                       已投满
+                    - else
+                      = f.state
           %li.ui-list-more
             =link_to "查看更多投资理财项目",funds_path
   .block-v1

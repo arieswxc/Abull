@@ -14,8 +14,6 @@
       %th= Fund.human_attribute_name('invest_starting_date')
       %th= Fund.human_attribute_name('invest_ending_date')
       %th= Fund.human_attribute_name('state')
-      - unless @current=="xxx"
-        %th 操作
       %th 电子合同
   -# todo, 处理 private_check
   %tbody
@@ -29,12 +27,14 @@
         / %td= f.minimum
         %td.formattime= f.invest_starting_date
         %td.formattime= f.invest_ending_date
-        %td= f.state
         - unless @current=="xxx"
           %td
             - if f.state == "gathering"
               = link_to "我要投标",new_fund_invest_path(f.id),class: "btn-u btn-u-xs btn-u-blue" unless @invest
-            - else
-              = link_to "我要投标","javascript:;",class: "btn-u btn-u-xs btn-u-default" unless @invest
+            - elsif f.state == "reached"
+              = link_to "已投满","javascript:;",class: "btn-u btn-u-xs btn-u-default" unless @invest
+        - else
+          %td
+            = f.state
         %td
           %a{:href => "javascript:;"} 委托操盘合同

@@ -46,6 +46,7 @@
                   %select{:name => "leverage[duration]"}
                     - (1..6).each do |index|
                       %option{:value => "#{index}", :selected => "#{'selected' if index == 6}"}= "#{index}个月"
+                  %i
               %li.info_item
                 .lbl
                   %span 总操盘资金
