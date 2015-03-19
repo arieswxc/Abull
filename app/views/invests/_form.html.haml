@@ -2,5 +2,9 @@
 	= f.input :fund_id, value: @fund.id, as: :hidden
 	= f.input :user_id, value: current_user.id, as: :hidden
 	= f.input :date, as: :hidden
-	= f.input :amount, label: '金额'
+	.form-group
+		%label= Invest.human_attribute_name('amount')
+		.input-group
+			%input.form-control.text-center{:name => "invest[amount]",:maxlength => 7}
+			%span.input-group-addon  元
 	= f.submit class: "btn-u btn-u-blue"

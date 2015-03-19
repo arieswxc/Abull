@@ -12,8 +12,7 @@
       %input
       %a.btn-u.btn-u-orange.btn-u-xs UNLOCK
     .row.mt10
-      - @result_type = 'fund'
-      = render 'users/funder_info',{user: @fund.user,ojbect: @result_type}
+      = render 'users/funder_info',{user: @fund.user}
     .row
       .col-md-8
         = render 'funds/fund_base_info'
@@ -21,8 +20,12 @@
         = render 'form'
     .row
       .col-md-12
-        .tag-box.tag-box-v3
-          申购记录
+        .panel.panel-grey
+          .panel-heading
+            .panel-title 申购记录
+          .panel-title
+            = render "invest_list"
+
     .row
       .col-md-12
         .tag-box.tag-box-v3

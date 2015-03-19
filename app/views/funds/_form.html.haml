@@ -54,30 +54,34 @@
       .col-sm-2
       .col-sm-4
         %label= Fund.human_attribute_name('amount')
-        %br
-        %input.full_input{:type => "number", :name => "fund[amount]"}
+        .input-group
+          %input.form-control.text-center{:name => "fund[amount]",:maxlength => 7}
+          %span.input-group-addon  元
       .col-sm-4
         %label= Fund.human_attribute_name('expected_earning_rate')
-        %br
-        %input.full_input{:type => "number", :name => "fund[expected_earning_rate]"}
+        .input-group
+          %input.form-control.text-center{:name => "fund[expected_earning_rate]",:maxlength => 7}
+          %span.input-group-addon  ％
     .form-group.text-center
       .col-sm-2
       .col-sm-4
         %label= Fund.human_attribute_name('duration')
-        %br
-        .select
-          %select{:name => "fund[duration]"}
-            - (1..6).each do |index|
-              %option{:value => "#{index}", :selected => "#{'selected' if index == 6}"}= "#{index}个月"
-          %i
+        .input-group
+          .select
+            %select{:name => "fund[duration]"}
+              - (1..6).each do |index|
+                %option{:value => "#{index}", :selected => "#{'selected' if index == 6}"}= "#{index}"
+            %i
+          %span.input-group-addon  个月
       .col-sm-4
         %label= Fund.human_attribute_name('ending_days')
-        %br
-        .select
-          %select{:name => "fund[ending_days]"}
-            - (1..30).each do |index|
-              %option{:value => "#{index}", :selected => "#{'selected' if index == 30}"}= "#{index}天"
-          %i
+        .input-group
+          .select
+            %select{:name => "fund[ending_days]"}
+              - (1..30).each do |index|
+                %option{:value => "#{index}", :selected => "#{'selected' if index == 30}"}= "#{index}"
+            %i
+          %span.input-group-addon  天
     %hr
       .form-group.text-center
         .col-sm-2

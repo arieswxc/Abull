@@ -22,7 +22,9 @@
 
         %td= f.name
         / %td= f.user.nick_name
-        %td= f.amount
+        %td
+          = f.amount
+          元
         %td.formattime= f.collection_deadline
         / %td= f.minimum
         %td.formattime= f.invest_starting_date

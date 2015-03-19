@@ -12,7 +12,7 @@ class InvestsController < ApplicationController
     @invest = @fund.invests.build()
     @invest.user_id = current_user.id
     @invest.date = Time.now()
-    @invests = @invests    
+    @invests = @fund.invests
   end
 
   def create

@@ -42,11 +42,13 @@
                       %em.caret
                       %p 每月按30天计算，如使用1个月，11月16日至12月15日
                   %span ：
-                .cnt.select
-                  %select{:name => "leverage[duration]"}
-                    - (1..6).each do |index|
-                      %option{:value => "#{index}", :selected => "#{'selected' if index == 6}"}= "#{index}个月"
-                  %i
+                .cnt.input-group
+                  .select
+                    %select{:name => "leverage[duration]"}
+                      - (1..6).each do |index|
+                        %option{:value => "#{index}", :selected => "#{'selected' if index == 6}"}= "#{index}"
+                    %i
+                  %span.input-group-addon  个月
               %li.info_item
                 .lbl
                   %span 总操盘资金

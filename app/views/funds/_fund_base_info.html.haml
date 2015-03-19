@@ -13,25 +13,29 @@
         %span.bold
           = Fund.human_attribute_name('name')
           ：
-        %span.mr10= @fund.name
+        %label.mr10= @fund.name
       .float-left.mr40
         %span.bold 类型：
-        %span.mr10  高撒旦
+        %label.mr10= @fund.genre
       .float-left.mr40
         %span.bold
           = Fund.human_attribute_name('amount')
           ：
-        %span.mr10= @fund.amount
+        %label.mr10
+          = @fund.amount
+          元
       .float-left.mr40
         %span.bold
           = Fund.human_attribute_name('expected_earning_rate')
           ：
-        %span.mr10= @fund.expected_earning_rate
+        %label.mr10
+          = @fund.expected_earning_rate
+          \%
       .float-left.mr40
         %span.bold
           = Fund.human_attribute_name('duration')
           ：
-        %span.mr10= @fund.duration
+        %label.mr10= @fund.duration
 %table.table.table-striped.table-bordered
   %tbody
     %tr

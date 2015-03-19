@@ -80,7 +80,7 @@ zh-CN:
         user: 用户
         fund_id: 发标
         amount: 投资数额
-        date: 日期
+        date: 投标日期
         payback: 回报
         close_day: 清算日期
       homs_account:
