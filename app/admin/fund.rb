@@ -66,6 +66,14 @@ ActiveAdmin.register Fund do
         row :created_at
       end
     end
+
+    panel t('该标的投标信息') do
+      table_for fund.invests do
+        column :user_id
+        column :amount
+        column :payback
+      end
+    end
   end
 
   #侧边窗口
