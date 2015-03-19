@@ -5,7 +5,7 @@
         %img.img-thumbnail.img-rounded.w70{:src => asset_path("testimonials/img1.jpg")}
       .username.mt5
         %span 基金发起人：
-        %span 林桑
+        %span= user.nick_name
       .btn-group.mt5
         %a.btn-u.btn-u-blue{:href => "javascript:;"} 关注
         %a.btn-u.btn-u-red{:href => "javascript:;"} 私信
@@ -13,27 +13,36 @@
       .tag-box.tag-box-v3.col-md-12.mr20
         .row
           .col-md-5
-            姓名：啊个电话就撒娇活动
+            姓名：
+            = user.real_name
           .col-md-3
-            年龄：24岁
+            年龄：
+            = user.age
           .col-md-4
-            性别：男
+            性别：
+            = user.gender
         .row.mt10
           .col-md-5
-            用户ID：21312311
+            用户ID：
+            = user.id
           .col-md-3
-            学历：本科
+            学历：
+            = user.education
           .col-md-4
-            工作：怒哀是个鬼啊
+            工作：
+            = user.job
         .row.mt10
           .col-md-12
-            现居地：xx省xx市xx区xx弄xx号xx室
+            现居地：
+            = user.address
   .row.mlr0
     %table.table.table-striped.table-bordered
       %tbody
         %tr
           %td
             自我介绍
+            %hr
+            = user.abstract
           %td
             历史折线图
           %td
