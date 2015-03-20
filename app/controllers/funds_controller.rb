@@ -1,6 +1,7 @@
 class FundsController < ApplicationController
   before_action :authenticate_user!, only: [:new,:edit]
   # before_action :check_fund_user, only: [:new, :create]
+  after_action :generate_private_code, only: [:create]
   def index
     # @q      = Fund.search(params[:q])
     # @funds  = @q.result
@@ -59,4 +60,13 @@ class FundsController < ApplicationController
         render json: { message: '申请trader资料尚在审核' }
       end
     end
+
+    def generate_private_code
+      fund = current_user.funds.last
+      if fund && fund.private_check == 'private'
+        fund.private_code = rand(999999)
+        fund.save
+      end
+    end
+
 end

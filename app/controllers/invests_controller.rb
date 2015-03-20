@@ -31,6 +31,17 @@ class InvestsController < ApplicationController
     end
   end
 
+  def unlock
+    fund = Fund.find(params[:fund_id])
+    # fund = current_user.funds.find_by(private_code: params[:private_code])
+    if fund && fund.private_check == 'private' &&fund.private_code.to_i == params[:private_code].to_i
+      render json: { check: 'true' }
+    else
+      render json: { check: 'false' }
+    end
+  end
+
+
   private
     def invest_params
       params.require(:invest).permit(:user_id, :fund_id, :amount, :date, :payback, :close_day)
