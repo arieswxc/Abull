@@ -48,4 +48,23 @@
                 %td= Leverage.human_attribute_name('state')
                 %td= @leverage.state
   .text-center
-    %a.btn-u.btn-u-blue{:href => "javascript:;"} 追加保证金
+    %a.btn-u.btn-u-blue.add-bond 追加保证金
+    %a.btn-u.btn-u-blue.pre-get 盈利提出
+    %a.btn-u.btn-u-blue.pre-wind-up 提前清盘
+:javascript
+  $(function(){
+    $(".add-bond").click(function(){
+      var add_bond = window.prompt("输入追加的保证金数额:");
+    });
+    $(".pre-get").click(function(){
+      var pre_get = window.prompt("输入盈利提出的数额:");
+    });
+    $(".pre-wind-up").click(function(){
+      var pre_wind_up = window.confirm("是否提前清盘");
+      if (pre_wind_up==true){
+
+      }else {
+
+      }
+    });
+  });
