@@ -61,7 +61,7 @@
        success: function(data) {
          if (data.check === 'true') {
            $(".fund_base_info").removeClass("col-md-12").addClass("col-md-8");
-           $(".new_invest_form").show();
+           $(".new_invest_form").removeClass("hide");
          }
        },
        error: function() {

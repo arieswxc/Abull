@@ -48,8 +48,8 @@
                 .cnt.input-group
                   .select
                     %select{:name => "leverage[duration]"}
-                      - (1..6).each do |index|
-                        %option{:value => "#{index}", :selected => "#{'selected' if index == 6}"}= "#{index}"
+                      - (1..12).each do |index|
+                        %option{:value => "#{index}", :selected => "#{'selected' if index == 12}"}= "#{index}"
                     %i
                   %span.input-group-addon  个月
               %li.info_item
