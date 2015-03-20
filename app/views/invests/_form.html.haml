@@ -5,6 +5,6 @@
 	.form-group
 		%label= Invest.human_attribute_name('amount')
 		.input-group
-			%input.form-control.text-center{:name => "invest[amount]",:maxlength => 7}
+			%input.form-control.text-center.numberic{:name => "invest[amount]",:maxlength => 7}
 			%span.input-group-addon  元
 	= f.submit class: "btn-u btn-u-blue"
