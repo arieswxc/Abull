@@ -56,8 +56,9 @@
     .loan.mb.fn-clear
       .grid_12
         .list-title.loan
-          %span.on 投资列表
-        %ul#loan-list.ui-list.ui-list-m.ui-list-invest
+          %h3.zdy-red 投资列表
+          .border-bottom.w80.border-red
+        %ul#loan-list.ui-list.ui-list-m.ui-list-invest.zdy-bg-gray.table-cell
           %li#loan-list-header.ui-list-header.fn-clear
             %span.ui-list-title.fn-left.color-gray-text.w110 发标人
             %span.ui-list-title.fn-left.color-gray-text.w260 标的代号
@@ -102,20 +103,35 @@
     .container
       .row.content-boxes-v3
         .col-md-4.md-margin-bottom-30
-          %i.icon-custom.rounded-x.icon-bg-dark.fa.fa-lightbulb-o
+          .row
+            .col-md-1
+            .col-md-3
+              %img.img-thumbnail.img-circle.w70{:src => asset_path("testimonials/img1.jpg")}/
+            .col-md-8
+              %h2.heading-sm 操盘手
+              %h3.heading-sm 张先生
           .content-boxes-in-v3
-            %h2.heading-sm xx用户
-            %p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+            %p 之前一直是帮几个朋友打理账户，收益不错，但账户清算、交易软件、产品发行等很不方便，有了摩尔街，轻松解决了这些问题，让我有更多的精力投入交易操作。
         .col-md-4.md-margin-bottom-30
-          %i.icon-custom.rounded-x.icon-bg-dark.fa.fa-flask
+          .row
+            .col-md-1
+            .col-md-3
+              %img.img-thumbnail.img-circle.w70{:src => asset_path("testimonials/img1.jpg")}/
+            .col-md-8
+              %h2.heading-sm 投资人
+              %h3.heading-sm 刘女士
           .content-boxes-in-v3
-            %h2.heading-sm xx用户
-            %p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+            %p 随时股市行情上升，股票投资的收益远远超过其他理财方式。由于平时要上班，没时间研究股票，但通过摩尔街，可以找到最好的操盘手为我服务，收益也非常有保障。
         .col-md-4
-          %i.icon-custom.rounded-x.icon-bg-dark.fa.fa-bolt
+          .row
+            .col-md-1
+            .col-md-3
+              %img.img-thumbnail.img-circle.w70{:src => asset_path("testimonials/img1.jpg")}/
+            .col-md-8
+              %h2.heading-sm 配资客户
+              %h3.heading-sm 王先生
           .content-boxes-in-v3
-            %h2.heading-sm xx用户
-            %p Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+            %p 我在摩尔街的配资体验非常不错，高效、服务好。而且他们团队成员都是名校毕业，安全性上也有保障。
   /
   .container.content
     .col-md-3
