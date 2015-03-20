@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150320074750) do
+ActiveRecord::Schema.define(version: 20150320085532) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -161,8 +161,6 @@ ActiveRecord::Schema.define(version: 20150320074750) do
     t.integer  "rate",              limit: 4
     t.integer  "total_interests",   limit: 4
     t.integer  "deposit",           limit: 4
-    t.date     "begining_date"
-    t.date     "ending_date"
     t.integer  "leverage_amount",   limit: 4
   end
 
