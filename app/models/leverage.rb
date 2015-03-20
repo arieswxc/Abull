@@ -1,6 +1,5 @@
 class Leverage < ActiveRecord::Base
   validates :user_id,       presence: true
-  validates :date,          presence: true
   validates :amount,        presence: true
   validates :amount,        numericality: true
   validates :duration,      presence: true
