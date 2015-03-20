@@ -45,7 +45,7 @@ li a {
 }
 
 a {
-   color: #72c02c;
+   color: #e7141a;
    text-decoration: none;  
 }
 
@@ -59,13 +59,13 @@ a:focus {
   text-decoration: none;
 }
 a:hover {
-   color: #72c02c;
+   color: #e7141a;
    text-decoration: underline;
 }
 
 ::selection {
 	color: #fff;
-	background: #72c02c;
+	background: #e7141a;
 }
 
 /*Header
@@ -80,7 +80,7 @@ a:hover {
 }
 
 .navbar-brand span {
-	color: #72c02c !important;
+	color: #e7141a !important;
 }
 
 /*Navbar Toggle*/
@@ -138,18 +138,18 @@ a:hover {
 
 .navbar-default .navbar-nav > li > a:hover {
 	z-index: 1;
-	color: #72c02c;
+	color: #e7141a;
 }
 
 .navbar-default .navbar-nav > li > a:focus {
-	color: #72c02c;
+	color: #e7141a;
 }
 
 .navbar-default .navbar-nav > .active > a, 
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
 	z-index: 1;
-	color: #72c02c;
+	color: #e7141a;
 	background: none;
 }
 
@@ -197,7 +197,7 @@ a:hover {
 }
 
 .top-nav-collapse.navbar-default .navbar-toggle:hover .icon-bar {
-	background: #72c02c;
+	background: #e7141a;
 }
 
 @media (max-width: 768px) {
@@ -267,12 +267,12 @@ a:hover {
 }
 
 .wrapper-portfolio #filters-container .cbp-filter-item-active {
-	background: #72c02c;
-	border-color: #72c02c;
+	background: #e7141a;
+	border-color: #e7141a;
 }
 
 .wrapper-portfolio #filters-container .cbp-filter-item:hover {
 	color: #fff;
-	background: #72c02c;
-	border-color: #72c02c;
+	background: #e7141a;
+	border-color: #e7141a;
 }
