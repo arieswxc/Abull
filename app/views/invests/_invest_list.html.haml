@@ -5,6 +5,7 @@
         %th= Invest.human_attribute_name('user')
       - else
         %th= Fund.human_attribute_name('name')
+        %th= Fund.human_attribute_name('user')
         / %th 发标人
         %th= Fund.human_attribute_name('amount')
 
@@ -25,7 +26,7 @@
           %th= f.user.email
         - else
           %td= f.fund.name
-          / %td= f.user.nick_name
+          %td= f.user.email
           %td
             = f.fund.amount
             元
