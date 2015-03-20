@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150320044651) do
+ActiveRecord::Schema.define(version: 20150320074750) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -107,7 +107,6 @@ ActiveRecord::Schema.define(version: 20150320044651) do
     t.boolean  "mandate",               limit: 1
     t.integer  "ending_days",           limit: 4
     t.integer  "private_code",          limit: 4
-    t.integer  "freezed_amount",        limit: 4
   end
 
   add_index "funds", ["user_id"], name: "index_funds_on_user_id", using: :btree
@@ -148,15 +147,23 @@ ActiveRecord::Schema.define(version: 20150320044651) do
   add_index "invests", ["user_id"], name: "index_invests_on_user_id", using: :btree
 
   create_table "leverages", force: :cascade do |t|
-    t.integer  "user_id",     limit: 4
+    t.integer  "user_id",           limit: 4
     t.datetime "date"
-    t.decimal  "amount",                    precision: 12, scale: 2
-    t.text     "description", limit: 65535
-    t.string   "state",       limit: 255
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
-    t.integer  "interest_id", limit: 4
-    t.integer  "duration",    limit: 4
+    t.decimal  "amount",                          precision: 12, scale: 2
+    t.text     "description",       limit: 65535
+    t.string   "state",             limit: 255
+    t.datetime "created_at",                                               null: false
+    t.datetime "updated_at",                                               null: false
+    t.integer  "interest_id",       limit: 4
+    t.integer  "duration",          limit: 4
+    t.integer  "loss_warning_line", limit: 4
+    t.integer  "loss_making_line",  limit: 4
+    t.integer  "rate",              limit: 4
+    t.integer  "total_interests",   limit: 4
+    t.integer  "deposit",           limit: 4
+    t.date     "begining_date"
+    t.date     "ending_date"
+    t.integer  "leverage_amount",   limit: 4
   end
 
   add_index "leverages", ["interest_id"], name: "index_leverages_on_interest_id", using: :btree
