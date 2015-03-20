@@ -9,10 +9,10 @@
             已经注册 ? #{link_to("立即登录",new_user_session_path,rel: "nofollow", class: "color-green")}。
         = devise_error_messages!
         %label
-          邮箱地址
+          手机号码
           %span.color-red *
         %br/
-        = f.email_field(:email, autofocus: true, class: "form-control margin-bottom-20")
+        = f.text_field(:cell, autofocus: true, class: "form-control margin-bottom-20")
         %label
           密码
           %span.color-red *

@@ -5,21 +5,30 @@
 %table.table.table-striped.table-bordered.mt40
   %thead
     %tr
-      / %th 发标人
-      %th= Leverage.human_attribute_name('description')
-      %th= Leverage.human_attribute_name('deadline')
+      %th 订单号
+
       / %th Fund.human_attribute_name('minimum')
-      %th= Interest.human_attribute_name('leverage_time')
       %th= Leverage.human_attribute_name('amount')
+      %th= Interest.human_attribute_name('leverage_time')
+      %th= Leverage.human_attribute_name('created_at')
+      %th= Leverage.human_attribute_name('date')
+      %th= Leverage.human_attribute_name('deadline')
+      %th 利息
       %th= Leverage.human_attribute_name('state')
   -# todo, 处理 private_check
   %tbody
     - @leverages.each do |f|
       %tr{'data-index' => f.id}
-        %td= f.description
-        / %td= f.user.nick_name
-        %td.formattime= f.deadline
+        %td  xxxxxx
         / %td= f.minimum
-        %td= f.interest.leverage_time
-        %td= f.amount
+        %td
+          = f.amount
+          元
+        %td
+          = f.interest.leverage_time*f.amount
+          元
+        %td.formattime= f.created_at
+        %td.formattime= f.date
+        %td.formattime= f.deadline
+        %td xxxxxx
         %td= f.state

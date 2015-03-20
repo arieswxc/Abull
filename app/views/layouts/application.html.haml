@@ -70,4 +70,10 @@
             },function() {
               $(this).children(".pz_tips_bd").hide();
             });
+            $(".numberic").each(function(){
+              this.oninput = function() {
+                var crt_amount = parseInt($(this).val()) || 0;
+                $(this).val(crt_amount);
+              }
+            })
         });

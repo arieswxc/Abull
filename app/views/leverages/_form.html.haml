@@ -22,7 +22,7 @@
               %span.input-group-addon  元
           .mt20
           .row.mt20
-            %h3= Leverage.human_attribute_name('interest')
+            %h3= Interest.human_attribute_name('leverage_time')
             - (1..5).each do |index|
               .col-md-4{:class => "#{'ml70' if index == 4}"}
                 .service-block.rounded-2x.service-block-default.leverage-interest-item.relative{:class => "#{'active' if 5==index}"}
@@ -48,8 +48,8 @@
                 .cnt.input-group
                   .select
                     %select{:name => "leverage[duration]"}
-                      - (1..6).each do |index|
-                        %option{:value => "#{index}", :selected => "#{'selected' if index == 6}"}= "#{index}"
+                      - (1..12).each do |index|
+                        %option{:value => "#{index}", :selected => "#{'selected' if index == 12}"}= "#{index}"
                     %i
                   %span.input-group-addon  个月
               %li.info_item
@@ -119,7 +119,6 @@
                   %span % /月
       %hr
       = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
-      = f.input :date, as: :hidden, input_html: { value: Time.now() }
       = f.input :state, as: :hidden, input_html: { value: 'applied' }
       .row.mt40.mb20.text-center
         = f.submit class: "btn-u btn-u-blue"

@@ -7,7 +7,7 @@ ol, ul {
   list-style: none;
 }
 a:focus, a:hover {
-  color: #47b095;
+  color: #e7141a;
   text-decoration: none;
 }
 .navbar-static-top {
@@ -71,7 +71,7 @@ a:focus, a:hover {
   top: 30px;
   left: -65px;
   width: 150px;
-  color: #0dba8f;
+  color: #e7141a;
   background-color: #fff;
   border: 1px solid #d7dadb;
   display: none;
@@ -189,8 +189,8 @@ a:focus, a:hover {
 }
 .jumbotron.home .int-box {
   position: absolute;
-  top: 0;
-  left: 100px;
+  top: 50px;
+  right: 100px;
 }
 .jumbotron.home .int-box>.container {
   position: relative;
@@ -214,7 +214,7 @@ a:focus, a:hover {
 }
 .jumbotron.home .int-box .int-wrapper p .big-int {
   font-size: 28px;
-  color: #0dba8f;
+  color: #e7141a;
   padding-left: 10px;
 }
 .jumbotron.home .int-box .int-wrapper .amount .big-int, .jumbotron.home .int-box .int-wrapper p em.multi {
@@ -222,7 +222,7 @@ a:focus, a:hover {
 }
 .jumbotron.home .int-box .int-wrapper p em {
   font-size: 20px;
-  color: #0dba8f;
+  color: #e7141a;
   padding-left: 5px;
   padding-right: 5px;
 }
@@ -245,7 +245,7 @@ a:focus, a:hover {
 }
 .jumbotron.home .int-box .int-wrapper .amount {
   font-size: 20px;
-  color: #0dba8f;
+  color: #e7141a;
   min-width: 231px;
 }
 .jumbotron.home .int-box .int-wrapper .amount .top-up {
@@ -498,6 +498,52 @@ a.fn-left.ui-button.ui-button-blue.ui-button-mid.last {
 }
 .w96 {
   width: 96px;
+}
+.pointer {
+  cursor: pointer;
+}
+.home-aq {
+  background-image: url(<%= asset_path 'home_aq.png' %>);
+  background-repeat: no-repeat;
+}
+.home-sy {
+  background-image: url(<%= asset_path 'home_sy.png' %>);
+  background-repeat: no-repeat;
+}
+.home-bz {
+  background-image: url(<%= asset_path 'home_bz.png' %>);
+  background-repeat: no-repeat;
+}
+
+.home-aq-icon {
+  background-image: url(<%= asset_path 'home_aq_icon.png' %>);
+  background-repeat: no-repeat;
+}
+.home-sy-icon {
+  background-image: url(<%= asset_path 'home_sy_icon.png' %>);
+  background-repeat: no-repeat;
+}
+.home-bz-icon {
+  background-image: url(<%= asset_path 'home_bz_icon.png' %>);
+  background-repeat: no-repeat;
+}
+.border-red {
+  border-bottom-color: #E7141A;
+}
+.zdy-red {
+  color: #E7141A;
+}
+.zdy-bg-gray {
+  background: #f2f2f2;
+}
+.table-cell {
+  display: table-cell;
+}
+#loan-list-header {
+  border-bottom: solid 2px white;
+}
+.sl-header.ng-scope .navbar.navbar-inverse.navbar-static-top.site-nav {
+  padding: 0;
 }
 
 .footer-v1 .footer .container .row .col-md-3 {

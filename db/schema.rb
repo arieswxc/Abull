@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150318062613) do
+ActiveRecord::Schema.define(version: 20150320135856) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20150318062613) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "role",                   limit: 255
+    t.string   "cell",                   limit: 255
   end
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
@@ -106,6 +107,7 @@ ActiveRecord::Schema.define(version: 20150318062613) do
     t.string   "genre",                 limit: 255
     t.boolean  "mandate",               limit: 1
     t.integer  "ending_days",           limit: 4
+    t.integer  "private_code",          limit: 4
   end
 
   add_index "funds", ["user_id"], name: "index_funds_on_user_id", using: :btree
@@ -146,15 +148,21 @@ ActiveRecord::Schema.define(version: 20150318062613) do
   add_index "invests", ["user_id"], name: "index_invests_on_user_id", using: :btree
 
   create_table "leverages", force: :cascade do |t|
-    t.integer  "user_id",     limit: 4
+    t.integer  "user_id",           limit: 4
     t.datetime "date"
-    t.decimal  "amount",                    precision: 12, scale: 2
-    t.text     "description", limit: 65535
-    t.string   "state",       limit: 255
-    t.datetime "created_at",                                         null: false
-    t.datetime "updated_at",                                         null: false
-    t.integer  "interest_id", limit: 4
-    t.integer  "duration",    limit: 4
+    t.decimal  "amount",                          precision: 12, scale: 2
+    t.text     "description",       limit: 65535
+    t.string   "state",             limit: 255
+    t.datetime "created_at",                                               null: false
+    t.datetime "updated_at",                                               null: false
+    t.integer  "interest_id",       limit: 4
+    t.integer  "duration",          limit: 4
+    t.integer  "loss_warning_line", limit: 4
+    t.integer  "loss_making_line",  limit: 4
+    t.integer  "rate",              limit: 4
+    t.integer  "total_interests",   limit: 4
+    t.integer  "deposit",           limit: 4
+    t.integer  "leverage_amount",   limit: 4
   end
 
   add_index "leverages", ["interest_id"], name: "index_leverages_on_interest_id", using: :btree
@@ -204,7 +212,7 @@ ActiveRecord::Schema.define(version: 20150318062613) do
     t.datetime "updated_at"
     t.string   "avatar",                 limit: 255
     t.string   "cell",                   limit: 255
-    t.string   "nick_name",              limit: 255
+    t.string   "username",               limit: 255
     t.string   "real_name",              limit: 255
     t.string   "id_card_number",         limit: 255
     t.text     "abstract",               limit: 65535

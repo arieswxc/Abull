@@ -18,7 +18,9 @@ Rails.application.routes.draw do
   end
 
   resources :funds do
-    resources :invests
+    resources :invests do
+      post :unlock, on: :collection
+    end
   end
   resources :leverages, only: [:show, :new, :create, :edit, :update] do
     post :query_rate, on: :collection

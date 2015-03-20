@@ -8,5 +8,6 @@ class Profile::FundsController < ApplicationController
   def show
     @user               = User.find(params[:user_id])
     @fund               = @user.funds.find(params[:id])
+    @invests            = @fund.invests
   end
 end
