@@ -18,32 +18,32 @@
               %tr
                 %td= Interest.human_attribute_name('leverage_time')
                 %td
-                  = @leverage.interest.leverage_time*@leverage.amount
+                  = @leverage.leverage_amount
                   元
               %tr
                 %td= Leverage.human_attribute_name('created_at')
                 %td.formattime= @leverage.created_at
               %tr
                 %td= Leverage.human_attribute_name('date')
-                %td.formattime= @leverage.date
+                %td{:class => "#{'formattime' unless @leverage.date.blank? }"}= @leverage.date
               %tr
                 %td= Leverage.human_attribute_name('deadline')
-                %td.formattime= @leverage.deadline
+                %td{:class => "#{'formattime' unless @leverage.deadline.blank? }"}= @leverage.deadline
               %tr
                 %td 亏损警告线
-                %td xxxxxx
+                %td= @leverage.loss_warning_line
               %tr
                 %td 亏损平仓线
-                %td xxxxxx
+                %td= @leverage.loss_making_line
               %tr
                 %td 借款利息
-                %td xxxxxx
+                %td= @leverage.rate
               %tr
                 %td 借款月利率
-                %td xxxxxx
+                %td= @leverage.total_interests
               %tr
                 %td 追加保证金
-                %td xxxxxx
+                %td= @leverage.deposit
               %tr
                 %td= Leverage.human_attribute_name('state')
                 %td= @leverage.state

@@ -119,7 +119,6 @@
                   %span % /月
       %hr
       = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
-      = f.input :date, as: :hidden, input_html: { value: Time.now() }
       = f.input :state, as: :hidden, input_html: { value: 'applied' }
       .row.mt40.mb20.text-center
         = f.submit class: "btn-u btn-u-blue"
