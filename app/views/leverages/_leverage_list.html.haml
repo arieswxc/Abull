@@ -17,7 +17,7 @@
     - @leverages.each do |f|
       %tr{'data-index' => f.id}
         %td= f.description
-        / %td= f.user.nick_name
+        / %td= f.user.username
         %td.formattime= f.deadline
         / %td= f.minimum
         %td= f.interest.leverage_time

@@ -4,7 +4,7 @@ user:(use devise用户)
   avatar:string
   email:string
   password:string(8位，必须是字母和数字的混合,前端设个强度指示的检查,jiecheng(2/24))
-  nick_name:string
+  username:string
   real_name:string(姓名不用分开jiecheng(2/24))
   id_card_number:string
   abstract:text

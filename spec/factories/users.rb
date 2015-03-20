@@ -5,7 +5,7 @@ FactoryGirl.define do
     password        "morethan8"
     cell            "12345678901"
     real_name       "foobar"
-    nick_name       "foobar"
+    username       "foobar"
     id_card_number  "123456789012345678"
     abstract        "Good Guy."
     level           "unverified"
