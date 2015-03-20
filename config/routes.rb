@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   resources :funds do
     resources :invests do
-      post :unlock, on: :member
+      post :unlock, on: :collection
     end
   end
   resources :leverages, only: [:show, :new, :create, :edit, :update] do
