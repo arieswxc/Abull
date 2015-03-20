@@ -7,17 +7,24 @@
     .text-center.min-height300.pt80
       %h3 您已提交实名认证申请，请等待审核
   - else
-    .p20.text-center
-      %label 暗号:
-      %input
-      %a.btn-u.btn-u-orange.btn-u-xs UNLOCK
+    - if @fund.private_check == 'private'
+      .p20.text-center
+        %label 暗号:
+        %input.unlock_val
+        %a.btn-u.btn-u-orange.btn-u-xs.unlock_btn UNLOCK
     .row.mt10
       = render 'users/funder_info',{user: @fund.user}
     .row
-      .col-md-8
-        = render 'funds/fund_base_info'
-      .col-md-4
-        = render 'form'
+      - if @fund.private_check != 'private'
+        .col-md-8.fund_base_info
+          = render 'funds/fund_base_info'
+        .col-md-4.new_invest_form
+          = render 'form'
+      - else
+        .col-md-12.fund_base_info
+          = render 'funds/fund_base_info'
+        .col-md-4.hide.new_invest_form
+          = render 'form'
     .row
       .col-md-12
         .panel.panel-grey
@@ -30,3 +37,36 @@
       .col-md-12
         .tag-box.tag-box-v3
           评论。。
+
+:javascript
+  $(function(){
+   $(".unlock_btn").click(function(){
+     var unlock_val = $(".unlock_val").val();
+     var fund_id = "#{@fund.id}";
+     var postdata = {
+       "private_code": unlock_val
+     };
+     var post_url = "/funds/"+fund_id+"/invests/"+"unlock";
+     var post_type = 'post';
+     $.ajax({
+       url: post_url,
+       type: post_type,
+       dataType: 'json',
+       data: JSON.stringify(postdata),
+       processData: false,
+       headers: {
+         'X-CSRF-Token': $("input[name='authenticity_token']").val()
+       },
+       contentType: "application/json; charset=UTF-8",
+       success: function(data) {
+         if (data.check === 'true') {
+           $(".fund_base_info").removeClass("col-md-12").addClass("col-md-8");
+           $(".new_invest_form").show();
+         }
+       },
+       error: function() {
+         console.log("系统繁忙，请稍后再试");
+       }
+     });
+   });
+  });
