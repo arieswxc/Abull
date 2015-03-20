@@ -8,12 +8,16 @@
 
       %th= Fund.human_attribute_name('name')
       / %th 发标人
+      - unless @current=="xxx"
+        %th= Fund.human_attribute_name('user')
       %th= Fund.human_attribute_name('amount')
+      %th= Fund.human_attribute_name('minimum')
       %th= Fund.human_attribute_name('collection_deadline')
-      / %th Fund.human_attribute_name('minimum')
       %th= Fund.human_attribute_name('invest_starting_date')
       %th= Fund.human_attribute_name('invest_ending_date')
       %th= Fund.human_attribute_name('state')
+      - if @current=="xxx"
+        %th 暗标码
       %th 电子合同
   -# todo, 处理 private_check
   %tbody
@@ -21,9 +25,13 @@
       %tr{'data-index' => f.id}
 
         %td= f.name
-        / %td= f.user.nick_name
+        - unless @current=="xxx"
+          %td= f.user.email
         %td
           = f.amount
+          元
+        %th
+          = f.minimum
           元
         %td.formattime= f.collection_deadline
         / %td= f.minimum
@@ -36,7 +44,7 @@
             - elsif f.state == "reached"
               = link_to "已投满","javascript:;",class: "btn-u btn-u-xs btn-u-default" unless @invest
         - else
-          %td
-            = f.state
+          %td= f.state
+          %td xxxxxx
         %td
           %a{:href => "javascript:;"} 委托操盘合同

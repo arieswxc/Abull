@@ -5,18 +5,22 @@
         %th= Invest.human_attribute_name('user')
       - else
         %th= Fund.human_attribute_name('name')
+        %th= Fund.human_attribute_name('user')
         / %th 发标人
+        %th= Fund.human_attribute_name('minimum')
         %th= Fund.human_attribute_name('amount')
 
         %th= Fund.human_attribute_name('collection_deadline')
-        / %th Fund.human_attribute_name('minimum')
+
         %th= Fund.human_attribute_name('invest_starting_date')
         %th= Fund.human_attribute_name('invest_ending_date')
-      / %th 发标人
-
-      %th= Invest.human_attribute_name('date')
-
+        %th 冻结资金
+        %th= Fund.human_attribute_name('expected_earning_rate')
+        %th= Fund.human_attribute_name('earning_rate')
+        %th= Fund.human_attribute_name('state')
       %th= Invest.human_attribute_name('amount')
+      - if @current=="xxx"
+        %th 电子合同
   -# todo, 处理 private_check
   %tbody
     - @invests.each do |f|
@@ -25,7 +29,10 @@
           %th= f.user.email
         - else
           %td= f.fund.name
-          / %td= f.user.nick_name
+          %td= f.fund.user.email
+          %td
+            = f.fund.minimum
+            元
           %td
             = f.fund.amount
             元
@@ -34,7 +41,17 @@
           / %td= f.minimum
           %td.formattime= f.fund.invest_starting_date
           %td.formattime= f.fund.invest_ending_date
-        %td.formattime= f.date
+          %td xxxxxx
+          %td
+            = f.fund.expected_earning_rate
+            = '%' if !f.fund.expected_earning_rate.blank?
+          %td
+            = f.fund.earning_rate
+            = '%' if !f.fund.earning_rate.blank?
+          %td= f.fund.state
         %td
           = f.amount
           元
+        - if @current=="xxx"
+          %td
+            %a{:href => "javascript:;"} 委托操盘合同
