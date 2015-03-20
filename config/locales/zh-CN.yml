@@ -52,8 +52,8 @@ zh-CN:
         invest_ending_date: 操盘结束时间
         expected_earning_rate: 预期年化收益率
         state: 状态
-        user_id: 用户
-        user: 用户
+        user_id: 发标人
+        user: 发标人
         earning: 收益
         earning_rate: 收益率
         initial_amount: 初始募集数额
@@ -76,8 +76,8 @@ zh-CN:
         follower_id: 关注id
         follower_type: 关注类型
       invest:
-        user_id: 用户
-        user: 用户
+        user_id: 投标人
+        user: 投标人
         fund_id: 发标
         amount: 投资数额
         date: 投标日期
@@ -93,7 +93,7 @@ zh-CN:
         user_id: 用户
         user: 用户
         date: 配资时间
-        amount: 配资数额
+        amount: 本金
         description: 配资说明
         deadline: 到期时间
         state: 状态
@@ -121,7 +121,7 @@ zh-CN:
         created_at: 创建日期
         updated_at: 更新日期
       interest:
-        leverage_time: 杠杆
+        leverage_time: 配资数额
         amount: 金额
         duration: 时间
         interest_rate: 利率

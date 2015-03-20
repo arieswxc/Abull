@@ -22,7 +22,7 @@
               %span.input-group-addon  元
           .mt20
           .row.mt20
-            %h3= Leverage.human_attribute_name('interest')
+            %h3= Interest.human_attribute_name('leverage_time')
             - (1..5).each do |index|
               .col-md-4{:class => "#{'ml70' if index == 4}"}
                 .service-block.rounded-2x.service-block-default.leverage-interest-item.relative{:class => "#{'active' if 5==index}"}
