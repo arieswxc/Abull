@@ -1,34 +1,51 @@
-.pg-container-content
-  #pg-account-index.pg-account
-    .container_12.mt10.fn-clear
-      = render "shares/profile_side_navbar", {activeItem: "leverage"}
-      .inline-block.relative.pg-account-detail
-        = render "shares/profile"
-        .tag-box.tag-box-v3.mt20.p20
-          %h3
-            = @leverage.description
-            = link_to user_leverages_path(current_user),class: "ml10" do
-              %span.icon-action-undo
-          .tab-v1
-            %ul.nav.nav-tabs
-              %li.active
-                %a{"data-toggle" => "tab", :href => "#fund-home-1"} 基金首页
-              %li
-                %a{"data-toggle" => "tab", :href => "#fund-comment-1"} 相关评论
-            .tab-content.row
-              #fund-home-1.tab-pane.fade.active.in
-                .col-md-2.col-sm-2.text-center
-                .col-md-9.col-sm-9
-                  %h4
-                    = Leverage.human_attribute_name('amount')
-                    \：
-                    = @leverage.amount
-                  %span
-                    = Leverage.human_attribute_name('deadline')
-                    \：
-                    %span.formattime= @leverage.deadline
-                  .mt20
-                    %div 操盘账号: x200x
-                    %div 操盘密码: xxxxxxxxxx
-                    %a.btn-u.btn-u-blue.mt10{:href => "javascript:;"} 操盘入口
-              #fund-comment-1.tab-pane.fade
+.container.content
+  .row
+    .col-md-12
+      .panel.panel-grey
+        .panel-heading
+          .panel-title 配资管理
+        .panel-title
+          %table.table.table-striped.table-bordered
+            %tbody
+              %tr
+                %td 订单号
+                %td  xxxxxx
+              %tr
+                %td= Leverage.human_attribute_name('amount')
+                %td
+                  = @leverage.amount
+                  元
+              %tr
+                %td= Interest.human_attribute_name('leverage_time')
+                %td
+                  = @leverage.interest.leverage_time*@leverage.amount
+                  元
+              %tr
+                %td= Leverage.human_attribute_name('created_at')
+                %td.formattime= @leverage.created_at
+              %tr
+                %td= Leverage.human_attribute_name('date')
+                %td.formattime= @leverage.date
+              %tr
+                %td= Leverage.human_attribute_name('deadline')
+                %td.formattime= @leverage.deadline
+              %tr
+                %td 亏损警告线
+                %td xxxxxx
+              %tr
+                %td 亏损平仓线
+                %td xxxxxx
+              %tr
+                %td 借款利息
+                %td xxxxxx
+              %tr
+                %td 借款月利率
+                %td xxxxxx
+              %tr
+                %td 追加保证金
+                %td xxxxxx
+              %tr
+                %td= Leverage.human_attribute_name('state')
+                %td= @leverage.state
+  .text-center
+    %a.btn-u.btn-u-blue{:href => "javascript:;"} 追加保证金
