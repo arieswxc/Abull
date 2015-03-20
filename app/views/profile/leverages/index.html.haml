@@ -4,7 +4,7 @@
       = render "shares/profile_side_navbar", {activeItem: "leverage"}
       .inline-block.relative.pg-account-detail
         = render "shares/profile"
-        #leverage-invest-show.tag-box.tag-box-v3.mt20.p20
+        #profile-leverage-show.tag-box.tag-box-v3.mt20.p20
           %h2
             配资累计：
             = @leverages.sum(:amount)
@@ -13,9 +13,10 @@
 
 :javascript
   jQuery(document).ready(function() {
-    $("#leverage-invest-show tbody tr").click(function() {
+    $("#profile-leverage-show tbody tr").click(function() {
       $(this).children().css("background","#C8C8C8");
       var leverage_id = this.dataset.index;
       window.location.href = "/users/" + "#{current_user.id}" +"/leverages/" + leverage_id;
     });
+    $("#profile-leverage-show tbody tr").addClass("pointer");
   });
