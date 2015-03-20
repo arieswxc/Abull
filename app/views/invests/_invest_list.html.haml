@@ -39,8 +39,8 @@
 
           %td.formattime= f.fund.collection_deadline
           / %td= f.minimum
-          %td.formattime= f.fund.invest_starting_date
-          %td.formattime= f.fund.invest_ending_date
+          %td{:class => "#{'formattime' unless f.fund.invest_starting_date.blank?}"}= f.fund.invest_starting_date
+          %td{:class => "#{'formattime' unless f.fund.invest_ending_date.blank?}"}= f.fund.invest_ending_date
           %td xxxxxx
           %td
             = f.fund.expected_earning_rate

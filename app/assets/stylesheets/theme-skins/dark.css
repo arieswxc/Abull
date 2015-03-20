@@ -599,7 +599,7 @@ body.dark .contex-bg p.bg-primary {
 }
 
 body.dark .contex-bg p.bg-success {
-	color: #72c02c;
+	color: #e7141a;
 }
 
 /*Address 
@@ -666,7 +666,7 @@ body.dark blockquote.hero:hover {
 
 /*Hero Default Blockquote*/
 body.dark blockquote.hero.hero-default {
-	background: #72c02c;
+	background: #e7141a;
 }
 
 body.dark blockquote.hero.hero-default:hover {
@@ -809,8 +809,8 @@ body.dark i.icon-bg-dark {
 
 /*Icons Color*/
 body.dark i.icon-custom.icon-color-u {
-   color: #72c02c;
-   border: solid 1px #72c02c;
+   color: #e7141a;
+   border: solid 1px #e7141a;
 }
 body.dark i.icon-custom.icon-color-blue {
    color: #3498db;
@@ -924,7 +924,7 @@ body.dark .line-icon-page .item {
 }
 
 body.dark .line-icon-page .item:hover {
-	color: #72c02c;
+	color: #e7141a;
 }
 
 /*Glyphicons
@@ -935,7 +935,7 @@ body.dark .bs-glyphicons li {
 }
 
 body.dark .bs-glyphicons li:hover {
-	color: #72c02c;
+	color: #e7141a;
 	background: #222;
 }
 
@@ -1116,7 +1116,7 @@ body.dark .dropdown-menu > li > a:focus {
 ------------------------------------*/
 /*body.dark .nav > li > a:hover,
 body.dark .nav > li > a:focus {
-	color: #72c02c;
+	color: #e7141a;
 	background: #777;
 }*/
 
@@ -1300,7 +1300,7 @@ body.dark .timeline-v1 .timeline-body h2 a {
 }
 
 body.dark .timeline-v1 .timeline-body h2 a:hover {
-	color: #72c02c;
+	color: #e7141a;
 }
 
 /*Timeline Footer*/
@@ -1310,7 +1310,7 @@ body.dark .timeline-v1 .timeline-footer .likes i {
 }
 
 body.dark .timeline-v1 .timeline-footer .likes:hover i {
-	color: #72c02c;
+	color: #e7141a;
 }
 
 body.dark .timeline-v1 .timeline-footer {
@@ -1578,7 +1578,7 @@ body.dark .ui-datepicker span {
 }
 
 body.dark .ui-datepicker span:hover {
-	color: #72c02c;
+	color: #e7141a;
 }
 
 body.dark .ui-datepicker-inline {
@@ -1605,7 +1605,7 @@ body.dark .ui-datepicker-calendar .ui-state-active {
 }
 
 body.dark .ui-datepicker-calendar .ui-state-active:hover {
-	color: #72c02c;
+	color: #e7141a;
 	border-color: #555;
 }
 
@@ -2069,7 +2069,7 @@ body.dark .s-results .inner-results h3 a {
 }
 
 body.dark .s-results .inner-results h3 a:hover {
-	color: #72c02c;
+	color: #e7141a;
 }
 
 body.dark .s-results .inner-results .btn-default {
@@ -2175,7 +2175,7 @@ body.dark .recent-work a:hover span strong {
 }
 
 body.dark .recent-work a:hover span {
-	border-bottom-color: #72c02c;
+	border-bottom-color: #e7141a;
 }
 
 /*body.dark .bx-wrapper .bx-prev,
@@ -2208,7 +2208,7 @@ body.dark .blog-post-tags ul.blog-tags a {
 body.dark ul.blog-tags a:hover,
 body.dark .blog-post-tags ul.blog-tags a:hover {
 	color: #fff;
-	background: #72c02c;
+	background: #e7141a;
 }
  
 body.dark ul.blog-tags a i {
@@ -2239,7 +2239,7 @@ body.dark .magazine-page h3 a {
 
 body.dark .magazine-page h3:hover, 
 body.dark .magazine-page h3 a:hover {
-	color: #72c02c;
+	color: #e7141a;
 }
 
 /*Blog Twitter

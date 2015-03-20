@@ -19,7 +19,7 @@
 }
 
 .block-grid-v1:hover {
-  border-color: #72c02c;
+  border-color: #e7141a;
 }
 
 .block-grid-v1 img {
@@ -108,7 +108,7 @@
 }
 
 .grid-block-v2 li:hover .grid-block-v2-info {
-  border-color: #72c02c;
+  border-color: #e7141a;
 }
 
 .grid-block-v2-info h3 {
@@ -145,7 +145,7 @@
 }
 
 .news-v1 h3 a:hover {
-  color: #72c02c;
+  color: #e7141a;
 }
 
 .news-v1 p {
@@ -166,7 +166,7 @@
 }
 
 .news-v1 .news-v1-info li a:hover {
-  color: #72c02c;
+  color: #e7141a;
   text-decoration: none;
 }
 
@@ -191,7 +191,7 @@
   bottom: -15px;
   position: absolute;
   margin-left: -25px;
-  background: #72c02c; 
+  background: #e7141a; 
 }
 
 .service-box-v1 ul {
@@ -202,11 +202,11 @@
   margin: 8px 0;
   font-size: 15px;
   padding-top: 8px;
-  border-top: dotted 1px #72c02c;
+  border-top: dotted 1px #e7141a;
 }
 
 .service-box-v1 li:hover {
-  color: #72c02c;
+  color: #e7141a;
 }
 
 .service-box-v1 li:first-child {
@@ -235,7 +235,7 @@
   margin-left: -30px;
   text-align: center;
   position: absolute;
-  background: #72c02c;
+  background: #e7141a;
   display: inline-block;
 }
 
@@ -368,7 +368,7 @@
 
 .team-v1 li:hover > p:before {
   width: 100%;
-  background: #72c02c; 
+  background: #e7141a; 
 }
 
 /*Call To Action v1
@@ -497,7 +497,7 @@
     padding: 16px;
     font-size: 20px;
     text-align: center;
-    background: #72c02c;
+    background: #e7141a;
     display: inline-block;
 }
 
@@ -518,7 +518,7 @@
 }
 
 .portfolio-box small.project-tag a:hover {
-  color: #72c02c;
+  color: #e7141a;
 }
 
 /*Portfolio Box v1
@@ -712,7 +712,7 @@
 }
 
 .portfolio-box-v2 .portfolio-box-v2-in i:hover {
-    background: #72c02c; 
+    background: #e7141a; 
 }
 
 /*Thumbnail v1
@@ -732,7 +732,7 @@
 }
 
 .thumbnails-v1 .read-more {
-  color: #72c02c;
+  color: #e7141a;
   font-size: 12px;
   text-transform: uppercase;
 }
@@ -912,7 +912,7 @@
 }
 
 .flat-bg-block-v1 .checked-list i {
-  color: #72c02c;
+  color: #e7141a;
   margin-right: 5px;
 }
 
