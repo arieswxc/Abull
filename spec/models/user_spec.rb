@@ -59,9 +59,9 @@ RSpec.describe User, type: :model do
 
 
 
-  # nick_name
-  it "is valid without nick_name" do
-    expect(create(:user, nick_name: nil)).to be_valid
+  # username
+  it "is valid without username" do
+    expect(create(:user, username: nil)).to be_valid
   end
 
   # id_card_number

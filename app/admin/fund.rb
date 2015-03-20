@@ -55,7 +55,7 @@ ActiveAdmin.register Fund do
     panel t('操盘手个人信息') do 
       attributes_table_for fund.user do
         row :email
-        row :nick_name
+        row :username
         row :real_name
         row :cell
         row :id_card_number

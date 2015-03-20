@@ -1,6 +1,6 @@
 include ApplicationHelper
 ActiveAdmin.register User do
-  permit_params :email, :password, :password_confirmation, :nick_name, :real_name, :avatar, :cell, :id_card_number, :abstract, :level,
+  permit_params :email, :password, :password_confirmation, :username, :real_name, :avatar, :cell, :id_card_number, :abstract, :level,
                 :birthday, :gender, :education, :address, :job, photos_attributes: [:title, :photo]
  
   index do
@@ -10,7 +10,7 @@ ActiveAdmin.register User do
       image_tag user.avatar.thumb.url
     end
     column :email
-    column :nick_name
+    column :username
     column :real_name
     column :cell
     column :id_card_number
@@ -28,7 +28,7 @@ ActiveAdmin.register User do
   end
 
   # filter :email
-  # filter :nick_name
+  # filter :username
   # filter :real_name
   # filter :cell
   # filter :id_card_number
@@ -41,7 +41,7 @@ ActiveAdmin.register User do
   show do |user|
     attributes_table do
       row :email
-      row :nick_name
+      row :username
       row :real_name
       row :cell
       row :id_card_number
@@ -118,7 +118,7 @@ ActiveAdmin.register User do
     f.inputs "Admin Details" do
       f.input :avatar
       f.input :email
-      f.input :nick_name
+      f.input :username
       f.input :real_name
       f.input :cell
       f.input :id_card_number

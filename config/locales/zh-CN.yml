@@ -24,7 +24,7 @@ zh-CN:
         role: 角色
       user:
         avatar: 头像
-        nick_name: 昵称
+        username: 昵称
         real_name: 真实姓名
         cell: 手机
         id_card_number: 身份证号
