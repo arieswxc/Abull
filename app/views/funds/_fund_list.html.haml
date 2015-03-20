@@ -35,8 +35,8 @@
           元
         %td.formattime= f.collection_deadline
         / %td= f.minimum
-        %td.formattime= f.invest_starting_date
-        %td.formattime= f.invest_ending_date
+        %td{:class => "#{'formattime' unless f.invest_starting_date.blank?}"}= f.invest_starting_date
+        %td{:class => "#{'formattime' unless f.invest_ending_date.blank?}"}= f.invest_ending_date
         - unless @current=="xxx"
           %td
             - if f.state == "gathering"
