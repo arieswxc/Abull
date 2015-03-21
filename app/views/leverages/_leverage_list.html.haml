@@ -23,10 +23,10 @@
         / %td= f.minimum
         %td
           = f.amount
-          元
+          = '元' unless f.amount.blank?
         %td
           = f.interest.leverage_time*f.amount
-          元
+          = '元' unless f.amount.blank?
         %td.formattime= f.created_at
         %td.formattime= f.date
         %td.formattime= f.deadline

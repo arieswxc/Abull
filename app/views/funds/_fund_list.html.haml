@@ -29,10 +29,10 @@
           %td= f.user.email
         %td
           = f.amount
-          元
+          = '元' unless f.amount.blank?
         %th
           = f.minimum
-          元
+          = '元' unless f.minimum.blank?
         %td.formattime= f.collection_deadline
         / %td= f.minimum
         %td{:class => "#{'formattime' unless f.invest_starting_date.blank?}"}= f.invest_starting_date

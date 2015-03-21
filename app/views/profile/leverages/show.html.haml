@@ -14,12 +14,12 @@
                 %td= Leverage.human_attribute_name('amount')
                 %td
                   = @leverage.amount
-                  元
+                  = '元' unless @leverage.amount.blank?
               %tr
                 %td= Interest.human_attribute_name('leverage_time')
                 %td
                   = @leverage.leverage_amount
-                  元
+                  = '元' unless @leverage.leverage_amount.blank?
               %tr
                 %td= Leverage.human_attribute_name('created_at')
                 %td.formattime= @leverage.created_at
