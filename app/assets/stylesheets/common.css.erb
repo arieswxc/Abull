@@ -564,8 +564,13 @@ a.sky-blue-i:hover {
   }
 }
 
-.input.input-file.input-image {
+
+.input-image-wrapper {
   display: table;
+}
+.input.input-file.input-image {
+  display: table-cell;
+  vertical-align: middle;
 }
 .input.input-file.input-image .button {
   height: auto;
@@ -582,12 +587,22 @@ a.sky-blue-i:hover {
 }
 .input.input-file.input-image .button img {
   margin: 0;
+  padding: 0;
 }
 .margin-auto {
   margin: auto;
 }
 .mb10-i{
   margin-bottom: 10px;
+}
+.mw70 {
+  max-width: 70px;
+}
+.mh70 {
+  max-height: 70px;
+}
+.h70 {
+  height: 70px;
 }
 
 .footer-v1 .footer .container .row .col-md-3 {
