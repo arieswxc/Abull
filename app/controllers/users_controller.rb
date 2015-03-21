@@ -49,7 +49,11 @@ class UsersController < ApplicationController
   def save_avatar
     @user = User.find(params[:id])
     @user.avatar = params[:avatar]
-    @user.save 
+    if @user.save 
+      render json: {message: "success"}
+    else
+      render json: {message: "fail"}
+    end
   end
 
   private
