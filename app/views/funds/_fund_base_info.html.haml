@@ -23,7 +23,7 @@
           ：
         %label.mr10
           = @fund.amount
-          元
+          = '元' unless @fund.amount.blank?
       .float-left.mr40
         %span.bold
           = Fund.human_attribute_name('expected_earning_rate')
