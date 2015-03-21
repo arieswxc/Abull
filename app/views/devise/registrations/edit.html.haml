@@ -57,7 +57,7 @@
             #authenticationProfile.tab-pane.fade
               %h3 实名认证
               %hr
-              = simple_nested_form_for(@user,url: applied_user_path(current_user),   |
+              = simple_nested_form_for(@user,url: investor_applied_user_path(current_user),   |
                 html: { class: 'form-horizontal sky-form', id: 'authentication_form',enctype: "multipart/form-data" },                     |
                 wrapper: :horizontal_form,                              |
                 wrapper_mappings: {                                     |
@@ -99,7 +99,7 @@
               %hr
               %h3 发表人审核
               %hr
-              = simple_nested_form_for(@user,url: applied_user_path(current_user),  |
+              = simple_nested_form_for(@user,url: trader_applied_user_path(current_user),  |
                 html: { class: 'form-horizontal sky-form', id: 'trader_authentication_form',enctype: "multipart/form-data" },                   |
                 wrapper: :horizontal_form,                            |
                 wrapper_mappings: {                                   |
