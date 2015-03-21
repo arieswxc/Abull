@@ -58,8 +58,8 @@
         .list-title.loan
           %h3.zdy-red 投资列表
           .border-bottom.w80.border-red
-        %ul#loan-list.ui-list.ui-list-m.ui-list-invest.zdy-bg-gray.table-cell
-          %li#loan-list-header.ui-list-header.fn-clear
+        %ul#loan-list.ui-list.ui-list-m.ui-list-invest.table-cell
+          %li#loan-list-header.ui-list-header.fn-clear.zdy-bg-gray
             %span.ui-list-title.fn-left.color-gray-text.w110 发标人
             %span.ui-list-title.fn-left.color-gray-text.w260 标的代号
             %span.ui-list-title.fn-left.color-gray-text.w90 类型
@@ -79,7 +79,7 @@
                 %span.ui-list-field.fn-left.num.text-right.w160.text-center
                   %em.value>= f.amount
                   元
-                %span.ui-list-field.fn-left.num.text-right.w90.pr30
+                %span.ui-list-field.fn-left.num.text-right.w90.pr30.zdy-red
                   %em.value>= f.expected_earning_rate
                   = "%" if f.expected_earning_rate
                 %span.ui-list-field.fn-left.num.text-center.w130.pr0.ellipsis
@@ -90,12 +90,14 @@
                     %em>= (f.raised_amount/f.amount * 100).floor
                     \%
                 %span.ui-list-field.fn-left.w80
-                  %button.ui-button.ui-button-mid.ui-button-blue.ui-list-invest-button
-                    - if f.state == 'gathering'
+                  - if f.state == 'gathering'
+                    %button.ui-button.ui-button-mid.ui-button-red.ui-list-invest-button
                       募集中
-                    - elsif f.state == 'reached'
+                  - elsif f.state == 'reached'
+                    %button.ui-button.ui-button-mid.ui-button-gray.ui-list-invest-button
                       已投满
-                    - else
+                  - else
+                    %button.ui-button.ui-button-mid.ui-button-gray.ui-list-invest-button
                       = f.state
           %li.ui-list-more
             =link_to "查看更多投资理财项目",funds_path
