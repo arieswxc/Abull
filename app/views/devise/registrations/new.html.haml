@@ -18,7 +18,7 @@
           %span.color-red *
         - if @validatable
           %em
-            (最少#{@minimum_password_length}个字符)
+            (最少#{@minimum_password_length}个字符,最少包含一个数字和一个字母)
         %br/
         = f.password_field(:password, autocomplete: "off", |
           class: "form-control margin-bottom-20",pattern: "(?=^.{8,}$).*$",title:"Three letter country code")
