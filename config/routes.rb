@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       resources :leverages,         only: [:index, :show]
       resources :following_topics,  only: [:index, :show]
     end
+    post  :save_avatar,       on: :member
     get   :investor_apply,    on: :member
     get   :trader_apply,      on: :member
     patch :investor_applied,  on: :member
