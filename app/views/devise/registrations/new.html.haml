@@ -6,7 +6,7 @@
         .reg-header
           %h2 注册
           %p
-            已经注册 ? #{link_to("立即登录",new_user_session_path,rel: "nofollow", class: "color-green")}。
+            已经注册 ? #{link_to("立即登录",new_user_session_path,rel: "nofollow", class: "color-blue")}。
         = devise_error_messages!
         %label
           手机号码
@@ -33,7 +33,7 @@
             %label
               %input#check{:type => "checkbox"}/
               已阅读
-              %a.color-green{:href => "page_terms.html"} 条款
+              %a.color-blue{:href => "page_terms.html"} 条款
           .col-lg-6.text-right
             %button.btn-u#submit{:name => "commit", :type => "button", :value => "Sign up"} 注册
             %input#subbtn{:type=>"submit",:style=>"display:none;"}

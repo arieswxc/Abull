@@ -121,7 +121,12 @@
       = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
       = f.input :state, as: :hidden, input_html: { value: 'applied' }
       .row.mt40.mb20.text-center
-        = f.submit class: "btn-u btn-u-blue"
+        .mb10
+          %input#check{:type => "checkbox"}/
+          我已阅读并同意
+          %a.color-blue.sky-blue-i{:href => "page_terms.html"} 条款
+        = f.submit class: "hide",id: 'subbtn'
+        %button.btn-u.btn-u-red#submit{:name => "commit", :type => "button"} 配资
 :javascript
   $(function() {
     $(".leverage-interest-item").click(function() {
@@ -188,6 +193,12 @@
           console.log("系统繁忙，请稍后再试");
         }
       });
-    }
-
+    };
+    $('#submit').bind('click',function(){
+      if($(this).closest('form').find('#check').attr('checked')){
+        $('#subbtn').click();
+      }else{
+        alert('请您先阅读并勾选确认条款');
+      }
+    });
   });
