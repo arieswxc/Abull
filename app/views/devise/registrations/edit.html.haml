@@ -15,8 +15,12 @@
                 = devise_error_messages!
                 .row
                   .ml40.col-md-2.text-center
-                    %img.img-thumbnail.img-rounded.w70{:src => asset_path("testimonials/img1.jpg")}/
-                    .mb40 上传头像
+                    .row
+                      .input.input-file.input-image.margin-auto.pointer.mb10-i
+                        .button
+                          %input#selectAvatar.pointer{:type =>"file", :multiple => "", :accept => "image/*"}
+                          %img.img-thumbnail.img-rounded.w70{:src => ""}/
+                      .mb40 上传头像
                   .row
                     .col-md-8
                       .border-all.mt10
@@ -90,7 +94,7 @@
                     .col-sm-9
                       %label.input.input-file
                         .button
-                          %input{:type =>"file", :name =>"user[photos_attributes][#{photo_form.index}][photo]", :multiple => "", :onchange => "this.parentNode.nextElementSibling.value = this.value"} 浏览
+                          %input{:type =>"file", :name =>"user[photos_attributes][#{photo_form.index}][photo]", :multiple => "", :onchange => "this.parentNode.nextElementSibling.value = this.value", :accept => "image/*"} 浏览
                         %input{:type => "text", :readonly => ""}
                   .text-center
                     = image_tag current_user.photos[photo_form.index].photo.url,class: "img-thumbnail img-rounded #{'w300' if !current_user.photos[photo_form.index].photo.blank?}"
@@ -122,4 +126,35 @@
     if (ptn.test(window.location.href)) {
       $("#pg-account-index .tab-v1 ul.nav.nav-tabs li:nth-child(2) a").tab('show');
     }
+
+    $("#selectAvatar").on('change',function(){
+      var _self = this;
+      if (_self.files.length == 0) return;
+      var data = new FormData();
+      data.append('avatar', _self.files[0]);
+      $.ajax({
+        data:data,
+        url: "/users/#{current_user.id}/save_avatar",
+        type: 'post',
+        contentType: false,
+        processData: false,
+        success: function () {
+          var reader = new FileReader();
+          reader.onload = function(event) {
+              var dataUri = event.target.result,
+                    img  = _self.nextElementSibling;
+              img.src = dataUri;
+          };
+
+          reader.onerror = function(event) {
+              console.error("File could not be read! Code " + event.target.error.code);
+          };
+
+          reader.readAsDataURL(_self.files[0]);
+        },
+        error: function () {
+
+        }
+      });
+    });
   });

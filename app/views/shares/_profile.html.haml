@@ -26,10 +26,10 @@
                 :href => "#{edit_user_registration_path+'/#authencation' if current_user.address.blank?}"} 住址
               %a.btn-u.btn-u-xs{:class => "#{'btn-u-default direct_to_tab2' if current_user.education.blank?}" "#{'btn-u-yellow' if !current_user.education.blank?}",
                 :href => "#{edit_user_registration_path+'/#authencation' if current_user.education.blank?}"} 学历
-      .fn-left.last.border-left.pl10
+      .fn-left.last.border-left.pl10.w500
         .surplus.fn-clear
           %span.fn-left.text-l.mr10 账户余额
-          %span.fn-left.num-xl.color-orange-text
+          %span.fn-left.num-xl.color-orange-text.mr5.w250
             %em> 0.00
             元
           %a.fn-left.ui-button.ui-button-blue.ui-button-mid.mr4{:href => "/account/capital!recharge.action"} 充值
