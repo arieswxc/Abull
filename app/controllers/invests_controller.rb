@@ -19,7 +19,6 @@ class InvestsController < ApplicationController
     @fund   = Fund.find(params[:fund_id])
     @invest = @fund.invests.build(invest_params)
     @invests = @fund.invests
-
     if @fund.state == "gathering" && (@fund.raised_amount + params[:invest][:amount].to_i <= @fund.amount) && session[:private_check] == 'true' && @invest.save
       current_user.follow(@fund.user)
       @invest.update(user_id: current_user.id)
