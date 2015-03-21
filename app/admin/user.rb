@@ -1,7 +1,7 @@
 include ApplicationHelper
 ActiveAdmin.register User do
   permit_params :email, :password, :password_confirmation, :username, :real_name, :avatar, :cell, :id_card_number, :abstract, :level,
-                :birthday, :gender, :education, :address, :job, photos_attributes: [:title, :photo]
+                :account, :birthday, :gender, :education, :address, :job, photos_attributes: [:title, :photo]
  
   index do
     selectable_column
@@ -44,6 +44,7 @@ ActiveAdmin.register User do
       row :username
       row :real_name
       row :cell
+      row :account
       row :id_card_number
       row :abstract
       row :level
