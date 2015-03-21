@@ -48,19 +48,47 @@
                 %td= Leverage.human_attribute_name('state')
                 %td= @leverage.state
   .text-center
-    %button.btn-u.btn-u-blue.add-bond{'data-toggle' => "modal",'data-target' => "#addBond",:type => "button"} 追加保证金
+    %button.btn-u.btn-u-red.add-bond{'data-toggle' => "modal",'data-target' => "#addBond",:type => "button"} 追加保证金
+    %button.btn-u.btn-u-red.pre-get{'data-toggle' => "modal",'data-target' => "#preGet",:type => "button"} 盈利提出
+    %button.btn-u.btn-u-red.pre-wind-up 提前清盘
 
     #addBond.modal.fade{:tabindex => "-1", :role => "dialog", 'aria-labelledby' => "myModalLabel", 'aria-hidden' => "true"}
       .modal-dialog
         .modal-content
           .modal-header
             %button.close{'aria-hidden' => "true", 'data-dismiss' => "modal", :type => "button"} x
-            #myModalLabel.modal-title 'Modal Heading'
+            #myModalLabel.modal-title 追加保证金
           .modal-body
+            %label 请您输入追加保证金的数额
+            .input-group
+              %input.numberic.text-center{:maxlength => 7}
+              %span.input-group-addon  元
           .modal-footer
-            %button.btn-u.btn-u-default{'data-dismiss' => "modal",:type => "button"}  Close
-            %button.btn-u.btn-u-blue{:type => "button"} Save changes
+            %button.btn-u.btn-u-default{'data-dismiss' => "modal",:type => "button"} 取消
+            %button.btn-u.btn-u-blue{:type => "button"} 确定
+    #preGet.modal.fade{:tabindex => "-1", :role => "dialog", 'aria-labelledby' => "myModalLabel", 'aria-hidden' => "true"}
+      .modal-dialog
+        .modal-content
+          .modal-header
+            %button.close{'aria-hidden' => "true", 'data-dismiss' => "modal", :type => "button"} x
+            #myModalLabel.modal-title 盈利提出
+          .modal-body
+            %label 请您输入盈利提出的数额
+            .input-group
+              %input.numberic.text-center{:maxlength => 7}
+              %span.input-group-addon  元
+          .modal-footer
+            %button.btn-u.btn-u-default{'data-dismiss' => "modal",:type => "button"} 取消
+            %button.btn-u.btn-u-blue{:type => "button"} 确定
 
 :javascript
   $(function(){
+    $(".pre-wind-up").click(function(){
+      var pre_wind_up = window.confirm("是否提前清盘");
+      if (pre_wind_up==true){
+          
+      }else {
+
+      }
+    });
   });

@@ -26,7 +26,7 @@
             - (1..5).each do |index|
               .col-md-4{:class => "#{'ml70' if index == 4}"}
                 .service-block.rounded-2x.service-block-default.leverage-interest-item.relative{:class => "#{'active' if 5==index}"}
-                  %input{:type => "radio",:name => "leverage[leverage_time]",:value => "#{index}",:checked => "#{'checked' if 5==index}",:class => "leverage_time"}
+                  %input{:type => "radio",:name => "leverage_time",:value => "#{index}",:checked => "#{'checked' if 5==index}",:class => "leverage_time"}
                   %h3{:id => "leverage_time_#{index}"} 0元
                   %span
                     x
@@ -157,7 +157,7 @@
     //ajax
     function getOrderMonthRate() {
       var amount = parseInt($("#leverage_amount").val());
-      var leverage_time = $("input[name='leverage[leverage_time]']:checked").val();
+      var leverage_time = $("input[name='leverage_time']:checked").val();
       var duration = $("select[name='leverage[duration]']  option:selected").val();
       var postdata = {
         "amount": amount,
