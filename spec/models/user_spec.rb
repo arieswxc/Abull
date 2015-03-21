@@ -48,8 +48,8 @@ RSpec.describe User, type: :model do
   end
 
   # cell
-  it "is valid without cell" do
-    expect(create(:user, cell: nil)).to be_valid
+  it "is invalid without cell" do
+    expect(build(:user, cell: nil)).to be_invalid
   end
 
   # real_name
