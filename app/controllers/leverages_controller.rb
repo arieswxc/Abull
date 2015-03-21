@@ -1,6 +1,6 @@
 class LeveragesController < ApplicationController
   before_action :authenticate_user!, only: [:new,:edit]
-  after_action :save_interest, only: [:create]
+  # after_action :save_interest, only: [:create]
   def show
     @leverage   = Leverage.find(params[:id])
     @user       = @leverage.user
@@ -18,6 +18,7 @@ class LeveragesController < ApplicationController
     @leverage = current_user.leverages.build(leverage_params)
     @leverage.interest_id = Interest.query(params[:leverage][:amount], params[:leverage_time], params[:leverage][:duration]).id
     if @leverage.save
+      @leverage.save_interest
       redirect_to @leverage
     else
       render :new
@@ -55,25 +56,5 @@ class LeveragesController < ApplicationController
     def leverage_params
       params.require(:leverage).permit(:user_id, :amount, :description, :duration, :state)
     end
-
-    def save_interest
-      leverage = current_user.leverages.last
-      interest = leverage.interest
-      leverage.duration = interest.duration
-      leverage.rate = interest.interest_rate
-      leverage.leverage_amount = leverage.amount * interest.leverage_time
-      leverage.total_interests = leverage.leverage_amount * leverage.duration * leverage.rate / 100
-      leverage.save
-    end 
-
-    # def calculate(amount, leverage_time, duration)
-    #   interest = Interest.query(amount, leverage_time, duration)
-    #   rate = interest.interest_rate
-    #   total_amount = amount.to_f * (leverage_time.to_f + 1)
-    #   loss_warning_line = (total_amount * 0.9).to_i
-    #   loss_making_line = (total_amount * 0.87).to_i
-    #   total_interests = total_amount * leverage_time.to_f * rate / 100
-    #   array = [ rate, total_amount, loss_warning_line, loss_making_line, total_interests
-    # end
-
+    
 end

@@ -28,6 +28,15 @@ class Leverage < ActiveRecord::Base
     self.date.advance(months: self.duration, days: -1) if date
   end
 
+  def save_interest
+    interest = self.interest
+    self.duration = interest.duration
+    self.rate = interest.interest_rate
+    self.leverage_amount = self.amount * interest.leverage_time
+    self.total_interests = self.leverage_amount * self.duration * self.rate / 100
+    self.save
+  end
+
 
   private
     def valid_deadline
