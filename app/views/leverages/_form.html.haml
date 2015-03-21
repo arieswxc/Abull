@@ -21,7 +21,7 @@
                 :id => "leverage_amount", :maxlength => 7}
               %span.input-group-addon  元
           .mt20
-          .row.mt20
+          .row.mt20.leverage_amount
             %h3= Interest.human_attribute_name('leverage_time')
             - (1..5).each do |index|
               .col-md-4{:class => "#{'ml70' if index == 4}"}
