@@ -32,11 +32,14 @@
                 %em> 0.00
                 元
         .box.mt20.p20
-          %h3 投标记录图
+          %h3 投标记录
+          = render "invests/invest_list", ojbect: @current="xxx"
         .box.mt20.p20
-          %h3 发标记录图
+          %h3 发标记录
+          = render "funds/fund_list", ojbect: @current="xxx"
         .box.mt20.p20
-          %h3 配资记录图
+          %h3 配资记录
+          = render "leverages/leverage_list"
         .box.mt20.p20
           %h3 理财推荐
           / U计划A
