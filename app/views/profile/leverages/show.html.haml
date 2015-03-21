@@ -61,7 +61,7 @@
           .modal-body
             %label 请您输入追加保证金的数额
             .input-group
-              %input.numberic.text-center{:maxlength => 7}
+              %input.form-control.numberic.text-center{:maxlength => 7}
               %span.input-group-addon  元
           .modal-footer
             %button.btn-u.btn-u-default{'data-dismiss' => "modal",:type => "button"} 取消
@@ -75,7 +75,7 @@
           .modal-body
             %label 请您输入盈利提出的数额
             .input-group
-              %input.numberic.text-center{:maxlength => 7}
+              %input.form-control.numberic.text-center{:maxlength => 7}
               %span.input-group-addon  元
           .modal-footer
             %button.btn-u.btn-u-default{'data-dismiss' => "modal",:type => "button"} 取消
@@ -86,7 +86,7 @@
     $(".pre-wind-up").click(function(){
       var pre_wind_up = window.confirm("是否提前清盘");
       if (pre_wind_up==true){
-          
+
       }else {
 
       }
