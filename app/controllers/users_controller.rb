@@ -7,16 +7,29 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def applied
+  def investor_applied
     @user = User.find(params[:id])
     respond_to do |format|
       if @user.update(user_params)
-        @user.investor_apply if @user.level == "unverified" || @user.level == "investor_applied"
-        @user.trader_apply if @user.level == "investor" || @user.level == "trader_applied"
+        @user.investor_apply
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
-        format.html { render :edit_real_name }
+        format.html { render :investor_apply }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  def trader_applied
+    @user = User.find(params[:id])
+    respond_to do |format|
+      if @user.update(user_params)
+        @user.trader_apply
+        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.json { render :show, status: :ok, location: @user }
+      else
+        format.html { render :trader_apply }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
@@ -35,7 +48,7 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(
         :real_name, :id_card_number, :email, :password, :username, 
-        :birthday, :gender, :education, :address, :job,
+        :birthday, :gender, :education, :address, :job, :cell,
         photos_attributes: [:id, :title, :photo, :destroy])
     end
 end

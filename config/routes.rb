@@ -13,8 +13,9 @@ Rails.application.routes.draw do
       resources :following_topics,  only: [:index, :show]
     end
     get   :investor_apply,    on: :member
-    get   :trader_apply,    on: :member
-    patch :applied,  on: :member
+    get   :trader_apply,      on: :member
+    patch :investor_applied,  on: :member
+    patch :trader_applied,    on: :member
   end
 
   resources :funds do

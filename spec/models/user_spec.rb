@@ -25,8 +25,6 @@ RSpec.describe User, type: :model do
   end
 
   # password
-
-  #TODO password should be send with salt and hashed. Can the backend get the raw password?
   it "is invalid if password too short: invalid" do
     expect(build(:user, password: "111111")).to be_invalid
   end
@@ -38,7 +36,6 @@ RSpec.describe User, type: :model do
   end
 
   it "should contian both characters and numbers" do
-    #TODO pls check the case first
     user = build(:user, password:"1234abcd")
     expect(user).to be_valid
     user = build(:user, password:"123456789")
@@ -48,16 +45,24 @@ RSpec.describe User, type: :model do
   end
 
   # cell
-  it "is valid without cell" do
-    expect(create(:user, cell: nil)).to be_valid
+  it "is invalid without cell" do
+    user = build(:user, cell: nil)
+    user.valid?
+    expect(user).to be_invalid
+    expect(user.errors[:cell]).to include(I18n.t("errors.messages.blank"))
+  end
+
+  it "is invalid when cell is taken" do
+    user = create(:user)
+    duplicate_cell_user = build(:user, cell: user.cell)
+    duplicate_cell_user.valid?
+    expect(duplicate_cell_user.errors[:cell]).to include(I18n.t('errors.messages.taken'))
   end
 
   # real_name
   it "is valid without real_name" do
     expect(create(:user, real_name: nil)).to be_valid
   end
-
-
 
   # username
   it "is valid without username" do

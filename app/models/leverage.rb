@@ -3,6 +3,7 @@ class Leverage < ActiveRecord::Base
   validates :amount,        presence: true
   validates :amount,        numericality: true
   validates :duration,      presence: true
+  validates :date,          presence: true
   validate  :valid_deadline
   validates :state,         presence: true
   validates :state,         inclusion: { in: ["applied", "confirmed", "denied", "closed"] }

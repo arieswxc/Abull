@@ -79,7 +79,6 @@
     background-color: #e7141a !important;
 } 
 
-}
 /* Devices (Large Screen Mode, 1200px more) */
 @media (min-width: 1200px) {
 	
@@ -88,12 +87,12 @@
 /* Devices (Desktop Mode, 992px and 1200px) */
 @media (min-width: 992px) and (max-width: 1200px) {	
 
-.pricing-table-v6 .service-block {
-    margin-bottom: 20px;
-    padding: 20px 15px;
-    text-align: center;
+  .pricing-table-v6 .service-block {
+      margin-bottom: 20px;
+      padding: 20px 15px;
+      text-align: center;
+  }
 }
-
 /* Devices (Tablet Mode, 768px and 991px) */
 @media (min-width: 767px) and (max-width: 991px) {
 

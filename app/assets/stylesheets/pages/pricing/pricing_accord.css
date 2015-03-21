@@ -278,7 +278,7 @@ color: red;
 
 }
 .pricing-accord .btn-group  {
-	text-align: center !important!;
+	text-align: center !important;
 	margin: auto !important;
 }
 .testimonials {
@@ -376,5 +376,6 @@ h2 {
 	    padding-left: 5px;
 	    padding-right: 5px;
 	    width: 80px;
+	}
 		/*End Pricing Page*/
 }

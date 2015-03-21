@@ -2,8 +2,10 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,:authentication_keys => [:cell]
   validates :password, format: { with: /(?=.*[a-z])(?=.*\d)/i}, :on => :create
+  validates :cell, presence: true
+  validates :cell, uniqueness: true
   mount_uploader :avatar, AvatarUploader
   has_many :funds
   has_many :invests
@@ -48,6 +50,10 @@ class User < ActiveRecord::Base
     event :down_to_un do
       transition :investor => :unverified
     end 
+  end
+
+  def email_required?
+    false
   end
 
   #虚拟属性
