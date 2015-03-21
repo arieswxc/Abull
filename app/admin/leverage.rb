@@ -1,5 +1,6 @@
 ActiveAdmin.register Leverage do
-  permit_params :user_id, :date, :amount, :description, :duration, :state, :created_at, :updated_at, :interest_id
+  permit_params :user_id, :date, :amount, :description, :duration, :state, :created_at, :updated_at, :interest_id,
+                :rate, :total_interests, :leverage_amount
 
   index do
     selectable_column
@@ -26,6 +27,9 @@ ActiveAdmin.register Leverage do
       row :date
       row :amount
       row :duration
+      row :rate
+      row :total_interests
+      row :leverage_amount
       row :state
       row('同意')  do 
           link_to t('Agree'), agree_leverage_admin_leverage_path(leverage), :method => :put, :class => 'button' 
