@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150320135856) do
+ActiveRecord::Schema.define(version: 20150323010837) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -56,6 +56,19 @@ ActiveRecord::Schema.define(version: 20150320135856) do
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "billings", force: :cascade do |t|
+    t.integer  "account_id",    limit: 4
+    t.decimal  "amount",                    precision: 12, scale: 2, default: 0.0
+    t.string   "billing_type",  limit: 255
+    t.integer  "billable_id",   limit: 4
+    t.string   "billable_type", limit: 255
+    t.datetime "created_at",                                                       null: false
+    t.datetime "updated_at",                                                       null: false
+  end
+
+  add_index "billings", ["account_id"], name: "index_billings_on_account_id", using: :btree
+  add_index "billings", ["billable_type", "billable_id"], name: "index_billings_on_billable_type_and_billable_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.string   "title",            limit: 50,    default: ""
@@ -224,10 +237,10 @@ ActiveRecord::Schema.define(version: 20150320135856) do
     t.string   "job",                    limit: 255
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "accounts", "users"
+  add_foreign_key "billings", "accounts"
   add_foreign_key "funds", "users"
   add_foreign_key "homs_accounts", "funds"
   add_foreign_key "invests", "funds"

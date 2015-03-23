@@ -1,6 +1,6 @@
 class Fund < ActiveRecord::Base
   # validates :name,                presence: true
-  validates :user_id,             presence: true
+  # validates :user_id,             presence: true
   validates :amount,              presence: true
   validates :amount,              numericality: true
   validates :ending_days,         numericality: true
@@ -74,7 +74,7 @@ class Fund < ActiveRecord::Base
 
   #类方法
   def self.search_by_conditions(duration, amount, deadline)
-    duration = 0 if duration.blank? 
+    duration = 0 if duration.blank?
     deadline = deadline.blank? ? Time.zone.parse('2100-01-01') : Time.zone.parse(deadline)
     amount = 0 if amount.blank?
     ending_days = ((deadline.to_i - Time.zone.now.to_i) / 86400).to_i

@@ -1,5 +1,5 @@
 class FundsController < ApplicationController
-  before_action :authenticate_user!, only: [:new,:edit]
+  before_action :authenticate_user!, only: [:create,:edit]
   # before_action :check_fund_user, only: [:new, :create]
   after_action :generate_private_code, only: [:create]
   def index
@@ -17,12 +17,14 @@ class FundsController < ApplicationController
   end
 
   def new
-    @fund = current_user.funds.build()
+    @fund = Fund.new
   end
 
   def create
     @fund = current_user.funds.build(fund_params)
     if @fund.save
+      @user = current_user
+      UserMailer.welcome_email(@user).deliver_now
       redirect_to @fund
     else
       render 'new'

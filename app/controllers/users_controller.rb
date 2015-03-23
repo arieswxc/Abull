@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  after_action :send_email, only: [:create]
+
   def investor_apply
     @user = User.find(params[:id])
   end
@@ -44,6 +46,16 @@ class UsersController < ApplicationController
     @recommend_funds  = Fund.where(user_id: @user.following_users.ids)
   end
 
+  def save_avatar
+    @user = User.find(params[:id])
+    @user.avatar = params[:avatar]
+    if @user.save 
+      render json: {message: "success"}
+    else
+      render json: {message: "fail"}
+    end
+  end
+
   private
     def user_params
       params.require(:user).permit(
@@ -51,4 +63,10 @@ class UsersController < ApplicationController
         :birthday, :gender, :education, :address, :job, :cell,
         photos_attributes: [:id, :title, :photo, :destroy])
     end
+
+    def send_email
+      @user = current_user
+      UserMailer.welcome_email(@user).deliver_now
+    end
+
 end

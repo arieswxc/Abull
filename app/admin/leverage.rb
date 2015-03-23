@@ -60,7 +60,9 @@ ActiveAdmin.register Leverage do
 
   member_action :agree_leverage, :method => :put do
     leverage = Leverage.find(params[:id])
-    if leverage.state == 'applied' 
+    if leverage.state == 'applied'
+      user = resource.user
+      UserMailer.welcome_email(user).deliver_now 
       leverage.confirm
     elsif leverage.state == 'confirmed'
       leverage.close
