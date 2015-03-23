@@ -14,15 +14,15 @@
             %i.fa.fa-lock
           = f.password_field :password, autocomplete: "off", placeholder: "密码", class: "form-control"
         .row
-          .col-md-6.checkbox
+          .col-md-6.checkbox.margin-bottom-20
             - if devise_mapping.rememberable?
               %label
                 %input{:type => "checkbox"}>/
                 记住我
-          .col-md-6
-            %button.btn-u.pull-right{:type => "submit"} 登录
-        %hr/
-        %h4 忘记密码 ?
+          .col-md-12
+            %button.btn-u.pull-right.col-sm-12{:type => "submit"} 登录
         %p
-          %a.color-blue{:href => "#"} 点击这里
-          重置密码
+          %a.color-blue{:href => "#"} 
+            %span
+              忘记密码?
+        
