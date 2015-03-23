@@ -1,57 +1,40 @@
 require 'net/http'
 
 class SMSGateway
-  SMS_GATEWAY_URL = "http://222.73.117.158/msg/HttpSendSM"
-  SMS_GATEWAY_USERNAME = "jiekou-cs-01"
-  SMS_GATEWAY_PASSWORD = "Tch14725"
-  SMS_GATEWAY_ENABLED = Rails.env.development?
-
+  SMS_GATEWAY_URL = 'http://222.73.117.158/msg/HttpSendSM'
+  SMS_GATEWAY_USERNAME = 'jiekou-cs-01'
+  SMS_GATEWAY_PASSWORD = 'Tch147259'
+  # SMS_GATEWAY_ENABLED = Rails.env.development?
+  
   def self.send(phone, message)
-    unless SMS_GATEWAY_ENABLED
-      puts "Send SMS to #{phone}: #{message}"
-      return true
-    end
-    
-    params = {
-      command: "MT_REQUEST",
-      spid: SMS_GATEWAY_USERNAME,
-      sppassword: SMS_GATEWAY_PASSWORD,
-      da: "86#{phone}",
-      dc: encoding,
-      sm: encode(message)
-    }
-    url = "#{SMS_GATEWAY_URL}?#{params.to_param}"
-
-    post(url)
+    # unless SMS_GATEWAY_ENABLED
+    #   puts "Send SMS to #{phone}: #{message}"
+    #   return true
+    # end   
+    post(phone, message)
   end
 
-  def self.render_then_send(phone, name, params = {})
-    message = render(name, params).strip
+  def self.render_then_send(phone, name)
+    message = render(name).strip
     send(phone, message)
   end
 
   protected
 
-  def self.render(name, params = {})
+  def self.render(name)
     view = ActionView::Base.new(ActionController::Base.view_paths, {})
-    view.render(file: "sms/#{name}", locals: params)
+    view.render(file: "sms/#{name}")
   end
 
-  def self.post(url)
+  def self.post(cell, msg)
     begin
-      uri = URI(url)
-      res = Net::HTTP.get(uri)
-      return CGI.parse(res)['mterrcode'][0] == "000"
-    rescue
-      return false
-    end
+      uri       = URI.parse(SMS_GATEWAY_URL)
+      res = Net::HTTP.post_form(uri, account: SMS_GATEWAY_USERNAME, pswd: SMS_GATEWAY_PASSWORD, mobile: cell, msg: msg, needstatus: true)
+      batch_code  = res.body.split[1]
+      return !batch_code.nil?
+      rescue
+        return false
+      end
   end
 
-  def self.encoding
-    "8"
-  end
-
-  def self.encode(message)
-    message.encode("UTF-16BE").bytes.to_a.map { |i| "%02x" % i }.join
-  end
 end
