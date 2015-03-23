@@ -7,7 +7,7 @@
         %th= Fund.human_attribute_name('name')
         %th= Fund.human_attribute_name('user')
         / %th 发标人
-        %th= Fund.human_attribute_name('minimum')
+        -# %th= Fund.human_attribute_name('minimum')
         %th= Fund.human_attribute_name('amount')
 
         %th= Fund.human_attribute_name('collection_deadline')
@@ -24,34 +24,35 @@
   -# todo, 处理 private_check
   %tbody
     - @invests.each do |f|
-      %tr{'data-index' => f.id}
-        - unless @current=="xxx"
-          %th= f.user.email
-        - else
-          %td= f.fund.name
-          %td= f.fund.user.email
-          %td
-            = f.fund.minimum
-            = '元' unless f.fund.minimum.blank?
-          %td
-            = f.fund.amount
-            = '元' unless f.fund.amount.blank?
+      - if f.user
+        %tr{'data-index' => f.id}
+          - unless @current=="xxx"
+            %th= "#{f.user.email}"
+          - else
+            %td= f.fund.name
+            %td= f.fund.user.email
+            -# %td
+            -#   = f.fund.minimum
+            -#   = '元' unless f.fund.minimum.blank?
+            %td
+              = f.fund.amount
+              = '元' unless f.fund.amount.blank?
 
-          %td.formattime= f.fund.collection_deadline
-          / %td= f.minimum
-          %td{:class => "#{'formattime' unless f.fund.invest_starting_date.blank?}"}= f.fund.invest_starting_date
-          %td{:class => "#{'formattime' unless f.fund.invest_ending_date.blank?}"}= f.fund.invest_ending_date
-          %td xxxxxx
+            %td.formattime= f.fund.collection_deadline
+            / %td= f.minimum
+            %td{:class => "#{'formattime' unless f.fund.invest_starting_date.blank?}"}= f.fund.invest_starting_date
+            %td{:class => "#{'formattime' unless f.fund.invest_ending_date.blank?}"}= f.fund.invest_ending_date
+            %td xxxxxx
+            %td
+              = f.fund.expected_earning_rate
+              = '%' if !f.fund.expected_earning_rate.blank?
+            %td
+              = f.fund.earning_rate
+              = '%' if !f.fund.earning_rate.blank?
+            %td= f.fund.state
           %td
-            = f.fund.expected_earning_rate
-            = '%' if !f.fund.expected_earning_rate.blank?
-          %td
-            = f.fund.earning_rate
-            = '%' if !f.fund.earning_rate.blank?
-          %td= f.fund.state
-        %td
-          = f.amount
-          = '元' unless f.amount.blank?
-        - if @current=="xxx"
-          %td
-            %a{:href => "javascript:;"} 委托操盘合同
+            = f.amount
+            = '元' unless f.amount.blank?
+          - if @current=="xxx"
+            %td
+              %a{:href => "javascript:;"} 委托操盘合同

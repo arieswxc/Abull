@@ -1,7 +1,25 @@
 .grid_2
+  .row.sky-form.text-center
+    .input-image-wrapper.h90.w90.margin-auto.mb10-i
+      .input.input-file.input-image.pointer
+        .button.circle
+          %input#selectAvatar.pointer{:type =>"file", :multiple => "", :accept => "image/*"}
+          %img.img-thumbnail.img-rounded.mw90.mh90{:src => "#{current_user.avatar.url}"}/
+    %label.user_name
+      hi,
+      - if current_user.real_name
+        = current_user.real_name
+      - elsif current_user.username
+        = current_user.username
+      - else
+        = current_user.cell
+    .mb30.bg-gray.input-image-wrapper.width-all
+      .input.input-file.input-image.pointer
+        .button
+          %input#selectAvatarBtn{:type =>"file", :multiple => "", :accept => "image/*"} 更换头像
   #sidebar.ui-side.ui-side-withicon
     %ul.ui-side-list.nav.nav-list.bs-docs-sidenav
-      %li{:class => "ui-side-item #{'active' if activeItem=='user'}"}
+      %li{:class => "ui-side-item first #{'active' if activeItem=='user'}"}
         = link_to(current_user,class: "ui-side-item-link pt0") do
           %i.glyphicon.glyphicon-home.index.mr10.ml10>
           我的证金所
@@ -25,18 +43,15 @@
         = link_to(user_following_topics_path(current_user),class: "ui-side-item-link pt0") do
           %i.glyphicon.glyphicon-usd.index.mr10.ml10>
           我的关注
-      %li{:class => "ui-side-item #{'active' if activeItem=='useredit'}"}
+      %li{:class => "ui-side-item last #{'active' if activeItem=='useredit'}"}
         = link_to(edit_user_registration_path,class: "ui-side-item-link pt0") do
           %i.glyphicon.glyphicon-cog.index.mr10.ml10>
           账号管理
-    .ui-side-img.mt20
-      %a{:style => "display: block; width:140px;overflow:hidden;"}
-        %img{:alt => "账单", :height => "0", :src => "/upload/cms/advertising/accountIndexRight/2f529bde-554f-4f7b-afbe-2240c5fd573b.jpg?20140401a", :style => "width: 140px; display: none !important; visibility: hidden !important; opacity: 0 !important; background-position: 1px 1px;", :width => "0"}/
-  :javascript
-    // $(".ui-side-list > li > a").click(function() {
-    //   $(this).parent().children().each(function() {
-    //     if ($(this).hasClass("ui-side-sub-list")) {
-    //       $(this).toggle();
-    //     }
-    //   })
-    // });
+:javascript
+  // $(".ui-side-list > li > a").click(function() {
+  //   $(this).parent().children().each(function() {
+  //     if ($(this).hasClass("ui-side-sub-list")) {
+  //       $(this).toggle();
+  //     }
+  //   })
+  // });

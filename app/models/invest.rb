@@ -1,5 +1,5 @@
 class Invest < ActiveRecord::Base
-  validates :user_id, presence: true
+  # validates :user_id, presence: true
   validates :fund_id, presence: true
   validates :date,    presence: true
   validates :amount,  presence: true

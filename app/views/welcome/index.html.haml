@@ -11,45 +11,45 @@
           / END SLIDE
       .tp-bannertimer.tp-bottom
   / === End Slider ===
-  .int-box
-    .container
-      .int-wrapper
-        %div{"ng-show" => "!isAuthenticated()"}
-          %h6.int-title 证金所历史年化收益率
-          %p
-            %small 平均
-            %span.big-int 14.07%
-          %p
-            %em.multi> 40
-            倍活期存款收益
-            %em> 3
-            倍货币基金收益
-          - unless user_signed_in?
-            = link_to("立即注册",new_user_registration_path,class: "btn btn-block btn-secondary",rel: "nofollow")
-            %p.text-right
-              已有账号？#{link_to("立即登录",new_user_session_path,rel: "nofollow")}
+  -# .int-box
+  -#   .container
+  -#     .int-wrapper
+  -#       %div{"ng-show" => "!isAuthenticated()"}
+  -#         %h6.int-title 证金所历史年化收益率
+  -#         %p
+  -#           %small 平均
+  -#           %span.big-int 14.07%
+  -#         %p
+  -#           %em.multi> 40
+  -#           倍活期存款收益
+  -#           %em> 3
+  -#           倍货币基金收益
+  -#         - unless user_signed_in?
+  -#           = link_to("立即注册",new_user_registration_path,class: "btn btn-block btn-secondary",rel: "nofollow")
+  -#           %p.text-right
+  -#             已有账号？#{link_to("立即登录",new_user_session_path,rel: "nofollow")}
   / 安全  收益 保障
   .container.content
     / Begin Service Block
     .row.margin-bottom-40
-      .col-md-4.col-sm-6
-        .service-block.service-block-sea.service-or.home-aq
+      .col-md-4.col-sm-4
+        .service-block.service-or.home-aq
           .service-bg
           = image_tag "home_aq_icon.png",height: '38px'
           %h2.heading-md 安全
-          %p Donec id elit non mi porta gravida at eget metus id elit mi egetine. Fusce dapibus
-      .col-md-4.col-sm-6
-        .service-block.service-block-red.service-or.home-sy
+          %p 账户券商托管、资金银行托管、全程无其他方介入，全程透明可见，资金、账户保证安全。
+      .col-md-4.col-sm-4
+        .service-block.service-or.home-sy
           .service-bg
           = image_tag "home_sy_icon.png",height: '38px'
-          %h2.heading-md 收益
-          %p Donec id elit non mi porta gravida at eget metus id elit mi egetine usce dapibus elit nondapibus
-      .col-md-4.col-sm-12
-        .service-block.service-block-blue.service-or.home-bz
+          %h2.heading-md 简单
+          %p 全方位交流、信息全面、在线委托操盘，实时查看，简单、安心、便捷，良好体验。
+      .col-md-4.col-sm-4
+        .service-block.service-or.home-bz
           .service-bg
           = image_tag "home_bz_icon.png",height: '38px'
-          %h2.heading-md 保障
-          %p Donec id elit non mi porta gravida at eget metus id elit mi egetine. Fusce dapibus
+          %h2.heading-md 收益
+          %p 以20%的风险换取20%-200%的浮动收益，小风险大回报，财富快速增值，值得一试。
     / End Begin Service Block
   / 投资操盘列表
   .container.content
@@ -61,7 +61,7 @@
         %ul#loan-list.ui-list.ui-list-m.ui-list-invest.table-cell
           %li#loan-list-header.ui-list-header.fn-clear.zdy-bg-gray
             %span.ui-list-title.fn-left.color-gray-text.w110 发标人
-            %span.ui-list-title.fn-left.color-gray-text.w260 标的代号
+            %span.ui-list-title.fn-left.color-gray-text.w260 名称
             %span.ui-list-title.fn-left.color-gray-text.w90 类型
             %span.ui-list-title.fn-left.color-gray-text.text-center.w160 金额
             %span.ui-list-title.fn-left.color-gray-text.text-center.w120 预期收益率
@@ -104,55 +104,46 @@
   .block-v1
     .container
       .row.content-boxes-v3
-        .col-md-4.md-margin-bottom-30
+        .col-md-4.col-sm-4.md-margin-bottom-30
           .row
-            .col-md-1
-            .col-md-3
+            .col-md-2.col-sm-2
+            .col-md-4.col-sm-4.mb20
               %img.img-thumbnail.img-circle.w70{:src => asset_path("testimonials/img1.jpg")}/
-            .col-md-8
+            .col-md-6.col-sm-6.mt20
               %h2.heading-sm 操盘手
               %h3.heading-sm 张先生
           .content-boxes-in-v3
-            %p 之前一直是帮几个朋友打理账户，收益不错，但账户清算、交易软件、产品发行等很不方便，有了摩尔街，轻松解决了这些问题，让我有更多的精力投入交易操作。
-        .col-md-4.md-margin-bottom-30
+            %p “之前一直是帮几个朋友打理账户，收益不错，但账户清算、交易软件、产品发行等很不方便，有了摩尔街，轻松解决了这些问题，让我有更多的精力投入交易操作。”
+        .col-md-4.col-sm-4.md-margin-bottom-30
           .row
-            .col-md-1
-            .col-md-3
+            .col-md-2.col-sm-2
+            .col-md-4.col-sm-4.mb20
               %img.img-thumbnail.img-circle.w70{:src => asset_path("testimonials/img1.jpg")}/
-            .col-md-8
+            .col-md-6.col-sm-6.mt20
               %h2.heading-sm 投资人
               %h3.heading-sm 刘女士
           .content-boxes-in-v3
-            %p 随时股市行情上升，股票投资的收益远远超过其他理财方式。由于平时要上班，没时间研究股票，但通过摩尔街，可以找到最好的操盘手为我服务，收益也非常有保障。
-        .col-md-4
+            %p “随时股市行情上升，股票投资的收益远远超过其他理财方式。由于平时要上班，没时间研究股票，但通过摩尔街，可以找到最好的操盘手为我服务，收益也非常有保障。”
+        .col-md-4.col-sm-4
           .row
-            .col-md-1
-            .col-md-3
+            .col-md-2.col-sm-2
+            .col-md-4.col-sm-4.mb20
               %img.img-thumbnail.img-circle.w70{:src => asset_path("testimonials/img1.jpg")}/
-            .col-md-8
+            .col-md-6.col-sm-6.mt20
               %h2.heading-sm 配资客户
               %h3.heading-sm 王先生
           .content-boxes-in-v3
-            %p 我在摩尔街的配资体验非常不错，高效、服务好。而且他们团队成员都是名校毕业，安全性上也有保障。
+            %p “我在摩尔街的配资体验非常不错，高效、服务好。而且他们团队成员都是名校毕业，安全性上也有保障。”
   /
   .container.content
-    .col-md-3
-      .posts
-        .headline.headline-md
-          %h2 热门话题
-        - @last_ten_topics.each do |f|
-          %dl.dl-horizontal
-            %dt
-              %a{:href => "#"}
-                %img{:alt => "", :src => f.user.avatar}/
-            %dd
-              %p
-                %a{:href => "#"}= f.content
-    .col-md-9
-      #news-section.news.mb.fn-clear
+
+    .col-md-7
+      #news-section.news.mb.fn-clear.pr40
         .mt10
-          .list-title.news
-            %h2.on 最新动态
+          .headline.headline-md
+            %h2.on
+              最新动态
+            = link_to "查看更多","#",class: "darkgray float-right mt10"
           %ul#news-list.ui-list.ui-list-m.ui-list-news
             - @last_ten_news.each do |f|
               %li.ui-list-item.fn-clear
@@ -161,5 +152,17 @@
                   = link_to "#{f.title}","#",class: "title text-big rrd-dimgray"
                   %span.content.text-small
                 %p.fn-left.field.date.color-darkgray-text.formattime= f.datetime
-            %li.ui-list-more
-              = link_to "查看更多网站动态","#",class: "darkgray"
+    .col-md-5.border-left
+      .posts.pl40
+        .headline.headline-md
+          %h2
+            热门话题
+          = link_to "查看更多","#",class: "darkgray float-right mt10"
+        - @last_ten_topics.each do |f|
+          %dl.dl-horizontal
+            %dt
+              %a{:href => "#"}
+                %img{:alt => "", :src => f.user.avatar}/
+            %dd
+              %p
+                %a{:href => "#"}= f.content

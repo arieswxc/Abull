@@ -1,5 +1,5 @@
 class LeveragesController < ApplicationController
-  before_action :authenticate_user!, only: [:new,:edit]
+  before_action :authenticate_user!, only: [:create,:edit]
   # after_action :save_interest, only: [:create]
   def show
     @leverage   = Leverage.find(params[:id])
@@ -9,9 +9,7 @@ class LeveragesController < ApplicationController
   end
 
   def new
-    @leverage = current_user.leverages.build
-    # @interests  = Interest.where(show: "true")
-    @leverage.user_id = current_user.id
+    @leverage = Leverage.new
   end
 
   def create
@@ -56,5 +54,5 @@ class LeveragesController < ApplicationController
     def leverage_params
       params.require(:leverage).permit(:user_id, :amount, :description, :duration, :state)
     end
-    
+
 end

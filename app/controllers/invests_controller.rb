@@ -1,5 +1,5 @@
 class InvestsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :edit]
+  before_action :authenticate_user!, only: [:create,:edit]
   # before_action :check_invest_user, only: [:new, :create]
   def index
     @fund         = Fund.find(params[:fund_id])
@@ -9,10 +9,10 @@ class InvestsController < ApplicationController
 
   def new
     @fund   = Fund.find(params[:fund_id])
-    @invest = @fund.invests.build()
-    @invest.user_id = current_user.id
-    @invest.date = Time.now()
     @invests = @fund.invests
+    @invest = @fund.invests.build()
+    @invest.user_id = current_user.id unless current_user.nil?
+    @invest.date = Time.now()
   end
 
   def create
