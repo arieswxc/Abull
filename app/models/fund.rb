@@ -58,8 +58,8 @@ class Fund < ActiveRecord::Base
 
   has_one :homs_account
 
-  def send_sms(mobile) 
-    SMSGateway.render_then_send(mobile, 'venue_sms')
+  def send_sms(mobile, type, params)
+    SMSGateway.render_then_send(mobile, type, params)
   end
 
   #虚拟属性

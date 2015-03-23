@@ -14,16 +14,16 @@ class SMSGateway
     post(phone, message)
   end
 
-  def self.render_then_send(phone, name)
-    message = render(name).strip
+  def self.render_then_send(phone, name, params)
+    message = render(name, params).strip
     send(phone, message)
   end
 
   protected
 
-  def self.render(name)
+  def self.render(name, params)
     view = ActionView::Base.new(ActionController::Base.view_paths, {})
-    view.render(file: "sms/#{name}")
+    view.render(file: "sms/#{name}", locals: params)
   end
 
   def self.post(cell, msg)
