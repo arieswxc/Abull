@@ -79,12 +79,17 @@ ActiveAdmin.register Fund do
   end
 
   # 侧边窗口
-  sidebar "Fund List", only: :show do
-    table_for Fund.all do 
-      column :name do |f|
-        link_to f.name, admin_fund_path(f)
+  sidebar "Fund 通知", only: :show do
+    attributes_table_for fund do 
+      row('发标审核通过')  do 
+        link_to t('confirm'), fund_confirm_inform_admin_fund_path(fund), :method => :get, :class => 'button'
       end
-      column :state
+      row('发标审核未通过')  do 
+        link_to t('confirm'), fund_deny_inform_admin_fund_path(fund), :method => :get, :class => 'button'
+      end
+      row('发标提前清盘')  do 
+        link_to t('confirm'), fund_liquidation_inform_admin_fund_path(fund), :method => :get, :class => 'button'
+      end   
     end
   end
 
@@ -136,6 +141,18 @@ ActiveAdmin.register Fund do
     ActiveAdmin::Comment.create("resource" => fund, "body"=>"#{params[:reject_reason][:reason]}", "namespace": "admin")
     fund.deny
     redirect_to admin_fund_path(fund)
+  end
+
+  member_action :fund_confirm_inform, :method => :get do
+    fund_inform(resource, 'fund_confirm_inform')
+  end
+
+  member_action :fund_deny_inform, :method => :get do
+    fund_inform(resource, 'fund_deny_inform')
+  end
+
+  member_action :fund_liquidation_inform, :method => :get do
+    fund_inform(resource, 'fund_liquidation_inform')
   end
 
 end

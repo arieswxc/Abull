@@ -14,22 +14,37 @@ ActiveAdmin.register Account do
   filter :user_id
   filter :balance
 
+
   show do |account|
     attributes_table  do 
-      row :user_id
+      row('用户id') do 
+        link_to account.user_id, admin_user_path(account.user_id)
+      end
       row :balance
       row :created_at
       row :updated_at
-      row('通知:支付宝转账确认')  do 
-          link_to t('confirm'), confirm_zhifubao_admin_account_path(account), :method => :get, :class => 'button'
+    end
+    panel t('用户通知') do 
+      attributes_table_for account do
+        row('支付宝转账确认')  do 
+          form_for "input", url: confirm_zhifubao_admin_account_path(account), method: :post do |f|
+            f.text_field :amount
+            f.submit
+          end
+        end 
+        row('线下充值确认')  do 
+          form_for "input", url: confirm_charge_admin_account_path(account), method: :post do |f|
+            f.text_field :amount
+            f.submit
+          end
+        end
+        row('客户申请提现确认')  do 
+          form_for "input", url: confirm_withdraw_admin_account_path(account), method: :post do |f|
+            f.text_field :amount
+            f.submit
+          end
+        end
       end
-      row('通知:线下充值确认')  do 
-          link_to t('confirm'), confirm_charge_admin_account_path(account), :method => :get, :class => 'button'
-      end
-      row('通知:客户申请提现确认')  do 
-          link_to t('confirm'), confirm_withdraw_admin_account_path(account), :method => :get, :class => 'button'
-      end
-
     end
   end
 
@@ -41,22 +56,16 @@ ActiveAdmin.register Account do
     f.actions
   end
 
-  member_action :confirm_charge, :method => :get do
-    user = resource.user
-    UserMailer.welcome_email(user).deliver_now
-    redirect_to admin_account_path(resource)
+  member_action :confirm_charge, :method => :post do
+    inform(resource, 'offline', params[:input][:amount])
   end
 
-  member_action :confirm_zhifubao, :method => :get do
-    user = resource.user
-    UserMailer.welcome_email(user).deliver_now
-    redirect_to admin_account_path(resource)
+  member_action :confirm_zhifubao, :method => :post do
+    inform(resource, 'zhifubao', params[:input][:amount])
   end
 
-  member_action :confirm_withdraw, :method => :get do
-    user = resource.user
-    UserMailer.welcome_email(user).deliver_now
-    redirect_to admin_account_path(resource)
+  member_action :confirm_withdraw, :method => :post do
+    inform(resource, 'withdraw', params[:input][:amount])
   end
 
 

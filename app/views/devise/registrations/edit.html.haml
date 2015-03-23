@@ -13,25 +13,13 @@
             #baseProfile.tab-pane.fade.active.in
               = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'sky-form'}) do |f|
                 = devise_error_messages!
-                .row
-                  .ml40.col-md-2.text-center
-                    .row
-                      .input-image-wrapper.h70.w70.margin-auto.mb10-i
-                        .input.input-file.input-image.pointer
-                          .button
-                            %input#selectAvatar.pointer{:type =>"file", :multiple => "", :accept => "image/*"}
-                            %img.img-thumbnail.img-rounded.mw70.mh70{:src => "#{current_user.avatar.url}"}/
-                      -# .progress.w100
-                      -#   #progressBar.progress-bar.progress-bar-info.progress-bar-striped{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "0", :role => "progressbar", :style => "width: 0%"}
-                      -#     0%
-                      .mb40 上传头像
-                  .row
-                    .col-md-8
-                      .border-all.mt10
-                        %dt 个人简介：
-                        .input
-                          %input{:name => "user[abstract]", :type => "text", :value => "#{resource.abstract}"}/
                 %dl.dl-horizontal
+                  %dt 个人简介
+                  %dd
+                    %section
+                      %label.input
+                        %i.icon-append.fa.fa-user
+                        %input{:name => "user[abstract]", :type => "text", :value => "#{resource.abstract}"}/
                   %dt 昵称
                   %dd
                     %section
@@ -60,7 +48,7 @@
                         %i.icon-append.fa.fa-lock
                         %input{:name => "user[password_confirmation]", :placeholder => "Confirm password", :type => "password"}/
                         %b.tooltip.tooltip-bottom-right 不要忘了你的密码
-                %button.btn-u.btn-u-default.ml100{:type => "reset"} Cancel
+                %button.btn-u.btn-u-default.ml100{:type => "reset"} 取消
                 %button.btn-u{:type => "submit"} 保存修改
             #authenticationProfile.tab-pane.fade
               %h3 实名认证
@@ -125,57 +113,9 @@
                 .text-center
                   = f.button :submit
 :javascript
-  // var xhr_provider = function(){
-  //   var xhr = jQuery.ajaxSettings.xhr();
-  //   if(progressFunction && xhr.upload) {
-  //     xhr.upload.addEventListener("progress", progressFunction, false);
-  //   }
-  //   return xhr;
-  // };
-  // function progressFunction(evt){
-  //   var progressBar = document.getElementById("progressBar");
-  //   if(evt.lengthComputable){
-  //     var percent = Math.round(evt.loaded /evt.total * 100);
-  //     $("#progressBar").attr("aria-valuenow",percent);
-  //     $("#progressBar").css("width", percent + "%");
-  //     $("#progressBar").html(percent + "%");
-  //   }
-  // }
   $(function() {
     var ptn = /\/users\/edit\/#authencation*$/;
     if (ptn.test(window.location.href)) {
       $("#pg-account-index .tab-v1 ul.nav.nav-tabs li:nth-child(2) a").tab('show');
     }
-
-    $("#selectAvatar").on('change',function(){
-      var _self = this;
-      if (_self.files.length == 0) return;
-      var data = new FormData();
-      data.append('avatar', _self.files[0]);
-      $.ajax({
-        data:data,
-        url: "/users/#{current_user.id}/save_avatar",
-        type: 'post',
-        contentType: false,
-        processData: false,
-        // xhr: xhr_provider,
-        success: function () {
-          var reader = new FileReader();
-          reader.onload = function(event) {
-              var dataUri = event.target.result,
-                    img  = _self.nextElementSibling;
-              img.src = dataUri;
-          };
-
-          reader.onerror = function(event) {
-              console.error("File could not be read! Code " + event.target.error.code);
-          };
-
-          reader.readAsDataURL(_self.files[0]);
-        },
-        error: function () {
-
-        }
-      });
-    });
   });

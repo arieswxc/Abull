@@ -58,6 +58,10 @@ class Fund < ActiveRecord::Base
 
   has_one :homs_account
 
+  def send_sms(mobile, type, params)
+    SMSGateway.render_then_send(mobile, type, params)
+  end
+
   #虚拟属性
   def invest_ending_date
     # self.invest_starting_date.advance(days: self.duration)

@@ -1,0 +1,43 @@
+.grid_2
+  #sidebar.ui-side.ui-side-withicon
+    %ul.ui-side-list.nav.nav-list.bs-docs-sidenav
+      %li{:class => "ui-side-item first #{'active' if activeItem=='about_us'}"}
+        %a.ui-side-item-link.pt0{:href => "/pages/about/about_us"}
+          %span.ml10.mr15
+          公司简介
+      %li{:class => "ui-side-item #{'active' if activeItem=='our_team'}"}
+        %a.ui-side-item-link.pt0{:href => "/pages/about/our_team"}
+          %span.ml10.mr15
+          团队介绍
+      %li{:class => "ui-side-item #{'active' if activeItem=='qualification_and_honors'}"}
+        %a.ui-side-item-link.pt0{:href => "/pages/about/qualification_and_honors"}
+          %span.ml10.mr15
+          资质荣誉
+      %li{:class => "ui-side-item #{'active' if activeItem=='media_reports'}"}
+        %a.ui-side-item-link.pt0{:href => "/pages/about/media_reports"}
+          %span.ml10.mr15
+          媒体报道
+      %li{:class => "ui-side-item #{'active' if activeItem=='about_staff'}"}
+        %a.ui-side-item-link.pt0{:href => "/pages/about/about_staff"}
+          %span.ml10.mr15
+          员工风采
+      %li{:class => "ui-side-item #{'active' if activeItem=='join_us'}"}
+        %a.ui-side-item-link.pt0{:href => "/pages/about/join_us"}
+          %span.ml10.mr15
+          加入我们
+      %li{:class => "ui-side-item #{'active' if activeItem=='contact_us'}"}
+        %a.ui-side-item-link.pt0{:href => "/pages/about/contact_us"}
+          %span.ml10.mr15
+          联系我们
+      %li{:class => "ui-side-item #{'active' if activeItem=='our_events'}"}
+        %a.ui-side-item-link.pt0{:href => "/pages/about/our_events"}
+          %span.ml10.mr15
+          大事记
+      %li{:class => "ui-side-item #{'active' if activeItem=='beginners_guide'}"}
+        %a.ui-side-item-link.pt0{:href => "/pages/guides/beginners_guide"}
+          %span.ml10.mr15
+          新手指南
+      %li{:class => "ui-side-item last #{'active' if activeItem=='faq'}"}
+        %a.ui-side-item-link.pt0{:href => "/pages/guides/faq"}
+          %span.ml10.mr15
+          常见问题

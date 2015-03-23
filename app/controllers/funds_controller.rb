@@ -23,8 +23,6 @@ class FundsController < ApplicationController
   def create
     @fund = current_user.funds.build(fund_params)
     if @fund.save
-      @user = current_user
-      UserMailer.welcome_email(@user).deliver_now
       redirect_to @fund
     else
       render 'new'
