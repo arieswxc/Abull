@@ -18,7 +18,7 @@
 
         .input-group
           %span.input-group-addon
-            %i.fa.fa-phone
+            %i.fa.fa-lock
           %input#user_password.form-control{:type => "password", :name => "user[password]", :autofocus => "off", :placeholder => "手机号码",:pattern => "(?=^.{8,}$).*$", :title =>"Three letter country code", :placeholder => "密码"}
 
         - if @validatable
@@ -30,7 +30,7 @@
 
         .input-group.margin-bottom-20
           %span.input-group-addon
-            %i.fa.fa-phone
+            %i.fa.fa-key
           %input#user_password_confirmation.form-control{:type => "password", :name => "user[password_confirmation]", :autofocus => "off", :placeholder => "确认密码"}
 
         .row
