@@ -1,5 +1,5 @@
 class Leverage < ActiveRecord::Base
-  validates :user_id,       presence: true
+  # validates :user_id,       presence: true
   validates :amount,        presence: true
   validates :amount,        numericality: true
   validates :duration,      presence: true
@@ -18,13 +18,13 @@ class Leverage < ActiveRecord::Base
     event :deny do
       transition :applied  => :denied
     end
-    event :close do 
+    event :close do
       transition :confirmed => :closed
     end
   end
 
 
-  def deadline 
+  def deadline
     self.date.advance(months: self.duration, days: -1) if date
   end
 

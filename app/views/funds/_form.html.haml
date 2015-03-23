@@ -48,7 +48,7 @@
           .pz_tips_bd
             %em.caret
             %p 投资本金＋配资金额
-    = f.input :user_id, as: :hidden, input_html: { value: current_user.id }
+    = f.input :user_id, as: :hidden, input_html: { value: "#{current_user.id if current_user}"}
     %hr
     .form-group.text-center
       .col-sm-2
