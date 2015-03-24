@@ -16,7 +16,7 @@
           .col-md-6.checkbox
             - if devise_mapping.rememberable?
               %label
-                %input{:type => "checkbox"}>/
+                %input{:type => "checkbox",:checked => ""}>/
                 记住我
           .col-md-6
             %button.btn-u.pull-right{:type => "submit"} 登录
