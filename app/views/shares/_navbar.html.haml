@@ -59,7 +59,6 @@
               %img#logo-header{:alt => "Logo", :src => asset_path("logo.jpg")}/
           / Collect the nav links, forms, and other content for toggling
           .collapse.navbar-collapse.navbar-responsive-collapse.nav-menu
-            = yield :navItem
             %ul.nav.navbar-nav
               %li{:class => "#{'active' if @navItem == 'home'}"}= link_to "首页",root_path
               %li{:class => "#{'active' if @navItem == 'funds'}"}= link_to "我要投标",funds_path
