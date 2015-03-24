@@ -1,4 +1,4 @@
-%table.table.table-striped.table-bordered
+%table.table.table-striped
   %thead
     %tr
       - unless @current=="xxx"
@@ -10,10 +10,10 @@
         -# %th= Fund.human_attribute_name('minimum')
         %th= Fund.human_attribute_name('amount')
 
-        %th= Fund.human_attribute_name('collection_deadline')
-
-        %th= Fund.human_attribute_name('invest_starting_date')
-        %th= Fund.human_attribute_name('invest_ending_date')
+        -# %th= Fund.human_attribute_name('collection_deadline')
+        -#
+        -# %th= Fund.human_attribute_name('invest_starting_date')
+        -# %th= Fund.human_attribute_name('invest_ending_date')
         %th 冻结资金
         %th= Fund.human_attribute_name('expected_earning_rate')
         %th= Fund.human_attribute_name('earning_rate')
@@ -38,10 +38,10 @@
               = f.fund.amount
               = '元' unless f.fund.amount.blank?
 
-            %td.formattime= f.fund.collection_deadline
-            / %td= f.minimum
-            %td{:class => "#{'formattime' unless f.fund.invest_starting_date.blank?}"}= f.fund.invest_starting_date
-            %td{:class => "#{'formattime' unless f.fund.invest_ending_date.blank?}"}= f.fund.invest_ending_date
+            -# %td.formattime= f.fund.collection_deadline
+            -# / %td= f.minimum
+            -# %td{:class => "#{'formattime' unless f.fund.invest_starting_date.blank?}"}= f.fund.invest_starting_date
+            -# %td{:class => "#{'formattime' unless f.fund.invest_ending_date.blank?}"}= f.fund.invest_ending_date
             %td xxxxxx
             %td
               = f.fund.expected_earning_rate

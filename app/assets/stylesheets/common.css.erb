@@ -698,12 +698,43 @@ a.sky-blue-i:hover {
   -o-transform:rotate(270deg); /* Opera */
 }
 * {
-  font-size: 12px;
+  font-size: 16px;
   font-family: arial,"Microsoft Yahei","Hiragino Sans GB",sans-serif;
 }
 body {
   font-size: 12px;
   font-family: arial,"Microsoft Yahei","Hiragino Sans GB",sans-serif!important;
+}
+p {
+  color: #555;
+}
+table.table tr td,table.table tr th {
+  vertical-align: middle;
+}
+.table-striped > thead > tr:nth-of-type(odd) {
+  background-color: #f2f2f2;
+}
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #fff;
+  border: none;
+}
+.table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th {
+  background-color: #fff;
+}
+.table-striped > tbody > tr:nth-of-type(even) {
+  background-color: #f8f8f8;
+}
+.table-striped>tbody>tr:nth-child(even)>td, .table-striped>tbody>tr:nth-child(even)>th {
+  background-color: #f8f8f8;
+}
+.table-striped>tbody>tr:last-child>td, .table-striped>tbody>tr:last-child>th {
+  border-bottom: solid 1px #ddd;
+}
+.table-striped>tbody>tr>td, .table-striped>tbody>tr>th {
+  border: none;
+}
+.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th {
+  border: solid 1px #ddd;
 }
 
 .footer-v1 .footer .container .row .col-md-3 {

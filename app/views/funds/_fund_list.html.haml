@@ -2,41 +2,49 @@
 - if @funds.blank?
   %h2.text-center 没有找到合适标的
 
-%table.table.table-striped.table-bordered.mt40
+%table.table.table-striped.mt40
   %thead
     %tr
-
-      %th= Fund.human_attribute_name('name')
       / %th 发标人
       - unless @current=="xxx"
         %th= Fund.human_attribute_name('user')
+      %th= Fund.human_attribute_name('name')
+      %th 类型
       %th= Fund.human_attribute_name('amount')
-      %th= Fund.human_attribute_name('minimum')
-      %th= Fund.human_attribute_name('collection_deadline')
-      %th= Fund.human_attribute_name('invest_starting_date')
-      %th= Fund.human_attribute_name('invest_ending_date')
+      %th= Fund.human_attribute_name('expected_earning_rate')
+      %th= Fund.human_attribute_name('duration')
+      %th 明／暗标
+      %th 进度
       %th= Fund.human_attribute_name('state')
       - if @current=="xxx"
         %th 暗标码
-      %th 电子合同
+        %th 电子合同
   -# todo, 处理 private_check
   %tbody
     - @funds.each do |f|
       %tr{'data-index' => f.id}
-
-        %td= f.name
         - unless @current=="xxx"
           %td= f.user.email
+        %td= f.name
+        %td= f.genre
         %td
           = f.amount
           = '元' unless f.amount.blank?
-        %th
-          = f.minimum
-          = '元' unless f.minimum.blank?
-        %td.formattime= f.collection_deadline
-        / %td= f.minimum
-        %td{:class => "#{'formattime' unless f.invest_starting_date.blank?}"}= f.invest_starting_date
-        %td{:class => "#{'formattime' unless f.invest_ending_date.blank?}"}= f.invest_ending_date
+        %td
+          = f.expected_earning_rate
+          = '%' unless f.expected_earning_rate.blank?
+        %td
+          = f.duration
+          = '个月' unless f.duration.blank?
+        %td
+          - if f.private_check == 'private'
+            暗标
+          - else
+            明标
+        %td
+          %strong.ui-progressbar-mid{:class => "ui-progressbar-mid-"+"#{(f.raised_amount/f.amount * 100).floor}"}
+            %em>= (f.raised_amount/f.amount * 100).floor
+            \%
         - unless @current=="xxx"
           %td
             - if f.state == "gathering"
@@ -46,5 +54,5 @@
         - else
           %td= f.state
           %td= f.private_code
-        %td
-          %a{:href => "javascript:;"} 委托操盘合同
+          %td
+            %a{:href => "javascript:;"} 委托操盘合同

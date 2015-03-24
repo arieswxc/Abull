@@ -10,9 +10,9 @@
       boolean: :horizontal_boolean}) do |f|                      |
       .row
         .col.col-md-6.mr40.leverage-control-l
-          .row.mt20
-            %h3= Leverage.human_attribute_name('description')
-            %input.form-control{:name => "leverage[description]"}
+          -# .row.mt20
+          -#   %h3= Leverage.human_attribute_name('description')
+          -#   %input.form-control{:name => "leverage[description]"}
           .mt20
           .row.mt20
             %h3= Leverage.human_attribute_name('amount')
@@ -121,7 +121,7 @@
       = f.input :state, as: :hidden, input_html: { value: 'applied' }
       .row.mt40.mb20.text-center
         .mb10
-          %input#check{:type => "checkbox"}/
+          %input#check{:type => "checkbox",:checked => ""}/
           我已阅读并同意
           %a.color-blue.sky-blue-i{:href => "page_terms.html"} 条款
         = f.submit class: "hide",id: 'subbtn'

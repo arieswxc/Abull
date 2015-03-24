@@ -1,36 +1,51 @@
 -# 这里应该创建局部模板
 
 %div.container.content
-  %h2.text-center 项目投标
-  %div.tag-box.tag-box-v3.mt20.p20.pt0
-    %label 项目筛选
-    %div.container.content
-      %form.sky-form
-        %section.col.col-3
-          %label 持续时间(>)
-          .input-group
-            .select
-              %select{:name => "duration"}
-                - (1..6).each do |index|
-                  %option{:value => "#{index}", :selected => "#{'selected' if index == 6}"}= "#{index}"
-              %i
-            %span.input-group-addon  个月
-        %section.col.col-3
-          %label 募集总额(>)
-          .input-group
-            %input.form-control.text-center.numberic{:type => "text",:name => "amount",:maxlength => 7}
-            %span.input-group-addon  元
-        %section.col.col-3
-          %label 截止日期(<)
-          %input.form-control{:type => "date",:name => "deadline"}
-        %button.btn.btn-danger.mt25.mr20{:type => "submit"}
+  .headline.headline-md
+    %h2 项目投标
+
+  %div.container.content
+    %form.sky-form
+      %section.col.col-2
+        %label 持续时间(>)
+        .input-group
+          .select
+            %select{:name => "duration"}
+              - (1..6).each do |index|
+                %option{:value => "#{index}", :selected => "#{'selected' if index == 6}"}= "#{index}"
+            %i
+          %span.input-group-addon  个月
+      %section.col.col-2
+        %label 募集总额(>)
+        .input-group
+          %input.form-control.text-center.numberic{:type => "text",:name => "amount",:maxlength => 7}
+          %span.input-group-addon  元
+      %section.col.col-2
+        %label 预期年化收益率(>)
+        .input-group
+          %input.form-control.text-center.numberic{:type => "text",:name => "expected_earning_rate",:maxlength => 3}
+          %span.input-group-addon  ％
+      %section.col.col-2
+        %label 明／暗标
+        .input-group
+          .select
+            %select{:name => "private_check"}
+              %option{:value => "public"}= "明"
+              %option{:value => "private", :selected => ""}= "暗"
+            %i
+          %span.input-group-addon  标
+      %section.col.col-4
+        %button.btn-u.btn-u-dark-blue.mt30.mr10{:type => "submit"}
           %i.fa.fa-search
-        %a.btn.btn-danger.mt25{:href => "/funds"} 查看所有
-        -# %section.col.col-3
-        -#   %div.input-group
-        -#     %span.input-group-btn.custom-right
-        -#       %input.form-control{:type => "text",:name => "v4"}
-        -#       %button.btn.btn-danger{:type => "submit"}
-        -#         %i.fa.fa-search
+          搜索
+        %a.btn-u.btn-u-red.mt30{:href => "/funds"} 查看所有
+      -# %section.col.col-3
+      -#   %div.input-group
+      -#     %span.input-group-btn.custom-right
+      -#       %input.form-control{:type => "text",:name => "v4"}
+      -#       %button.btn.btn-danger{:type => "submit"}
+      -#         %i.fa.fa-search
 
   = render partial: 'fund_list'
+
+- @navItem = 'funds'
