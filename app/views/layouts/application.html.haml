@@ -56,26 +56,86 @@
       = render "shares/footer"
     :javascript
       jQuery(document).ready(function() {
-            App.init();
-            App.initParallaxBg();
-            OwlCarousel.initOwlCarousel();
-            RevolutionSlider.initRSfullWidth();
+        App.init();
+        App.initParallaxBg();
+        OwlCarousel.initOwlCarousel();
+        RevolutionSlider.initRSfullWidth();
 
-            $(".formattime").each(function() {
-              $(this).text(moment($(this).text()).format('YYYY-MM-DD'));
-            });
-
-            $(".pz_tips_1").hover(function(){
-              $(this).children(".pz_tips_bd").show();
-            },function() {
-              $(this).children(".pz_tips_bd").hide();
-            });
-            $(".numberic").each(function(){
-              this.oninput = function() {
-                var crt_amount = parseInt($(this).val()) || 0;
-                $(this).val(crt_amount);
-              }
-            });
-
-
+        $(".formattime").each(function() {
+          $(this).text(moment($(this).text()).format('YYYY-MM-DD'));
         });
+
+        $(".pz_tips_1").hover(function(){
+          $(this).children(".pz_tips_bd").show();
+        },function() {
+          $(this).children(".pz_tips_bd").hide();
+        });
+        $(".numberic").each(function(){
+          this.oninput = function() {
+            var crt_amount = parseInt($(this).val()) || 0;
+            $(this).val(crt_amount);
+          }
+        });
+        $("#selectAvatarBtn").on('change',function(){
+          var _self = this;
+          if (_self.files.length == 0) return;
+          var data = new FormData();
+          data.append('avatar', _self.files[0]);
+          $.ajax({
+            data:data,
+            url: "/users/#{current_user.id}/save_avatar",
+            type: 'post',
+            contentType: false,
+            processData: false,
+            // xhr: xhr_provider,
+            success: function () {
+              var reader = new FileReader();
+              reader.onload = function(event) {
+                  var dataUri = event.target.result,
+                        img  = $("#selectAvatar")[0].nextElementSibling;
+                  img.src = dataUri;
+              };
+
+              reader.onerror = function(event) {
+                  console.error("File could not be read! Code " + event.target.error.code);
+              };
+
+              reader.readAsDataURL(_self.files[0]);
+            },
+            error: function () {
+
+            }
+          });
+        });
+        $("#selectAvatar").on('change',function(){
+          var _self = this;
+          if (_self.files.length == 0) return;
+          var data = new FormData();
+          data.append('avatar', _self.files[0]);
+          $.ajax({
+            data:data,
+            url: "/users/#{current_user.id}/save_avatar",
+            type: 'post',
+            contentType: false,
+            processData: false,
+            // xhr: xhr_provider,
+            success: function () {
+              var reader = new FileReader();
+              reader.onload = function(event) {
+                  var dataUri = event.target.result,
+                        img  = _self.nextElementSibling;
+                  img.src = dataUri;
+              };
+
+              reader.onerror = function(event) {
+                  console.error("File could not be read! Code " + event.target.error.code);
+              };
+
+              reader.readAsDataURL(_self.files[0]);
+            },
+            error: function () {
+
+            }
+          });
+        });
+      });

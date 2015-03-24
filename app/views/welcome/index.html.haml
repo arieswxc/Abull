@@ -74,8 +74,9 @@
                 %span.ui-list-field.fn-left.text-big.w110.text-center
                   %img.img-circle.ui-progressbar-mid{:height => "50", :src => asset_path("testimonials/img1.jpg"), :width => "50"}/
                 %span.ui-list-field.fn-left.text-big.w260.text-center
-                  %span.fn-left.w260.rrd-dimgray.fn-text-overflow{:href => "/lend/detailPage.action?loanId=488977", :target => "_blank", :title => "网上投资创业"}= f.name
+                  %span.fn-left.w260.rrd-dimgray.fn-text-overflow= f.name
                 %span.ui-list-field.fn-left.text-big.w90
+                  %em.value>= f.genre
                 %span.ui-list-field.fn-left.num.text-right.w160.text-center
                   %em.value>= f.amount
                   元
