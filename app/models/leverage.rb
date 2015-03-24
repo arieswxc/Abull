@@ -23,6 +23,9 @@ class Leverage < ActiveRecord::Base
     end
   end
 
+  def send_sms(mobile, type, params)
+    SMSGateway.render_then_send(mobile, type, params)
+  end
 
   def deadline
     self.date.advance(months: self.duration, days: -1) if date

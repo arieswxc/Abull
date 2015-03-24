@@ -44,6 +44,23 @@ ActiveAdmin.register Leverage do
     end
   end
 
+  sidebar "Leverage 通知", only: :show do
+    attributes_table_for leverage do 
+      row('配资审核通过')  do 
+        link_to t('confirm'), leverage_confirm_inform_admin_leverage_path(leverage), :method => :get, :class => 'button'
+      end
+      row('配资追加保证金')  do 
+        link_to t('confirm'), add_deposit_inform_admin_leverage_path(leverage), :method => :get, :class => 'button'
+      end
+      row('配资追缴利息') do
+        form_for "input", url: add_interests_inform_admin_leverage_path(leverage), method: :post do |f|
+            f.text_area :interests
+            f.submit
+          end
+        end  
+    end
+  end
+
   form do |f|
     f.inputs do 
       f.input :user_id, as: :select, collection: User.order(:email).map{|u| [u.email, u.id]}
@@ -77,6 +94,29 @@ ActiveAdmin.register Leverage do
     end
     redirect_to admin_leverage_path(leverage)
   end
+
+  member_action :leverage_confirm_inform, :method => :get do
+    leverage_inform(resource, 'leverage_confirm_inform')
+  end
+
+  member_action :add_deposit_inform, :method => :get do
+    leverage_inform(resource, 'add_deposit_inform')
+  end
+
+  member_action :add_interests_inform, :method => :post do
+    user = resource.user
+    leverage_amount = resource.leverage_amount
+    UserMailer.welcome_email(user).deliver_now
+    hash = {
+      name: user.real_name,
+      leverage_amount: leverage_amount,
+      interests: params[:input][:interests],
+      date: resource.created_at.to_date
+    }
+    resource.send_sms(user.cell, 'add_interests_inform', hash)
+    redirect_to admin_leverage_path(resource)
+  end
+
 
   
 end
