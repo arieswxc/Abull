@@ -7,9 +7,9 @@
           %img.img-thumbnail.img-rounded.mw90.mh90{:src => "#{current_user.avatar.url}"}/
     %label.user_name
       hi,
-      - if current_user.real_name
+      - if !current_user.real_name.blank?
         = current_user.real_name
-      - elsif current_user.username
+      - elsif !current_user.username.blank?
         = current_user.username
       - else
         = current_user.cell
