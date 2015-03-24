@@ -711,6 +711,28 @@ p {
 table.table tr td,table.table tr th {
   vertical-align: middle;
 }
+.table-striped > thead > tr:nth-of-type(odd) {
+  background-color: #f2f2f2;
+}
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #fff;
+  border: none;
+}
+.table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th {
+  background-color: #fff;
+  border: none;
+}
+.table-striped > tbody > tr:nth-of-type(even) {
+  background-color: #f8f8f8;
+  border: none;
+}
+.table-striped>tbody>tr:nth-child(even)>td, .table-striped>tbody>tr:nth-child(even)>th {
+  background-color: #f8f8f8;
+  border: none;
+}
+.table-striped>tbody>tr:last-child>td, .table-striped>tbody>tr:last-child>th {
+  border-bottom: solid 2px #f8f8f8;
+}
 
 .footer-v1 .footer .container .row .col-md-3 {
   /*visibility: hidden;
