@@ -5,7 +5,7 @@ class FundsController < ApplicationController
   def index
     # @q      = Fund.search(params[:q])
     # @funds  = @q.result
-    @funds = Fund.search_by_conditions(params[:duration], params[:amount], params[:deadline]).where("state = 'gathering' or state = 'reached'").order('created_at')
+    @funds = Fund.search_by_conditions(params[:duration], params[:amount], params[:expected_earning_rate], params[:private_check]).where("state = 'gathering' or state = 'reached'").order('created_at')
   end
 
   def show
