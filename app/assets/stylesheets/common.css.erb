@@ -394,13 +394,16 @@ a.fn-left.ui-button.ui-button-blue.ui-button-mid.last {
 }
 .leverage-interest-item {
   padding: 20px 0;
+  border: solid 1px #ddd;
 }
-.leverage-interest-item.active {
-  background: #FDBA40;
+.leverage-interest-item.active,.leverage-interest-item:hover {
+  background: #E7141A;
+  color: white;
 }
-.leverage-interest-item:hover {
-  background: #FDBA40;
+.leverage-interest-item.active h3,.leverage-interest-item:hover h3 {
+  color: white;
 }
+
 .leverage-interest-item input[type="radio"] {
   opacity: 0;
   filter: alpha(opacity=0);

@@ -15,32 +15,36 @@
           -#   %input.form-control{:name => "leverage[description]"}
           .mt20
           .row.mt20
-            %h3= Leverage.human_attribute_name('amount')
-            .input-group
+            .headline.headline-md
+              %h3.zdy-red= Leverage.human_attribute_name('amount')
+            .input-group.mt20
               %input.form-control.text-center{:name => "leverage[amount]",
                 :id => "leverage_amount", :maxlength => 7}
               %span.input-group-addon  元
           .mt20
           .row.mt20.leverage_amount
-            %h3= Interest.human_attribute_name('leverage_time')
-            - (1..5).each do |index|
-              .col-md-4{:class => "#{'ml70' if index == 4}"}
-                .service-block.rounded-2x.service-block-default.leverage-interest-item.relative{:class => "#{'active' if 5==index}"}
-                  %input{:type => "radio",:name => "leverage_time",:value => "#{index}",:checked => "#{'checked' if 5==index}",:class => "leverage_time"}
-                  %h3{:id => "leverage_time_#{index}"} 0元
-                  %span
-                    x
-                    = index
+            .headline.headline-md
+              %h3.zdy-red= Interest.human_attribute_name('leverage_time')
+            .mt20
+              - (1..5).each do |index|
+                .col-md-4{:class => "#{'ml70' if index == 4}"}
+                  .service-block.rounded-2x.service-block-default.leverage-interest-item.relative{:class => "#{'active' if 5==index}"}
+                    %input{:type => "radio",:name => "leverage_time",:value => "#{index}",:checked => "#{'checked' if 5==index}",:class => "leverage_time"}
+                    %h3{:id => "leverage_time_#{index}"} 0元
+                    %span
+                      x
+                      = index
         .col.col-md-4.border-left
           .row.mt20.pl40
-            %h3 确认操盘信息
-            %ul
+            .headline.headline-md
+              %h3.zdy-red 确认操盘信息
+            %ul.mt20
               %li.info_item
                 .lbl
                   %span= Leverage.human_attribute_name('duration')
                   .pz_tips_1
                     .pz_tips_hd
-                      %span.icon-question.ui_ico
+                      %span.icon-question.ui_ico.zdy-red
                     .pz_tips_bd
                       %em.caret
                       %p 每月按30天计算，如使用1个月，11月16日至12月15日
@@ -57,7 +61,7 @@
                   %span 总操盘资金
                   .pz_tips_1
                     .pz_tips_hd
-                      %span.icon-question.ui_ico
+                      %span.icon-question.ui_ico.zdy-red
                     .pz_tips_bd
                       %em.caret
                       %p 投资本金＋配资金额
@@ -70,7 +74,7 @@
                   %span 亏损警告线
                   .pz_tips_1
                     .pz_tips_hd
-                      %span.icon-question.ui_ico
+                      %span.icon-question.ui_ico.zdy-red
                     .pz_tips_bd
                       %em.caret
                       %p 投资本金＋配资金额
@@ -83,7 +87,7 @@
                   %span 亏损平仓线
                   .pz_tips_1
                     .pz_tips_hd
-                      %span.icon-question.ui_ico
+                      %span.icon-question.ui_ico.zdy-red
                     .pz_tips_bd
                       %em.caret
                       %p 投资本金＋配资金额
@@ -96,7 +100,7 @@
                   %span 借款利息
                   .pz_tips_1
                     .pz_tips_hd
-                      %span.icon-question.ui_ico
+                      %span.icon-question.ui_ico.zdy-red
                     .pz_tips_bd
                       %em.caret
                       %p 投资本金＋配资金额
@@ -109,7 +113,7 @@
                   %span 借款月利率
                   .pz_tips_1
                     .pz_tips_hd
-                      %span.icon-question.ui_ico
+                      %span.icon-question.ui_ico.zdy-red
                     .pz_tips_bd
                       %em.caret
                       %p 投资本金＋配资金额
