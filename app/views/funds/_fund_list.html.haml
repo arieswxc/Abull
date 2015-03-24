@@ -13,6 +13,7 @@
       %th= Fund.human_attribute_name('amount')
       %th= Fund.human_attribute_name('expected_earning_rate')
       %th= Fund.human_attribute_name('duration')
+      %th 明／暗标
       %th 进度
       %th= Fund.human_attribute_name('state')
       - if @current=="xxx"
@@ -35,6 +36,11 @@
         %td
           = f.duration
           = '个月' unless f.duration.blank?
+        %td
+          - if f.private_check == 'private'
+            暗标
+          - else
+            明标
         %td
           %strong.ui-progressbar-mid{:class => "ui-progressbar-mid-"+"#{(f.raised_amount/f.amount * 100).floor}"}
             %em>= (f.raised_amount/f.amount * 100).floor
