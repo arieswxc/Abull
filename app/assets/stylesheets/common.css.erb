@@ -720,18 +720,21 @@ table.table tr td,table.table tr th {
 }
 .table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th {
   background-color: #fff;
-  border: none;
 }
 .table-striped > tbody > tr:nth-of-type(even) {
   background-color: #f8f8f8;
-  border: none;
 }
 .table-striped>tbody>tr:nth-child(even)>td, .table-striped>tbody>tr:nth-child(even)>th {
   background-color: #f8f8f8;
-  border: none;
 }
 .table-striped>tbody>tr:last-child>td, .table-striped>tbody>tr:last-child>th {
-  border-bottom: solid 2px #f8f8f8;
+  border-bottom: solid 1px #ddd;
+}
+.table-striped>tbody>tr>td, .table-striped>tbody>tr>th {
+  border: none;
+}
+.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th {
+  border: solid 1px #ddd;
 }
 
 .footer-v1 .footer .container .row .col-md-3 {
