@@ -14,11 +14,6 @@
       %th= Fund.human_attribute_name('expected_earning_rate')
       %th= Fund.human_attribute_name('duration')
       %th 进度
-      - if @current=="xxx"
-        %th= Fund.human_attribute_name('minimum')
-        %th= Fund.human_attribute_name('collection_deadline')
-        %th= Fund.human_attribute_name('invest_starting_date')
-        %th= Fund.human_attribute_name('invest_ending_date')
       %th= Fund.human_attribute_name('state')
       - if @current=="xxx"
         %th 暗标码
@@ -44,14 +39,6 @@
           %strong.ui-progressbar-mid{:class => "ui-progressbar-mid-"+"#{(f.raised_amount/f.amount * 100).floor}"}
             %em>= (f.raised_amount/f.amount * 100).floor
             \%
-        - if @current=="xxx"
-          %td
-            = f.minimum
-            = '元' unless f.minimum.blank?
-          %td.formattime= f.collection_deadline
-          / %td= f.minimum
-          %td{:class => "#{'formattime' unless f.invest_starting_date.blank?}"}= f.invest_starting_date
-          %td{:class => "#{'formattime' unless f.invest_ending_date.blank?}"}= f.invest_ending_date
         - unless @current=="xxx"
           %td
             - if f.state == "gathering"
