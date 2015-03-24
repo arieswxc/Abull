@@ -56,6 +56,28 @@ class UsersController < ApplicationController
     end
   end
 
+  def generate_verification_code
+    uri       = URI.parse("http://222.73.117.158/msg/HttpSendSM")
+    code      = rand(100000..999999)
+    msg       = "欢迎注册摩尔街账户，您的激活码为#{code},请在注册页面填写"
+    cell      = params[:cell]
+    username  = Rails.application.secrets.sms_username
+    password  = Rails.application.secrets.sms_password
+    session[:code] = code
+
+    res = Net::HTTP.post_form(uri, account: username, pswd: password, mobile: cell, msg: msg, needstatus: true)
+    batch_code  = res.body.split[1]
+
+    if batch_code
+      render json: {message: 'success'}
+    else
+      render json: {error: 'failed'}
+    end
+  end
+
+  
+
+
   private
     def user_params
       params.require(:user).permit(
