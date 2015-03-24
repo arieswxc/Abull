@@ -83,7 +83,7 @@
           data.append('avatar', _self.files[0]);
           $.ajax({
             data:data,
-            url: "/users/#{current_user.id}/save_avatar",
+            url: "/users/#{current_user.id if current_user}/save_avatar",
             type: 'post',
             contentType: false,
             processData: false,
@@ -114,7 +114,7 @@
           data.append('avatar', _self.files[0]);
           $.ajax({
             data:data,
-            url: "/users/#{current_user.id}/save_avatar",
+            url: "/users/#{current_user.id if current_user}/save_avatar",
             type: 'post',
             contentType: false,
             processData: false,

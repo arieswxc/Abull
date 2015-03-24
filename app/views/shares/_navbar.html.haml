@@ -60,12 +60,12 @@
           / Collect the nav links, forms, and other content for toggling
           .collapse.navbar-collapse.navbar-responsive-collapse.nav-menu
             %ul.nav.navbar-nav
-              %li= link_to "首页",root_path
-              %li= link_to "我要投标",funds_path
-              %li= link_to "我要发标",new_fund_path
-              %li= link_to "我要配资",new_leverage_path
-              %li= link_to "交流互动",topics_path
-              %li.dropdown
+              %li{:class => "#{'active' if controller.controller_name == 'welcome'}"}= link_to "首页",root_path
+              %li{:class => "#{'active' if (controller.controller_name == 'funds' && controller.action_name == 'index') || controller.controller_name == 'invests'}"}= link_to "我要投标",funds_path
+              %li{:class => "#{'active' if (controller.controller_name == 'funds' && controller.action_name == 'new')}"}= link_to "我要发标",new_fund_path
+              %li{:class => "#{'active' if controller.controller_name == 'leverages'}"}= link_to "我要配资",new_leverage_path
+              %li{:class => "#{'active' if controller.controller_name == 'topics'}"}= link_to "交流互动",topics_path
+              %li.dropdown{:class => "#{'active' if controller.controller_name == 'pages'}"}
                 %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "javascript:void(0);"}
                   关于我们
                 %ul.dropdown-menu
