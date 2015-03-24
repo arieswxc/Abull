@@ -4,7 +4,7 @@ module ApplicationHelper
   end
   def inform(resource, type, amount)
     user = resource.user
-    UserMailer.welcome_email(user).deliver_now
+    UserMailer.account_email(user, type, amount).deliver_now
     hash = {
       name: user.real_name,
       amount: amount
@@ -16,12 +16,12 @@ module ApplicationHelper
   def fund_inform(resource, type)
     user = resource.user
     fund_name = resource.name
-    UserMailer.welcome_email(user).deliver_now
     hash = {
-      name: user.real_name,
+      user: user,
       fund_name: fund_name,
       date: resource.created_at.to_date
     }
+    UserMailer.fund_email(type, hash).deliver_now
     resource.send_sms(user.cell, type, hash)
     redirect_to admin_fund_path(resource)
   end
@@ -29,14 +29,27 @@ module ApplicationHelper
   def leverage_inform(resource, type)
     user = resource.user
     leverage_amount = resource.leverage_amount
-    UserMailer.welcome_email(user).deliver_now
     hash = {
-      name: user.real_name,
+      user: user,
       leverage_amount: leverage_amount,
       date: resource.created_at.to_date
     }
+    UserMailer.leverage_email(type, hash).deliver_now
     resource.send_sms(user.cell, type, hash)
     redirect_to admin_leverage_path(resource)
+  end
+
+  def invest_inform(resource, type)
+    user = resource.user
+    fund_name = resource.fund.name
+    hash = {
+      user: user,
+      fund_name: fund_name,
+      date: resource.created_at.to_date
+    }
+    UserMailer.invest_email(type, hash).deliver_now
+    resource.send_sms(user.cell, type, hash)
+    redirect_to admin_invest_path(resource)
   end
 
 
