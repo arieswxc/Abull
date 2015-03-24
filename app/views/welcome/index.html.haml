@@ -15,7 +15,7 @@
   -#   .container
   -#     .int-wrapper
   -#       %div{"ng-show" => "!isAuthenticated()"}
-  -#         %h6.int-title 证金所历史年化收益率
+  -#         %h6.int-title 摩尔街历史年化收益率
   -#         %p
   -#           %small 平均
   -#           %span.big-int 14.07%
@@ -32,19 +32,19 @@
   .container.content
     / Begin Service Block
     .row.margin-bottom-40
-      .col-md-4.col-sm-4
+      .col-md-4.col-xs-4
         .service-block.service-or.home-aq
           .service-bg
           = image_tag "home_aq_icon.png",height: '38px'
           %h2.heading-md 安全
           %p 账户券商托管、资金银行托管、全程无其他方介入，全程透明可见，资金、账户保证安全。
-      .col-md-4.col-sm-4
+      .col-md-4.col-xs-4
         .service-block.service-or.home-sy
           .service-bg
           = image_tag "home_sy_icon.png",height: '38px'
           %h2.heading-md 简单
           %p 全方位交流、信息全面、在线委托操盘，实时查看，简单、安心、便捷，良好体验。
-      .col-md-4.col-sm-4
+      .col-md-4.col-xs-4
         .service-block.service-or.home-bz
           .service-bg
           = image_tag "home_bz_icon.png",height: '38px'
@@ -74,8 +74,9 @@
                 %span.ui-list-field.fn-left.text-big.w110.text-center
                   %img.img-circle.ui-progressbar-mid{:height => "50", :src => asset_path("testimonials/img1.jpg"), :width => "50"}/
                 %span.ui-list-field.fn-left.text-big.w260.text-center
-                  %span.fn-left.w260.rrd-dimgray.fn-text-overflow{:href => "/lend/detailPage.action?loanId=488977", :target => "_blank", :title => "网上投资创业"}= f.name
+                  %span.fn-left.w260.rrd-dimgray.fn-text-overflow= f.name
                 %span.ui-list-field.fn-left.text-big.w90
+                  %em.value>= f.genre
                 %span.ui-list-field.fn-left.num.text-right.w160.text-center
                   %em.value>= f.amount
                   元
@@ -166,3 +167,5 @@
             %dd
               %p
                 %a{:href => "#"}= f.content
+
+- @navItem = 'home'

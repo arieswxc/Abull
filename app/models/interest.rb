@@ -26,4 +26,5 @@ class Interest < ActiveRecord::Base
   end
 
 
+
 end

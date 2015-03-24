@@ -7,9 +7,9 @@
           %img.img-thumbnail.img-rounded.mw90.mh90{:src => "#{current_user.avatar.url}"}/
     %label.user_name
       hi,
-      - if current_user.real_name
+      - if !current_user.real_name.blank?
         = current_user.real_name
-      - elsif current_user.username
+      - elsif !current_user.username.blank?
         = current_user.username
       - else
         = current_user.cell
@@ -22,7 +22,7 @@
       %li{:class => "ui-side-item first #{'active' if activeItem=='user'}"}
         = link_to(current_user,class: "ui-side-item-link pt0") do
           %i.glyphicon.glyphicon-home.index.mr10.ml10>
-          我的证金所
+          我的摩尔街
       %li{:class => "ui-side-item #{'active' if activeItem=='account'}"}
         %a.ui-side-item-link.pt0
           %i.glyphicon.glyphicon-usd.index.mr10.ml10>

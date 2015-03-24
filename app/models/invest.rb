@@ -6,4 +6,8 @@ class Invest < ActiveRecord::Base
   validates :amount,  numericality: true
   belongs_to :user
   belongs_to :fund
+
+  def send_sms(mobile, type, params)
+    SMSGateway.render_then_send(mobile, type, params)
+  end
 end

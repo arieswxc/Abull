@@ -77,12 +77,15 @@ class Fund < ActiveRecord::Base
   end
 
   #类方法
-  def self.search_by_conditions(duration, amount, deadline)
+  def self.search_by_conditions(duration, amount, expected_earning_rate, private_check)
     duration = 0 if duration.blank?
-    deadline = deadline.blank? ? Time.zone.parse('2100-01-01') : Time.zone.parse(deadline)
     amount = 0 if amount.blank?
-    ending_days = ((deadline.to_i - Time.zone.now.to_i) / 86400).to_i
-    funds = Fund.where("duration >= ? and amount >= ? and ending_days <= ?", duration, amount, ending_days)
+    expected_earning_rate = 0 if expected_earning_rate.blank?
+    if private_check.blank?
+      funds = Fund.where("duration > ? and amount > ? and expected_earning_rate > ?", duration, amount, expected_earning_rate)
+    else
+      funds = Fund.where("duration > ? and amount > ? and expected_earning_rate > ? and private_check = ?", duration, amount, expected_earning_rate, private_check)
+    end
   end
 
   private

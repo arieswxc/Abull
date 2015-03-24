@@ -394,13 +394,16 @@ a.fn-left.ui-button.ui-button-blue.ui-button-mid.last {
 }
 .leverage-interest-item {
   padding: 20px 0;
+  border: solid 1px #ddd;
 }
-.leverage-interest-item.active {
-  background: #FDBA40;
+.leverage-interest-item.active,.leverage-interest-item:hover {
+  background: #E7141A;
+  color: white;
 }
-.leverage-interest-item:hover {
-  background: #FDBA40;
+.leverage-interest-item.active h3,.leverage-interest-item:hover h3 {
+  color: white;
 }
+
 .leverage-interest-item input[type="radio"] {
   opacity: 0;
   filter: alpha(opacity=0);
@@ -698,12 +701,54 @@ a.sky-blue-i:hover {
   -o-transform:rotate(270deg); /* Opera */
 }
 * {
-  font-size: 12px;
+  font-size: 14px;
   font-family: arial,"Microsoft Yahei","Hiragino Sans GB",sans-serif;
 }
 body {
   font-size: 12px;
   font-family: arial,"Microsoft Yahei","Hiragino Sans GB",sans-serif!important;
+}
+p {
+  color: #555;
+}
+table.table tr td,table.table tr th {
+  vertical-align: middle;
+}
+.table-striped > thead > tr:nth-of-type(odd) {
+  background-color: #f2f2f2;
+}
+.table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #fff;
+  border: none;
+}
+.table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th {
+  background-color: #fff;
+}
+.table-striped > tbody > tr:nth-of-type(even) {
+  background-color: #f8f8f8;
+}
+.table-striped>tbody>tr:nth-child(even)>td, .table-striped>tbody>tr:nth-child(even)>th {
+  background-color: #f8f8f8;
+}
+.table-striped>tbody>tr:last-child>td, .table-striped>tbody>tr:last-child>th {
+  border-bottom: solid 1px #ddd;
+}
+.table-striped>tbody>tr>td, .table-striped>tbody>tr>th {
+  border: none;
+}
+.table-striped>tbody>tr:hover>td, .table-striped>tbody>tr:hover>th {
+  background-color: #ddd;
+}
+.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th {
+  border: solid 1px #ddd;
+}
+.surplus .num-xl label {
+  font-size: 24px;
+  line-height: 1.2;
+}
+.surplus-detail .num label {
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 .footer-v1 .footer .container .row .col-md-3 {

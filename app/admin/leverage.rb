@@ -106,13 +106,13 @@ ActiveAdmin.register Leverage do
   member_action :add_interests_inform, :method => :post do
     user = resource.user
     leverage_amount = resource.leverage_amount
-    UserMailer.welcome_email(user).deliver_now
     hash = {
-      name: user.real_name,
+      user: user,
       leverage_amount: leverage_amount,
       interests: params[:input][:interests],
       date: resource.created_at.to_date
     }
+    UserMailer.leverage_email('add_interests_inform', hash).deliver_now
     resource.send_sms(user.cell, 'add_interests_inform', hash)
     redirect_to admin_leverage_path(resource)
   end
