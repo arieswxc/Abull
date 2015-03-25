@@ -15,6 +15,7 @@ zh-CN:
       photo: 照片
       interest: 利率
       account: 账户
+      bank_card: 银行卡
     attributes:
       admin_user:
         email: 电子邮件
@@ -133,6 +134,12 @@ zh-CN:
         balance: 余额
         user_id: 用户
         user: 用户
+      bank_card:
+        user_id: 持卡人
+        bank_name: 开户行
+        bank_branch: 支行
+        number: 卡号
+        state: 状态
   formtastic:
     yes: "YES"
     no: "NO"
