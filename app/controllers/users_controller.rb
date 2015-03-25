@@ -70,7 +70,9 @@ class UsersController < ApplicationController
 
   def update_password
     user = User.find_by(cell: params[:user][:cell].to_i)
-    user.reset_password(params[:user][:cell])
+    if user
+      user.reset_password(params[:user][:cell])
+    end
     redirect_to root_path
   end
 
