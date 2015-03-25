@@ -26,6 +26,9 @@
 	$(function(){
 		var minimum = parseInt("#{@fund.minimum}");
 		var maxmum = parseInt("#{(@fund.amount - @invests.sum(:amount))}");
+		if(maxmum > 0 && maxmum < minimum) {
+			minimum = maxmum;
+		}
 		$('#submit').bind('click',function(){
 			var crt_amount = parseInt($("#invest_input_can").val()) || 0;
 			if (crt_amount < minimum) {
