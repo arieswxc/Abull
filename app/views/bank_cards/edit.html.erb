@@ -1,0 +1,6 @@
+<%= simple_form_for(@bank_card, url: user_bank_card_path) do |f| %>
+  <%= f.input :number %>
+  <%= f.input :bank_name %>
+  <%= f.input :bank_branch %>
+  <%= f.button :submit %>
+<% end %>
