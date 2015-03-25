@@ -13,14 +13,19 @@ class InvestsController < ApplicationController
     @invests = @fund.invests
     @invest = @fund.invests.build()
     @invest.date = Time.now()
-    @flag = @fund.private_check == 'public' ?  true : session[:private_check]
+    if !session[@fund.id].nil?
+      @flag = @fund.private_check == 'public' ?  true : session[@fund.id]
+    else
+      @flag = @fund.private_check == 'public' ?  true : false
+    end
+
   end
 
   def create
     @fund   = Fund.find(params[:fund_id])
     @invest = @fund.invests.build(invest_params)
     @invests = @fund.invests
-    flag = @fund.private_check == 'public' ?  true : session[:private_check]
+    flag = @fund.private_check == 'public' ?  true : session[@fund.id]
 
     if @fund.state == "gathering" && (@fund.raised_amount + params[:invest][:amount].to_i <= @fund.amount) && flag && @invest.save
       current_user.follow(@fund.user)
@@ -34,10 +39,10 @@ class InvestsController < ApplicationController
   def unlock
     fund = Fund.find(params[:fund_id])
     if fund && fund.private_check == 'private' &&fund.private_code.to_i == params[:private_code].to_i
-      session[:private_check] = true
+      session[fund.id] = true
       render json: { check: 'true' }
     else
-      session[:private_check] = false
+      session[fund.id] = false
       render json: { check: 'false' }
     end
   end
