@@ -2,7 +2,7 @@
 
 %div.container.content
   .headline.headline-md
-    %h2 项目投标
+    %h2.zdy-red 项目投标
 
   %div.container.content
     %form.sky-form
@@ -47,5 +47,16 @@
       -#         %i.fa.fa-search
 
   = render partial: 'fund_list'
+
+
+:javascript
+  $(function(){
+    $("table tbody tr").click(function() {
+      $(this).children().css("background","#C8C8C8");
+      var invest_id = this.dataset.index;
+      window.location.href = "/funds/" + invest_id + "/invests/new";
+    });
+    $("table tbody tr").addClass("pointer");
+  });
 
 - @navItem = 'funds'
