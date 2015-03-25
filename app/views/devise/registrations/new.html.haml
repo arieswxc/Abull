@@ -34,6 +34,15 @@
           %input#user_password_confirmation.form-control{:type => "password", :name => "user[password_confirmation]", :autofocus => "off", :placeholder => "确认密码"}
 
         .row
+          .col-xs-6
+            .input-group.margin-bottom-20
+              %span.input-group-addon
+                %i.fa.fa-key
+              %input.form-control{:type => "text", :name => "verification_code", :placeholder => "验证码"}
+          .col-xs-6
+            %a#getCheckCode.btn-u.btn-u-default  获取验证码
+
+        .row
           .col-lg-6.checkbox
             %label
               %input#check{:type => "checkbox",:checked => ""}/
@@ -51,4 +60,23 @@
           alert('提交注册前请先阅读并勾选确认条款');
         }
       });
+      $("#getCheckCode").click(function(){
+        getCheckCode();
+      });
+
+      function getCheckCode() {
+        $.ajax({
+          data: null,
+          url: "/users/generate_verification_code?cell=" + $("#user_cell").val(),
+          type: 'get',
+          contentType: false,
+          processData: false,
+          success: function () {
+
+          },
+          error: function () {
+
+          }
+        });
+      }
     });

@@ -57,16 +57,9 @@ class UsersController < ApplicationController
   end
 
   def generate_verification_code
-    uri       = URI.parse("http://222.73.117.158/msg/HttpSendSM")
     code      = rand(100000..999999)
-    msg       = "欢迎注册摩尔街账户，您的激活码为#{code},请在注册页面填写"
-    cell      = params[:cell]
-    username  = Rails.application.secrets.sms_username
-    password  = Rails.application.secrets.sms_password
     session[:code] = code
-
-    res = Net::HTTP.post_form(uri, account: username, pswd: password, mobile: cell, msg: msg, needstatus: true)
-    batch_code  = res.body.split[1]
+    batch_code  = send_sms(code, params[:cell])
 
     if batch_code
       render json: {message: 'success'}
@@ -90,5 +83,17 @@ class UsersController < ApplicationController
       @user = current_user
       UserMailer.welcome_email(@user).deliver_now
     end
+
+    def send_sms(code, cell)
+      uri       = URI.parse("http://222.73.117.158/msg/HttpSendSM")
+      msg       = "欢迎注册摩尔街账户，您的激活码为#{code},请在注册页面填写"
+      username  = 'jiekou-cs-01'
+      password  = 'Tch147259'
+  
+      res = Net::HTTP.post_form(uri, account: username, pswd: password, mobile: cell, msg: msg, needstatus: true)
+      res.body.split[1]
+    end
+
+
 
 end
