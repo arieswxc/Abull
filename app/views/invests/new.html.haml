@@ -2,7 +2,7 @@
   - if current_user && current_user.level == 'unverified'
     .text-center.min-height300.pt80
       %h3 请进行实名认证
-      = link_to "点此进行实名认证", "#{edit_user_registration_path}/#authencation"
+      = link_to "点此进行实名认证", investor_apply_user_path(current_user)
   - elsif current_user && current_user.level == 'investor_applied'
     .text-center.min-height300.pt80
       %h3 您已提交实名认证申请，请等待审核
