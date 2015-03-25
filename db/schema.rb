@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150325052521) do
+ActiveRecord::Schema.define(version: 20150325093539) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
     t.decimal  "balance",              precision: 12, scale: 2, default: 0.0
     t.datetime "created_at",                                                  null: false
     t.datetime "updated_at",                                                  null: false
+    t.decimal  "frost",                precision: 12, scale: 2
   end
 
   add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
@@ -247,6 +248,8 @@ ActiveRecord::Schema.define(version: 20150325052521) do
     t.string   "education",              limit: 255
     t.string   "address",                limit: 255
     t.string   "job",                    limit: 255
+    t.string   "verify_file",            limit: 255
+    t.string   "line_csv",               limit: 255
   end
 
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
