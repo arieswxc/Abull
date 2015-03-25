@@ -1,5 +1,5 @@
 class ChangeAccount < ActiveRecord::Migration
   def change
-    rename_column :accounts, :freeze, :frost
+    add_column :accounts, :frost , precision: 12, scale: 2, default: 0
   end
 end
