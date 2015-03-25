@@ -52,5 +52,8 @@ module ApplicationHelper
     redirect_to admin_invest_path(resource)
   end
 
+  def check_private() 
+
+  end
 
 end

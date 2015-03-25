@@ -19,6 +19,7 @@
         %th= Fund.human_attribute_name('earning_rate')
         %th= Fund.human_attribute_name('state')
       %th= Invest.human_attribute_name('amount')
+      %th= Invest.human_attribute_name('date')
       - if @current=="xxx"
         %th 电子合同
   -# todo, 处理 private_check
@@ -53,6 +54,7 @@
           %td
             = f.amount
             = '元' unless f.amount.blank?
+          %td.formattime= f.date
           - if @current=="xxx"
             %td
               %a{:href => "javascript:;"} 委托操盘合同

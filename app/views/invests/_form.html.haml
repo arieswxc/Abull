@@ -2,9 +2,18 @@
 	= f.input :fund_id, value: @fund.id, as: :hidden
 	= f.input :date, as: :hidden
 	.form-group
-		%label= Invest.human_attribute_name('amount')
+
+		%label
+			= "剩余投资额 : " + (@fund.amount - @invests.sum(:amount)).to_s() +"元"
+		%br
+		%label
+			= "最小投资额 : "+ @fund.minimum.to_s() +"元"
+		%br
+		%label
+			= Invest.human_attribute_name('amount')
+			\:
 		.input-group
-			%input.form-control.text-center.numberic{:name => "invest[amount]",:maxlength => 7}
+			%input#invest_input_can.form-control.text-center.numberic{:name => "invest[amount]",:maxlength => 7,:placeholder => "大于等于最小投资额，小于等于剩余投资额"}
 			%span.input-group-addon  元
 	.mb10
 		%input#check{:type => "checkbox",:checked => ""}/
@@ -15,11 +24,28 @@
 
 :javascript
 	$(function(){
-	  $('#submit').bind('click',function(){
-	    if($(this).closest('form').find('#check').attr('checked')){
+		var minimum = parseInt("#{@fund.minimum}");
+		var maxmum = parseInt("#{(@fund.amount - @invests.sum(:amount))}");
+		$('#submit').bind('click',function(){
+			var crt_amount = parseInt($("#invest_input_can").val()) || 0;
+			if (crt_amount < minimum) {
+				alert("您输入的投资额小于最小投资额");
+				return;
+			}
+		  if($(this).closest('form').find('#check').attr('checked')){
 		    $('#subbtn').click();
-	    }else{
+		  }else{
 		    alert('请您先阅读并勾选确认条款');
-	    }
-	  });
+		  }
+		});
+		$("#invest_input_can").bind('input', function() {
+			var crt_amount = parseInt($(this).val()) || 0;
+			if (crt_amount > maxmum) {
+				crt_amount = maxmum;
+			}else if (crt_amount < minimum) {
+				//crt_amount = minimum;
+			}
+
+			$(this).val(crt_amount);
+		});
 	});

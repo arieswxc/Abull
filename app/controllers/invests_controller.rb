@@ -1,6 +1,7 @@
 class InvestsController < ApplicationController
   before_action :authenticate_user!, only: [:create,:edit]
   # before_action :check_invest_user, only: [:new, :create]
+  after_action :authenticate_user!, only: [:new]
   def index
     @fund         = Fund.find(params[:fund_id])
     @invests      = @fund.invests
@@ -11,7 +12,6 @@ class InvestsController < ApplicationController
     @fund   = Fund.find(params[:fund_id])
     @invests = @fund.invests
     @invest = @fund.invests.build()
-    @invest.user_id = current_user.id unless current_user.nil?
     @invest.date = Time.now()
   end
 

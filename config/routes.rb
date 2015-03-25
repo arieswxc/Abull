@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   mount ChinaCity::Engine => '/china_city'
   root 'welcome#index'
 
+  resources :welcome do
+    get :funds, on: :collection
+  end
   resources :users, only: [:show] do
     scope module: 'profile' do
       resources :invests,           only: [:index, :show]

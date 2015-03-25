@@ -62,7 +62,11 @@
             %ul.nav.navbar-nav
               %li{:class => "#{'active' if @navItem == 'home'}"}= link_to "首页",root_path
               %li{:class => "#{'active' if @navItem == 'funds'}"}= link_to "我要投标",funds_path
-              %li{:class => "#{'active' if @navItem == 'fund_new'}"}= link_to "我要发标",new_fund_path
+              %li{:class => "#{'active' if @navItem == 'fund_new'}"}
+                - if user_signed_in?
+                  = link_to "我要发标",new_fund_path
+                - else
+                  = link_to "我要发标",funds_welcome_index_path
               %li{:class => "#{'active' if @navItem == 'leverage_new'}"}= link_to "我要配资",new_leverage_path
               %li{:class => "#{'active' if @navItem == 'topics'}"}= link_to "交流互动",topics_path
               %li.dropdown{:class => "#{'active' if @navItem == 'pages'}"}

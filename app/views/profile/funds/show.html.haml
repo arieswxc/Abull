@@ -1,15 +1,15 @@
 .container.content
   .row
     .col-md-12
-      %label
+      %label.mr15
         %span HOMS账号：
         %span
-      %label
+      %label.mr15
         %span 密码：
         %span
       %label
         %span 暗标码：
-        %span
+        %span= @fund.private_code
   .row
     .col-md-12
       = render 'funds/fund_base_info'

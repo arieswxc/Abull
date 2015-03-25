@@ -6,4 +6,8 @@ class WelcomeController < ApplicationController
     @last_ten_news    = News.last(10)
     @last_ten_topics  = Topic.last(10)
   end
+
+  def funds
+    
+  end
 end

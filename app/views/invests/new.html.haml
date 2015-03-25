@@ -25,11 +25,22 @@
           = render 'funds/fund_base_info'
         .col-md-4.hide.new_invest_form
           = render 'form'
+
     .row
       .col-md-12
         .panel.panel-grey
           .panel-heading
-            .panel-title 申购记录
+            .panel-title
+              %label.mr40
+                申购记录
+              %label.mr15
+                %span 人次：
+                %span= @invests.count
+              %label
+                %span 投标总额：
+                %span
+                  = @invests.sum(:amount)
+                  元
           .panel-title
             = render "invest_list"
 
