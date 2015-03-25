@@ -4,6 +4,8 @@ class Account < ActiveRecord::Base
   validates :balance, presence: true
   validates :balance, numericality: true
   belongs_to :user
+  has_many :billings
+
   def send_sms(mobile, type, params)
     SMSGateway.render_then_send(mobile, type, params)
   end

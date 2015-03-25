@@ -77,10 +77,7 @@
        },
        contentType: "application/json; charset=UTF-8",
        success: function(data) {
-         if (data.check === 'true') {
-           $(".fund_base_info").removeClass("col-md-12").addClass("col-md-8");
-           $(".new_invest_form").removeClass("hide");
-         }
+         location.reload();
        },
        error: function() {
          console.log("系统繁忙，请稍后再试");
