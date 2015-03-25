@@ -22,11 +22,14 @@
   -# todo, 处理 private_check
   %tbody
     - @funds.each do |f|
-      %tr{'data-index' => f.id}
+      %tr{'data-index' => f.id,'data-state' => f.state}
         - unless @current=="xxx"
-          %td= f.user.email
-        %td= f.name
-        %td= f.genre
+          %td= check_private(f.user.email,f.private_check)
+          %td= check_private(f.name,f.private_check)
+          %td= check_private(f.genre,f.private_check)
+        - else
+          %td= f.name
+          %td= f.genre
         %td
           = f.amount
           = '元' unless f.amount.blank?
@@ -48,7 +51,7 @@
         - unless @current=="xxx"
           %td
             - if f.state == "gathering"
-              = link_to "我要投标",new_fund_invest_path(f.id),class: "btn-u btn-u-xs btn-u-blue" unless @invest
+              = link_to "我要投标","javascript:;",class: "btn-u btn-u-xs btn-u-blue" unless @invest
             - elsif f.state == "reached"
               = link_to "已投满","javascript:;",class: "btn-u btn-u-xs btn-u-default" unless @invest
         - else

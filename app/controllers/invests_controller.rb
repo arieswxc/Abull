@@ -13,6 +13,7 @@ class InvestsController < ApplicationController
     @invests = @fund.invests
     @invest = @fund.invests.build()
     @invest.date = Time.now()
+    @flag = @fund.private_check == 'public' ?  true : session[:private_check]
   end
 
   def create

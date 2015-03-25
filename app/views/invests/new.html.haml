@@ -2,7 +2,7 @@
   - if current_user && current_user.level == 'unverified'
     .text-center.min-height300.pt80
       %h3 请进行实名认证
-      = link_to "点此进行实名认证", "#{edit_user_registration_path}/#authencation"
+      = link_to "点此进行实名认证", investor_apply_user_path(current_user)
   - elsif current_user && current_user.level == 'investor_applied'
     .text-center.min-height300.pt80
       %h3 您已提交实名认证申请，请等待审核
@@ -15,16 +15,22 @@
     .row.mt10
       = render 'users/funder_info',{user: @fund.user}
     .row
-      - if @fund.private_check != 'private'
+      - if @flag
         .col-md-8.fund_base_info
           = render 'funds/fund_base_info'
         .col-md-4.new_invest_form
-          = render 'form'
+          - if @fund.state == "gathering"
+            = render 'form'
+          - elsif @fund.state == "reached"
+            %h3 已投满
       - else
         .col-md-12.fund_base_info
           = render 'funds/fund_base_info'
         .col-md-4.hide.new_invest_form
-          = render 'form'
+          - if @fund.state == "gathering"
+            = render 'form'
+          - elsif @fund.state == "reached"
+            %h3 已投满
 
     .row
       .col-md-12

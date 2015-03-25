@@ -11,18 +11,18 @@
           .row
             .col-md-12
               %a.btn-u.btn-u-xs{:class => "#{'btn-u-default direct_to_tab2' if current_user.cell.blank?}" "#{'btn-u-yellow' if !current_user.cell.blank?}",
-                :href => "#{edit_user_registration_path+'/#authencation' if current_user.cell.blank?}" "#{'javascript:;' if !current_user.cell.blank?}"} 手机
+                :href => "#{trader_apply_user_path(current_user) if current_user.cell.blank?}" "#{'javascript:;' if !current_user.cell.blank?}"} 手机
               %a.btn-u.btn-u-xs{:class => "#{'btn-u-default direct_to_tab2' if current_user.email.blank?}" "#{'btn-u-yellow' if !current_user.email.blank?}",
-                :href => "#{edit_user_registration_path+'/#authencation' if current_user.email.blank?}" "#{'javascript:;' if !current_user.email.blank?}"} 邮箱
+                :href => "#{trader_apply_user_path(current_user) if current_user.email.blank?}" "#{'javascript:;' if !current_user.email.blank?}"} 邮箱
               - @authenticated = !(current_user.level == 'unverified' || current_user.level == 'investor_applied')
               %a.btn-u.btn-u-xs{:class => "#{'btn-u-default direct_to_tab2' if !@authenticated}" "#{'btn-u-yellow' if @authenticated}",
-                :href => "#{edit_user_registration_path+'/#authencation' if !@authenticated}" "#{'javascript:;' if @authenticated}"} 身份证
+                :href => "#{investor_apply_user_path(current_user) if !@authenticated}" "#{'javascript:;' if @authenticated}"} 身份证
           .row.mt5
             .col-md-12
               %a.btn-u.btn-u-xs{:class => "#{'btn-u-default direct_to_tab2' if current_user.address.blank?}" "#{'btn-u-yellow' if !current_user.address.blank?}",
-                :href => "#{edit_user_registration_path+'/#authencation' if current_user.address.blank?}" "#{'javascript:;' if !current_user.address.blank?}"} 住址
+                :href => "#{trader_apply_user_path(current_user) if current_user.address.blank?}" "#{'javascript:;' if !current_user.address.blank?}"} 住址
               %a.btn-u.btn-u-xs{:class => "#{'btn-u-default direct_to_tab2' if current_user.education.blank?}" "#{'btn-u-yellow' if !current_user.education.blank?}",
-                :href => "#{edit_user_registration_path+'/#authencation' if current_user.education.blank?}" "#{'javascript:;' if !current_user.education.blank?}"} 学历
+                :href => "#{trader_apply_user_path(current_user) if current_user.education.blank?}" "#{'javascript:;' if !current_user.education.blank?}"} 学历
       .fn-left.last.border-left.pl10.w500
         .surplus.fn-clear
           %span.fn-left.text-l.mr10 账户余额

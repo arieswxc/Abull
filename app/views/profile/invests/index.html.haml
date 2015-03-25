@@ -14,7 +14,6 @@
 :javascript
   jQuery(document).ready(function() {
     $("#profile-invest-show tbody tr").click(function() {
-      $(this).children().css("background","#C8C8C8");
       var invest_id = this.dataset.index;
       window.location.href = "/users/" + "#{current_user.id}" +"/invests/" + invest_id;
     });

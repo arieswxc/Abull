@@ -72,11 +72,11 @@
             %li.ui-list-item.fn-clear
               %a{:href => "#{new_fund_invest_path(f.id) if f.state == 'gathering'} #{'javascript:;' if f.state != 'gathering'}"}
                 %span.ui-list-field.fn-left.text-big.w110.text-center
-                  %img.img-circle.ui-progressbar-mid{:height => "50", :src => asset_path("testimonials/img1.jpg"), :width => "50"}/
+                  %img.img-circle.ui-progressbar-mid{:height => "50", :src => f.user.avatar.url, :width => "50",:class => "#{'blur' if f.private_check == 'private'}"}/
                 %span.ui-list-field.fn-left.text-big.w260.text-center
-                  %span.fn-left.w260.rrd-dimgray.fn-text-overflow= f.name
+                  %span.fn-left.w260.rrd-dimgray.fn-text-overflow= check_private(f.name,f.private_check)
                 %span.ui-list-field.fn-left.text-big.w90
-                  %em.value>= f.genre
+                  %em.value>= check_private(f.genre,f.private_check)
                 %span.ui-list-field.fn-left.num.text-right.w160.text-center
                   %em.value>= f.amount
                   元

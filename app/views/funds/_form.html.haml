@@ -16,11 +16,11 @@
         %label.w130 是否为暗标：
         %span.mr10
           %input{:class => "radio_buttons optional", :type => "radio", :value => "private",
-           :checked => "checked", :name => "fund[private_check]", :id => "fund_private_check_private"}
+            :name => "fund[private_check]", :id => "fund_private_check_private"}
             是
         %span.mr10
           %input{:class => "radio_buttons optional", :type => "radio", :value => "public",
-            :name => "fund[private_check]", :id => "fund_private_check_public"}
+            :checked => "",:name => "fund[private_check]", :id => "fund_private_check_public"}
             否
         %span 什么是暗标
         .pz_tips_1
@@ -29,7 +29,7 @@
           .pz_tips_bd
             %em.caret
             %p 投资本金＋配资金额
-    .form-group.private_check_control
+    .form-group.private_check_control.zdy-hide
       .col-sm-3.control-label
       .col-sm-9.pt5
         %label.w130 是否账户托管：

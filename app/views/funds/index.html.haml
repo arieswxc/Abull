@@ -35,10 +35,10 @@
             %i
           %span.input-group-addon  标
       %section.col.col-4
-        %button.btn-u.btn-u-dark-blue.mt30.mr10{:type => "submit"}
+        %button.btn-u.btn-u-dark-blue.mt25.mr10{:type => "submit"}
           %i.fa.fa-search
           搜索
-        %a.btn-u.btn-u-red.mt30{:href => "/funds"} 查看所有
+        %a.btn-u.btn-u-red.mt25{:href => "/funds"} 查看所有
       -# %section.col.col-3
       -#   %div.input-group
       -#     %span.input-group-btn.custom-right
@@ -52,9 +52,10 @@
 :javascript
   $(function(){
     $("table tbody tr").click(function() {
-      $(this).children().css("background","#C8C8C8");
-      var invest_id = this.dataset.index;
-      window.location.href = "/funds/" + invest_id + "/invests/new";
+      if (this.dataset.state === 'gathering') {
+        var invest_id = this.dataset.index;
+        window.location.href = "/funds/" + invest_id + "/invests/new";
+      }
     });
     $("table tbody tr").addClass("pointer");
   });
