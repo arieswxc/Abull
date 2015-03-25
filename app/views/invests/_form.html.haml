@@ -31,6 +31,10 @@
 		}
 		$('#submit').bind('click',function(){
 			var crt_amount = parseInt($("#invest_input_can").val()) || 0;
+			if (maxmum <= 0) {
+				alert("当前标的已投满，正等待审核");
+				return;
+			}
 			if (crt_amount < minimum) {
 				alert("您输入的投资额小于最小投资额");
 				return;
