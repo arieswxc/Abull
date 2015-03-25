@@ -5,7 +5,11 @@
         = image_tag user.avatar.url,class: "img-thumbnail img-rounded w70"
       .username.mt5
         %span 基金发起人：
-        %span= user.username
+        %span
+          - if @flag
+            = user.username
+          - else
+            = check_private(user.username,@fund.private_check)
       .btn-group.mt5
         %a.btn-u.btn-u-blue{:href => "javascript:;"} 关注
         %a.btn-u.btn-u-red{:href => "javascript:;"} 私信
@@ -14,28 +18,49 @@
         .row
           .col-md-5
             姓名：
-            = user.real_name
+            - if @flag
+              = user.real_name
+            - else
+              = check_private(user.real_name,@fund.private_check)
           .col-md-3
             年龄：
-            = user.age
+            - if @flag
+              = user.age
+            - else
+              = check_private(user.age,@fund.private_check)
             岁
           .col-md-4
             性别：
-            = I18n.t(user.gender)
+            - if @flag
+              = I18n.t(user.gender)
+            - else
+              = check_private(I18n.t(user.gender),@fund.private_check)
         .row.mt10
           .col-md-5
             用户ID：
-            = user.id
+            - if @flag
+              = user.id
+            - else
+              = check_private(user.id,@fund.private_check)
           .col-md-3
             学历：
-            = user.education
+            - if @flag
+              = user.education
+            - else
+              = check_private(user.education,@fund.private_check)
           .col-md-4
             工作：
-            = user.job
+            - if @flag
+              = user.job
+            - else
+              = check_private(user.job,@fund.private_check)
         .row.mt10
           .col-md-12
             现居地：
-            = user.address
+            - if @flag
+              = user.address
+            - else
+              = check_private(user.address,@fund.private_check)
   .row.mlr0
     %table.table.table-striped.table-bordered
       %tbody
