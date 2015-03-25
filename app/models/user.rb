@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   validates :cell, presence: true
   validates :cell, uniqueness: true
   mount_uploader :avatar, AvatarUploader
+  mount_uploader :line_csv, LineCsvUploader
+  mount_uploader :verify_file, VerifyFileUploader
   has_many :funds
   has_many :invests
   has_many :leverages
