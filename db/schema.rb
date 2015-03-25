@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150323010837) do
+ActiveRecord::Schema.define(version: 20150325052521) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -56,6 +56,18 @@ ActiveRecord::Schema.define(version: 20150323010837) do
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "bank_cards", force: :cascade do |t|
+    t.string   "number",      limit: 255
+    t.string   "bank_name",   limit: 255
+    t.string   "bank_branch", limit: 255
+    t.integer  "user_id",     limit: 4
+    t.string   "state",       limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "bank_cards", ["user_id"], name: "index_bank_cards_on_user_id", using: :btree
 
   create_table "billings", force: :cascade do |t|
     t.integer  "account_id",    limit: 4
@@ -240,6 +252,7 @@ ActiveRecord::Schema.define(version: 20150323010837) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "accounts", "users"
+  add_foreign_key "bank_cards", "users"
   add_foreign_key "billings", "accounts"
   add_foreign_key "funds", "users"
   add_foreign_key "homs_accounts", "funds"
