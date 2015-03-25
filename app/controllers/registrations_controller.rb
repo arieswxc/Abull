@@ -1,6 +1,8 @@
 class RegistrationsController < Devise::RegistrationsController
-  after_filter :add_account, only: [:update_resource]
-  after_filter :add_three_photos, only: [:update_resource]
+  # after_filter :add_account, only: [:update_resource]
+  # after_filter :add_three_photos, only: [:update_resource]
+  after_filter :add_account
+  after_filter :add_three_photos
 
   def create
     if session[:code] == params[:verification_code].to_i
@@ -34,8 +36,8 @@ class RegistrationsController < Devise::RegistrationsController
     end
 
     def add_account
-      if resource.persisted?
-        resource.create_account if resource.account.nil?
+      if resource.account.nil?
+        resource.create_account
       end
     end
 

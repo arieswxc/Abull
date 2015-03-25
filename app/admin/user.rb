@@ -1,7 +1,7 @@
 include ApplicationHelper
 ActiveAdmin.register User do
   permit_params :email, :password, :password_confirmation, :username, :real_name, :avatar, :cell, :id_card_number, :abstract, :level,
-                :account, :birthday, :gender, :education, :address, :job, photos_attributes: [:title, :photo]
+                :account, :birthday, :verify_file, :line_csv, :gender, :education, :address, :job, photos_attributes: [:title, :photo]
  
   index do
     selectable_column
@@ -54,6 +54,8 @@ ActiveAdmin.register User do
       row('降级')  do 
           link_to t('Degrade'), degrade_user_admin_user_path(user), :method => :put, :class => 'button' 
       end  if check_user(current_admin_user)
+      row :line_csv
+      row :verify_file
       row :current_sign_in_at
       row :sign_in_count
       row :created_at
@@ -125,8 +127,10 @@ ActiveAdmin.register User do
       f.input :id_card_number
       f.input :abstract
       f.input :level
-      f.input :password
-      f.input :password_confirmation
+      # f.input :password
+      # f.input :password_confirmation
+      f.input :verify_file
+      f.input :line_csv
     end
     f.actions
   end
