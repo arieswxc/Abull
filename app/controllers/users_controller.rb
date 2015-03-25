@@ -68,7 +68,11 @@ class UsersController < ApplicationController
     end
   end
 
-  
+  def update_password
+    user = User.find_by(cell: params[:user][:cell].to_i)
+    user.reset_password(params[:user][:cell])
+    redirect_to root_path
+  end
 
 
   private
@@ -93,7 +97,5 @@ class UsersController < ApplicationController
       res = Net::HTTP.post_form(uri, account: username, pswd: password, mobile: cell, msg: msg, needstatus: true)
       res.body.split[1]
     end
-
-
 
 end
