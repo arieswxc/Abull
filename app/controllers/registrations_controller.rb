@@ -1,9 +1,9 @@
 class RegistrationsController < Devise::RegistrationsController
-  after_filter :add_account
-  after_filter :add_three_photos
+  after_filter :add_account, only: [:update_resource]
+  after_filter :add_three_photos, only: [:update_resource]
 
   def create
-    if session[:code] == params[:verification_code]
+    if session[:code] == params[:verification_code].to_i
       build_resource(sign_up_params)
   
       resource.save
@@ -46,4 +46,12 @@ class RegistrationsController < Devise::RegistrationsController
         resource.photos.create(title: "手持身份证露脸照片")
       end
     end
+
+    def set_minimum_password_length
+      if devise_mapping.validatable?
+        @minimum_password_length = resource_class.password_length.min
+      end
+    end
+
+
 end

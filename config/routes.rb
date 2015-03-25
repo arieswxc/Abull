@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     end
     get   :generate_verification_code,  on: :collection
     post  :save_avatar,       on: :member
+    post  :update_password,     on: :collection
     get   :investor_apply,    on: :member
     get   :trader_apply,      on: :member
     patch :investor_applied,  on: :member
