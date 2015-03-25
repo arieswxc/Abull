@@ -7,4 +7,5 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 AdminUser.create!(cell: '12345678901', password: 'password123', password_confirmation: 'password123', role: "customer_service", email: "foobar1@example.com")
-User.create!(cell: '12345678901', password: 'password123', password_confirmation: 'password123', email: "foobar2@example.com")
+user = User.create!(cell: '12345678901', password: 'password123', password_confirmation: 'password123', email: "foobar2@example.com")
+Account.create!(user_id: user.id, balance: 0, frost: 0)
