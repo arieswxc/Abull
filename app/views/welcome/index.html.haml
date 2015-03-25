@@ -1,13 +1,13 @@
 .jumbotron.home
   / === Slider ===
-  .tp-banner-container
+  .tp-banner-container.h350
     .tp-banner
       %ul
         / SLIDE
-        - [1,2,3,4,5].each do |i|
-          %li.revolution-mch-1{"data-masterspeed" => "1000", "data-slotamount" => "5", "data-title" => "Slide #{i}", "data-transition" => "fade"}
+        - [1,2,3].each do |i|
+          %li.revolution-mch-1{"data-masterspeed" => "1000", "data-slotamount" => "3", "data-transition" => "fade"}
             / MAIN IMAGE
-            = image_tag "#{i}.jpg", :alt => "darkblurbg", "data-bgfit" => "cover", "data-bgposition" => "left top", "data-bgrepeat" => "no-repeat"
+            = image_tag "#{'banner0'+i.to_s()}.png", :alt => "darkblurbg", "data-bgfit" => "cover", "data-bgposition" => "center", "data-bgrepeat" => "no-repeat", 'width' => "100%"
           / END SLIDE
       .tp-bannertimer.tp-bottom
   / === End Slider ===
