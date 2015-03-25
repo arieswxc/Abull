@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :photos
   has_many :topics
   has_one :account
+  has_one :bank_card
   
   accepts_nested_attributes_for :photos, allow_destroy: true
   

@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     get :funds, on: :collection
   end
   resources :users, only: [:show] do
+    resource :bank_card
+    resource :account do
+      resources :billings
+    end
     scope module: 'profile' do
       resources :invests,           only: [:index, :show]
       resources :funds,             only: [:index, :show]
