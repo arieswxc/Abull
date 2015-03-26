@@ -10,8 +10,14 @@ ActiveAdmin.register Fund do
     column :minimum
     column :private_check
     column :description
-    column :frontend_risk_method
-    column :backend_risk_method
+    # column :frontend_risk_method
+    # column "风控措施自述" do |i|
+    #   i.frontend_risk_method.slice(0, 500) + "..." if i.frontend_risk_method
+    # end
+    # # column :backend_risk_method
+    # column "平台风控措施" do |i|
+    #   i.backend_risk_method.slice(0, 500) + "..." if i.backend_risk_method
+    # end
     column :ending_days
     column :invest_starting_date
     column :invest_ending_date
@@ -100,6 +106,14 @@ ActiveAdmin.register Fund do
         f.input :name
         f.input :amount
         f.input :ending_days
+        f.input :earning
+        f.input :earning_rate
+        f.input :private_check
+        f.input :private_code
+        f.input :description
+        f.input :frontend_risk_method
+        f.input :backend_risk_method
+        f.input :initial_amount
         f.input :mandate, as: :select, collection: [ 'true', 'false' ]
         f.input :minimum
         f.input :invest_starting_date, as: :datepicker
@@ -107,7 +121,7 @@ ActiveAdmin.register Fund do
         f.input :genre
         f.input :expected_earning_rate
         f.input :state, as: :select, collection: ["pending", "applied", "gathering", "reached", "opened", "running", "finished", "closed", "denied"]
-        f.input :user_id, as: :select, collection: User.order(:email).map{|u| [u.email, u.id]}
+        f.input :user_id
       end
       f.actions
   end
