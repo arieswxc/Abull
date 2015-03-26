@@ -47,7 +47,7 @@
             %label
               %input#check{:type => "checkbox",:checked => ""}/
               已阅读
-              %a.color-blue{:href => "/pages/page_terms_signup"}条款
+              %a.color-blue.sign-item{:href => "javascript:;"}条款
           .col-lg-12
             %button.btn-u.col-sm-12.margin-top-20#submit{:name => "commit", :type => "button", :value => "Sign up"} 注册
             %input#subbtn{:type=>"submit",:style=>"display:none;"}
@@ -63,7 +63,13 @@
       $("#getCheckCode").click(function(){
         getCheckCode();
       });
-
+      $(".sign-item").click(function(){
+        var winHeight = 600;
+        var winWidth = 600;
+        var winLeft = (screen.width-600)/2;
+        var winTop = (screen.height-600)/2;
+        window.open("/register_items.html", "newwindow", "height="+winHeight+", width="+winWidth+", toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no, left="+winLeft+", top="+winTop);
+      });
       function getCheckCode() {
         $.ajax({
           data: null,
