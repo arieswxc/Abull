@@ -199,7 +199,7 @@
     };
     $('#submit').bind('click',function(){
       check_val($("input[name='leverage[amount]']"));
-      scrollToErr();
+      if (scrollToErr()) return;
       if($(this).closest('form').find('#check').attr('checked')){
         $('#subbtn').click();
       }else{

@@ -48,6 +48,7 @@ function scrollToErr() {
     $("body,html").animate({
       scrollTop:scroll_offset.top //让body的scrollTop等于pos的top，就实现了滚动
     },300);
-    return;
+    return true;
   }
+  return false;
 }

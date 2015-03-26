@@ -138,10 +138,7 @@
     $('#submit').bind('click',function(){
       check_val($("input[name='fund[amount]'],input[name='fund[expected_earning_rate]']"));
       check_length($("textarea[name='fund[description]'],textarea[name='fund[frontend_risk_method]']"));
-      if ($(".state-error").length > 0) {
-        scrollToErr();
-        return;
-      }
+      if (scrollToErr()) return;
       if($(this).closest('form').find('#check').attr('checked')){
         $('#subbtn').click();
       }else{
