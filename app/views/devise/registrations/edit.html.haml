@@ -112,7 +112,7 @@
                   %label.string.optional.col-sm-3.control-label
                     %span
                       (学历图片证明)
-                  %label.input.input-file.col-sm-9.state-success{:for => "file"}
+                  %label.input.input-file.col-sm-9.state-success
                     .button
                       %input{:type => "file",:name =>"user[education_photo]", :onchange => "this.parentNode.nextElementSibling.value = this.value", :accept => "image/*"}
                         %span 
@@ -120,10 +120,10 @@
                     %input{:type => "text", :readonly => ""}
                 = f.input :address
                 .user_address.form-group.optional
-                  %label.string.optional.col-sm-3.control-label{:for => "user_address"}
+                  %label.string.optional.col-sm-3.control-label
                     %span
                       (住址图片证明)
-                  %label.input.input-file.col-sm-9.state-success{:for => "file"}
+                  %label.input.input-file.col-sm-9.state-success
                     .button
                       %input#address_photo{:type => "file", :name => "user[address_photo]", :onchange => "this.parentNode.nextElementSibling.value =this.value", :value => "this.parentNode.nextElementSibling.value =this.value"}
                         %span 
