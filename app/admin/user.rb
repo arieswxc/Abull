@@ -57,7 +57,7 @@ ActiveAdmin.register User do
       row :verify_file
       row :current_sign_in_at
       row :education_photo do |item|
-        image_tag item.education_photo
+        item.education_photo
       end
       row :address_photo do |item|
         image_tag item.address_photo
