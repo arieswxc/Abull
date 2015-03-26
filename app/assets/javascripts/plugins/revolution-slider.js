@@ -12,7 +12,7 @@ var RevolutionSlider = function () {
 	                startwidth:1170,
 	                startheight:350,
 	                hideThumbs:10,
-					navigationStyle:"preview4"
+                  navigationStyle:"preview4"
 	            });
 	        });
         },
