@@ -22,7 +22,6 @@ function check_length(em){
   em.each(function(){
     var _self = this;
     var tmpval = $(_self).val().length;
-    _self.setCustomValidity("最少需要输入");
     if ($(_self).attr("maxlength")) {
       var  maxl = parseInt($(_self).attr("maxlength"));
       if (tmpval > maxl) {
