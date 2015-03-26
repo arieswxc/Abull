@@ -41,6 +41,7 @@ zh-CN:
         address: 地址
         job: 工作
       fund:
+        id: 标的号
         name: 标名
         amount: 募集数额
         minimum: 最小投资
@@ -59,8 +60,8 @@ zh-CN:
         earning_rate: 收益率
         initial_amount: 初始募集数额
         homs_account: HOMS账号
-        duration: 持续时间（月）
-        ending_days: 募集截止天数
+        duration: 操盘时间
+        ending_days: 募集时间
         gathering: 募集
       comment:
         title: 标题

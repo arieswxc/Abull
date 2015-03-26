@@ -69,8 +69,8 @@
         .input-group
           .select
             %select{:name => "fund[duration]"}
-              - (1..6).each do |index|
-                %option{:value => "#{index}", :selected => "#{'selected' if index == 6}"}= "#{index}"
+              - (1..12).each do |index|
+                %option{:value => "#{index}", :selected => "#{'selected' if index == 12}"}= "#{index}"
             %i
           %span.input-group-addon  个月
       .col-sm-4
@@ -93,15 +93,19 @@
       .form-group.text-center
         .col-sm-2
         .col-sm-8
-          %label= Fund.human_attribute_name('description')
+          %label
+            = Fund.human_attribute_name('description')
+            \（50到1000字）
           %br
-          %textarea.form-control.full_with{:name => "fund[description]"}
+          %textarea.form-control.full_with{:name => "fund[description]",:minlength => "50", :maxlength => "1000", :required => ""}
       .form-group.text-center
         .col-sm-2
         .col-sm-8
-          %label= Fund.human_attribute_name('frontend_risk_method')
+          %label
+            = Fund.human_attribute_name('frontend_risk_method')
+            \（30到300字）
           %br
-          %textarea.form-control.full_with{:name => "fund[frontend_risk_method]"}
+          %textarea.form-control.full_with{:name => "fund[frontend_risk_method]",:minlength => "30", :maxlength => "300", :required => ""}
     = f.input :earning, as: :hidden
     = f.input :earning_rate, as: :hidden
     = f.input :initial_amount, as: :hidden
@@ -114,15 +118,55 @@
       = f.submit class: "hide",id: 'subbtn'
       %button.btn-u.btn-u-red#submit{:name => "commit", :type => "button"} 发标
 :javascript
+  function check_length(em){
+    em.each(function(){
+      var _self = this;
+      var tmpval = $(_self).val().length,
+       maxl = parseInt($(_self).attr("maxlength")),
+       minl = parseInt($(_self).attr("minlength"));
+      if (tmpval > maxl || tmpval < minl ) {
+        $(_self.parentNode).addClass("state-error");
+      } else {
+        $(_self.parentNode).removeClass("state-error");
+      }
+    });
+  }
+  function check_val(em){
+    em.each(function(){
+      var _self = this;
+      console.log(this);
+      var tmpval = parseInt($(_self).val()) || 0;
+      console.log(tmpval);
+      if (tmpval > 0) {
+        $(_self.parentNode).removeClass("state-error");
+      } else {
+        $(_self.parentNode).addClass("state-error");
+      }
+    });
+  }
   $(function() {
-    $("input[name='fund[private_check]'").click(function() {
+    $("input[name='fund[private_check]']").click(function() {
       if($(this).val() === 'public') {
         $(".private_check_control").hide();
       }else {
         $(".private_check_control").show();
       }
     });
+    $("input[name='fund[amount]'],input[name='fund[expected_earning_rate]']").bind("input",function() {
+      var _self = this;
+      check_val($(_self));
+    });
+    $("textarea[name='fund[description]'],textarea[name='fund[frontend_risk_method]']").bind("input",function() {
+      var _self = this;
+      check_length($(_self));
+    });
+    //输入检查
     $('#submit').bind('click',function(){
+      check_val($("input[name='fund[amount]'],input[name='fund[expected_earning_rate]']"));
+      check_length($("textarea[name='fund[description]'],textarea[name='fund[frontend_risk_method]']"));
+      if ($(".state-error").length > 0) {
+        return;
+      }
       if($(this).closest('form').find('#check').attr('checked')){
         $('#subbtn').click();
       }else{

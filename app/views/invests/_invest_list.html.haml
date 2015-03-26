@@ -1,6 +1,7 @@
 %table.table.table-striped
   %thead
     %tr
+      %th= Fund.human_attribute_name('id')
       - unless @current=="xxx"
         %th= Invest.human_attribute_name('user')
       - else
@@ -20,15 +21,14 @@
         %th= Fund.human_attribute_name('state')
       %th= Invest.human_attribute_name('amount')
       %th= Invest.human_attribute_name('date')
-      - if @current=="xxx"
-        %th 电子合同
   -# todo, 处理 private_check
   %tbody
     - @invests.each do |f|
       - if f.user
         %tr{'data-index' => f.id}
+          %td= f.fund.id
           - unless @current=="xxx"
-            %th= "#{f.user.email}"
+            %td= "#{f.user.email}"
           - else
             %td= f.fund.name
             %td= f.fund.user.email
@@ -55,6 +55,3 @@
             = f.amount
             = '元' unless f.amount.blank?
           %td.formattime= f.date
-          - if @current=="xxx"
-            %td
-              %a{:href => "javascript:;"} 委托操盘合同
