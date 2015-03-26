@@ -18,7 +18,7 @@
 	.mb10
 		%input#check{:type => "checkbox",:checked => ""}/
 		我已阅读并同意
-		%a.color-blue.sky-blue-i{:href => "page_terms.html"} 条款
+		%a.color-blue.sky-blue-i.gppz_items{:href => "javascript:;"} 条款
 	= f.submit class: "hide",id: 'subbtn'
 	%button.btn-u.btn-u-red#submit{:name => "commit", :type => "button"} 投标
 
@@ -44,6 +44,13 @@
 		  }else{
 		    alert('请您先阅读并勾选确认条款');
 		  }
+		});
+		$(".gppz_items").click(function(){
+			var winHeight = 600;
+			var winWidth = 600;
+			var winLeft = (screen.width-600)/2;
+			var winTop = (screen.height-600)/2;
+			window.open("/gppz_items.html", "newwindow", "height="+winHeight+", width="+winWidth+", toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no, left="+winLeft+", top="+winTop);
 		});
 		$("#invest_input_can").bind('input', function() {
 			var crt_amount = parseInt($(this).val()) || 0;
