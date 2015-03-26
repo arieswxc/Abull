@@ -5,7 +5,13 @@ class RegistrationsController < Devise::RegistrationsController
   after_filter :add_three_photos
 
   def create
-    if session[:code] == params[:verification_code].to_i
+    if session[:code] != params[:verification_code].to_i
+      flash[:notice] = "验证码错误"
+      redirect_to new_registration_path(resource_name)
+    elsif User.find_by(user_name: params[:user_name])
+      flash[:notice] = "用户昵称已经被注册，请更换"
+      redirect_to new_registration_path(resource_name)
+    else
       build_resource(sign_up_params)
   
       resource.save
@@ -25,9 +31,7 @@ class RegistrationsController < Devise::RegistrationsController
         set_minimum_password_length
         respond_with resource
       end
-    else
-      redirect_to new_registration_path(resource_name)
-    end
+    end      
   end
 
   protected
