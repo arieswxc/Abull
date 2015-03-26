@@ -81,8 +81,8 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(
         :real_name, :id_card_number, :email, :password, :username, 
-        :birthday, :gender, :education, :address, :job, :cell,
-        photos_attributes: [:id, :title, :photo, :destroy], :education_photo, :address_photo)
+        :birthday, :gender, :education, :address, :job, :cell, :education_photo, :address_photo,
+        photos_attributes: [:id, :title, :photo, :destroy])
     end
 
     def send_email
