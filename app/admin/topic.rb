@@ -10,7 +10,7 @@ ActiveAdmin.register Topic do
       link_to user.email, admin_user_path(user)
     end
     column "内容" do |topic|
-      topic.content.slice(0,500) + "..."
+      topic.content.slice(0,500) + "..." 
     end
     column :date
     actions
