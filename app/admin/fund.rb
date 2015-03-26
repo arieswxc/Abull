@@ -25,6 +25,7 @@ ActiveAdmin.register Fund do
   # page of show
   show do |fund|
     attributes_table  do 
+      row :id
       row :name
       row :amount
       row :raised_amount
@@ -40,7 +41,7 @@ ActiveAdmin.register Fund do
       row :frontend_risk_method
       row :backend_risk_method
       row :state
-      row('确认')  do 
+      row('升级')  do 
           link_to t('confirm'), confirm_fund_admin_fund_path(fund), :method => :put, :class => 'button'
       end    
       row('拒绝')  do
