@@ -12,19 +12,19 @@
         .input-group.margin-bottom-20
           %span.input-group-addon
             %i.fa.fa-user
-          %input#user_name.form-control{:type => "text", :name => "user[username]", :autofocus => "autofocus", :placeholder => "昵称", :required => "required",:minlength => "1", :maxlength => "10"}
+          %input#user_name.form-control{:type => "text", :name => "user[username]", :autofocus => "autofocus", :placeholder => "昵称", :required => "required",:minlength => "1", :maxlength => "10",:tooltip => "请输入十个字符以内"}
 
         .input-group.margin-bottom-20
           %span.input-group-addon
             %i.fa.fa-phone
-          %input#user_cell.form-control.numberic{:type => "text", :name => "user[cell]", :autofocus => "autofocus", :placeholder => "手机号码", :maxlength => "11",:minlength => "11"}
+          %input#user_cell.form-control.numberic{:type => "text", :name => "user[cell]", :autofocus => "autofocus", :placeholder => "手机号码", :maxlength => "11",:minlength => "11",:tooltip => "请输入正确的手机号码"}
 
 
 
         .input-group
           %span.input-group-addon
             %i.fa.fa-lock
-          %input#user_password.form-control{:type => "password", :name => "user[password]", :autofocus => "off", :placeholder => "手机号码",:pattern => "(?=^.{8,}$).*$", :title =>"Three letter country code", :placeholder => "密码", :minlength => "1"}
+          %input#user_password.form-control{:type => "password", :name => "user[password]", :autofocus => "off", :placeholder => "手机号码", :placeholder => "密码", :minlength => "8", :tooltip =>"包含数字和字母的至少八个字符"}
 
         - if @validatable
           .margin-bottom-20
@@ -35,14 +35,14 @@
         .input-group.margin-bottom-20
           %span.input-group-addon
             %i.fa.fa-key
-          %input#user_password_confirmation.form-control{:type => "password", :name => "user[password_confirmation]", :autofocus => "off", :placeholder => "确认密码",:minlength => "1"}
+          %input#user_password_confirmation.form-control{:type => "password", :name => "user[password_confirmation]", :autofocus => "off", :placeholder => "确认密码",:minlength => "8",:tooltip => "请不要忘记您的密码"}
 
         .row
           .col-xs-6
             .input-group.margin-bottom-20
               %span.input-group-addon
                 %i.fa.fa-key
-              %input.form-control{:type => "text", :name => "verification_code", :placeholder => "验证码", :minlength => "1" }
+              %input.form-control{:type => "text", :name => "verification_code", :placeholder => "验证码", :minlength => "1",:tooltip => "请输入手机收到的验证码"}
           .col-xs-6
             %a#getCheckCode.btn-u.btn-u-default  获取验证码
 
@@ -57,13 +57,19 @@
             %input#subbtn{:type=>"submit",:style=>"display:none;"}
 :javascript
     $(function(){
+
       $("input").bind("input",function(){
         check_length($(this));
       });
 
       $('#submit').bind('click',function(){
         check_length($("input"));
-        if (scrollToErr()) return;
+        if ($("#user_password_confirmation").val() !== $("#user_password").val()){
+          $("#user_password_confirmation")[0].setCustomValidity("两次输入的密码不匹配");
+        }else{
+          $("#user_password_confirmation")[0].setCustomValidity("");
+        }
+        // if (scrollToErr()) return;
         if($(this).closest('form').find('#check').attr('checked')){
           $('#subbtn').click();
         }else{
