@@ -118,32 +118,6 @@
       = f.submit class: "hide",id: 'subbtn'
       %button.btn-u.btn-u-red#submit{:name => "commit", :type => "button"} 发标
 :javascript
-  function check_length(em){
-    em.each(function(){
-      var _self = this;
-      var tmpval = $(_self).val().length,
-       maxl = parseInt($(_self).attr("maxlength")),
-       minl = parseInt($(_self).attr("minlength"));
-      if (tmpval > maxl || tmpval < minl ) {
-        $(_self.parentNode).addClass("state-error");
-      } else {
-        $(_self.parentNode).removeClass("state-error");
-      }
-    });
-  }
-  function check_val(em){
-    em.each(function(){
-      var _self = this;
-      console.log(this);
-      var tmpval = parseInt($(_self).val()) || 0;
-      console.log(tmpval);
-      if (tmpval > 0) {
-        $(_self.parentNode).removeClass("state-error");
-      } else {
-        $(_self.parentNode).addClass("state-error");
-      }
-    });
-  }
   $(function() {
     $("input[name='fund[private_check]']").click(function() {
       if($(this).val() === 'public') {
@@ -165,6 +139,7 @@
       check_val($("input[name='fund[amount]'],input[name='fund[expected_earning_rate]']"));
       check_length($("textarea[name='fund[description]'],textarea[name='fund[frontend_risk_method]']"));
       if ($(".state-error").length > 0) {
+        scrollToErr();
         return;
       }
       if($(this).closest('form').find('#check').attr('checked')){
