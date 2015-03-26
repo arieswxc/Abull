@@ -17,14 +17,14 @@
         .input-group.margin-bottom-20
           %span.input-group-addon
             %i.fa.fa-phone
-          %input#user_cell.form-control.numberic{:type => "text", :name => "user[cell]", :autofocus => "autofocus", :placeholder => "手机号码", :maxlength => "11",:minlength => "11",:tooltip => "请输入正确的手机号码"}
+          %input#user_cell.form-control.numberic{:type => "text", :name => "user[cell]", :autofocus => "autofocus", :placeholder => "手机号码", :required => "required", :maxlength => "11",:minlength => "11",:tooltip => "请输入正确的手机号码"}
 
 
 
         .input-group
           %span.input-group-addon
             %i.fa.fa-lock
-          %input#user_password.form-control{:type => "password", :name => "user[password]", :autofocus => "off", :placeholder => "手机号码", :placeholder => "密码", :minlength => "8", :tooltip =>"包含数字和字母的至少八个字符"}
+          %input#user_password.form-control{:type => "password", :name => "user[password]", :autofocus => "off", :placeholder => "手机号码", :required => "required", :placeholder => "密码", :minlength => "8", :tooltip =>"包含数字和字母的至少八个字符"}
 
         - if @validatable
           .margin-bottom-20
@@ -35,14 +35,14 @@
         .input-group.margin-bottom-20
           %span.input-group-addon
             %i.fa.fa-key
-          %input#user_password_confirmation.form-control{:type => "password", :name => "user[password_confirmation]", :autofocus => "off", :placeholder => "确认密码",:minlength => "8",:tooltip => "请不要忘记您的密码"}
+          %input#user_password_confirmation.form-control{:type => "password", :name => "user[password_confirmation]", :autofocus => "off", :placeholder => "确认密码", :required => "required",:minlength => "8",:tooltip => "请不要忘记您的密码"}
 
         .row
           .col-xs-6
             .input-group.margin-bottom-20
               %span.input-group-addon
                 %i.fa.fa-key
-              %input.form-control{:type => "text", :name => "verification_code", :placeholder => "验证码", :minlength => "1",:tooltip => "请输入手机收到的验证码"}
+              %input.form-control{:type => "text", :name => "verification_code", :placeholder => "验证码", :required => "required", :minlength => "1",:tooltip => "请输入手机收到的验证码"}
           .col-xs-6
             %a#getCheckCode.btn-u.btn-u-default  获取验证码
 
