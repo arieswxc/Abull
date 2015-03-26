@@ -30,6 +30,7 @@ class InvestsController < ApplicationController
     if @fund.state == "gathering" && (@fund.raised_amount + params[:invest][:amount].to_i <= @fund.amount) && flag && @invest.save
       current_user.follow(@fund.user)
       @invest.update(user_id: current_user.id)
+      @invest.check_reached
       redirect_to fund_invest_path(@fund, @invest)
     else
       render :new

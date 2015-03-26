@@ -23,6 +23,7 @@ ActiveAdmin.register Leverage do
 
   show do |leverage|
     attributes_table do 
+      row :id
       row :user_id
       row :date
       row :amount
@@ -31,10 +32,10 @@ ActiveAdmin.register Leverage do
       row :total_interests
       row :leverage_amount
       row :state
-      row('同意')  do 
+      row('同意配资')  do 
           link_to t('Agree'), agree_leverage_admin_leverage_path(leverage), :method => :put, :class => 'button' 
       end
-      row('拒绝')  do 
+      row('拒绝配资')  do 
           link_to t('Deny'), deny_leverage_admin_leverage_path(leverage), :method => :put, :class => 'button' 
       end
       row :interest_id
@@ -47,13 +48,13 @@ ActiveAdmin.register Leverage do
   sidebar "Leverage 通知", only: :show do
     attributes_table_for leverage do 
       row('配资审核通过')  do 
-        link_to t('confirm'), leverage_confirm_inform_admin_leverage_path(leverage), :method => :get, :class => 'button'
+        link_to t('Confirm'), leverage_confirm_inform_admin_leverage_path(leverage), :method => :get, :class => 'button'
       end
       row('配资追加保证金')  do 
-        link_to t('confirm'), add_deposit_inform_admin_leverage_path(leverage), :method => :get, :class => 'button'
+        link_to t('Confirm'), add_deposit_inform_admin_leverage_path(leverage), :method => :get, :class => 'button'
       end
       row('配资追缴利息') do
-        form_for "input", url: add_interests_inform_admin_leverage_path(leverage), method: :post do |f|
+        form_for "",url: add_interests_inform_admin_leverage_path(leverage), method: :post do |f|
             f.text_area :interests
             f.submit
           end

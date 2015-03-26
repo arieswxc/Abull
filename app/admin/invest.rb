@@ -22,6 +22,7 @@ index do
 
   show do |invest|
     attributes_table  do 
+      row :id
       row('用户id') do 
         link_to invest.user_id, admin_user_path(invest.user_id)
       end
