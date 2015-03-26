@@ -197,6 +197,10 @@
         }
       });
     };
+    $("input[name='leverage[amount]']").bind("input",function() {
+      var _self = this;
+      check_val($(_self));
+    });
     $('#submit').bind('click',function(){
       check_val($("input[name='leverage[amount]']"));
       if (scrollToErr()) return;

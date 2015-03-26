@@ -4,33 +4,6 @@
       = render "shares/profile_side_navbar", {activeItem: "user"}
       .inline-block.relative.pg-account-detail
         = render "shares/profile"
-        -# .box.mt20.p20
-        -#   .fn-clear.equation
-        -#     .fn-left.text-center
-        -#       %h5 账户净资产
-        -#       %p.num-l
-        -#         %em> 0.00
-        -#         元
-        -#     .fn-left.symbol =
-        -#     .fn-left.text-center
-        -#       %h5
-        -#         理财资产
-        -#         %i#tips_1.iconfont.tips
-        -#       %p.num-l
-        -#         %em> 0.00
-        -#         元
-        -#     .fn-left.symbol +
-        -#     .fn-left.text-center
-        -#       %h5 借款负债
-        -#       %p.num-l.rrdcolor-red-text
-        -#         %em> -0.00
-        -#         元
-        -#     .fn-left.symbol +
-        -#     .fn-left.text-center
-        -#       %h5 账户余额
-        -#       %p.num-l
-        -#         %em> 0.00
-        -#         元
         .box.mt20.p20
           %h3 投标记录
           = render "invests/invest_list", ojbect: @current="xxx"
