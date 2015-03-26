@@ -47,9 +47,11 @@
         %h4= Fund.human_attribute_name('description')
         .mt10
           = @fund.description
+    %tr
       %td
         %h4= Fund.human_attribute_name('frontend_risk_method')
         .mt10= @fund.frontend_risk_method
+    %tr
       %td
         %h4= Fund.human_attribute_name('backend_risk_method')
         .mt10= @fund.backend_risk_method
