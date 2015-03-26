@@ -109,12 +109,12 @@
                 = f.input :gender, collection: [:male, :female],include_blank: false
                 = f.input :education
                 .user_education.form-group.optional
-                  %label.string.optional.col-sm-3.control-label{:for => "user_education"}
+                  %label.string.optional.col-sm-3.control-label
                     %span
                       (学历图片证明)
                   %label.input.input-file.col-sm-9.state-success{:for => "file"}
                     .button
-                      %input#education_photo{:type => "file", :onchange => "this.parentNode.nextElementSibling.value = this.value"}
+                      %input{:type => "file",:name =>"user[education_photo]", :onchange => "this.parentNode.nextElementSibling.value = this.value", :accept => "image/*"}
                         %span 
                           浏览
                     %input{:type => "text", :readonly => ""}
@@ -125,7 +125,7 @@
                       (住址图片证明)
                   %label.input.input-file.col-sm-9.state-success{:for => "file"}
                     .button
-                      %input#address_photo{:type => "file", :onchange => "this.parentNode.nextElementSibling.value =this.value"}
+                      %input#address_photo{:type => "file", :name => "user[address_photo]", :onchange => "this.parentNode.nextElementSibling.value =this.value", :value => "this.parentNode.nextElementSibling.value =this.value"}
                         %span 
                           浏览
                     %input{:type => "text", :readonly => ""}
