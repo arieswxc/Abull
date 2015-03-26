@@ -8,18 +8,12 @@ RSpec.describe Leverage, type: :model do
 
   # user
   it "is invalid without user_id" do
-    leverage = build(:leverage, user_id: nil)
-    leverage.valid?
-    expect(leverage).to be_invalid
-    expect(leverage.errors[:user_id]).to include(I18n.t('errors.messages.blank'))
+    expect(create(:leverage, user_id: nil)).to be_valid
   end
 
   # date
-  it "is invalid without date" do
-    leverage = build(:leverage, date: nil)
-    leverage.valid?
-    expect(leverage).to be_invalid
-    expect(leverage.errors[:date]).to include(I18n.t('errors.messages.blank'))
+  it "is valid without date" do
+    expect(create(:leverage, date: nil)).to be_valid
   end
 
   # amount

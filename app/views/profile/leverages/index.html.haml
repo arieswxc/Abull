@@ -16,7 +16,7 @@
     $("#profile-leverage-show tbody tr").click(function() {
 
       var leverage_id = this.dataset.index;
-      window.location.href = "/users/" + "#{current_user.id}" +"/leverages/" + leverage_id;
+      window.open("/users/" + "#{current_user.id}" +"/leverages/" + leverage_id);
     });
     $("#profile-leverage-show tbody tr").addClass("pointer");
   });

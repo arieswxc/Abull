@@ -1,7 +1,7 @@
 var RevolutionSlider = function () {
 
     return {
-        
+
         //Revolution Slider - Full Width
         initRSfullWidth: function () {
 		    var revapi;
@@ -10,9 +10,9 @@ var RevolutionSlider = function () {
 	            {
 	                delay:9000,
 	                startwidth:1170,
-	                startheight:500,
+	                startheight:350,
 	                hideThumbs:10,
-					navigationStyle:"preview4"
+                  navigationStyle:"preview4"
 	            });
 	        });
         },
@@ -25,7 +25,7 @@ var RevolutionSlider = function () {
 	            {
 	                delay:15000,
 	                startwidth:1170,
-	                startheight:500,
+	                startheight:350,
 	                hideThumbs:10,
 	                fullWidth:"off",
 	                fullScreen:"on",
@@ -35,7 +35,7 @@ var RevolutionSlider = function () {
 	                fullScreenOffsetContainer: ".header"
 	            });
 	        });
-        }        
+        }
 
     };
-}();        
+}();

@@ -6,6 +6,7 @@
   %thead
     %tr
       / %th 发标人
+      %th= Fund.human_attribute_name('id')
       - unless @current=="xxx"
         %th= Fund.human_attribute_name('user')
       %th= Fund.human_attribute_name('name')
@@ -18,14 +19,14 @@
       %th= Fund.human_attribute_name('state')
       - if @current=="xxx"
         %th 暗标码
-        %th 电子合同
   -# todo, 处理 private_check
   %tbody
     - @funds.each do |f|
       %tr{'data-index' => f.id,'data-state' => f.state}
+        %td= f.id
         - unless @current=="xxx"
           %td= check_private(f.user.email,f.private_check)
-          %td= check_private(f.name,f.private_check)
+          %td= f.name
           %td= check_private(f.genre,f.private_check)
         - else
           %td= f.name
@@ -57,5 +58,3 @@
         - else
           %td= f.state
           %td= f.private_code
-          %td
-            %a{:href => "javascript:;"} 委托操盘合同

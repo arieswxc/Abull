@@ -13,7 +13,11 @@
         %span.bold
           = Fund.human_attribute_name('name')
           ：
-        %label.mr10= @fund.name
+        %label.mr10
+          - if (@fund.state == 'pending' || @fund.state == 'applied')
+            = check_private(@fund.name,'private')
+          - else
+            = @fund.name
       .float-left.mr40
         %span.bold 类型：
         %label.mr10= @fund.genre
@@ -43,9 +47,11 @@
         %h4= Fund.human_attribute_name('description')
         .mt10
           = @fund.description
+    %tr
       %td
         %h4= Fund.human_attribute_name('frontend_risk_method')
         .mt10= @fund.frontend_risk_method
+    %tr
       %td
         %h4= Fund.human_attribute_name('backend_risk_method')
         .mt10= @fund.backend_risk_method

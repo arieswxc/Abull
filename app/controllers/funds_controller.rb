@@ -65,7 +65,7 @@ class FundsController < ApplicationController
     def generate_private_code
       fund = current_user.funds.last
       if fund && fund.private_check == 'private'
-        fund.private_code = rand(999999)
+        fund.private_code = rand(100000..999999)
         fund.save
       end
     end

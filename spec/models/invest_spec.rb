@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Invest, type: :model do
   # user
   it "is invalid when user is nil" do
-    expect(build(:invest, user: nil)).to be_invalid
+    expect(create(:invest, user: nil)).to be_valid
   end
 
   # fund
