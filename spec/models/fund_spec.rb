@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Fund, type: :model do
   # normal
   it "is invalid without user" do
-    user = create(:user)
     expect(build(:fund)).to be_valid
   end
 
@@ -13,8 +12,8 @@ RSpec.describe Fund, type: :model do
   end
 
   # user
-  it "is invalid without user_id" do
-    expect(build(:fund, user_id: nil)).to be_invalid
+  it "is valid without user_id" do
+    expect(create(:fund, user_id: nil)).to be_valid
   end
 
   # amount

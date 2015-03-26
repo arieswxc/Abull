@@ -92,7 +92,7 @@ class UsersController < ApplicationController
 
     def send_sms(code, cell)
       uri       = URI.parse("http://222.73.117.158/msg/HttpSendSM")
-      msg       = "欢迎注册摩尔街账户，您的激活码为#{code},请在注册页面填写"
+      msg       = "欢迎注册摩尔街账户，您的激活码为#{code},请在注册页面填写【bull】"
       username  = 'jiekou-cs-01'
       password  = 'Tch147259'
   
