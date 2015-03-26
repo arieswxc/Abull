@@ -114,7 +114,7 @@
       .mb10
         %input#check{:type => "checkbox",:checked => ""}/
         我已阅读并同意
-        %a.color-blue.sky-blue-i{:href => "page_terms.html"} 条款
+        %a.color-blue.sky-blue-i.wtcp_items{:href => "javascript:;"} 条款
       = f.submit class: "hide",id: 'subbtn'
       %button.btn-u.btn-u-red#submit{:name => "commit", :type => "button"} 发标
 :javascript
@@ -125,6 +125,13 @@
       }else {
         $(".private_check_control").show();
       }
+    });
+    $(".wtcp_items").click(function(){
+      var winHeight = 600;
+      var winWidth = 600;
+      var winLeft = (screen.width-600)/2;
+      var winTop = (screen.height-600)/2;
+      window.open("/wtcp_items.html", "newwindow", "height="+winHeight+", width="+winWidth+", toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no, left="+winLeft+", top="+winTop);
     });
     $("input[name='fund[amount]'],input[name='fund[expected_earning_rate]']").bind("input",function() {
       var _self = this;
