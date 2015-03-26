@@ -107,25 +107,27 @@
                 = f.input :cell, input_html: {class: 'numberic', maxlength: '11', pattern: "\d{3}-\d{8}|\d{4}-\{7,8}"}
                 = f.input :birthday, as: :date, html5: true
                 = f.input :gender, collection: [:male, :female],include_blank: false
-                .user_education.form-group.select.optional
+                = f.input :education
+                .user_education.form-group.optional
                   %label.string.optional.col-sm-3.control-label{:for => "user_education"}
                     %span
-                      学历
+                      (学历图片证明)
                   %label.input.input-file.col-sm-9.state-success{:for => "file"}
                     .button
-                      %input#file{:type => "file", :onchange => "this.parentNode.nextSibling.value = this.value"}
+                      %input#education_photo{:type => "file", :onchange => "this.parentNode.nextElementSibling.value = this.value"}
                         %span 
-                          Browse
+                          浏览
                     %input{:type => "text", :readonly => ""}
-                .user_address.form-group.select.optional
-                  %label.string.optional.col-sm-3.control-label{:for => "user_education"}
+                = f.input :address
+                .user_address.form-group.optional
+                  %label.string.optional.col-sm-3.control-label{:for => "user_address"}
                     %span
-                      地址
+                      (住址图片证明)
                   %label.input.input-file.col-sm-9.state-success{:for => "file"}
                     .button
-                      %input#file{:type => "file", :onchange => "this.parentNode.nextSibling.value =this.value"}
+                      %input#address_photo{:type => "file", :onchange => "this.parentNode.nextElementSibling.value =this.value"}
                         %span 
-                          Browse
+                          浏览
                     %input{:type => "text", :readonly => ""}
                 = f.input :job
                 .text-center
