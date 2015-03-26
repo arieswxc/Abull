@@ -2,24 +2,29 @@
 .container.content
   .row
     .col-md-4.col-md-offset-4.col-sm-8.col-sm-offset-2
-      = form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => 'reg-page'}) do |f|
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => 'reg-page sky-form'}) do |f|
         .reg-header
           %h2 注册
           %p
             已经注册 ? #{link_to("立即登录",new_user_session_path,rel: "nofollow", class: "color-red")}。
-
+        - if flash[:notice]
+          = flash[:notice]
+        .input-group.margin-bottom-20
+          %span.input-group-addon
+            %i.fa.fa-user
+          %input#user_cell.form-control{:type => "text", :name => "user[username]", :autofocus => "autofocus", :placeholder => "昵称", :required => "required",:minlength => "1", :maxlength => "10"}
 
         .input-group.margin-bottom-20
           %span.input-group-addon
             %i.fa.fa-phone
-          %input#user_cell.form-control{:type => "text", :name => "user[cell]", :autofocus => "autofocus", :placeholder => "手机号码"}
+          %input#user_cell.form-control.numberic{:type => "text", :name => "user[cell]", :autofocus => "autofocus", :placeholder => "手机号码", :maxlength => "11",:minlength => "11"}
 
 
 
         .input-group
           %span.input-group-addon
             %i.fa.fa-lock
-          %input#user_password.form-control{:type => "password", :name => "user[password]", :autofocus => "off", :placeholder => "手机号码",:pattern => "(?=^.{8,}$).*$", :title =>"Three letter country code", :placeholder => "密码"}
+          %input#user_password.form-control{:type => "password", :name => "user[password]", :autofocus => "off", :placeholder => "手机号码",:pattern => "(?=^.{8,}$).*$", :title =>"Three letter country code", :placeholder => "密码", :minlength => "1"}
 
         - if @validatable
           .margin-bottom-20
@@ -27,18 +32,17 @@
               * 最少#{@minimum_password_length}个字符,最少包含一个数字和一个字母
 
 
-
         .input-group.margin-bottom-20
           %span.input-group-addon
             %i.fa.fa-key
-          %input#user_password_confirmation.form-control{:type => "password", :name => "user[password_confirmation]", :autofocus => "off", :placeholder => "确认密码"}
+          %input#user_password_confirmation.form-control{:type => "password", :name => "user[password_confirmation]", :autofocus => "off", :placeholder => "确认密码",:minlength => "1"}
 
         .row
           .col-xs-6
             .input-group.margin-bottom-20
               %span.input-group-addon
                 %i.fa.fa-key
-              %input.form-control{:type => "text", :name => "verification_code", :placeholder => "验证码"}
+              %input.form-control{:type => "text", :name => "verification_code", :placeholder => "验证码", :minlength => "1" }
           .col-xs-6
             %a#getCheckCode.btn-u.btn-u-default  获取验证码
 
@@ -53,7 +57,13 @@
             %input#subbtn{:type=>"submit",:style=>"display:none;"}
 :javascript
     $(function(){
+      $("input").bind("input",function(){
+        check_length($(this));
+      });
+
       $('#submit').bind('click',function(){
+        check_length($("input"));
+        if (scrollToErr()) return;
         if($(this).closest('form').find('#check').attr('checked')){
           $('#subbtn').click();
         }else{
@@ -70,6 +80,7 @@
         var winTop = (screen.height-600)/2;
         window.open("/register_items.html", "newwindow", "height="+winHeight+", width="+winWidth+", toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no, left="+winLeft+", top="+winTop);
       });
+
       function getCheckCode() {
         $.ajax({
           data: null,

@@ -21,14 +21,22 @@
 function check_length(em){
   em.each(function(){
     var _self = this;
-    var tmpval = $(_self).val().length,
-     maxl = parseInt($(_self).attr("maxlength")),
-     minl = parseInt($(_self).attr("minlength"));
-    if (tmpval > maxl || tmpval < minl ) {
-      $(_self.parentNode).addClass("state-error");
-    } else {
-      $(_self.parentNode).removeClass("state-error");
+    var tmpval = $(_self).val().length;
+    if ($(_self).attr("maxlength")) {
+      var  maxl = parseInt($(_self).attr("maxlength"));
+      if (tmpval > maxl) {
+        $(_self.parentNode).addClass("state-error");
+        return;
+      }
     }
+    if ($(_self).attr("minlength")) {
+      var minl = parseInt($(_self).attr("minlength"));
+      if (tmpval < minl) {
+        $(_self.parentNode).addClass("state-error");
+        return;
+      }
+    }
+    $(_self.parentNode).removeClass("state-error");
   });
 }
 function check_val(em){
