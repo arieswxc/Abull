@@ -13,7 +13,11 @@
         %span.bold
           = Fund.human_attribute_name('name')
           ：
-        %label.mr10= @fund.name
+        %label.mr10
+          - if (@fund.state == 'pending' || @fund.state == 'applied')
+            = check_private(@fund.name,'private')
+          - else
+            = @fund.name
       .float-left.mr40
         %span.bold 类型：
         %label.mr10= @fund.genre

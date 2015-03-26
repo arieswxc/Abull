@@ -16,7 +16,7 @@ zh-CN:
       interest: 利率
       account: 账户
       bank_card: 银行卡
-    attributes:
+    attributes: 
       admin_user:
         email: 电子邮件
         current_sign_in_at: 当前登录时间
@@ -41,6 +41,7 @@ zh-CN:
         address: 地址
         job: 工作
       fund:
+        id: 标的号
         name: 标名
         amount: 募集数额
         minimum: 最小投资
@@ -59,9 +60,12 @@ zh-CN:
         earning_rate: 收益率
         initial_amount: 初始募集数额
         homs_account: HOMS账号
-        duration: 持续时间（月）
-        ending_days: 募集截止天数
+        duration: 操盘时间
+        ending_days: 募集时间
         gathering: 募集
+        private_code: 暗标码
+        genre: 类型
+        raised_amount: 进度(%)
       comment:
         title: 标题
         comment: 评论
@@ -84,6 +88,8 @@ zh-CN:
         date: 投标日期
         payback: 回报
         close_day: 清算日期
+        created_at: 创建日期
+        updated_at: 更新日期
       homs_account:
         title: 账号名
         password: 密码
@@ -155,3 +161,7 @@ zh-CN:
         author_type: 作者类型
   female: 女
   male: 男
+  Confirm: 确认
+  confirm: 确认
+  Agree: 同意
+  Deny: 拒绝

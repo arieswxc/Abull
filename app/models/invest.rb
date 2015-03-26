@@ -10,4 +10,11 @@ class Invest < ActiveRecord::Base
   def send_sms(mobile, type, params)
     SMSGateway.render_then_send(mobile, type, params)
   end
+
+  def check_reached
+    fund = self.fund
+    if fund.raised_amount == fund.amount 
+      fund.reach 
+    end
+  end
 end

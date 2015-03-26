@@ -7,7 +7,7 @@ ActiveAdmin.register User do
     selectable_column
     id_column
     column :avatar do |user|
-      image_tag user.avatar.thumb.url
+      image_tag user.avatar.thumb.url, size: '64x64'
     end
     column :email
     column :username
@@ -40,6 +40,12 @@ ActiveAdmin.register User do
 
   show do |user|
     attributes_table do
+    #   column :avatar do |item|
+    #   image_tag 'http://' + item.avatar, size: '64x64' unless item.avatar.blank?
+    # end
+      row :avatar do |item|
+        image_tag item.avatar, size: '64x64'
+      end
       row :email
       row :username
       row :real_name
@@ -47,13 +53,6 @@ ActiveAdmin.register User do
       row :account
       row :id_card_number
       row :abstract
-      row :level
-      row('升级')  do 
-          link_to t('Upgrade'), upgrade_user_admin_user_path(user), :method => :put, :class => 'button' 
-      end  if check_user(current_admin_user)
-      row('降级')  do 
-          link_to t('Degrade'), degrade_user_admin_user_path(user), :method => :put, :class => 'button' 
-      end  if check_user(current_admin_user)
       row :line_csv
       row :verify_file
       row :current_sign_in_at
@@ -107,13 +106,15 @@ ActiveAdmin.register User do
   end
 
   #侧边窗口
-  sidebar "User List", only: :show do
-    table_for User.all do
-      column :email do |u|
-        link_to u.email, admin_user_path(u)
-      end
-      column :real_name
-      column :level
+  sidebar "用户等级", only: :show do
+    attributes_table_for user do
+      row :level
+      row('升级')  do 
+          link_to t('Confirm'), upgrade_user_admin_user_path(user), :method => :put, :class => 'button' 
+      end  if check_user(current_admin_user)
+      row('降级')  do 
+          link_to t('Confirm'), degrade_user_admin_user_path(user), :method => :put, :class => 'button' 
+      end  if check_user(current_admin_user)
     end
   end
 
