@@ -53,7 +53,7 @@ module ApplicationHelper
   end
 
   def check_private(resource, private='private')
-    if private == "private"
+    if resource && (private == "private")
       resource.first(3) + "*"*(resource.length-3)
     else
       resource
