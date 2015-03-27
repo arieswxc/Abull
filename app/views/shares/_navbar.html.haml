@@ -23,7 +23,7 @@
           %ul#nonLoginBar.nav.navbar-nav.navbar-right.navbar-sm.site-nav-login.ng-scope
             - if user_signed_in?
               %li
-                = link_to(current_user.cell,user_path(current_user),id: "login-panel",class: "btn btn-sm",rel: "nofollow")
+                = link_to(check_private(current_user.cell),user_path(current_user),id: "login-panel",class: "btn btn-sm",rel: "nofollow")
               %li
                 = link_to "登出", destroy_user_session_path, :method => :delete, :id => "sign-out"
             - else

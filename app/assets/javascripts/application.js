@@ -26,6 +26,7 @@ function check_length(em){
       var  maxl = parseInt($(_self).attr("maxlength"));
       if (tmpval > maxl) {
         $(_self.parentNode).addClass("state-error");
+        _self.setCustomValidity($(_self).attr('tooltip'));
         return;
       }
     }
@@ -33,10 +34,12 @@ function check_length(em){
       var minl = parseInt($(_self).attr("minlength"));
       if (tmpval < minl) {
         $(_self.parentNode).addClass("state-error");
+        _self.setCustomValidity($(_self).attr('tooltip'));
         return;
       }
     }
     $(_self.parentNode).removeClass("state-error");
+    _self.setCustomValidity("");
   });
 }
 function check_val(em){
@@ -45,8 +48,10 @@ function check_val(em){
     var tmpval = parseInt($(_self).val()) || 0;
     if (tmpval > 0) {
       $(_self.parentNode).removeClass("state-error");
+      _self.setCustomValidity($(_self).attr('tooltip'));
     } else {
       $(_self.parentNode).addClass("state-error");
+      _self.setCustomValidity("");
     }
   });
 }

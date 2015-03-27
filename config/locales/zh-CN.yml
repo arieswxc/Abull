@@ -16,7 +16,7 @@ zh-CN:
       interest: 利率
       account: 账户
       bank_card: 银行卡
-    attributes: 
+    attributes:
       admin_user:
         email: 电子邮件
         current_sign_in_at: 当前登录时间
@@ -41,7 +41,6 @@ zh-CN:
         address: 地址
         job: 工作
       fund:
-        id: 标的号
         name: 标名
         amount: 募集数额
         minimum: 最小投资

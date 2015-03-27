@@ -52,9 +52,9 @@ module ApplicationHelper
     redirect_to admin_invest_path(resource)
   end
 
-  def check_private(resource, private)
+  def check_private(resource, private='private')
     if private == "private"
-      "********"
+      resource.first(3) + "*"*(resource.length-3)
     else
       resource
     end
