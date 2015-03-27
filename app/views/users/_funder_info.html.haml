@@ -27,7 +27,7 @@
             - if @flag
               = user.age
             - else
-              = check_private(user.age,@fund.private_check)
+              = check_private(user.age.to_s,@fund.private_check)
             岁
           .col-md-4
             性别：
@@ -41,7 +41,7 @@
             - if @flag
               = user.id
             - else
-              = check_private(user.id,@fund.private_check)
+              = check_private(user.id.to_s,@fund.private_check)
           .col-md-3
             学历：
             - if @flag
