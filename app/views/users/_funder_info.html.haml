@@ -61,20 +61,55 @@
               = user.address
             - else
               = check_private(user.address,@fund.private_check)
-  .row.mlr0
-    %table.table.table-striped.table-bordered
-      %tbody
-        %tr
-          %td
-            %div
-              自我介绍
-            .border-top.p20
-              = user.abstract
-          %td
-            %div
-              历史折线图
-            .border-top.p20
-          %td
-            %div
-              证明图片
-            .border-top.p20
+  .row
+    .col-md-4
+      .headline.headline-md
+        %h4 自我介绍
+      .mt10
+        = user.abstract
+    .col-md-4
+      .headline.headline-md
+        %h4 历史折线图
+      .mt10
+        %canvas#history_chart.chart_box.h200
+    .col-md-4
+      .headline.headline-md
+        %h4 证明图片
+      .mt10
+
+:javascript
+  $(function(){
+    $.ajax({
+      url: "/users/#{current_user.id}/get_history_data",
+      type: 'get',
+      contentType: false,
+      processData: false,
+      success: function (data) {
+        var history_ctx = $("#history_chart").get(0).getContext("2d");
+        data = {
+          labels: ["一月", "二月", "三月", "四月", "五月", "六月", "七月"],
+          datas: [65, 59, 80, 81, 56, 55]
+        };
+        var history_data = {
+                              labels: data.labels,
+                              datasets: [
+                                  {
+                                      label: "My First dataset",
+                                      fillColor: "rgba(220,220,220,0.2)",
+                                      strokeColor: "rgba(220,220,220,1)",
+                                      pointColor: "rgba(220,220,220,1)",
+                                      pointStrokeColor: "#fff",
+                                      pointHighlightFill: "#fff",
+                                      pointHighlightStroke: "rgba(220,220,220,1)",
+                                      data: data.datas
+                                  }
+                              ]
+                          };
+        var historyChart = new Chart(history_ctx).Line(history_data);
+      },
+      error: function () {
+        $("#history_chart").hide();
+        console.log("get_chart_data error...");
+      }
+    });
+  });
