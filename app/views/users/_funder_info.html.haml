@@ -80,7 +80,7 @@
 :javascript
   $(function(){
     $.ajax({
-      url: "/users/#{current_user.id}/get_history_data",
+      url: "/users/#{user.id}/get_history_data",
       type: 'get',
       contentType: false,
       processData: false,
