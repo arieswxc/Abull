@@ -80,7 +80,22 @@ class UsersController < ApplicationController
     render json: {message: "success"}
   end
 
+  def get_history_data
+    user = User.find(params[:id])
+    current_path = user.line_csv.current_path
+    array_x = []
+    array_y = []
+    File.open(current_path, "r") do |file|
+      file.each_line do |line|
+        pos_x, pos_y = line.chomp.split(",")
+        array_x = array_x << pos_x
+        array_y = array_y << pos_y
+      end
+    end
+    render json:{ labels: array_x, datas: array_y }
+  end
 
+ 
 
   private
     def user_params
