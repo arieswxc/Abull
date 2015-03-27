@@ -3,6 +3,19 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
+  def parse_csv(current_path)
+    # if user.line_csv
+    array_x = []
+    array_y = []
+    File.open(current_path, "r") do |file|
+      file.each_line do |line|
+        pos_x, pos_y = line.chomp.split(",")
+        array_x = array_x << pos_x
+        array_y = array_y << pos_y
+      end
+    end
+    [array_x, array_y]
+  end
 
   protected
 
