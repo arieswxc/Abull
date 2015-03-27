@@ -86,10 +86,6 @@
       processData: false,
       success: function (data) {
         var history_ctx = $("#history_chart").get(0).getContext("2d");
-        data = {
-          labels: ["一月", "二月", "三月", "四月", "五月", "六月", "七月"],
-          datas: [65, 59, 80, 81, 56, 55]
-        };
         var history_data = {
                               labels: data.labels,
                               datasets: [
