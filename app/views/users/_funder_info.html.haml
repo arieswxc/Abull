@@ -101,7 +101,10 @@
                                   }
                               ]
                           };
-        var historyChart = new Chart(history_ctx).Line(history_data);
+        var options = {
+          pointHitDetectionRadius : 2
+        };
+        var historyChart = new Chart(history_ctx).Line(history_data,options);
       },
       error: function () {
         $("#history_chart").hide();
