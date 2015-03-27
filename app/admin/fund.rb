@@ -9,15 +9,7 @@ ActiveAdmin.register Fund do
     column :amount
     column :minimum
     column :private_check
-    column :description
-    # column :frontend_risk_method
-    # column "风控措施自述" do |i|
-    #   i.frontend_risk_method.slice(0, 500) + "..." if i.frontend_risk_method
-    # end
-    # # column :backend_risk_method
-    # column "平台风控措施" do |i|
-    #   i.backend_risk_method.slice(0, 500) + "..." if i.backend_risk_method
-    # end
+    # column :description
     column :ending_days
     column :invest_starting_date
     column :invest_ending_date
@@ -46,18 +38,6 @@ ActiveAdmin.register Fund do
       row :description
       row :frontend_risk_method
       row :backend_risk_method
-      row :state
-      row('升级')  do 
-          link_to t('confirm'), confirm_fund_admin_fund_path(fund), :method => :put, :class => 'button'
-      end    
-      row('拒绝')  do
-        if fund.state == 'applied'
-          form_for "reject_reason", url: deny_fund_admin_fund_path(fund), method: :post do |f|
-            f.text_area :reason
-            f.submit
-          end        
-        end
-      end
     end
 
     panel t('操盘手个人信息') do 
@@ -86,17 +66,38 @@ ActiveAdmin.register Fund do
   end
 
   # 侧边窗口
-  sidebar "Fund 通知", only: :show do
-    attributes_table_for fund do 
-      row('发标审核通过')  do 
-        link_to t('confirm'), fund_confirm_inform_admin_fund_path(fund), :method => :get, :class => 'button'
+  sidebar "控制栏", only: :show do
+    panel t("发标状态操控") do
+      attributes_table_for fund do
+        row :state
+        row('状态提升')  do 
+          link_to t('Confirm'), confirm_fund_admin_fund_path(fund), :method => :put, :class => 'button'
+        end
+        row('拒绝发标申请')  do 
+          link_to t('Reject'), deny_fund_admin_fund_path(fund), :method => :get, :class => 'button'
+        end          
+        row('填写拒绝原因')  do
+          if fund.state == 'denied'
+            form_for "Reason", url: input_reason_admin_fund_path(fund), method: :post do |f|
+              f.text_area :reason
+              f.submit
+            end        
+          end
+        end
       end
-      row('发标审核未通过')  do 
-        link_to t('confirm'), fund_deny_inform_admin_fund_path(fund), :method => :get, :class => 'button'
+    end
+    panel t("发标通知") do  
+      attributes_table_for fund do 
+        row('发标审核通过')  do 
+          link_to t('confirm'), fund_confirm_inform_admin_fund_path(fund), :method => :get, :class => 'button'
+        end
+        row('发标审核未通过')  do 
+          link_to t('confirm'), fund_deny_inform_admin_fund_path(fund), :method => :get, :class => 'button'
+        end
+        row('发标提前清盘')  do 
+          link_to t('confirm'), fund_liquidation_inform_admin_fund_path(fund), :method => :get, :class => 'button'
+        end   
       end
-      row('发标提前清盘')  do 
-        link_to t('confirm'), fund_liquidation_inform_admin_fund_path(fund), :method => :get, :class => 'button'
-      end   
     end
   end
 
@@ -151,10 +152,15 @@ ActiveAdmin.register Fund do
     redirect_to admin_fund_path(fund)
   end
 
-  member_action :deny_fund, :method => :post do
+  member_action :deny_fund, :method => :get do
     fund = Fund.find(params[:id])
-    ActiveAdmin::Comment.create("resource" => fund, "body"=>"#{params[:reject_reason][:reason]}", "namespace": "admin")
-    fund.deny
+    fund.deny if fund.state == 'applied'
+    redirect_to admin_fund_path(fund)
+  end
+
+  member_action :input_reason, :method => :post do
+    fund = Fund.find(params[:id])
+    ActiveAdmin::Comment.create("resource" => fund, "body"=>"#{params[:Reason][:reason]}", "namespace": "admin")
     redirect_to admin_fund_path(fund)
   end
 
