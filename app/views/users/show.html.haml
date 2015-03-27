@@ -85,9 +85,9 @@
                               ]
                           };
 
-        var investChart = new Chart(invest_ctx).Line(invest_data);
-        var fundChart = new Chart(fund_ctx).Line(fund_data);
-        var leverageChart = new Chart(leverage_ctx).Line(leverage_data);
+        var investChart = new Chart(invest_ctx).Bar(invest_data);
+        var fundChart = new Chart(fund_ctx).Bar(fund_data);
+        var leverageChart = new Chart(leverage_ctx).Bar(leverage_data);
       },
       error: function () {
         console.log("get_chart_data error...");

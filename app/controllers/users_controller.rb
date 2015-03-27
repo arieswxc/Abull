@@ -80,7 +80,19 @@ class UsersController < ApplicationController
     render json: {message: "success"}
   end
 
+  def get_history_data
+    user = User.find(params[:id])
+    if user.line_csv
+      array_x, array_y = parse_csv(user.line_csv.current_path)
+      current_path = "#{Rails.root}/lib/LibFile/husheng_data.csv"
+      array1_x, array1_y = parse_csv(current_path)
+      render json:{ labels: array_x, datasets: [{data: array_y}, {data: array1_y}] }
+    else
+      render json:{ message: "Not found" }, status: 404
+    end
+  end
 
+ 
 
   private
     def user_params
