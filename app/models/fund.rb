@@ -77,16 +77,31 @@ class Fund < ActiveRecord::Base
   end
 
   #类方法
+  # def self.search_by_conditions(duration, amount, expected_earning_rate, private_check)
+  #   duration = 0 if duration.blank?
+  #   amount = 0 if amount.blank?
+  #   expected_earning_rate = 0 if expected_earning_rate.blank?
+  #   if private_check.blank?
+  #     funds = Fund.where("duration > ? and amount > ? and expected_earning_rate > ?", duration, amount, expected_earning_rate)
+  #   else
+  #     funds = Fund.where("duration > ? and amount > ? and expected_earning_rate > ? and private_check = ?", duration, amount, expected_earning_rate, private_check)
+  #   end
+  # end
+
   def self.search_by_conditions(duration, amount, expected_earning_rate, private_check)
     duration = 0 if duration.blank?
     amount = 0 if amount.blank?
     expected_earning_rate = 0 if expected_earning_rate.blank?
+    amount_begin, amount_end, rate_begin, rate_end = match_condition(amount, expected_earning_rate)
     if private_check.blank?
-      funds = Fund.where("duration > ? and amount > ? and expected_earning_rate > ?", duration, amount, expected_earning_rate)
+      # funds = Fund.where("duration > ? and amount > ? and expected_earning_rate > ?", duration, amount, expected_earning_rate)
+      funds = Fund.where("duration > ? and amount > ? amount < ? and expected_earning_rate > ? and expected_earning_rate < ?", duration, amount_begin, amount_end, rate_begin, rate_end)
     else
-      funds = Fund.where("duration > ? and amount > ? and expected_earning_rate > ? and private_check = ?", duration, amount, expected_earning_rate, private_check)
+      # funds = Fund.where("duration > ? and amount > ? and expected_earning_rate > ? and private_check = ?", duration, amount, expected_earning_rate, private_check)
+      funds = Fund.where("duration > ? and amount > ? amount < ? and expected_earning_rate > ? and expected_earning_rate < ? and private_check = ?", duration, amount_begin, amount_end, rate_begin, rate_end, private_check)
     end
   end
+
 
   private
   def generate_fundname
@@ -101,4 +116,45 @@ class Fund < ActiveRecord::Base
     self.name
   end
 
+  def match_condition(amount_mark, rate_mark)
+    case amount_mark
+    when amount_mark == 0
+      amount_begin = 0
+      amount_end = 10_0000_0000
+    when amount_mark == 1
+      amount_begin = 0
+      amount_end = 10_0000
+    when amount_mark == 2
+      amount_begin = 10_0000
+      amount_end = 300_0000
+    when amount_mark == 3
+      amount_begin = 300_0000
+      amount_end = 500_0000
+    when amount_mark == 4
+      amount_begin = 500_0000
+      amount_end = 10_0000_0000
+    end
+
+    case rate_mark
+    when rate_mark == 0
+      rate_begin = 0
+      rate_end = 10000
+    when rate_mark == 1
+      rate_begin = 1
+      rate_end = 20
+    when rate_mark == 2
+      rate_begin = 20
+      rate_end = 50
+    when rate_mark == 3
+      rate_begin = 50
+      rate_end = 100
+    when rate_mark == 4
+      rate_begin = 100
+      rate_end = 10000
+    end
+    
+    [amount_begin, amount_end, rate_begin, rate_end]
+  end
+       
+      
 end
