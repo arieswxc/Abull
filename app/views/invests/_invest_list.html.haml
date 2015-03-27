@@ -1,7 +1,7 @@
 %table.table.table-striped
   %thead
     %tr
-      %th= Fund.human_attribute_name('id')
+      %th= Invest.human_attribute_name('id')
       - unless @current=="xxx"
         %th= Invest.human_attribute_name('user')
       - else
@@ -26,12 +26,16 @@
     - @invests.each do |f|
       - if f.user
         %tr{'data-index' => f.id}
-          %td= f.fund.id
+          %td= f.id
           - unless @current=="xxx"
             %td= "#{f.user.email}"
           - else
             %td= f.fund.name
-            %td= f.fund.user.email
+            %td
+              - if f.fund.user.username
+                = f.fund.user.email
+              - else
+                = check_private(f.fund.user.cell.to_s())
             -# %td
             -#   = f.fund.minimum
             -#   = '元' unless f.fund.minimum.blank?
