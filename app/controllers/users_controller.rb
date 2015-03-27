@@ -49,7 +49,7 @@ class UsersController < ApplicationController
   def save_avatar
     @user = User.find(params[:id])
     @user.avatar = params[:avatar]
-    if @user.save 
+    if @user.save
       render json: {message: "success"}
     else
       render json: {message: "fail"}
@@ -76,11 +76,16 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def get_chart_data
+    render json: {message: "success"}
+  end
+
+
 
   private
     def user_params
       params.require(:user).permit(
-        :real_name, :id_card_number, :email, :password, :username, 
+        :real_name, :id_card_number, :email, :password, :username,
         :birthday, :gender, :education, :address, :job, :cell, :education_photo, :address_photo,
         photos_attributes: [:id, :title, :photo, :destroy])
     end
@@ -95,7 +100,7 @@ class UsersController < ApplicationController
       msg       = "欢迎注册摩尔街账户，您的激活码为#{code},请在注册页面填写【bull】"
       username  = 'jiekou-cs-01'
       password  = 'Tch147259'
-  
+
       res = Net::HTTP.post_form(uri, account: username, pswd: password, mobile: cell, msg: msg, needstatus: true)
       res.body.split[1]
     end
