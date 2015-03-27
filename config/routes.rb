@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     get   :trader_apply,      on: :member
     patch :investor_applied,  on: :member
     patch :trader_applied,    on: :member
+    get   :get_chart_data,    on: :member
   end
 
   resources :funds do
