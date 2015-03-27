@@ -12,6 +12,12 @@ Rails.application.routes.draw do
     resource :bank_card
     resource :account do
       resources :billings
+      get   :bankcard_charge,   on: :member
+      get   :alipay_charge,     on: :member
+      get   :third_charge,      on: :member
+      post  :bankcard_charged,  on: :member
+      post  :alipay_charged,    on: :member
+      post  :third_charged,     on: :member
     end
     scope module: 'profile' do
       resources :invests,           only: [:index, :show]

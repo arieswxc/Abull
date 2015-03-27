@@ -6,4 +6,5 @@
   <td><%= billing.amount %></td>
   <td><%= billing.billable_type %></td>
   <td><%= billing.billable_id %></td>
+  <td><%= link_to 'Pay online', "#"  if billing.billing_type == "Third" %></td>
 </tr>
