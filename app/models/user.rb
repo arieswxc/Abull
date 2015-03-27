@@ -61,7 +61,7 @@ class User < ActiveRecord::Base
 
   #虚拟属性
   def age 
-    Time.now.to_date.year - self.birthday.year
+    Time.now.to_date.year - self.birthday.year if self.birthday
   end
 
   #重置密码
