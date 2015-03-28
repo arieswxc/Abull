@@ -1,0 +1,7 @@
+<%= form_tag('http://180.168.127.5/direct/gateway.htm', method: "get", enforce_utf8: false) do %>
+  <% @params.each do |key, value| %>
+  <%= key %>
+    <%= text_field_tag(key, value) %>
+  <% end %>
+  <%= submit_tag("Submit", name: nil) %>
+<% end %>
