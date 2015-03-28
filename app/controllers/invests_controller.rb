@@ -13,6 +13,9 @@ class InvestsController < ApplicationController
     @invests = @fund.invests
     @invest = @fund.invests.build()
     @invest.date = Time.now()
+    user = User.find(params[:id])
+    array_x, array_y = parse_csv(user.line_csv.current_path)
+    @list_array = [array_x.last(10), array_y.last(10)]
     if !session[@fund.id].nil?
       @flag = @fund.private_check == 'public' ?  true : session[@fund.id]
     else
