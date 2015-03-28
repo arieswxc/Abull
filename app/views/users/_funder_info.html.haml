@@ -79,6 +79,7 @@
     .col-md-4
       .headline.headline-md
         %h4 历史数据
+        = link_to "更多",show_history_data_user_path(user.id),class: "float-right"
       .mt10
         - unless @list_array.empty?
           %table.table.table-striped
