@@ -76,12 +76,15 @@
       .headline.headline-md
         %h4 历史数据
       .mt10
-        %ul
-          - @list_array.each do |f|
-            %li
-              = f[0]
-              \-
-              = f[1]
+        - unless @list_array.empty?
+          %ul
+            - @list_array.each do |f|
+              %li
+                = f[0]
+                \-
+                = f[1]
+        - else
+          %h2.text-center 还没有历史数据
   .row
     .col-md-12
       .headline.headline-md
