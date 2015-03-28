@@ -38,7 +38,7 @@ ActiveAdmin.register User do
   # filter :sign_in_count
   # filter :created_at
 
-  show(:width => 12) do |user|
+  show do |user|
     attributes_table do
     #   column :avatar do |item|
     #   image_tag 'http://' + item.avatar, size: '64x64' unless item.avatar.blank?

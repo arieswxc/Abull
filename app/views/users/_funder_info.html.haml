@@ -65,85 +65,59 @@
           .col-md-12
             自我介绍：
             = user.abstract
-
-  .row
-    .col-md-8
-      .headline.headline-md.relative
-        %h4 历史折线图
-      .text-center
-        %span.chart-label1
-        %span.mr15 我的业绩
-        %span.chart-label2
-        %span 恒生指数
-        %canvas#history_chart.chart_box.h200
-    .col-md-4
-      .headline.headline-md
-        %h4 历史数据
-        = link_to "更多",show_history_data_user_path(user.id),class: "float-right"
-      .mt10
-        - if @list_array
-          %table.table.table-striped
-            %thead
-              %tr
-                %th 日期
-                %th 净值
-            %tbody
-              - @list_array.each do |f|
+  .tag-box.tag-box-v3.mb0
+    .row
+      .col-md-8
+        .headline.headline-md.relative
+          %h4 历史业绩
+        .text-center
+          %span.chart-label1
+          %span.mr15 我的业绩
+          %span.chart-label2
+          %span 沪深300
+          %canvas#history_chart.chart_box.h200
+      .col-md-4
+        .headline.headline-md
+          %h4 历史数据
+          = link_to "更多",show_history_data_user_path(user.id),class: "float-right"
+        .mt10
+          - if @list_array
+            %table.table.table-striped
+              %thead
                 %tr
-                  %td
-                    = f[0]
-                  %td
-                    = f[1]
-        - else
-          %h2.text-center 还没有历史数据
-  .row
-    .col-md-12
-      .headline.headline-md
-        %h4 证明图片
-      .mt10
-        .owl-carousel-v2.owl-carousel-style-v1.margin-bottom-50
-          .owl-slider-v2
-            .item
-              %a.fancybox-button.zoomer{:href => asset_path('bg/1.jpg'), 'data-rel' => "fancybox-button"}
-                %span.overlay-zoom
-                  = image_tag "bg/1.jpg",class: "img-responsive"
-                  %span.zoom-icon
-            .item
-              %a.fancybox-button.zoomer{:href => asset_path('clients2/fddw.png'), 'data-rel' => "fancybox-button"}
-                %span.overlay-zoom
-                  = image_tag "clients2/fddw.png",class: "img-responsive"
-                  %span.zoom-icon
-            .item
-              %a.fancybox-button.zoomer{:href => asset_path('clients2/baderbrau.png'), 'data-rel' => "fancybox-button"}
-                %span.overlay-zoom
-                  = image_tag "clients2/baderbrau.png",class: "img-responsive"
-                  %span.zoom-icon
-            .item
-              %a.fancybox-button.zoomer{:href => asset_path('clients2/fddw.png'), 'data-rel' => "fancybox-button"}
-                %span.overlay-zoom
-                  = image_tag "clients2/fddw.png",class: "img-responsive"
-                  %span.zoom-icon
-            .item
-              %a.fancybox-button.zoomer{:href => asset_path('clients2/baderbrau.png'), 'data-rel' => "fancybox-button"}
-                %span.overlay-zoom
-                  = image_tag "clients2/baderbrau.png",class: "img-responsive"
-                  %span.zoom-icon
-            .item
-              %a.fancybox-button.zoomer{:href => asset_path('clients2/baderbrau.png'), 'data-rel' => "fancybox-button"}
-                %span.overlay-zoom
-                  = image_tag "clients2/baderbrau.png",class: "img-responsive"
-                  %span.zoom-icon
-            .item
-              %a.fancybox-button.zoomer{:href => asset_path('clients2/baderbrau.png'), 'data-rel' => "fancybox-button"}
-                %span.overlay-zoom
-                  = image_tag "clients2/baderbrau.png",class: "img-responsive"
-                  %span.zoom-icon
-          .owl-navigation
-            .customNavigation
-              %a.owl-btn.prev-v2
-                %i.fa.fa-angle-left
-              %a.owl-btn.next-v2
-                %i.fa.fa-angle-right
+                  %th 日期
+                  %th 净值
+              %tbody
+                - @list_array.each do |f|
+                  %tr
+                    %td
+                      = f[0]
+                    %td
+                      = f[1]
+          - else
+            %h2.text-center 还没有历史数据
+    .row
+      .col-md-12
+        .headline.headline-md
+          %h4 证明图片
+        .mt10
+          - if @verify_photos
+            .owl-carousel-v2.owl-carousel-style-v1
+              .owl-slider-v2
+                - @verify_photos.each do |f|
+                  .item
+                    %a.fancybox-button.zoomer{:href => f.photo.url, 'data-rel' => "fancybox-button"}
+                      %span.overlay-zoom
+                        = image_tag f.photo.url.split("?")[0] + '?imageView2/5/w/200/h/100/interlace/1',class: "img-responsive"
+                        %span.zoom-icon
+              .owl-navigation
+                .customNavigation
+                  %a.owl-btn.prev-v2
+                    %i.fa.fa-angle-left
+                  %a.owl-btn.next-v2
+                    %i.fa.fa-angle-right
+          - else
+            %h2.text-center 还没有证明图片
 :javascript
   $(function(){
     $.ajax({
