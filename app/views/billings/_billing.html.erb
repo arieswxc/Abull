@@ -7,4 +7,5 @@
   <td><%= billing.billable_type %></td>
   <td><%= billing.billable_id %></td>
   <td><%= link_to 'Pay online', realtime_trade_billing_path(billing)  if billing.billing_type == "Third" %></td>
+  <td><%= link_to 'Pay result', order_result_query_billing_path(billing)  if billing.billing_type == "Third" %></td>
 </tr>
