@@ -65,6 +65,4 @@ class InvestsController < ApplicationController
       end
     end
 
-    def parse_last_ten
-
 end
