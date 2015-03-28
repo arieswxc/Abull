@@ -94,10 +94,7 @@
           return;
         }
         if (canGet){
-          setCanGet(false);
           getCheckCode();
-          codeCount = 60;
-          codeInterval=setInterval(setCheckDom,1000);
         }
       });
 
@@ -131,7 +128,10 @@
           contentType: false,
           processData: false,
           success: function () {
-
+            setCanGet(false);
+            codeCount = 60;
+            $("#getCheckCode").text("60s后重新获取");
+            codeInterval=setInterval(setCheckDom,1000);
           },
           error: function () {
 
