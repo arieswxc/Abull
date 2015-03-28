@@ -60,7 +60,7 @@ ActiveAdmin.register Fund do
         column "用户" do |i|
           link_to User.find(i.user_id).email, admin_user_path(i.user_id)
         end
-        column :amount
+        column "投标数额", :amount
       end
     end
   end

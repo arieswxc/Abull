@@ -9,14 +9,18 @@ class User < ActiveRecord::Base
   mount_uploader :avatar, AvatarUploader
   mount_uploader :line_csv, LineCsvUploader
   mount_uploader :verify_file, VerifyFileUploader
-  has_many :funds
-  has_many :invests
-  has_many :leverages
-  has_many :photos
-  has_many :topics
-  has_one :account
-  has_one :bank_card
+  has_many :funds,        dependent: :destroy
+  has_many :invests,      dependent: :destroy
+  has_many :leverages,    dependent: :destroy
+  has_many :photos,       dependent: :destroy
+  has_many :topics,       dependent: :destroy
+  has_one :account,       dependent: :destroy
+  has_one :bank_card,     dependent: :destroy
+  has_many :verify_photos, :class_name => "Photo", as: :imageable, dependent: :destroy
+  has_many :identity_photos, :class_name => "Photo", as: :imageable, dependent: :destroy
   
+  accepts_nested_attributes_for :verify_photos, allow_destroy: true
+  accepts_nested_attributes_for :identity_photos, allow_destroy: true
   accepts_nested_attributes_for :photos, allow_destroy: true
   
   acts_as_followable
