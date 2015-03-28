@@ -81,7 +81,7 @@
         %h4 历史数据
         = link_to "更多",show_history_data_user_path(user.id),class: "float-right"
       .mt10
-        - unless @list_array.empty?
+        - if @list_array
           %table.table.table-striped
             %thead
               %tr
@@ -104,9 +104,9 @@
         .owl-carousel-v2.owl-carousel-style-v1.margin-bottom-50
           .owl-slider-v2
             .item
-              %a.fancybox-button.zoomer{:href => asset_path('clients2/baderbrau.png'), 'data-rel' => "fancybox-button"}
+              %a.fancybox-button.zoomer{:href => asset_path('bg/1.jpg'), 'data-rel' => "fancybox-button"}
                 %span.overlay-zoom
-                  = image_tag "clients2/baderbrau.png",class: "img-responsive"
+                  = image_tag "bg/1.jpg",class: "img-responsive"
                   %span.zoom-icon
             .item
               %a.fancybox-button.zoomer{:href => asset_path('clients2/fddw.png'), 'data-rel' => "fancybox-button"}
