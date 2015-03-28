@@ -92,6 +92,13 @@ class UsersController < ApplicationController
     end
   end
 
+  def show_history_data
+    user = User.find(params[:id])
+    if user.line_csv
+      @list_data = parse_list_data(user.line_csv.current_path)
+    end
+  end
+ 
  
 
   private
