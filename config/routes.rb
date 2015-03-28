@@ -14,6 +14,12 @@ Rails.application.routes.draw do
     resource :bank_card
     resource :account do
       resources :billings
+      get   :bankcard_charge,   on: :member
+      get   :alipay_charge,     on: :member
+      get   :third_charge,      on: :member
+      post  :bankcard_charged,  on: :member
+      post  :alipay_charged,    on: :member
+      post  :third_charged,     on: :member
     end
     scope module: 'profile' do
       resources :invests,           only: [:index, :show]
@@ -29,6 +35,10 @@ Rails.application.routes.draw do
     patch :investor_applied,  on: :member
     patch :trader_applied,    on: :member
     get   :get_chart_data,    on: :member
+  end
+
+  resources :billings do
+    get :realtime_trade, on: :member
   end
 
   resources :funds do
