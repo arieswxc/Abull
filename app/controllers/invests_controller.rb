@@ -15,7 +15,7 @@ class InvestsController < ApplicationController
     @invest.date = Time.now()
     user = User.find(@fund.user_id)
     list_data = parse_list_data(user.line_csv.current_path)
-    @list_array = list_data.last(10)
+    @list_array = list_data.last(10).reverse
     if !session[@fund.id].nil?
       @flag = @fund.private_check == 'public' ?  true : session[@fund.id]
     else
