@@ -852,4 +852,174 @@ a:hover {
   height: auto;
 }
 
+/* bank_list*/
+
+.uc-banklist .icbc {
+  background-position: -45px -70px;
+}
+.uc-banklist dd {
+  background: url(<%= asset_path 'bank.jpg' %>) no-repeat;
+  width: 160px;
+  height: 50px;
+  line-height: 50px;
+  margin: 0 30px 20px 20px;
+  float: left;
+  position: relative;
+  _display: inline;
+}
+.uc-banklist dd label.curr, .other.current {
+  border: 1px solid #9A0000 !important;
+  background: url(<%= asset_path 'icon-curr.png' %>) no-repeat right bottom;
+}
+.curr {
+  cursor: auto;
+}
+.uc-topic { font-size:16px; font-weight:bold; line-height:100%; padding-top:30px; padding-bottom:20px; }
+.exptip{ padding:30px 90px; color: #CC0000; height:18px; line-height:18px; background:url(<%= asset_path 'exptip.gif' %>) no-repeat left center; font-weight: bold;}
+.uc-bank td{border:1px solid #D4D4D4; padding:4px 10px;}
+.uc-banklist { _padding-bottom:20px; }
+.uc-banklist .cmb{ background-position:-45px 0px;}
+.uc-banklist .cbc, .uc-banklist .cbc_express{ background-position:-245px 0px;}
+.uc-banklist .abc, .uc-banklist .abc_express{ background-position:-445px 0px;}
+.uc-banklist .icbc{ background-position:-45px -70px;}
+.uc-banklist .bcm{ background-position:-245px -70px;}
+.uc-banklist .boc, .uc-banklist .boc_express{ background-position:-445px -70px;}
+.uc-banklist .spdb{ background-position:-45px -140px;}
+.uc-banklist .gdb{ background-position:-245px -140px;}
+.uc-banklist .cmbc{ background-position:-445px -140px;}
+.uc-banklist .cib, .uc-banklist .cib_express{ background-position:-45px -210px;}
+.uc-banklist .ceb, .uc-banklist .ceb_express{ background-position:-245px -210px;}
+.uc-banklist .psbc{ background-position:-445px -210px;}
+.uc-banklist .hxb{ background-position:-45px -280px;}
+.uc-banklist .pab{ background-position:-245px -280px;}
+.uc-banklist .ccb, .uc-banklist .ccb_express{ background-position:-445px -280px;}
+.uc-banklist .njcb{ background-position:-45px -350px;}
+.uc-banklist .bob{ background-position:-245px -350px;}
+.uc-banklist .nbcb{ background-position:-445px -350px;}
+.uc-banklist .wzcb{ background-position:-45px -420px;}
+.uc-banklist .bos{ background-position:-245px -420px;}
+.uc-banklist .jsbk{ background-position:-445px -420px;}
+.uc-banklist .hscb{ background-position:-45px -490px;}
+.uc-banklist .bohc{ background-position:-245px -490px;}
+.uc-banklist .beai{ background-position:-445px -490px;}
+.uc-banklist .bocd{ background-position:-45px -560px;}
+.uc-banklist .whcb{ background-position:-245px -560px;}
+.uc-banklist .jsbc{ background-position:-445px -560px;}
+.uc-banklist .gzcb{ background-position:-45px -630px;}
+.uc-banklist .sdb{ background-position:-245px -630px;}
+.uc-banklist .srcb{ background-position:-445px -630px;}
+.uc-banklist .gdrcu{ background-position:-45px -700px;}
+.uc-banklist .zhrcu{ background-position:-245px -700px;}
+.uc-banklist .rdrcu{ background-position:-445px -700px;}
+.uc-banklist .sdrcu{ background-position:-45px -770px;}
+
+.uc-banklist .express{ background:url(<%= asset_path 'express.png' %>) no-repeat 7px 5px; _background:url(<%= asset_path 'express.gif' %>) no-repeat 7px 5px;}
+.uc-banklist dd .expressdesc{ position:absolute; line-height:12px; font-size:12px; padding:3px 0px 3px 10px; bottom:0px;}
+.uc-banklist dd input { position:absolute; top:15px; _top:15px; left:-20px; }
+.uc-banklist dd label {border: 1px solid #DDDDDD; display: block; height: 48px; padding:5px 0; overflow: hidden; width: 160px; }
+.uc-banklist dd label.curr, .other.current { border: 1px solid #9A0000 !important; background:url(<%= asset_path 'icon-curr.png' %>) no-repeat right bottom; _background:url(<%= asset_path 'icon-curr.gif' %>) no-repeat right bottom;}
+.def-exp-bank{ height: 40px; line-height: 40px; padding: 20px; margin:20px 0; border: 1px solid #9A0000;  background:url(<%= asset_path 'icon-curr.png' %>) no-repeat right bottom; _background:url(<%= asset_path 'icon-curr.gif' %>) no-repeat right bottom;}
+.other{border: 1px solid #DDDDDD;width:160px; height:48px; line-height:48px; padding-left:15px; cursor:pointer;}
+.other-bank{position:absolute; background:#FFFFFF; width:160px; height:300px; overflow:auto; border-left: 1px solid #DDDDDD;border-right: 1px solid #DDDDDD;border-bottom: 1px solid #DDDDDD; display:none;}
+.other-bank span{display:block; padding-left:15px; cursor:pointer; line-height:30px;}
+.other-bank-hover{text-decoration:none; background:#F4F4F4;}
+.uc-bankdesc{ margin-top:40px;}
+.uc-bankdesc td{ border:1px solid #D4D4D4; vertical-align:middle; padding:5px 0px 3px;; font-size:12px; height:16px; line-height:16px; text-align:center; color:#676767;}
+.uc-mybank-wrap { padding-bottom:30px; border-bottom:1px solid #D4D4D4; }
+.uc-mybank-wrap .curr { border:1px solid #9a0000; background:url(<%= asset_path 'icon-curr.png' %>) no-repeat; _background:url(<%= asset_path 'icon-curr.gif' %>) no-repeat; background-position: bottom right; }
+.uc-mybank { width:220px; border:1px solid #D4D4D4; margin:30px 12px 0px; position:relative; float:left; _display:inline; z-index:1; }
+.uc-mybank .bank { height:40px; padding-left:10px; padding-top:5px; }
+.uc-mybank .bankno { line-height:16px; padding-left:15px; font-size:16px; padding-bottom:7px; padding-top:3px;}
+.uc-mybank .opbank { display:none; position:absolute; right:1px; top:50px;_right:0px; z-index:2; font-size:0; height:20px;}
+.uc-mybank .opbank a { font-size:14px; display:inline-block; width:40px; height:20px; line-height:20px; text-align:center; background:#D7D7D7; color:#888888; margin-left:1px;_margin-left:0px;}
+.uc-mybank .opbank a:hover{ text-decoration:none;}
+.sc-form .f-label {
+  text-align: right;
+  padding-right: 10px;
+  padding-top: 14px;
+  padding-bottom: 7px;
+  vertical-align: top;
+}
+.w190 {
+  width: 190px;
+}
+.sc-form .f-value {
+  padding-top: 7px;
+  padding-bottom: 7px;
+  vertical-align: middle;
+}
+em.h {
+  font-size: 20px;
+}
+em.unit {
+  font-size: 12px;
+}
+
+
+.b-b {
+  border-bottom: 1px solid #E9E9E9;
+}
+.red {
+  color: #CC0000;
+}
+.pz-info-2 {
+  padding: 25px 20px 13px;
+}
+.pz-info-2 .ui-sub-form {
+  padding: 0 0 17px 200px;
+}
+.ui-label {
+  float: left;
+  font-size: 14px;
+  margin-left: -180px;
+  padding-top: 0;
+  text-align: right;
+  width: 170px;
+}
+.ui-input {
+  border: 1px solid #C5C5C5;
+  padding: 2px 5px;
+  width: 88px;
+  font-size: 14px;
+  height: 20px;
+  line-height: 20px;
+  border-radius: 2px;
+  background: url(../images/inp-bg.jpg) repeat-x #FAFAFA;
+}
+.sel-b {
+  height: 26px;
+  font-size: 14px;
+  color: #333333;
+  padding: 2px 3px;
+  border: 1px solid #ABADB3;
+  border-radius: 2px;
+  background: url(../images/inp-bg.jpg) repeat-x #FAFAFA;
+}
+.uc-ext-desc {
+  background: #F2F2F2;
+  padding: 0 20px;
+  color: #676767;
+}
+.uc-ext-desc-item {
+  padding: 20px 0;
+}
+.uc-ext-desc-item li {
+  float: left;
+}
+.b-r {
+  border-right: 1px solid #E9E9E9;
+}
+.uc-ext-desc-item li dt {
+  line-height: 100%;
+  font-size: 16px;
+  color: #333333;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+.fs20 {
+  font-size: 20px;
+}
+.w190 {
+  width: 190px;
+}
 /* index site-menu end */

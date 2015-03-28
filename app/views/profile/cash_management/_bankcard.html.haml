@@ -1,0 +1,112 @@
+.pz-info-2
+  .ui-sub-form
+    %label.ui-label
+      %b{:style => "font-size:20px;"} 添加银行卡
+     
+  .ui-sub-form
+    %label.ui-label 开户名
+    %span#tip-username{"data-text" => "提现银行卡的开户名必须是陈永卿", :style => "cursor: pointer;"} 陈永卿
+  .ui-sub-form
+    %label.ui-label 开户银行
+    %select#bank.sel-b
+      %option{:value => "工商银行"} 工商银行(推荐)
+      %option{:value => "建设银行"} 建设银行(推荐)
+      %option{:value => "农业银行"} 农业银行(推荐)
+      %option{:value => "招商银行"} 招商银行(推荐)
+      %option{:value => "中国银行"} 中国银行
+      %option{:value => "交通银行"} 交通银行
+      %option{:value => "邮政储蓄"} 邮政储蓄
+      %option{:value => "民生银行"} 民生银行
+      %option{:value => "浦发银行"} 浦发银行
+      %option{:value => "兴业银行"} 兴业银行
+      %option{:value => "华夏银行"} 华夏银行
+      %option{:value => "光大银行"} 光大银行
+      %option{:value => "广发银行"} 广发银行
+      %option{:value => "中信银行"} 中信银行
+  .ui-sub-form
+    %label.ui-label 开户行所在地
+    %select#province.sel-b
+      %option{:selected => "selected", :value => "1"} 北京市
+      %option{:value => "2"} 天津市
+      %option{:value => "3"} 河北省
+      %option{:value => "4"} 山西省
+      %option{:value => "5"} 内蒙古自治区
+      %option{:value => "6"} 辽宁省
+      %option{:value => "7"} 吉林省
+      %option{:value => "8"} 黑龙江省
+      %option{:value => "9"} 上海市
+      %option{:value => "10"} 江苏省
+      %option{:value => "11"} 浙江省
+      %option{:value => "12"} 安徽省
+      %option{:value => "13"} 福建省
+      %option{:value => "14"} 江西省
+      %option{:value => "15"} 山东省
+      %option{:value => "16"} 河南省
+      %option{:value => "17"} 湖北省
+      %option{:value => "18"} 湖南省
+      %option{:value => "19"} 广东省
+      %option{:value => "20"} 广西壮族自治区
+      %option{:value => "21"} 海南省
+      %option{:value => "22"} 重庆市
+      %option{:value => "23"} 四川省
+      %option{:value => "24"} 贵州省
+      %option{:value => "25"} 云南省
+      %option{:value => "26"} 西藏自治区
+      %option{:value => "27"} 陕西省
+      %option{:value => "28"} 甘肃省
+      %option{:value => "29"} 青海省
+      %option{:value => "30"} 宁夏回族自治区
+      %option{:value => "31"} 新疆维吾尔自治区
+      %option{:value => "32"} 香港特别行政区
+      %option{:value => "33"} 澳门特别行政区
+      %option{:value => "34"} 台湾省
+    %select#city.sel-b
+      %option{:value => "1"} 北京市
+    %select#subbank.sel-b.w200
+      %option{:value => "北京安贞支行"} 北京安贞支行
+      %option{:value => "北京奥运村支行"} 北京奥运村支行
+      %option{:value => "北京朝阳门支行"} 北京朝阳门支行
+      %option{:value => "北京车公庄支行"} 北京车公庄支行
+      %option{:value => "北京翠微路支行"} 北京翠微路支行
+      %option{:value => "北京大望路支行"} 北京大望路支行
+      %option{:value => "北京东直门支行"} 北京东直门支行
+      %option{:value => "北京方庄支行"} 北京方庄支行
+      %option{:value => "北京分行"} 北京分行
+      %option{:value => "北京分行营业部"} 北京分行营业部
+      %option{:value => "北京甘家口支行"} 北京甘家口支行
+      %option{:value => "北京广渠门支行"} 北京广渠门支行
+      %option{:value => "北京国贸支行"} 北京国贸支行
+      %option{:value => "北京国展支行"} 北京国展支行
+      %option{:value => "北京海淀支行"} 北京海淀支行
+      %option{:value => "北京航天桥支行"} 北京航天桥支行
+      %option{:value => "北京黄寺支行"} 北京黄寺支行
+      %option{:value => "北京建国路支行"} 北京建国路支行
+      %option{:value => "北京蒋宅口支行"} 北京蒋宅口支行
+      %option{:value => "北京金融街支行"} 北京金融街支行
+      %option{:value => "北京京广支行"} 北京京广支行
+      %option{:value => "北京莲花支行"} 北京莲花支行
+      %option{:value => "北京潘家园支行"} 北京潘家园支行
+      %option{:value => "北京上地支行"} 北京上地支行
+      %option{:value => "北京天通苑支行"} 北京天通苑支行
+      %option{:value => "北京万达广场支行"} 北京万达广场支行
+      %option{:value => "北京王府井支行"} 北京王府井支行
+      %option{:value => "北京望京支行"} 北京望京支行
+      %option{:value => "北京五棵松支行"} 北京五棵松支行
+      %option{:value => "北京西客站支行"} 北京西客站支行
+      %option{:value => "北京新外支行"} 北京新外支行
+      %option{:value => "北京宣武门支行"} 北京宣武门支行
+      %option{:value => "北京学院路支行"} 北京学院路支行
+      %option{:value => "北京亚运村支行"} 北京亚运村支行
+      %option{:value => "北京月坛支行"} 北京月坛支行
+      %option{:value => "北京知春路支行"} 北京知春路支行
+      %option{:value => "北京中关村支行"} 北京中关村支行
+      %option{:value => "北京中轴路支行"} 北京中轴路支行
+      %option{:value => "其他支行"} 其他支行
+  .ui-sub-form
+    %label.ui-label 银行卡号
+    %input#bankCard.ui-input{:style => "width:188px", :type => "text"}/
+  .ui-sub-form
+    %label.ui-label 确认卡号
+    %input#reBankCard.ui-input{:style => "width:188px", :type => "text"}/
+  .ui-sub-form{:style => "padding-top:10px;"}
+    %input#cardBtn.btn.btn-l{:onclick => "bindBankCard()", :type => "button", :value => "保存"}/
