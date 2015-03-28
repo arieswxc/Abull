@@ -24,7 +24,7 @@
           %i.glyphicon.glyphicon-home.index.mr10.ml10>
           我的摩尔街
       %li{:class => "ui-side-item #{'active' if activeItem=='account'}"}
-        %a.ui-side-item-link.pt0
+        = link_to(billings_path,class: "ui-side-item-link pt0") do
           %i.glyphicon.glyphicon-usd.index.mr10.ml10>
           资金管理
       %li{:class => "ui-side-item #{'active' if activeItem=='invest'}"}

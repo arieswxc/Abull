@@ -35,6 +35,6 @@
             .num.last
               %label.color-red> 0.00
         .charge-btns.mt15
-          %a.fn-left.ui-button.ui-button-blue.ui-button-mid.mr4{:href => "/account/capital!recharge.action"} 充值
-          %a.fn-left.ui-button.ui-button-red.ui-button-mid.last.ml20{:href => "/account/capital!withdraw.action"} 提现
+          = link_to "充值",billings_path,class: "fn-left ui-button ui-button-blue ui-button-mid mr4"
+          = link_to "提现",billings_path,class: "fn-left ui-button ui-button-red ui-button-mid last ml20"
 %hr

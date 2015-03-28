@@ -8,6 +8,36 @@ class BillingsController < ApplicationController
     @billings = current_user.account.billings
   end
 
+  def order_result_query
+    billing                       = Billing.find(params[:id])
+    uri                           = URI('http://180.168.127.5/gateway.htm')
+    hashed_params                 = Hash.new
+    hashed_params[:service]       = "single_direct_query"
+    hashed_params[:sign_type]     = "MD5"
+    hashed_params[:input_charset] = "utf-8"
+    hashed_params[:partner]       = "201501131139398055"
+    hashed_params[:out_trade_no]  = billing.id
+    key                           = "2XYEF5RDNQ0U7H25WWSHM3IF8YK0YVvgyftw"
+    hashed_params[:sign]          = Digest::MD5.hexdigest(hashed_params.sort.to_h.to_param + key)
+    uri.query                     = URI.encode_www_form(hashed_params)
+    res                           = Net::HTTP.get_response(uri)
+    doc                           = res.body
+    @state                         = false
+    if Nokogiri::XML(res.body).xpath("//orderQuery").at_xpath("status").content == "SUCCESS"
+      status      = "SUCCESS"
+      charset     = Nokogiri::XML(res.body).xpath("//orderQuery").at_xpath("charset").content
+      outTradeNo  = Nokogiri::XML(res.body).xpath("//result").at_xpath("outTradeNo").content
+      subject     = Nokogiri::XML(res.body).xpath("//result").at_xpath("subject").content
+      tradeNo     = Nokogiri::XML(res.body).xpath("//result").at_xpath("tradeNo").content
+      tradeStatus = Nokogiri::XML(res.body).xpath("//result").at_xpath("tradeStatus").content
+      totalFee    = Nokogiri::XML(res.body).xpath("//result").at_xpath("totalFee").content
+      sign        = Digest::MD5.hexdigest(status + charset + outTradeNo + subject + tradeNo + tradeStatus + totalFee + key)
+      if sign == Nokogiri::XML(res.body).at_xpath("//sign").content
+        @state = true
+      end
+    end
+  end
+
   def realtime_trade
     billing                             = Billing.find(params[:id])
     uri                                 = URI('http://180.168.127.5/direct/gateway.htm')

@@ -1,0 +1,68 @@
+#alipay1{:style => "padding:20px 50px 50px;"}
+  %div{:style => "height:40px; line-height:40px; padding:10px 0 30px;"}
+    %img{:src => "http://www.yztz.com/res/images/bank/alipay.jpg", :style => "float:left; margin-left:-25px;"}/
+    %em{:style => "color:#B20000;"} 支付宝转账（手机转账0手续费）
+  %div{:style => "padding-bottom:20px;"}
+    %table{:width => "100%"}
+      %tbody
+        %tr
+          %td{:align => "right", :style => "font-size:16px; padding-right:15px;", :width => "100"} 支付宝账号
+          %td{:style => "padding:15px 0;"}
+            %input#alipayName.ui-input{:name => "alipayName", :style => " width:200px; padding:7px;", :type => "text"}/
+        %tr
+          %td{:align => "right", :style => "font-size:16px; padding-right:15px;"} 充值金额
+          %td{:style => "padding:15px 0;"}
+            %input#alimoney.ui-input{:name => "money", :style => " width:200px; padding:7px;", :type => "text"}/
+            %input#alicharge{:name => "charge", :type => "hidden", :value => "0"}/
+        %tr
+          %td
+          %td{:style => "padding:15px 0;"}
+            %input#aliSubmitBtn.btn.btn-l{:onclick => "doAliCharge();", :type => "button", :value => "下一步"}/
+#alipay2{:style => "padding:40px 0 0; display:none;"}
+  %div{:style => "padding:20px 0; background:#F8F8F8;"}
+    %table{:width => "100%"}
+      %tbody
+        %tr
+          %td{:align => "right", :width => "200"} 收款人支付宝账户：
+          %td{:style => "padding:0 20px;"}
+            17178@yztz.com
+            %a#popBtn.ml15{"data-clipboard-target" => "popText", :href => "javascript:;"} 复制
+            %input#popText{:type => "hidden", :value => "17178@yztz.com"}/
+        %tr
+          %td{:align => "right"} 账户名称：
+          %td{:style => "padding:0 20px;"} 臣乾金融信息服务（上海）有限公司
+  %div{:style => "padding:20px 0;"}
+    %table{:width => "100%"}
+      %tbody
+        %tr
+          %td{:align => "right", :width => "200"} 您的支付宝账户：
+          %td{:style => "padding:0 20px;"}
+            #u_alipayName
+        %tr
+          %td{:align => "right"} 转入金额：
+          %td{:style => "padding:0 20px;"}
+            %em#u_money{:style => "color:#B30606;"}> 100
+            元
+            %a{:href => "javascript:;", :onclick => "toAliCharge();", :style => "margin-left:40px;"} 修改金额
+  %div{:style => "padding:0 0 60px;"}
+    %table{:width => "100%"}
+      %tbody
+        %tr
+          %td{:align => "center", :height => "50", :style => "color:#999999;", :width => "400"}
+            手机支付宝扫一扫，快速转账，
+            %em{:style => "color:#B20606;"} 0手续费
+          %td{:align => "center", :style => "color:#999999;"} 去支付宝网站付款
+        %tr
+          %td{:align => "center"}
+            %img{:src => "http://www.yztz.com/res/images/alipay-code.gif?v=201503262", :style => "display:block;"}/
+          %td{:align => "center"}
+            %a.zfb{:href => "https://shenghuo.alipay.com/send/payment/fill.htm?_tosheet=true&_pdType=afcabecbafgggffdhjch", :target => "_blank"}
+              %img{:src => "http://www.yztz.com/res/images/bank/alipay.jpg", :style => "display:block;"}/
+%div
+  %div{:style => "height:40px; line-height:40px; font-size:16px; padding:15px 30px 0; border-top:1px dashed #CCCCCC;"}
+    到账时间
+    %span{:style => "color:#B20000; padding-left:20px; font-size:12px;"} 如需马上到账或长时间未到账，可拨打客服电话：400-8888-566
+  %div{:style => "padding:0px 30px 40px;"}
+    %ul
+      %li ·  08:30 - 20:30 （30分钟内到账）
+      %li ·  20:30 以后     （次日09:00前到账）
