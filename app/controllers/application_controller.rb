@@ -14,6 +14,11 @@ class ApplicationController < ActionController::Base
         array_y = array_y << pos_y
       end
     end
+    interval = (array_x.length / 10).to_i
+    0.upto(array_x.length) do |index|
+      array_x[index] = "" if index % interval != 0
+    end
+    
     [array_x, array_y]
   end
 
