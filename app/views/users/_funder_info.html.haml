@@ -77,12 +77,18 @@
         %h4 历史数据
       .mt10
         - unless @list_array.empty?
-          %ul
-            - @list_array.each do |f|
-              %li
-                = f[0]
-                \-
-                = f[1]
+          %table.table.table-striped
+            %thead
+              %tr
+                %th 日期
+                %th 净值
+            %tbody
+              - @list_array.each do |f|
+                %tr
+                  %td
+                    = f[0]
+                  %td
+                    = f[1]
         - else
           %h2.text-center 还没有历史数据
   .row
