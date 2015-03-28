@@ -9,6 +9,8 @@
               %a{"data-toggle" => "tab", :href => "#baseProfile"} 基本信息
             %li
               %a{"data-toggle" => "tab", :href => "#authenticationProfile"} 认证信息
+            %li
+              %a{"data-toggle" => "tab", :href => "#fabiao"} 发标人审核
           .tab-content
             #baseProfile.tab-pane.fade.active.in
               = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'sky-form'}) do |f|
@@ -92,7 +94,7 @@
                     = image_tag current_user.identity_photos[photo_form.index].photo.url,class: "img-thumbnail img-rounded #{'w300' if !current_user.identity_photos[photo_form.index].photo.blank?}"
                 .text-center
                   = f.button :submit
-              %hr
+            #fabiao.tab-pane.fade
               %h3 发表人审核
               %hr
               = simple_nested_form_for(@user,url: trader_applied_user_path(current_user),  |
