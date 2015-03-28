@@ -17,6 +17,17 @@ class ApplicationController < ActionController::Base
     [array_x, array_y]
   end
 
+  def parse_list_data(current_path)
+    array = []
+    File.open(current_path, "r") do |file|
+      file.each_line do |line|
+        pos_x, pos_y = line.chomp.split(",")
+        array = array << [pos_x, pos_y]
+      end
+    end
+    array
+  end
+
   protected
 
   def configure_permitted_parameters
