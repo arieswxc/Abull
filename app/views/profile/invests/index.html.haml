@@ -6,8 +6,10 @@
         = render "shares/profile"
         #profile-invest-show.tag-box.tag-box-v3.mt20
           %h2
-            已投资金额：
-            = @invests.sum(:amount)
+            .glyphicon.glyphicon-usd
+            已投资金额（元）：
+            %span.color-red.text-l
+              = @invests.sum(:amount)
           .mt40
           = render "invests/invest_list", ojbect: @current="xxx"
 

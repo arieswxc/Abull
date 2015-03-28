@@ -12,16 +12,16 @@
     .row
       .col-md-8
         .headline.headline-md.relative
-          %h4 历史业绩
+          %h4 当前标的业绩
         .text-center
           %span.chart-label1
           %span.mr15 我的业绩
           %span.chart-label2
-          %span 恒生指数
+          %span 沪深300
           %canvas#history_chart.chart_box.h200
       .col-md-4
         .headline.headline-md
-          %h4 历史数据
+          %h4 当前标的数据
           = link_to "更多","#",class: "float-right"
         .mt10
           - if @list_array
@@ -44,10 +44,10 @@
         .headline.headline-md
           %h4 证明图片
         .mt10
-          - if @verify_photos
+          - if @fund_verify_photos
             .owl-carousel-v2.owl-carousel-style-v1
               .owl-slider-v2
-                - @verify_photos.each do |f|
+                - @fund_verify_photos.each do |f|
                   .item
                     %a.fancybox-button.zoomer{:href => f.photo.url, 'data-rel' => "fancybox-button"}
                       %span.overlay-zoom

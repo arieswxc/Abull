@@ -31,10 +31,10 @@
         - else
           %td= f.name
           %td= f.genre
-        %td
+        %td.color-red
           = f.amount
           = '元' unless f.amount.blank?
-        %td
+        %td.color-red
           = f.expected_earning_rate
           = '%' unless f.expected_earning_rate.blank?
         %td

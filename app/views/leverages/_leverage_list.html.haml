@@ -21,10 +21,10 @@
       %tr{'data-index' => f.id}
         %td  xxxxxx
         / %td= f.minimum
-        %td
+        %td.color-red
           = f.amount
           = '元' unless f.amount.blank?
-        %td
+        %td.color-red
           = f.interest.leverage_time*f.amount
           = '元' unless f.amount.blank?
         %td.formattime= f.created_at

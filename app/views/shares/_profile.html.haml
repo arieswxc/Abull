@@ -1,8 +1,7 @@
 .box.box-user-info
-  .user-info-container
+  .user-info-container.mt15
     .fn-clear.relative
-      .mt15
-      #info-box.fn-left.user-security-container.mr10
+      #info-box.fn-left.user-security-container
         .safe.fn-clear
           %span.fn-left.color-gray-text 安全认证
           #safe-progressbar.safe-progressbar.fn-left{:title => "25%"}
@@ -10,36 +9,32 @@
         .icons.fn-clear.mt5
           .row
             .col-md-12
-              %a.btn-u.btn-u-xs{:class => "#{'btn-u-default direct_to_tab2' if current_user.cell.blank?}" "#{'btn-u-yellow' if !current_user.cell.blank?}",
+              .btn-u.btn-u-xs{:class => "#{'btn-u-default direct_to_tab2' if current_user.cell.blank?}" "#{'btn-u-yellow' if !current_user.cell.blank?}",
                 :href => "#{trader_apply_user_path(current_user) if current_user.cell.blank?}" "#{'javascript:;' if !current_user.cell.blank?}"} 手机
-              %a.btn-u.btn-u-xs{:class => "#{'btn-u-default direct_to_tab2' if current_user.email.blank?}" "#{'btn-u-yellow' if !current_user.email.blank?}",
+              .btn-u.btn-u-xs{:class => "#{'btn-u-default direct_to_tab2' if current_user.email.blank?}" "#{'btn-u-yellow' if !current_user.email.blank?}",
                 :href => "#{trader_apply_user_path(current_user) if current_user.email.blank?}" "#{'javascript:;' if !current_user.email.blank?}"} 邮箱
               - @authenticated = !(current_user.level == 'unverified' || current_user.level == 'investor_applied')
-              %a.btn-u.btn-u-xs{:class => "#{'btn-u-default direct_to_tab2' if !@authenticated}" "#{'btn-u-yellow' if @authenticated}",
+              .btn-u.btn-u-xs{:class => "#{'btn-u-default direct_to_tab2' if !@authenticated}" "#{'btn-u-yellow' if @authenticated}",
                 :href => "#{investor_apply_user_path(current_user) if !@authenticated}" "#{'javascript:;' if @authenticated}"} 身份证
-          .row.mt5
-            .col-md-12
-              %a.btn-u.btn-u-xs{:class => "#{'btn-u-default direct_to_tab2' if current_user.address.blank?}" "#{'btn-u-yellow' if !current_user.address.blank?}",
+              .btn-u.btn-u-xs{:class => "#{'btn-u-default direct_to_tab2' if current_user.address.blank?}" "#{'btn-u-yellow' if !current_user.address.blank?}",
                 :href => "#{trader_apply_user_path(current_user) if current_user.address.blank?}" "#{'javascript:;' if !current_user.address.blank?}"} 住址
-              %a.btn-u.btn-u-xs{:class => "#{'btn-u-default direct_to_tab2' if current_user.education.blank?}" "#{'btn-u-yellow' if !current_user.education.blank?}",
+              .btn-u.btn-u-xs{:class => "#{'btn-u-default direct_to_tab2' if current_user.education.blank?}" "#{'btn-u-yellow' if !current_user.education.blank?}",
                 :href => "#{trader_apply_user_path(current_user) if current_user.education.blank?}" "#{'javascript:;' if !current_user.education.blank?}"} 学历
-      .fn-left.last.border-left.pl10.w500
+      .fn-left.last.border-left.pl45.ml35.w500
         .surplus.fn-clear
-          %span.fn-left.text-l.mr10 账户余额
-          %span.fn-left.num-xl.color-orange-text.mr5.w250
+          .text-l.mr10 账户余额（元）
+          .num-xl.color-red.mr5.w250
             %label> 0.00
-            元
-          %a.fn-left.ui-button.ui-button-blue.ui-button-mid.mr4{:href => "/account/capital!recharge.action"} 充值
-          %a.fn-left.ui-button.ui-button-red.ui-button-mid.last{:href => "/account/capital!withdraw.action"} 提现
         .surplus-detail.fn-clear.mt10
           .fn-left.mr40
-            %span.fn-left.text.mr10 冻结金额
-            %span.fn-left.num.last
-              %label> 0.00
-              元
-          .fn-left.last
-            %span.fn-left.text.mr10 可用金额
-            %span.fn-left.num.last
-              %label> 0.00
-              元
+            .text.mr10 冻结金额（元）
+            .num.last
+              %label.color-red> 0.00
+          .fn-right.last
+            .text.mr10 可用金额（元）
+            .num.last
+              %label.color-red> 0.00
+        .charge-btns.mt15
+          %a.fn-left.ui-button.ui-button-blue.ui-button-mid.mr4{:href => "/account/capital!recharge.action"} 充值
+          %a.fn-left.ui-button.ui-button-red.ui-button-mid.last.ml20{:href => "/account/capital!withdraw.action"} 提现
 %hr
