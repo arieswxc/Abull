@@ -13,6 +13,7 @@
     %link{:href => asset_path("plugins/line-icons.css"), :rel => "stylesheet"}/
     %link{:href => asset_path("plugins/font-awesome/css/font-awesome.min.css"), :rel => "stylesheet"}/
     %link{:href => asset_path("plugins/img-hover.css"), :rel => "stylesheet"}/
+    %link{:href => asset_path("plugins/jquery.fancybox.css"), :rel => "stylesheet"}/
     %link{:href => asset_path("sky-forms.css"), :rel => "stylesheet"}/
     %link{:href => asset_path("custom-sky-forms.css"), :rel => "stylesheet"}/
     / CSS Page Style
@@ -40,6 +41,8 @@
     %script{:src => asset_path("plugins/jquery.themepunch.tools.min.js")}
     %script{:src => asset_path("plugins/jquery.themepunch.revolution.min.js")}
     %script{:src => asset_path("plugins/moment-with-locales.js")}
+    %script{:src => asset_path("plugins/jquery.fancybox.pack.js")}
+    %script{:src => asset_path("plugins/fancy-box.js")}
     / JS Customization
     %script{:src => asset_path("custom.js")}
     / JS Page Level
@@ -61,7 +64,7 @@
         App.initParallaxBg();
         OwlCarousel.initOwlCarousel();
         RevolutionSlider.initRSfullWidth();
-
+        FancyBox.initFancybox();
         $(".formattime").each(function() {
           $(this).text(moment($(this).text()).format('YYYY-MM-DD'));
         });

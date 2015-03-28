@@ -100,7 +100,50 @@
     .col-md-12
       .headline.headline-md
         %h4 证明图片
-      .tag-box.tag-box-v3
+      .mt10
+        .owl-carousel-v2.owl-carousel-style-v1.margin-bottom-50
+          .owl-slider-v2
+            .item
+              %a.fancybox-button.zoomer{:href => asset_path('clients2/baderbrau.png'), 'data-rel' => "fancybox-button"}
+                %span.overlay-zoom
+                  = image_tag "clients2/baderbrau.png",class: "img-responsive"
+                  %span.zoom-icon
+            .item
+              %a.fancybox-button.zoomer{:href => asset_path('clients2/fddw.png'), 'data-rel' => "fancybox-button"}
+                %span.overlay-zoom
+                  = image_tag "clients2/fddw.png",class: "img-responsive"
+                  %span.zoom-icon
+            .item
+              %a.fancybox-button.zoomer{:href => asset_path('clients2/baderbrau.png'), 'data-rel' => "fancybox-button"}
+                %span.overlay-zoom
+                  = image_tag "clients2/baderbrau.png",class: "img-responsive"
+                  %span.zoom-icon
+            .item
+              %a.fancybox-button.zoomer{:href => asset_path('clients2/fddw.png'), 'data-rel' => "fancybox-button"}
+                %span.overlay-zoom
+                  = image_tag "clients2/fddw.png",class: "img-responsive"
+                  %span.zoom-icon
+            .item
+              %a.fancybox-button.zoomer{:href => asset_path('clients2/baderbrau.png'), 'data-rel' => "fancybox-button"}
+                %span.overlay-zoom
+                  = image_tag "clients2/baderbrau.png",class: "img-responsive"
+                  %span.zoom-icon
+            .item
+              %a.fancybox-button.zoomer{:href => asset_path('clients2/baderbrau.png'), 'data-rel' => "fancybox-button"}
+                %span.overlay-zoom
+                  = image_tag "clients2/baderbrau.png",class: "img-responsive"
+                  %span.zoom-icon
+            .item
+              %a.fancybox-button.zoomer{:href => asset_path('clients2/baderbrau.png'), 'data-rel' => "fancybox-button"}
+                %span.overlay-zoom
+                  = image_tag "clients2/baderbrau.png",class: "img-responsive"
+                  %span.zoom-icon
+          .owl-navigation
+            .customNavigation
+              %a.owl-btn.prev-v2
+                %i.fa.fa-angle-left
+              %a.owl-btn.next-v2
+                %i.fa.fa-angle-right
 :javascript
   $(function(){
     $.ajax({

@@ -707,6 +707,7 @@ a.sky-blue-i:hover {
 body {
   font-size: 12px;
   font-family: arial,"Microsoft Yahei","Hiragino Sans GB",sans-serif!important;
+  display: table;
 }
 p {
   color: #555;
@@ -822,6 +823,29 @@ a:hover {
 .w300i {
   width: 300px!important;
 }
-
+#fancybox-loading, .fancybox-close, .fancybox-prev span, .fancybox-next span {
+	background-image: url(<%= asset_path 'fancybox/fancybox_sprite.png' %>);
+}
+#fancybox-loading div {
+	background: url(<%= asset_path 'fancybox/fancybox_loading.gif' %>) center center no-repeat;
+}
+.fancybox-nav {
+	background: transparent url(<%= asset_path 'fancybox/blank.gif' %>); /* helps IE */
+}
+.fancybox-overlay {
+	background: url(<%= asset_path 'fancybox/fancybox_overlay.png' %>);
+}
+.overlay-zoom .zoom-icon {
+  background-image: url(<%= asset_path "overlay-icon.png" %>);
+  left: 0;
+}
+.customNavigation .owl-btn{
+  font-size: 28px;
+  padding: 0 29px;
+  margin: 0 34px;
+}
+.customNavigation .owl-btn i {
+  font-size: 28px;
+}
 
 /* index site-menu end */
