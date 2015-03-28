@@ -1,0 +1,9 @@
+%tr
+  %td= billing.created_at.to_date
+  %td= billing.id
+  %td= billing.account.user.username if billing.account &&  billing.account.user
+  %td= billing.billing_type
+  %td= billing.amount
+  %td= billing.billable_type
+  %td= billing.billable_id
+  %td= link_to 'Pay online', realtime_trade_billing_path(billing)  if billing.billing_type == "Third"
