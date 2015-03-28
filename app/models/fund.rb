@@ -13,10 +13,11 @@ class Fund < ActiveRecord::Base
   validates :expected_earning_rate, numericality: true
   belongs_to  :user
   has_many    :invests
-
+  has_many    :fund_verify_photos, :class_name => "Photo", as: :imageable, dependent: :destroy
+  
   before_validation :generate_fundname, on: :create
   acts_as_commentable
-
+  accepts_nested_attributes_for :fund_verify_photos, allow_destroy: true
 
   state_machine :state, :initial => :pending do
     event :apply do

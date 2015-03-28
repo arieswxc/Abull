@@ -1,7 +1,7 @@
 ActiveAdmin.register Fund do
   permit_params :name, :user_id, :amount, :ending_days, :earning, :expected_earning_rate, :earning_rate, :state, :private_check, :minimum, :invest_starting_date, :invest_ending_date, :description, 
     	:frontend_risk_method, :duration, :mandate,
-  		:backend_risk_method, :initial_amount, :created_at, :updated_at, :raised_amount, :genre, :private_code
+  		:backend_risk_method, :initial_amount, :created_at, :updated_at, :raised_amount, :genre, :private_code, fund_verify_photos_attributes: [:title, :photo]
     
   index do
     selectable_column
@@ -38,6 +38,15 @@ ActiveAdmin.register Fund do
       row :description
       row :frontend_risk_method
       row :backend_risk_method
+    end
+  
+    panel t('证明文件照片') do
+      table_for fund.fund_verify_photos do |f| 
+        column "标题", :title
+        column "照片" do |f|
+          image_tag f.photo, width:400, height:400
+        end
+      end
     end
 
     panel t('操盘手个人信息') do 
@@ -123,6 +132,12 @@ ActiveAdmin.register Fund do
         f.input :expected_earning_rate
         f.input :state, as: :select, collection: ["pending", "applied", "gathering", "reached", "opened", "running", "finished", "closed", "denied"]
         f.input :user_id
+        f.inputs "上传证明文件" do
+          f.has_many :fund_verify_photos do |t|
+            t.input :title
+            t.input :photo
+          end
+        end
       end
       f.actions
   end
