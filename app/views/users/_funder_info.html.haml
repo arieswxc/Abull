@@ -68,9 +68,13 @@
 
   .row
     .col-md-8
-      .headline.headline-md
+      .headline.headline-md.relative
         %h4 历史折线图
-      .mt10
+      .text-center
+        %span.chart-label1
+        %span.mr15 我的业绩
+        %span.chart-label2
+        %span 恒生指数
         %canvas#history_chart.chart_box.h200
     .col-md-4
       .headline.headline-md
@@ -95,7 +99,7 @@
     .col-md-12
       .headline.headline-md
         %h4 证明图片
-      .mt10
+      .tag-box.tag-box-v3
 :javascript
   $(function(){
     $.ajax({
