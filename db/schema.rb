@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 20150328045101) do
     t.decimal  "balance",              precision: 12, scale: 2, default: 0.0
     t.datetime "created_at",                                                  null: false
     t.datetime "updated_at",                                                  null: false
-    t.decimal  "frost",                precision: 12, scale: 2
   end
 
   add_index "accounts", ["user_id"], name: "index_accounts_on_user_id", using: :btree
