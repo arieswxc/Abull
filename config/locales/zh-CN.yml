@@ -36,6 +36,9 @@ zh-CN:
         created_at: 用户创建日期
         level: 用户等级
         birthday: 生日
+        account: 账户
+        line_csv: CSV文件
+        verify_file: 证明文件 
         gender: 性别
         education: 学历
         address: 地址
@@ -84,6 +87,7 @@ zh-CN:
         user: 投标人
         fund_id: 发标
         amount: 投资数额
+        initial_amount: 初始募集数额
         date: 投标日期
         payback: 回报
         close_day: 清算日期
@@ -139,6 +143,8 @@ zh-CN:
         balance: 余额
         user_id: 用户
         user: 用户
+        created_at: 创建日期
+        updated_at: 更新日期
       bank_card:
         user_id: 持卡人
         bank_name: 开户行
@@ -154,11 +160,13 @@ zh-CN:
     cancel: "取消"
     reset: "重置%{model}"
     required: "必须的"
+    gathering: "募集中"
   active_admin:
     comments:
         resource_type: 资源类型
         author_type: 作者类型
   female: 女
+  gathering: 募集中
   male: 男
   Confirm: 确认
   confirm: 确认

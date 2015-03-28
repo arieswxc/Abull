@@ -16,7 +16,11 @@ class User < ActiveRecord::Base
   has_many :topics
   has_one :account
   has_one :bank_card
+  has_many :verify_photos, :class_name => "Photo", as: :imageable
+  has_many :identity_photos, :class_name => "Photo", as: :imageable
   
+  accepts_nested_attributes_for :verify_photos, allow_destroy: true
+  accepts_nested_attributes_for :identity_photos, allow_destroy: true
   accepts_nested_attributes_for :photos, allow_destroy: true
   
   acts_as_followable
