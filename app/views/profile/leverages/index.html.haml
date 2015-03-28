@@ -6,8 +6,10 @@
         = render "shares/profile"
         #profile-leverage-show.tag-box.tag-box-v3.mt20.p20
           %h2
+            .glyphicon.glyphicon-usd
             配资累计：
-            = @leverages.sum(:amount)
+            %span.color-red.text-l
+              = @leverages.sum(:amount)
           = render "leverages/leverage_list"
 
 

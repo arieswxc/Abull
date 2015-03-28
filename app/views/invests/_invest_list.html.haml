@@ -39,7 +39,7 @@
             -# %td
             -#   = f.fund.minimum
             -#   = '元' unless f.fund.minimum.blank?
-            %td
+            %td.color-red
               = f.fund.amount
               = '元' unless f.fund.amount.blank?
 
@@ -48,10 +48,10 @@
             -# %td{:class => "#{'formattime' unless f.fund.invest_starting_date.blank?}"}= f.fund.invest_starting_date
             -# %td{:class => "#{'formattime' unless f.fund.invest_ending_date.blank?}"}= f.fund.invest_ending_date
             %td xxxxxx
-            %td
+            %td.color-red
               = f.fund.expected_earning_rate
               = '%' if !f.fund.expected_earning_rate.blank?
-            %td
+            %td.color-red
               = f.fund.earning_rate
               = '%' if !f.fund.earning_rate.blank?
             %td= f.fund.state
