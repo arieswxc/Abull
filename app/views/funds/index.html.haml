@@ -16,14 +16,26 @@
             %i
           %span.input-group-addon  个月
       %section.col.col-2
-        %label 募集总额(>)
+        %label 募集总额
         .input-group
-          %input.form-control.text-center.numberic{:type => "text",:name => "amount",:maxlength => 7}
-          %span.input-group-addon  元
+          .select
+            %select{:name => "amount"}
+              %option{:value => "1", :selected => "selected"}= "1-100"
+              %option{:value => "2"}= "100-300"
+              %option{:value => "3"}= "300-500"
+              %option{:value => "4"}= ">500"
+            %i
+          %span.input-group-addon  万元
       %section.col.col-2
-        %label 预期年化收益率(>)
+        %label 预期年化收益率
         .input-group
-          %input.form-control.text-center.numberic{:type => "text",:name => "expected_earning_rate",:maxlength => 3}
+          .select
+            %select{:name => "expected_earning_rate"}
+              %option{:value => "1", :selected => "selected"}= "1-20"
+              %option{:value => "2"}= "20-50"
+              %option{:value => "3"}= "50-100"
+              %option{:value => "4"}= ">100"
+            %i
           %span.input-group-addon  ％
       %section.col.col-2
         %label 明／暗标

@@ -114,7 +114,7 @@
                       (学历图片证明)
                   %label.input.input-file.col-sm-9.state-success
                     .button
-                      %input{:type => "file",:name =>"user[education_photo]", :onchange => "this.parentNode.nextElementSibling.value = this.value", :accept => "image/*"}
+                      %input{:type => "file",:name =>"education_photo", :onchange => "this.parentNode.nextElementSibling.value = this.value", :accept => "image/*"}
                         %span 
                           浏览
                     %input{:type => "text", :readonly => ""}
@@ -125,7 +125,7 @@
                       (住址图片证明)
                   %label.input.input-file.col-sm-9.state-success
                     .button
-                      %input#address_photo{:type => "file", :name => "user[address_photo]", :onchange => "this.parentNode.nextElementSibling.value =this.value", :value => "this.parentNode.nextElementSibling.value =this.value"}
+                      %input#address_photo{:type => "file", :name => "address_photo", :onchange => "this.parentNode.nextElementSibling.value =this.value", :value => "this.parentNode.nextElementSibling.value =this.value"}
                         %span 
                           浏览
                     %input{:type => "text", :readonly => ""}

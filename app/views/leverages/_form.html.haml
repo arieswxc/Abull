@@ -148,7 +148,7 @@
       var winTop = (screen.height-600)/2;
       window.open("/gppz_items.html", "newwindow", "height="+winHeight+", width="+winWidth+", toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no, left="+winLeft+", top="+winTop);
     });
-    leverage_amount.oninput = function() {
+    $("#leverage_amount")[0].oninput = function() {
       var crt_amount = parseInt($("#leverage_amount").val()) || 0;
       $("#leverage_amount").val(crt_amount);
       getOrderMonthRate();

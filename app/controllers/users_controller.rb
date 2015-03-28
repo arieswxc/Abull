@@ -80,14 +80,33 @@ class UsersController < ApplicationController
     render json: {message: "success"}
   end
 
+  def get_history_data
+    user = User.find(params[:id])
+    if user.line_csv
+      array_x, array_y = parse_csv(user.line_csv.current_path)
+      current_path = "#{Rails.root}/lib/LibFile/husheng_data.csv"
+      array1_x, array1_y = parse_csv(current_path)
+      render json:{ labels: array_x, datasets: [{data: array_y}, {data: array1_y}] }
+    else
+      render json:{ message: "Not found" }, status: 404
+    end
+  end
 
+  def show_history_data
+    user = User.find(params[:id])
+    if user.line_csv
+      @list_data = parse_list_data(user.line_csv.current_path)
+    end
+  end
+ 
+ 
 
   private
     def user_params
       params.require(:user).permit(
         :real_name, :id_card_number, :email, :password, :username,
         :birthday, :gender, :education, :address, :job, :cell, :education_photo, :address_photo,
-        photos_attributes: [:id, :title, :photo, :destroy])
+        identity_photos_attributes: [:id, :title, :photo, :destroy])
     end
 
     def send_email

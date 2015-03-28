@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     get :funds, on: :collection
   end
   resources :users, only: [:show] do
+    get :get_history_data, on: :member
+    get :show_history_data, on: :member
     resource :bank_card
     resource :account do
       resources :billings

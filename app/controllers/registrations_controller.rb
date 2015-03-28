@@ -74,9 +74,9 @@ class RegistrationsController < Devise::RegistrationsController
 
     def add_three_photos
       if resource && resource.persisted?
-        resource.photos.create(title: "身份证正面")
-        resource.photos.create(title: "身份证反面")
-        resource.photos.create(title: "手持身份证露脸照片")
+        resource.identity_photos.create(title: "身份证正面")
+        resource.identity_photos.create(title: "身份证反面")
+        resource.identity_photos.create(title: "手持身份证露脸照片")
       end
     end
 

@@ -27,7 +27,7 @@
             - if @flag
               = user.age
             - else
-              = check_private(user.age,@fund.private_check)
+              = check_private(user.age.to_s,@fund.private_check)
             岁
           .col-md-4
             性别：
@@ -41,7 +41,7 @@
             - if @flag
               = user.id
             - else
-              = check_private(user.id,@fund.private_check)
+              = check_private(user.id.to_s,@fund.private_check)
           .col-md-3
             学历：
             - if @flag
@@ -61,20 +61,147 @@
               = user.address
             - else
               = check_private(user.address,@fund.private_check)
-  .row.mlr0
-    %table.table.table-striped.table-bordered
-      %tbody
-        %tr
-          %td
-            %div
-              自我介绍
-            .border-top.p20
-              = user.abstract
-          %td
-            %div
-              历史折线图
-            .border-top.p20
-          %td
-            %div
-              证明图片
-            .border-top.p20
+        .row.mt10
+          .col-md-12
+            自我介绍：
+            = user.abstract
+
+  .row
+    .col-md-8
+      .headline.headline-md.relative
+        %h4 历史折线图
+      .text-center
+        %span.chart-label1
+        %span.mr15 我的业绩
+        %span.chart-label2
+        %span 恒生指数
+        %canvas#history_chart.chart_box.h200
+    .col-md-4
+      .headline.headline-md
+        %h4 历史数据
+        = link_to "更多",show_history_data_user_path(user.id),class: "float-right"
+      .mt10
+        - if @list_array
+          %table.table.table-striped
+            %thead
+              %tr
+                %th 日期
+                %th 净值
+            %tbody
+              - @list_array.each do |f|
+                %tr
+                  %td
+                    = f[0]
+                  %td
+                    = f[1]
+        - else
+          %h2.text-center 还没有历史数据
+  .row
+    .col-md-12
+      .headline.headline-md
+        %h4 证明图片
+      .mt10
+        .owl-carousel-v2.owl-carousel-style-v1.margin-bottom-50
+          .owl-slider-v2
+            .item
+              %a.fancybox-button.zoomer{:href => asset_path('bg/1.jpg'), 'data-rel' => "fancybox-button"}
+                %span.overlay-zoom
+                  = image_tag "bg/1.jpg",class: "img-responsive"
+                  %span.zoom-icon
+            .item
+              %a.fancybox-button.zoomer{:href => asset_path('clients2/fddw.png'), 'data-rel' => "fancybox-button"}
+                %span.overlay-zoom
+                  = image_tag "clients2/fddw.png",class: "img-responsive"
+                  %span.zoom-icon
+            .item
+              %a.fancybox-button.zoomer{:href => asset_path('clients2/baderbrau.png'), 'data-rel' => "fancybox-button"}
+                %span.overlay-zoom
+                  = image_tag "clients2/baderbrau.png",class: "img-responsive"
+                  %span.zoom-icon
+            .item
+              %a.fancybox-button.zoomer{:href => asset_path('clients2/fddw.png'), 'data-rel' => "fancybox-button"}
+                %span.overlay-zoom
+                  = image_tag "clients2/fddw.png",class: "img-responsive"
+                  %span.zoom-icon
+            .item
+              %a.fancybox-button.zoomer{:href => asset_path('clients2/baderbrau.png'), 'data-rel' => "fancybox-button"}
+                %span.overlay-zoom
+                  = image_tag "clients2/baderbrau.png",class: "img-responsive"
+                  %span.zoom-icon
+            .item
+              %a.fancybox-button.zoomer{:href => asset_path('clients2/baderbrau.png'), 'data-rel' => "fancybox-button"}
+                %span.overlay-zoom
+                  = image_tag "clients2/baderbrau.png",class: "img-responsive"
+                  %span.zoom-icon
+            .item
+              %a.fancybox-button.zoomer{:href => asset_path('clients2/baderbrau.png'), 'data-rel' => "fancybox-button"}
+                %span.overlay-zoom
+                  = image_tag "clients2/baderbrau.png",class: "img-responsive"
+                  %span.zoom-icon
+          .owl-navigation
+            .customNavigation
+              %a.owl-btn.prev-v2
+                %i.fa.fa-angle-left
+              %a.owl-btn.next-v2
+                %i.fa.fa-angle-right
+:javascript
+  $(function(){
+    $.ajax({
+      url: "/users/#{user.id}/get_history_data",
+      type: 'get',
+      contentType: false,
+      processData: false,
+      success: function (data) {
+        var history_ctx = $("#history_chart").get(0).getContext("2d");
+        //  data = {
+        //       labels: ["3.1", "3.2", " ", "3.9", "3.11", "3.13", "3.15"],
+        //       datasets: [
+        //           {
+        //               data: [65, 59, 80, 81, 56, 55, 40]
+        //           },
+        //           {
+        //               data: [28, 48, 40, 19, 86, 27, 90]
+        //           }
+        //       ]
+        //   };
+        var history_data = {
+                              labels: data.labels,
+                              datasets: [
+                                  {
+                                      label: "我的业绩",
+                                      fillColor: "rgba(220,220,220,0.2)",
+                                      strokeColor: "rgba(230,76,60,1)",
+                                      pointColor: "rgba(230,76,60,1)",
+                                      pointStrokeColor: "#fff",
+                                      pointHighlightFill: "#fff",
+                                      pointHighlightStroke: "rgba(220,220,220,1)",
+                                      data: data.datasets[0].data
+                                  },
+                                  {
+                                      label: "恒生指数",
+                                      fillColor: "rgba(151,187,205,0.2)",
+                                      strokeColor: "rgba(52,151,218,1)",
+                                      pointColor: "rgba(52,151,218,1)",
+                                      pointStrokeColor: "#fff",
+                                      pointHighlightFill: "#fff",
+                                      pointHighlightStroke: "rgba(151,187,205,1)",
+                                      data: data.datasets[1].data
+                                  }
+                              ]
+                          };
+        var options = {
+          pointHitDetectionRadius : 2,
+          pointDot : false,
+          datasetFill : false,
+          scaleFontColor: "#666",
+          multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>"
+        };
+        var historyChart = new Chart(history_ctx).Line(history_data,options);
+      },
+      error: function () {
+        $("#history_chart").hide();
+        $("#history_chart").parent().html('<h2 class="text-center p20">还没有历史数据</h2>')
+        console.log("get_chart_data error...");
+      }
+    });
+  });

@@ -1,7 +1,7 @@
 include ApplicationHelper
 ActiveAdmin.register User do
   permit_params :email, :password, :password_confirmation, :username, :real_name, :avatar, :cell, :id_card_number, :abstract, :level,
-                :account, :birthday, :verify_file, :line_csv, :gender, :education, :address, :education_photo, :address_photo, :job, photos_attributes: [:title, :photo]
+                :account, :birthday, :verify_file, :line_csv, :gender, :education, :address,:job, verify_photos_attributes: [:title, :photo]
  
   index do
     selectable_column
@@ -38,7 +38,7 @@ ActiveAdmin.register User do
   # filter :sign_in_count
   # filter :created_at
 
-  show do |user|
+  show(:width => 12) do |user|
     attributes_table do
     #   column :avatar do |item|
     #   image_tag 'http://' + item.avatar, size: '64x64' unless item.avatar.blank?
@@ -56,12 +56,6 @@ ActiveAdmin.register User do
       row :line_csv
       row :verify_file
       row :current_sign_in_at
-      row :education_photo do |item|
-        item.education_photo
-      end
-      row :address_photo do |item|
-        image_tag item.address_photo
-      end
       row :sign_in_count
       row :created_at
     end
@@ -76,8 +70,16 @@ ActiveAdmin.register User do
         end
       end
     end
+    panel t('证明文件照片') do
+      table_for user.verify_photos do |f| 
+        column "标题", :title
+        column "照片" do |f|
+          image_tag f.photo, width:400, height:400
+        end
+      end
+    end
 
-    panel t('trader信息认证') do
+    panel t('交易员信息认证') do
       attributes_table_for user do
         row :birthday
         row :education
@@ -138,6 +140,12 @@ ActiveAdmin.register User do
       # f.input :password_confirmation
       f.input :verify_file
       f.input :line_csv
+      f.inputs "上传证明文件" do
+        f.has_many :verify_photos do |t|
+          t.input :title
+          t.input :photo
+        end
+      end
     end
     f.actions
   end

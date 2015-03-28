@@ -1,0 +1,18 @@
+.container.content
+  .headline.headline-md
+    %h3 历史数据
+  - unless @list_data.empty?
+    %table.table.table-striped.w300i
+      %thead
+        %tr
+          %th 日期
+          %th 净值
+      %tbody
+        - @list_data.each do |f|
+          %tr
+            %td
+              = f[0]
+            %td
+              = f[1]
+  - else
+    %h2.text-center 还没有历史数据
