@@ -44,7 +44,7 @@
                 %i.fa.fa-key
               %input.form-control{:type => "text", :name => "verification_code", :placeholder => "验证码", :required => "required", :minlength => "1",:tooltip => "请输入手机收到的验证码"}
           .col-xs-6
-            %a#getCheckCode.btn-u.btn-u-default  获取验证码
+            %a#getCheckCode.btn-u.btn-u-red  获取验证码
 
         .row
           .col-lg-6.checkbox
@@ -76,9 +76,7 @@
           alert('提交注册前请先阅读并勾选确认条款');
         }
       });
-      $("#getCheckCode").click(function(){
-        getCheckCode();
-      });
+
       $(".sign-item").click(function(){
         var winHeight = 600;
         var winWidth = 600;
@@ -87,6 +85,44 @@
         window.open("/register_items.html", "newwindow", "height="+winHeight+", width="+winWidth+", toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no, left="+winLeft+", top="+winTop);
       });
 
+      var canGet = true;
+      var codeInterval = null;
+      var codeCount = 60;
+      $("#getCheckCode").click(function(){
+        if ($("#user_cell").val().length !== 11) {
+          alert("请正确填写手机号");
+          return;
+        }
+        if (canGet){
+          setCanGet(false);
+          getCheckCode();
+          codeCount = 60;
+          codeInterval=setInterval(setCheckDom,1000);
+        }
+      });
+
+      function setCheckDom(){
+        codeCount -= 1;
+        if (codeCount > 0){
+          $("#getCheckCode").text(codeCount + "s后重新获取");
+        }else {
+          clearInterval(codeInterval);
+          canGet = true;
+          $("#getCheckCode").text("获取验证码");
+          setCanGet(true);
+        }
+      }
+
+      function setCanGet(can){
+        canGet = can;
+        if (can) {
+          $("#getCheckCode").addClass("btn-u-red");
+          $("#getCheckCode").removeClass("btn-u-default");
+        }else {
+          $("#getCheckCode").removeClass("btn-u-red");
+          $("#getCheckCode").addClass("btn-u-default");
+        }
+      }
       function getCheckCode() {
         $.ajax({
           data: null,
