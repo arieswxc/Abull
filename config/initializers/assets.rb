@@ -28,6 +28,7 @@ Rails.application.config.assets.precompile += %w( shop.style.css)
 Rails.application.config.assets.precompile += %w( plugins/perfect-scrollbar.css)
 Rails.application.config.assets.precompile += %w( plugins/owl.carousel.css)
 Rails.application.config.assets.precompile += %w( plugins/settings.css)
+Rails.application.config.assets.precompile += %w( plugins/jquery.fancybox.css)
 Rails.application.config.assets.precompile += %w( pages/page_job.css)
 
 Rails.application.config.assets.precompile += %w( custom.css)
@@ -44,7 +45,8 @@ Rails.application.config.assets.precompile += %w( plugins/jquery.parallax.js)
 Rails.application.config.assets.precompile += %w( plugins/jquery.themepunch.tools.min.js)
 Rails.application.config.assets.precompile += %w( plugins/jquery.themepunch.revolution.min.js)
 Rails.application.config.assets.precompile += %w( plugins/moment-with-locales.js)
-
+Rails.application.config.assets.precompile += %w( plugins/jquery.fancybox.pack.js )
+Rails.application.config.assets.precompile += %w( plugins/fancy-box.js )
 Rails.application.config.assets.precompile += %w( custom.js)
 
 Rails.application.config.assets.precompile += %w( shop.app.js)
