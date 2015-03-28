@@ -7,8 +7,9 @@
           %h2 注册
           %p
             已经注册 ? #{link_to("立即登录",new_user_session_path,rel: "nofollow", class: "color-red")}。
-        - if flash[:notice]
-          = flash[:notice]
+        .red
+          - if flash[:notice]
+            = flash[:notice]
         .input-group.margin-bottom-20
           %span.input-group-addon
             %i.fa.fa-user

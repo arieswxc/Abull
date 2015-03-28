@@ -8,7 +8,7 @@
         .input-group.margin-bottom-20
           %span.input-group-addon
             %i.fa.fa-user
-          = f.text_field :cell, autofocus: true, placeholder: "用户名", class: "form-control"
+          = f.text_field :cell, autofocus: true, placeholder: "手机号", class: "form-control"
         .input-group.margin-bottom-20
           %span.input-group-addon
             %i.fa.fa-lock
@@ -22,7 +22,6 @@
           .col-md-12
             %button.btn-u.pull-right.col-sm-12{:type => "submit"} 登录
         %p
-          %a.color-blue{:href => new_user_password_path} 
+          %a.color-blue{:href => new_user_password_path}
             %span
               忘记密码?
-        
