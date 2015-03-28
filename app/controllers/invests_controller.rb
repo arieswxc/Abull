@@ -13,7 +13,7 @@ class InvestsController < ApplicationController
     @invests = @fund.invests
     @invest = @fund.invests.build()
     @invest.date = Time.now()
-    user = User.find(params[:id])
+    user = User.find(@fund.user_id)
     list_data = parse_list_data(user.line_csv.current_path)
     @list_array = list_data.last(10)
     if !session[@fund.id].nil?
