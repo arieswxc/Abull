@@ -7,7 +7,12 @@
 			= "剩余投资额 : " + (@fund.amount - @invests.sum(:amount)).to_s() +"元"
 		%br
 		%label
-			= "最小投资额 : "+ @fund.minimum.to_s() +"元"
+			= "最小投资额 : "
+			- if @fund.minimum
+				= @fund.minimum.to_s()
+			- else
+				0.0
+			= "元"
 		%br
 		%label
 			= Invest.human_attribute_name('amount')
@@ -31,12 +36,24 @@
 		}
 		$('#submit').bind('click',function(){
 			var crt_amount = parseInt($("#invest_input_can").val()) || 0;
+
 			if (maxmum <= 0) {
 				alert("当前标的已投满，正等待审核");
 				return;
 			}
 			if (crt_amount < minimum) {
 				alert("您输入的投资额小于最小投资额");
+				return;
+			}
+			var myBalance = parseFloat("#{current_user.account.balance}");
+			if (crt_amount > myBalance) {
+				if(confirm("您余额不足，请充值，确认充值？")){
+					window.open("#{bankcard_charge_user_account_path(current_user)}");
+				}
+				return;
+			}
+			if (crt_amount < 1) {
+				alert("投标金额必须大于等于1元");
 				return;
 			}
 		  if($(this).closest('form').find('#check').attr('checked')){

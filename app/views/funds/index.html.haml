@@ -64,10 +64,10 @@
 :javascript
   $(function(){
     $("table tbody tr").click(function() {
-      if (this.dataset.state === 'gathering') {
+      // if (this.dataset.state === 'gathering') {
         var invest_id = this.dataset.index;
         window.location.href = "/funds/" + invest_id + "/invests/new";
-      }
+      // }
     });
     $("table tbody tr").addClass("pointer");
   });

@@ -74,11 +74,17 @@
   		alert("请填写提现金额");
   		return false;
   	}
-
   	// if(!X.valid.isMoney(m)){
   	// 	alert('充值金额填写错误',1,{notify:function(){$("#alimoney").focus();}});
   	// 	return false;
   	// }
+    var myBalance = parseFloat("#{current_user.account.balance}");
+    if (parseFloat(m) > myBalance) {
+      if(confirm("您余额不足，请充值，确认充值？")){
+        window.open("#{bankcard_charge_user_account_path(current_user)}");
+      }
+      return false;
+    }
   	if(parseFloat(m)<1){
   		alert('提现金额必须大于等于1元');
   		return false;

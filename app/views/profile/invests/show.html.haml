@@ -1,8 +1,9 @@
 .container.content
-  .p20.text-center
-    %label 暗号:
-    %input
-    %a.btn-u.btn-u-orange.btn-u-xs UNLOCK
+  - if @fund.state == 'gathering'
+    .p20.text-center
+      %label 暗号:
+      %input
+      %a.btn-u.btn-u-orange.btn-u-xs UNLOCK
   .row.mt10
     = render 'users/funder_info',{user: @fund.user}
   .row
@@ -48,11 +49,12 @@
             .owl-carousel-v2.owl-carousel-style-v1
               .owl-slider-v2
                 - @fund_verify_photos.each do |f|
-                  .item
-                    %a.fancybox-button.zoomer{:href => f.photo.url, 'data-rel' => "fancybox-button"}
-                      %span.overlay-zoom
-                        = image_tag f.photo.url.split("?")[0] + '?imageView2/5/w/200/h/100/interlace/1',class: "img-responsive"
-                        %span.zoom-icon
+                  - if f.photo && f.photo.url
+                    .item
+                      %a.fancybox-button.zoomer{:href => f.photo.url, 'data-rel' => "fancybox-button"}
+                        %span.overlay-zoom
+                          = image_tag f.photo.url.split("?")[0] + '?imageView2/5/w/200/h/100/interlace/1',class: "img-responsive"
+                          %span.zoom-icon
               .owl-navigation
                 .customNavigation
                   %a.owl-btn.prev-v2

@@ -69,7 +69,7 @@
             %span.ui-list-title.fn-left.color-gray-text.text-center.w80  状态
           - @last_ten_funds.each do |f|
             %li.ui-list-item.fn-clear
-              %a{:href => "#{new_fund_invest_path(f.id) if f.state == 'gathering'} #{'javascript:;' if f.state != 'gathering'}"}
+              %a{:href => new_fund_invest_path(f.id)}
                 %span.ui-list-field.fn-left.text-big.w110.text-center
                   %img.img-circle.ui-progressbar-mid{:height => "50", :src => f.user.avatar.url, :width => "50",:class => "#{'blur' if f.private_check == 'private'}"}/
                 %span.ui-list-field.fn-left.text-big.w260.text-center
