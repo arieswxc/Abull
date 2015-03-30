@@ -18,7 +18,7 @@ class AccountsController < ApplicationController
 
   def alipay_charged
     @billing = current_user.account.billings.build(billing_params)
-    @billing.billing_type = "Alipay"
+    @billing.billing_type = "Alipay " + @billing.billing_type
     if @billing.save
       # redirect_to user_account_billings_path
       render json: {message: "seccess"}
@@ -50,14 +50,15 @@ class AccountsController < ApplicationController
     @billing = current_user.account.billings.build(billing_params)
     @billing.billing_type = "Withdraw"
     if @billing.amount < balance
-      render 'withdraw', flash[:notice] = "没有足够余额"
-    else
       if @billing.save
         @billing.update(amount: -@billing.amount )
         redirect_to user_account_billings_path
       else
         render 'withdrawn'
       end
+    else
+      flash[:notice] = "没有足够余额"
+      render 'withdraw'
     end
   end
 

@@ -5,7 +5,7 @@ require 'active_support/all'
 
 class BillingsController < ApplicationController
   def index
-    @billings = current_user.account.billings
+    @billings = current_user.account.billings.order(created_at: :desc)
   end
 
   def order_result_query
