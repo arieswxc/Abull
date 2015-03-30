@@ -211,11 +211,11 @@
     $('#submit').bind('click',function(){
       check_val($("input[name='leverage[amount]']"));
       if (scrollToErr()) return;
-    	var myBalance = parseFloat("#{current_user.account.balance}");
+    	var myBalance = parseFloat("#{current_user.account.balance if current_user}");
       var crt_amount = parseInt($("input[name='leverage[amount]']").val());
       if (crt_amount > myBalance) {
         if(confirm("您余额不足，请充值，确认充值？")){
-          window.open("#{bankcard_charge_user_account_path(current_user)}");
+          window.open("#{bankcard_charge_user_account_path(current_user) if current_user} #{'javascript:;' unless current_user}");
         }
         return;
       }
