@@ -15,22 +15,20 @@
     .row.mt10
       = render 'users/funder_info',{user: @fund.user}
     .row
-      - if @flag
-        .col-md-8.fund_base_info
-          = render 'funds/fund_base_info'
-        .col-md-4.new_invest_form
-          - if @fund.state == "gathering"
+      - if @fund.state == "gathering"
+        - if @flag
+          .col-md-8.fund_base_info
+            = render 'funds/fund_base_info'
+          .col-md-4.new_invest_form
             = render 'form'
-          - elsif @fund.state == "reached"
-            %h3 已投满
+        - else
+          .col-md-12.fund_base_info
+            = render 'funds/fund_base_info'
+          .col-md-4.hide.new_invest_form
+            = render 'form'
       - else
         .col-md-12.fund_base_info
           = render 'funds/fund_base_info'
-        .col-md-4.hide.new_invest_form
-          - if @fund.state == "gathering"
-            = render 'form'
-          - elsif @fund.state == "reached"
-            %h3 已投满
 
     .row
       .col-md-12
