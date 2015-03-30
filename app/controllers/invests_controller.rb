@@ -25,6 +25,7 @@ class InvestsController < ApplicationController
   end
 
   def show
+    @fund = Fund.find(params[:fund_id])
     user = User.find(@fund.user_id)
     list_data = parse_list_data(user.line_csv.current_path)
     @list_array = list_data.last(5).reverse
