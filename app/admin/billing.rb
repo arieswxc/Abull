@@ -28,7 +28,11 @@ ActiveAdmin.register Billing do
   member_action :confirm, :method => :put do
     billing = Billing.find(params[:id])
     account = billing.account
-    account.balance += billing.amount
+    if billing.billing_type == "Withdraw"
+      account.frost += billing.amount
+    else
+      account.balance += billing.amount
+    end
     ActiveRecord::Base.transaction do
       billing.confirm
       account.save
