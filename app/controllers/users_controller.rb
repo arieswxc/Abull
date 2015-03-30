@@ -68,12 +68,31 @@ class UsersController < ApplicationController
     end
   end
 
+  #忘记密码，短信发送新密码接口
   def update_password
     user = User.find_by(cell: params[:user][:cell].to_i)
     if user
       user.reset_password(params[:user][:cell])
     end
     redirect_to root_path
+  end
+
+
+  #用户登录后手动更新密码页面
+  def edit_password
+    @user = current_user
+  end
+  
+  #用户登录后手动更新密码接口
+  def reset_password
+    @user = User.find(current_user.id)
+    if @user.update_with_password(user_password_params)
+      # Sign in the user by passing validation in case their password changed
+      sign_in @user, :bypass => true
+      redirect_to root_path
+    else
+      render "edit_password"
+    end
   end
 
   def get_chart_data
@@ -115,16 +134,20 @@ class UsersController < ApplicationController
         identity_photos_attributes: [:id, :title, :photo, :destroy])
     end
 
+    def user_password_params
+      params.required(:user).permit(:password, :password_confirmation, :current_password)
+    end
+
     def send_email
       @user = current_user
       UserMailer.welcome_email(@user).deliver_now
     end
 
     def send_sms(code, cell)
-      uri       = URI.parse("http://222.73.117.158/msg/HttpSendSM")
+      uri       = URI.parse("http://222.73.117.158:80/msg/HttpSendSM")
       msg       = "欢迎注册摩尔街账户，您的激活码为#{code},请在注册页面填写【bull】"
-      username  = 'jiekou-cs-01'
-      password  = 'Tch147259'
+      username  = 'jiekou-cs-02'
+      password  = 'Tch147256'
 
       res = Net::HTTP.post_form(uri, account: username, pswd: password, mobile: cell, msg: msg, needstatus: true)
       res.body.split[1]
