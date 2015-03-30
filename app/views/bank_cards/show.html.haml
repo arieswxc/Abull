@@ -25,7 +25,7 @@
                 %p= link_to t('edit'), edit_user_bank_card_path(user_id: @bank_card.user)
               - else
                 - @bank_card = current_user.build_bank_card
-                = simple_form_for(@bank_card, url: user_bank_card_path) do |f|
+                = simple_form_for(@bank_card, url: user_bank_card_path, html:{class: "sky-form"}) do |f|
                   = f.input :number
                   = f.input :bank_name
                   = f.input :bank_branch
