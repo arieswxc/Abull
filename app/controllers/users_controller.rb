@@ -148,7 +148,7 @@ class UsersController < ApplicationController
       msg       = "欢迎注册摩尔街账户，您的激活码为#{code},请在注册页面填写【bull】"
       username  = 'jiekou-cs-02'
       password  = 'Tch147256'
-
+      puts "激活码为 #{code}"
       res = Net::HTTP.post_form(uri, account: username, pswd: password, mobile: cell, msg: msg, needstatus: true)
       res.body.split[1]
     end
