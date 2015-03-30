@@ -12,7 +12,7 @@
         %tr
           %td{:align => "right", :style => "font-size:16px; padding-right:15px;"} 充值金额
           %td{:style => "padding:15px 0;"}
-            %input#alimoney.ui-input{:name => "money", :style => " width:200px; padding:7px;", :type => "text"}/
+            %input#alimoney.ui-input.numberic{:name => "money", :style => " width:200px; padding:7px;", :type => "text",:maxlength => "7"}/
             %input#alicharge{:name => "charge", :type => "hidden", :value => "0"}/
         %tr
           %td

@@ -20,9 +20,10 @@ class AccountsController < ApplicationController
     @billing = current_user.account.billings.build(billing_params)
     @billing.billing_type = "Alipay"
     if @billing.save
-      redirect_to user_account_billings_path
+      # redirect_to user_account_billings_path
+      render json: {message: "seccess"}
     else
-      render 'alipay_charge'
+      render json: {message: "fail"}
     end
   end
 
@@ -55,7 +56,7 @@ class AccountsController < ApplicationController
     end
   end
 
-  private 
+  private
     def billing_params
       params.require(:billing).permit(:amount, :billing_type, :billable_id, :billable_type)
     end

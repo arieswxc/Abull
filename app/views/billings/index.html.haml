@@ -8,9 +8,7 @@
         .tab-v2
           %ul.nav.nav-tabs
             %li.active
-              %a{"data-toggle" => "tab", :href => "#billings"} 充值记录
-            %li
-              %a{"data-toggle" => "tab", :href => "#cashout"} 提现
+              %a{"data-toggle" => "tab", :href => "#billings"} 交易记录
           .tab-content
             #billings.tab-pane.fade.active.in
               %table.table.table-bordered
@@ -22,9 +20,6 @@
                   %th 金额
                   %th Billable Type
                   %th Billable id
+                  %th 在线付款
                 %tbody
                   = render @billings
-            #cashin.tab-pane.fade
-
-            #cashout.tab-pane.fade
-              = render "profile/cash_management/cashout"

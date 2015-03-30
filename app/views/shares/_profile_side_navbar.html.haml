@@ -33,7 +33,7 @@
           %li.ui-side-sub-item{:class => "#{'active' if @activeSubItem=='cashin'}"}
             %a.ui-side-sub-item-link{:href => bankcard_charge_user_account_path(current_user)}充值
           %li.ui-side-sub-item{:class => "#{'active' if @activeSubItem=='cashout'}"}
-            %a.ui-side-sub-item-link{:href => "javascript:;"}提现
+            %a.ui-side-sub-item-link{:href => withdraw_user_account_path(current_user)}提现
           %li.ui-side-sub-item{:class => "#{'active' if @activeSubItem=='bankcards'}"}
             %a.ui-side-sub-item-link{:href => user_bank_card_path(current_user)}我的银行卡
       %li{:class => "ui-side-item #{'active' if activeItem=='invest'}"}
