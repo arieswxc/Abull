@@ -14,6 +14,7 @@ class Fund < ActiveRecord::Base
   belongs_to  :user
   has_many    :invests
   has_many    :fund_verify_photos, :class_name => "Photo", as: :imageable, dependent: :destroy
+  has_one     :fund_account
   
   before_validation :generate_fundname, on: :create
   acts_as_commentable
