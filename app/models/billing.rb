@@ -11,5 +11,9 @@ class Billing < ActiveRecord::Base
     event :confirm do
       transition :pending => :confirmed
     end
+
+    event :deny do
+      transition :pending => :denied
+    end
   end
 end

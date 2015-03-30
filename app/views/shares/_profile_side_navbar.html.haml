@@ -24,9 +24,18 @@
           %i.glyphicon.glyphicon-home.index.mr10.ml10>
           我的摩尔街
       %li{:class => "ui-side-item #{'active' if activeItem=='account'}"}
-        = link_to(billings_path,class: "ui-side-item-link pt0") do
+        = link_to("javascript:;",class: "ui-side-item-link pt0") do
           %i.glyphicon.glyphicon-usd.index.mr10.ml10>
           资金管理
+        %ul.ui-side-sub-list
+          %li.ui-side-sub-item{:class => "#{'active' if @activeSubItem=='billings'}"}
+            %a.ui-side-sub-item-link{:href => billings_path}交易记录
+          %li.ui-side-sub-item{:class => "#{'active' if @activeSubItem=='cashin'}"}
+            %a.ui-side-sub-item-link{:href => bankcard_charge_user_account_path(current_user)}充值
+          %li.ui-side-sub-item{:class => "#{'active' if @activeSubItem=='cashout'}"}
+            %a.ui-side-sub-item-link{:href => withdraw_user_account_path(current_user)}提现
+          %li.ui-side-sub-item{:class => "#{'active' if @activeSubItem=='bankcards'}"}
+            %a.ui-side-sub-item-link{:href => user_bank_card_path(current_user)}我的银行卡
       %li{:class => "ui-side-item #{'active' if activeItem=='invest'}"}
         = link_to(user_invests_path(current_user),class: "ui-side-item-link pt0") do
           %i.glyphicon.glyphicon-usd.index.mr10.ml10>
@@ -48,10 +57,10 @@
           %i.glyphicon.glyphicon-cog.index.mr10.ml10>
           账号管理
 :javascript
-  // $(".ui-side-list > li > a").click(function() {
-  //   $(this).parent().children().each(function() {
-  //     if ($(this).hasClass("ui-side-sub-list")) {
-  //       $(this).toggle();
-  //     }
-  //   })
-  // });
+  $(".ui-side-list > li > a").click(function() {
+    $(this).parent().children().each(function() {
+      if ($(this).hasClass("ui-side-sub-list")) {
+        $(this).toggle();
+      }
+    })
+  });

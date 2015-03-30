@@ -65,3 +65,12 @@ function scrollToErr() {
   }
   return false;
 }
+
+$.v = function(){
+  if (arguments[1]){
+    return $("#" + arguments[0]).val(arguments[1]);
+  }else {
+    return $("#" + arguments[0]).val();
+  }
+
+};

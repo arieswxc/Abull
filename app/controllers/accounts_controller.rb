@@ -20,9 +20,10 @@ class AccountsController < ApplicationController
     @billing = current_user.account.billings.build(billing_params)
     @billing.billing_type = "Alipay"
     if @billing.save
-      redirect_to user_account_billings_path
+      # redirect_to user_account_billings_path
+      render json: {message: "seccess"}
     else
-      render 'alipay_charge'
+      render json: {message: "fail"}
     end
   end
 
@@ -45,17 +46,22 @@ class AccountsController < ApplicationController
   end
 
   def withdrawn
+    balance = current_user.account.balance if current_user
     @billing = current_user.account.billings.build(billing_params)
     @billing.billing_type = "Withdraw"
-    if @billing.save
-      @billing.update(amount: -@billing.amount )
-      redirect_to user_account_billings_path
+    if @billing.amount < balance
+      render 'withdraw', flash[:notice] = "没有足够余额"
     else
-      render 'withdrawn'
+      if @billing.save
+        @billing.update(amount: -@billing.amount )
+        redirect_to user_account_billings_path
+      else
+        render 'withdrawn'
+      end
     end
   end
 
-  private 
+  private
     def billing_params
       params.require(:billing).permit(:amount, :billing_type, :billable_id, :billable_type)
     end

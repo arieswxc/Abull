@@ -24,7 +24,7 @@
         .surplus.fn-clear
           .text-l.mr10 账户余额（元）
           .num-xl.color-red.mr5.w250
-            %label> 0.00
+            %label= current_user.account.balance
         .surplus-detail.fn-clear.mt10
           .fn-left.mr40
             .text.mr10 冻结金额（元）
@@ -33,8 +33,8 @@
           .fn-right.last
             .text.mr10 可用金额（元）
             .num.last
-              %label.color-red> 0.00
+              %label.color-red= current_user.account.balance
         .charge-btns.mt15
-          = link_to "充值",billings_path,class: "fn-left ui-button ui-button-blue ui-button-mid mr4"
-          = link_to "提现",billings_path,class: "fn-left ui-button ui-button-red ui-button-mid last ml20"
+          = link_to "充值",bankcard_charge_user_account_path(current_user),class: "fn-left ui-button ui-button-blue ui-button-mid mr4"
+          = link_to "提现",withdraw_user_account_path(current_user),class: "fn-left ui-button ui-button-red ui-button-mid last ml20"
 %hr

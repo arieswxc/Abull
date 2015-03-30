@@ -1,5 +1,5 @@
-%form#chargeForm2{:action => "http://www.yztz.com/pay/payGateway.htm", :method => "post", :onsubmit => "return doCharge()", :target => "_blank"}
-  %input#bankCode{:name => "bankCode", :type => "hidden"}/
+= simple_form_for(@billing, url: bankcard_charged_user_account_path, html: {onsubmit: "return doCharge()",id:"chargeForm2"}) do |f|
+  %input#bankCode{:name => "billing[billing_type]", :type => "hidden"}/
   %input{:name => "type", :type => "hidden", :value => "DEBITBANK"}/
   %input#charge{:name => "charge", :type => "hidden", :value => "0"}/
   .ml50.mr50.mb30
@@ -44,7 +44,7 @@
           %input#hide-bank{:type => "hidden", :value => ""}/
           .other 请选择其他银行
           .other-bank{:style => "display: none;"}
-            %span{"data-bank" => "hxb"} 华夏银行
+            %span{"data-bank" => "hxb",:name => "billing[billing_type]",} 华夏银行
             %span{"data-bank" => "ccb"} 中信银行
             %span{"data-bank" => "sdb"} 深圳发展银行
             %span{"data-bank" => "pab"} 平安银行
@@ -64,12 +64,12 @@
           %tr
             %td.f-label.w190 账户余额
             %td.f-value
-              %em#showBalance.h 6.32
+              %em#showBalance.h= current_user.account.balance
               %em.unit 元
           %tr
             %td.f-label 充值金额
             %td.f-value
-              %input#money.ui-input.mr10{:autocomplete => "off", :name => "money"}>/
+              %input#money.ui-input.mr10.numberic{:autocomplete => "off", :name => "billing[amount]",:maxlength => 7}>/
               元
           %tr
             %td.f-label
@@ -775,6 +775,7 @@
       %dd 5、如果充值遇到任何问题，请联系客服：400-8888-566。
 :javascript
   $(function(){
+    
   	$('#banks_desc').find('table').hide();
   	$('#chargeForm1').find('.uc-banklist').find(':radio').click(function(){
   		$('#chargeForm1').find('.uc-banklist').find('label').removeClass('curr');
@@ -817,11 +818,11 @@
   	$("#chargeForm2").find(":radio:first").click();
   	$("#expmoney").keyup(calcCharge);
   	$("#Tab").click();
-  	var _warnTip = $(".warn_tip");
-  	if(_warnTip.length>0){
-  		$("#bankCard").click(function(){X.dialog.alert(_warnTip.html(),1)});
-  		$("#expmoney").click(function(){X.dialog.alert(_warnTip.html(),1)});
-  	}
+  	// var _warnTip = $(".warn_tip");
+  	// if(_warnTip.length>0){
+  	// 	$("#bankCard").click(function(){alert(_warnTip.html(),1)});
+  	// 	$("#expmoney").click(function(){alert(_warnTip.html(),1)});
+  	// }
 
   });
 
@@ -849,7 +850,7 @@
   function doCharge(){
   	var m = $.v("money");
   	if(''==m){
-  		X.dialog.alert("请填写充值金额",1,{notify:function(){$("#money").focus();}});
+  		alert("请填写充值金额");
   		return false;
   	}
   	var type= $.v('hide-bank');
@@ -857,40 +858,40 @@
   		type=$("#chargeForm2").find(":radio:checked").val();
   	}
   	if(''==type){
-  		X.dialog.alert("请选择充值银行",1);
+  		alert("请选择充值银行");
   		return false;
   	}
 
   	$.v("bankCode",type);
-  	if(!X.valid.isMoney(m)){
-  		X.dialog.alert('充值金额填写错误',1,{notify:function(){$("#money").focus();}});
-  		return false;
-  	}
+  	// if(!X.valid.isMoney(m)){
+  	// 	alert('充值金额填写错误');
+  	// 	return false;
+  	// }
   	if(parseFloat(m)<1){
-  		X.dialog.alert('充值金额必须大于等于1元',1,{notify:function(){$("#money").focus();}});
+  		alert('充值金额必须大于等于1元');
   		return false;
   	}
   	if(parseFloat(m)>1000000){
-  		X.dialog.alert('充值金额不能大于100万',1,{notify:function(){$("#money").focus();}});
+  		alert('充值金额不能大于100万');
   		return false;
   	}
-  	X.pay.showChargeResultConfirm(function(balance){$("#showBalance").text($.formatMoney(balance,2));clearMoney();window.location.href=ctx.pay+"/charge.htm?tab=history"},$.noop);
+  	// X.pay.showChargeResultConfirm(function(balance){$("#showBalance").text($.formatMoney(balance,2));clearMoney();window.location.href=ctx.pay+"/charge.htm?tab=history"},$.noop);
   	return true;
   }
   function doExpCharge(){
   	var msg = vCID();
   	if(msg!=""){
-  		X.dialog.alert(msg,1);
+  		alert(msg,1);
   		return false;
   	}
   	var cid = $.v("bankCard");
   	if(''==cid){
-  		X.dialog.alert("请填写储蓄卡卡号",1,{notify:function(){$("#bankCard").focus();}});
+  		alert("请填写储蓄卡卡号");
   		return false;
   	}
   	var m = $.v("expmoney");
   	if(''==m){
-  		X.dialog.alert("请填写充值金额",1,{notify:function(){$("#expmoney").focus();}});
+  		alert("请填写充值金额");
   		return false;
   	}
   	var type= $("#chargeForm1").find(":radio:checked").val();
@@ -898,78 +899,93 @@
   		type=$("#defExpBank").val();
   	}
   	if(''==type){
-  		X.dialog.alert("请选择充值银行",1);
+  		alert("请选择充值银行");
   		return false;
   	}
 
   	$.v("expBankCode",type);
   	if(!X.valid.isBankCard(cid)){
-  		X.dialog.alert('储蓄卡卡号填写错误',1,{notify:function(){$("#bankCard").focus();}});
+  		alert('储蓄卡卡号填写错误');
   		return false;
   	}
   	if(!X.valid.isMoney(m)){
-  		X.dialog.alert('充值金额填写错误',1,{notify:function(){$("#expmoney").focus();}});
+  		alert('充值金额填写错误');
   		return false;
   	}
   	if(parseFloat(m)<1){
-  		X.dialog.alert('充值金额必须大于等于1元',1,{notify:function(){$("#expmoney").focus();}});
+  		alert('充值金额必须大于等于1元');
   		return false;
   	}
   	if(parseFloat(m)>50000){
-  		X.dialog.alert('快捷支付单笔最大金额为5万',1,{notify:function(){$("#expmoney").focus();}});
+  		alert('快捷支付单笔最大金额为5万');
   		return false;
   	}
 
-  	var resultData;
-  	X.form.disableBtn("expSubmitBtn");
-  	if($.v("hasBindCard")!=''){
-  		$('#chargeForm1').submit();
-  		X.pay.showChargeResultConfirm(function(balance){$("#showBalance").text($.formatMoney(balance,2));clearMoney();window.location.href=ctx.pay+"/charge.htm?tab=history"},$.noop);
-  		X.form.enableBtn("expSubmitBtn");
-  	}else{
-  		X.dialog.confirm('使用快捷支付付款成功后，将绑定该卡成为<em class="red">唯一的快捷支付卡和提现卡</em>，您确定要支付吗？',2,{notify:function(nt){
-  			if(nt==1){
-  				$('#chargeForm1').submit();
-  				X.pay.showChargeResultConfirm(function(balance){$("#showBalance").text($.formatMoney(balance,2));clearMoney();window.location.href=ctx.pay+"/charge.htm?tab=history"},$.noop);
-  			}
-  			X.form.enableBtn("expSubmitBtn");
-  		}});
-  	}
+  	// var resultData;
+  	// X.form.disableBtn("expSubmitBtn");
+  	// if($.v("hasBindCard")!=''){
+  	// 	$('#chargeForm1').submit();
+  	// 	X.pay.showChargeResultConfirm(function(balance){$("#showBalance").text($.formatMoney(balance,2));clearMoney();window.location.href=ctx.pay+"/charge.htm?tab=history"},$.noop);
+  	// 	X.form.enableBtn("expSubmitBtn");
+  	// }else{
+  	// 	confirm('使用快捷支付付款成功后，将绑定该卡成为<em class="red">唯一的快捷支付卡和提现卡</em>，您确定要支付吗？',2,{notify:function(nt){
+  	// 		if(nt==1){
+  	// 			$('#chargeForm1').submit();
+  	// 			X.pay.showChargeResultConfirm(function(balance){$("#showBalance").text($.formatMoney(balance,2));clearMoney();window.location.href=ctx.pay+"/charge.htm?tab=history"},$.noop);
+  	// 		}
+  	// 		X.form.enableBtn("expSubmitBtn");
+  	// 	}});
+  	// }
   }
 
   function doAliCharge(){
   	var aliName = $("#alipayName").val();
   	if(''==aliName){
-  		X.dialog.alert("请填写支付宝账号",1,{notify:function(){$("#alipayName").focus();}});
+  		alert("请填写支付宝账号");
   		return false;
   	}
   	var m = $("#alimoney").val();
   	if(''==m){
-  		X.dialog.alert("请填写充值金额",1,{notify:function(){$("#alimoney").focus();}});
+  		alert("请填写充值金额");
   		return false;
   	}
 
   	// if(!X.valid.isMoney(m)){
-  	// 	X.dialog.alert('充值金额填写错误',1,{notify:function(){$("#alimoney").focus();}});
+  	// 	alert('充值金额填写错误',1,{notify:function(){$("#alimoney").focus();}});
   	// 	return false;
   	// }
   	if(parseFloat(m)<1){
-  		X.dialog.alert('充值金额必须大于等于1元',1,{notify:function(){$("#alimoney").focus();}});
+  		alert('充值金额必须大于等于1元');
   		return false;
   	}
   	if(parseFloat(m)>1000000){
-  		X.dialog.alert('充值金额不能大于100万',1,{notify:function(){$("#alimoney").focus();}});
+  		alert('充值金额不能大于100万');
   		return false;
   	}
   	// X.form.disableBtn("aliSubmitBtn");
   	// X.ajax(ctx.pay+"/alipay.htm",{alipayName:aliName,money:m,charge:$("#alicharge").val()},function(data){
   	// 	data = $.parseJSON(data);
   	// 	if(data.success){
+    var postData = new FormData();
+    postData.append('billing[amount]', m);
+    $.ajax({
+      data: postData,
+      url: "/users/#{current_user.id}/account/alipay_charged",
+      type: 'post',
+      contentType: false,
+      processData: false,
+      success: function(){
+
+      },
+      error: function(){
+
+      }
+    })
   			$('#u_alipayName').html(aliName);
   			$('#u_money').html(m);
   			$('#alipay1').hide();$('#alipay2').show();
   	// 	}else{
-  	// 		X.dialog.alert(data.resultMsg,3);
+  	// 		alert(data.resultMsg,3);
   	// 	}
   	// 	X.form.enableBtn("aliSubmitBtn");
   	// });

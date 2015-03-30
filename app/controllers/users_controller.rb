@@ -117,8 +117,14 @@ class UsersController < ApplicationController
       @list_data = parse_list_data(user.line_csv.current_path)
     end
   end
- 
- 
+
+  def cashin
+
+  end
+
+  def cashout
+  
+  end
 
   private
     def user_params

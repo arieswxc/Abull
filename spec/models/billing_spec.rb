@@ -59,5 +59,6 @@ RSpec.describe Billing, type: :model do
   it "is valid if state is included" do
     expect(create(:billing, state: "pending")).to be_valid
     expect(create(:billing, state: "confirmed")).to be_valid
+    expect(create(:billing, state: "denied")).to be_valid
   end
 end
