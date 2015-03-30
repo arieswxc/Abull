@@ -1,0 +1,9 @@
+= simple_form_for(@billing, url: third_charged_user_account_path) do |f|
+  .headline.headline-md
+    %h4.zdy-red 贝付支付
+  .form-group
+    %label 充值金额：
+    .input-group.w200
+      %input.form-control.text-center.numberic{:name => "billing[amount]",:maxlength => 7}
+      %span.input-group-addon  元
+  %button.btn-u.btn-u-default{:name => "commit", :type => "submit"} 提交
