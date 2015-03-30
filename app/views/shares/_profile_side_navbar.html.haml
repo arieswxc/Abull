@@ -1,10 +1,11 @@
 .grid_2
   .row.sky-form.text-center
-    .input-image-wrapper.h100.w90.margin-auto.mb10-i
+    .input-image-wrapper.h100.w90.margin-auto.mb10-i.relative
       .input.input-file.input-image.pointer
         .button.circle
           %input#selectAvatar.pointer{:type =>"file", :multiple => "", :accept => "image/*"}
           %img.img-thumbnail.img-rounded.mw90.mh90{:src => "#{current_user.avatar.url}"}/
+      = image_tag "AjaxLoader.gif",class: 'picloader'
     %label.user_name.mt50
       hi,
       - if !current_user.real_name.blank?
@@ -57,10 +58,12 @@
           %i.glyphicon.glyphicon-cog.index.mr10.ml10>
           账号管理
 :javascript
-  $(".ui-side-list > li > a").click(function() {
-    $(this).parent().children().each(function() {
-      if ($(this).hasClass("ui-side-sub-list")) {
-        $(this).toggle();
-      }
-    })
+  $(function(){
+    $(".ui-side-list > li > a").click(function() {
+      $(this).parent().children().each(function() {
+        if ($(this).hasClass("ui-side-sub-list")) {
+          $(this).toggle();
+        }
+      })
+    });
   });
