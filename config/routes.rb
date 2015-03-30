@@ -35,6 +35,9 @@ Rails.application.routes.draw do
     patch :investor_applied,  on: :member
     patch :trader_applied,    on: :member
     get   :get_chart_data,    on: :member
+    resource :cash_management
+    get   :cashin,            on: :member
+    get   :cashout,            on: :member
   end
 
   resources :billings do

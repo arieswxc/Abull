@@ -1,5 +1,0 @@
-<%= simple_form_for(@billing, url: bankcard_charged_user_account_path) do |f| %>
-  <%= f.input :amount %>
-  <%= f.input :billing_type, collection: ["nongye", "gongshang"] %>
-  <%= f.button :submit %>
-<% end %>
