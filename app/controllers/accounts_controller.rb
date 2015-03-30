@@ -40,6 +40,21 @@ class AccountsController < ApplicationController
     end
   end
 
+  def withdraw
+    @billing = Billing.new
+  end
+
+  def withdrawn
+    @billing = current_user.account.billings.build(billing_params)
+    @billing.billing_type = "Withdraw"
+    if @billing.save
+      @billing.update(amount: -@billing.amount )
+      redirect_to user_account_billings_path
+    else
+      render 'withdrawn'
+    end
+  end
+
   private 
     def billing_params
       params.require(:billing).permit(:amount, :billing_type, :billable_id, :billable_type)

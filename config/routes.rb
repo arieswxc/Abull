@@ -20,6 +20,8 @@ Rails.application.routes.draw do
       post  :bankcard_charged,  on: :member
       post  :alipay_charged,    on: :member
       post  :third_charged,     on: :member
+      get   :withdraw,          on: :member
+      post  :withdrawn,         on: :member
     end
     scope module: 'profile' do
       resources :invests,           only: [:index, :show]
