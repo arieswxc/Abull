@@ -69,7 +69,7 @@
             %span.ui-list-title.fn-left.color-gray-text.text-center.w80  状态
           - @last_ten_funds.each do |f|
             %li.ui-list-item.fn-clear
-              %a{:href => "#{new_fund_invest_path(f.id) if f.state == 'gathering'} #{'javascript:;' if f.state != 'gathering'}"}
+              %a{:href => new_fund_invest_path(f.id)}
                 %span.ui-list-field.fn-left.text-big.w110.text-center
                   %img.img-circle.ui-progressbar-mid{:height => "50", :src => f.user.avatar.url, :width => "50",:class => "#{'blur' if f.private_check == 'private'}"}/
                 %span.ui-list-field.fn-left.text-big.w260.text-center
@@ -108,7 +108,7 @@
           .row
             .col-md-2.col-sm-2
             .col-md-4.col-sm-4.mb20
-              %img.img-thumbnail.img-circle.w70{:src => asset_path("testimonials/img1.jpg")}/
+              %img.img-circle.w100{:src => asset_path("home_user/home_user1.png")}/
             .col-md-6.col-sm-6.mt20
               %h2.heading-sm 操盘手
               %h3.heading-sm 张先生
@@ -118,7 +118,7 @@
           .row
             .col-md-2.col-sm-2
             .col-md-4.col-sm-4.mb20
-              %img.img-thumbnail.img-circle.w70{:src => asset_path("testimonials/img1.jpg")}/
+              %img.img-circle.w100{:src => asset_path("home_user/home_user2.jpg")}/
             .col-md-6.col-sm-6.mt20
               %h2.heading-sm 投资人
               %h3.heading-sm 刘女士
@@ -128,7 +128,7 @@
           .row
             .col-md-2.col-sm-2
             .col-md-4.col-sm-4.mb20
-              %img.img-thumbnail.img-circle.w70{:src => asset_path("testimonials/img1.jpg")}/
+              %img.img-circle.w100{:src => asset_path("home_user/home_user3.jpg")}/
             .col-md-6.col-sm-6.mt20
               %h2.heading-sm 配资客户
               %h3.heading-sm 王先生

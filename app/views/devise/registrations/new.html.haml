@@ -96,6 +96,10 @@
         }
         if (canGet){
           getCheckCode();
+          setCanGet(false);
+          codeCount = 60;
+          $("#getCheckCode").text("60s后重新获取");
+          codeInterval=setInterval(setCheckDom,1000);
         }
       });
 
@@ -128,11 +132,14 @@
           type: 'get',
           contentType: false,
           processData: false,
-          success: function () {
-            setCanGet(false);
-            codeCount = 60;
-            $("#getCheckCode").text("60s后重新获取");
-            codeInterval=setInterval(setCheckDom,1000);
+          success: function (data) {
+            if (data.error) {
+              clearInterval(codeInterval);
+              canGet = true;
+              $("#getCheckCode").text("获取验证码");
+              setCanGet(true);
+              alert("发送验证码失败");
+            }
           },
           error: function () {
 
