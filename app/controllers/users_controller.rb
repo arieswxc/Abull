@@ -118,7 +118,7 @@ class UsersController < ApplicationController
       uri       = URI.parse("http://222.73.117.158/msg/HttpSendSM")
       msg       = "欢迎注册摩尔街账户，您的激活码为#{code},请在注册页面填写【bull】"
       username  = 'jiekou-cs-01'
-      password  = 'Tch147259'
+      password  = 'Tch147256'
 
       res = Net::HTTP.post_form(uri, account: username, pswd: password, mobile: cell, msg: msg, needstatus: true)
       res.body.split[1]
