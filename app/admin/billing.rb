@@ -27,7 +27,12 @@ ActiveAdmin.register Billing do
 
   member_action :confirm, :method => :put do
     billing = Billing.find(params[:id])
-    billing.confirm
+    account = billing.account
+    account.balance += billing.amount
+    ActiveRecord::Base.transaction do
+      billing.confirm
+      account.save
+    end
     redirect_to admin_billing_path(billing)
   end
 
