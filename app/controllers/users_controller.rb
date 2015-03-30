@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   after_action :send_email, only: [:create]
+  before_action :authenticate_user!
 
   def investor_apply
     @user = User.find(params[:id])

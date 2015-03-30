@@ -11,6 +11,9 @@ class Fund < ActiveRecord::Base
   validates :duration,  presence: true
   validates :expected_earning_rate, presence: true
   validates :expected_earning_rate, numericality: true
+  
+  mount_uploader :line_csv, FundLineCsvUploader
+
   belongs_to  :user
   has_many    :invests
   has_many    :fund_verify_photos, :class_name => "Photo", as: :imageable, dependent: :destroy

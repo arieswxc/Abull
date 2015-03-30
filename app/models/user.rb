@@ -16,9 +16,9 @@ class User < ActiveRecord::Base
   has_many :topics,       dependent: :destroy
   has_one :account,       dependent: :destroy
   has_one :bank_card,     dependent: :destroy
-  has_many :verify_photos, :class_name => "Photo", as: :imageable, dependent: :destroy
-  has_many :identity_photos, :class_name => "Photo", as: :imageable, dependent: :destroy
-  
+  has_many :verify_photos, -> { where photo_type: "verify_photo" }, :class_name => "Photo", as: :imageable, dependent: :destroy
+  has_many :identity_photos, -> { where photo_type: "identity_photo" }, :class_name => "Photo", as: :imageable, dependent: :destroy
+
   accepts_nested_attributes_for :verify_photos, allow_destroy: true
   accepts_nested_attributes_for :identity_photos, allow_destroy: true
   # accepts_nested_attributes_for :photos, allow_destroy: true
