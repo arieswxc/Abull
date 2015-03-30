@@ -11,8 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150330115321) do
 
+ActiveRecord::Schema.define(version: 20150330115321) do
   create_table "accounts", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
     t.decimal  "balance",              precision: 12, scale: 2, default: 0.0
@@ -110,6 +110,15 @@ ActiveRecord::Schema.define(version: 20150330115321) do
 
   add_index "follows", ["followable_id", "followable_type"], name: "fk_followables", using: :btree
   add_index "follows", ["follower_id", "follower_type"], name: "fk_follows", using: :btree
+
+  create_table "fund_accounts", force: :cascade do |t|
+    t.integer  "fund_id",    limit: 4
+    t.decimal  "balance",              precision: 12, scale: 2, default: 0.0
+    t.datetime "created_at",                                                  null: false
+    t.datetime "updated_at",                                                  null: false
+  end
+
+  add_index "fund_accounts", ["fund_id"], name: "index_fund_accounts_on_fund_id", using: :btree
 
   create_table "funds", force: :cascade do |t|
     t.string   "name",                  limit: 255
@@ -263,6 +272,7 @@ ActiveRecord::Schema.define(version: 20150330115321) do
   add_foreign_key "accounts", "users"
   add_foreign_key "bank_cards", "users"
   add_foreign_key "billings", "accounts"
+  add_foreign_key "fund_accounts", "funds"
   add_foreign_key "funds", "users"
   add_foreign_key "homs_accounts", "funds"
   add_foreign_key "invests", "funds"

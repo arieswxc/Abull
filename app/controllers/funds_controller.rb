@@ -24,6 +24,8 @@ class FundsController < ApplicationController
   def create
     @fund = current_user.funds.build(fund_params)
     if @fund.save
+      @fund.create_fund_account
+      @fund.apply
       redirect_to @fund
     else
       render 'new'

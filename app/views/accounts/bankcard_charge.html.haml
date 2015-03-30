@@ -24,3 +24,236 @@
               = render "profile/cash_management/third_charge"
             #banktrans.tab-pane.fade
               = render "profile/cash_management/bank_trans"
+
+:javascript
+  $(function(){
+
+  	$('#banks_desc').find('table').hide();
+  	$('#chargeForm1').find('.uc-banklist').find(':radio').click(function(){
+  		$('#chargeForm1').find('.uc-banklist').find('label').removeClass('curr');
+  		$(this).next('label').addClass('curr');
+  	});
+  	$('#chargeForm2').find('.uc-banklist').find(':radio').click(function(){
+  		$('#chargeForm2').find('.uc-banklist').find('label').removeClass('curr');
+  		$(this).next('label').addClass('curr');
+  		$('.other').removeClass('current').text('请选择其他银行');
+  		$('#hide-bank').val('');
+  		$('.other-bank').hide();
+  		var a = $(this).attr('title');
+  		var desc = $('#'+a+'_desc');
+  		if(desc){
+  			desc.show().siblings().hide();
+  		}
+  	});
+  	$('.other').click(function(){
+  		$(this).removeClass('current');
+  		$('.other-bank').show();
+  	});
+  	$('.other-bank > span').click(function(){
+  		var obv=$(this).attr('data-bank');
+  		var obtxt=$(this).text();
+  		$('.other-bank').hide();
+  		$('#hide-bank').val(obv);
+  		$('.other').addClass('current').text(obtxt);
+  		$('.uc-banklist').find(':radio').attr('checked',false);
+  		$('.uc-banklist').find('label').removeClass('curr');
+  		$('#'+obv+'_desc').show().siblings().hide();
+  		//calcCharge();
+  	}).mouseover(function(){
+  		$(this).addClass('other-bank-hover');
+  	}).mouseout(function(){
+  		$(this).removeClass('other-bank-hover');
+  	});
+
+  	$(".tabtitle > span").eq(1).click();
+  	$("#chargeForm1").find(":radio:first").click();
+  	$("#chargeForm2").find(":radio:first").click();
+  	$("#expmoney").keyup(calcCharge);
+  	$("#Tab").click();
+  	// var _warnTip = $(".warn_tip");
+  	// if(_warnTip.length>0){
+  	// 	$("#bankCard").click(function(){alert(_warnTip.html(),1)});
+  	// 	$("#expmoney").click(function(){alert(_warnTip.html(),1)});
+  	// }
+
+  });
+
+  function calcCharge(){
+  	var m = $.v("expmoney");
+  	var type= $.v('hide-bank');
+  	if(X.valid.isMoney(m)){
+  		var money = parseFloat(m);
+  		var charge = Math.ceil(money*7/10.0)/100.0;
+  		var total = money+charge;
+  		$("#fy").text($.formatMoney(charge,2));
+  		$("#sjfy").text($.formatMoney(total,2));
+  		$.v("expCharge",charge);
+  	}else{
+  		$("#fy").text(0);
+  		$("#sjfy").text(0);
+  		$.v("expCharge","0");
+  	}
+  }
+  function clearMoney(){
+  	$.v("expmoney","");
+  	calcCharge();
+  }
+
+  function doCharge(){
+  	var m = $.v("money");
+  	if(''==m){
+  		alert("请填写充值金额");
+  		return false;
+  	}
+  	var type= $.v('hide-bank');
+  	if(''==type){
+  		type=$("#chargeForm2").find(":radio:checked").val();
+  	}
+  	if(''==type){
+  		alert("请选择充值银行");
+  		return false;
+  	}
+
+  	$.v("bankCode",type);
+  	// if(!X.valid.isMoney(m)){
+  	// 	alert('充值金额填写错误');
+  	// 	return false;
+  	// }
+  	if(parseFloat(m)<1){
+  		alert('充值金额必须大于等于1元');
+  		return false;
+  	}
+  	if(parseFloat(m)>1000000){
+  		alert('充值金额不能大于100万');
+  		return false;
+  	}
+  	// X.pay.showChargeResultConfirm(function(balance){$("#showBalance").text($.formatMoney(balance,2));clearMoney();window.location.href=ctx.pay+"/charge.htm?tab=history"},$.noop);
+  	return true;
+  }
+  function doExpCharge(){
+  	var msg = vCID();
+  	if(msg!=""){
+  		alert(msg,1);
+  		return false;
+  	}
+  	var cid = $.v("bankCard");
+  	if(''==cid){
+  		alert("请填写储蓄卡卡号");
+  		return false;
+  	}
+  	var m = $.v("expmoney");
+  	if(''==m){
+  		alert("请填写充值金额");
+  		return false;
+  	}
+  	var type= $("#chargeForm1").find(":radio:checked").val();
+  	if(!type || ''==type){
+  		type=$("#defExpBank").val();
+  	}
+  	if(''==type){
+  		alert("请选择充值银行");
+  		return false;
+  	}
+
+  	$.v("expBankCode",type);
+  	if(!X.valid.isBankCard(cid)){
+  		alert('储蓄卡卡号填写错误');
+  		return false;
+  	}
+  	if(!X.valid.isMoney(m)){
+  		alert('充值金额填写错误');
+  		return false;
+  	}
+  	if(parseFloat(m)<1){
+  		alert('充值金额必须大于等于1元');
+  		return false;
+  	}
+  	if(parseFloat(m)>50000){
+  		alert('快捷支付单笔最大金额为5万');
+  		return false;
+  	}
+
+  	// var resultData;
+  	// X.form.disableBtn("expSubmitBtn");
+  	// if($.v("hasBindCard")!=''){
+  	// 	$('#chargeForm1').submit();
+  	// 	X.pay.showChargeResultConfirm(function(balance){$("#showBalance").text($.formatMoney(balance,2));clearMoney();window.location.href=ctx.pay+"/charge.htm?tab=history"},$.noop);
+  	// 	X.form.enableBtn("expSubmitBtn");
+  	// }else{
+  	// 	confirm('使用快捷支付付款成功后，将绑定该卡成为<em class="red">唯一的快捷支付卡和提现卡</em>，您确定要支付吗？',2,{notify:function(nt){
+  	// 		if(nt==1){
+  	// 			$('#chargeForm1').submit();
+  	// 			X.pay.showChargeResultConfirm(function(balance){$("#showBalance").text($.formatMoney(balance,2));clearMoney();window.location.href=ctx.pay+"/charge.htm?tab=history"},$.noop);
+  	// 		}
+  	// 		X.form.enableBtn("expSubmitBtn");
+  	// 	}});
+  	// }
+  }
+
+  function doAliCharge(){
+  	var aliName = $("#alipayName").val();
+  	if(''==aliName){
+  		alert("请填写支付宝账号");
+  		return false;
+  	}
+  	var m = $("#alimoney").val();
+  	if(''==m){
+  		alert("请填写充值金额");
+  		return false;
+  	}
+
+  	// if(!X.valid.isMoney(m)){
+  	// 	alert('充值金额填写错误',1,{notify:function(){$("#alimoney").focus();}});
+  	// 	return false;
+  	// }
+  	if(parseFloat(m)<1){
+  		alert('充值金额必须大于等于1元');
+  		return false;
+  	}
+  	if(parseFloat(m)>1000000){
+  		alert('充值金额不能大于100万');
+  		return false;
+  	}
+  	// X.form.disableBtn("aliSubmitBtn");
+  	// X.ajax(ctx.pay+"/alipay.htm",{alipayName:aliName,money:m,charge:$("#alicharge").val()},function(data){
+  	// 	data = $.parseJSON(data);
+  	// 	if(data.success){
+    var postData = new FormData();
+    postData.append('billing[amount]', m);
+    postData.append('billing[billing_type]', $("#alipayName").val());
+    $.ajax({
+      data: postData,
+      url: "/users/#{current_user.id}/account/alipay_charged",
+      type: 'post',
+      contentType: false,
+      processData: false,
+      success: function(){
+
+      },
+      error: function(){
+
+      }
+    });
+  			$('#u_alipayName').html(aliName);
+  			$('#u_money').html(m);
+  			$('#alipay1').hide();$('#alipay2').show();
+  	// 	}else{
+  	// 		alert(data.resultMsg,3);
+  	// 	}
+  	// 	X.form.enableBtn("aliSubmitBtn");
+  	// });
+  }
+  function toAliCharge(){
+  	$('#u_alipayName').html("");
+  	$('#u_money').html("");
+  	$('#alipay2').hide();
+  	$('#alipay1').show();
+  }
+
+  function vCID(){
+  	var warnTip = $(".warn_tip");
+  	if(warnTip.length>0){
+  		return warnTip.html();
+  	}
+  	return "";
+  }
