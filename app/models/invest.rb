@@ -14,7 +14,10 @@ class Invest < ActiveRecord::Base
   def check_reached
     fund = self.fund
     if fund.raised_amount == fund.amount 
-      fund.reach 
+      fund.reach
+      fund_account          = fund.user.account
+      fund_account.balance  += fund.amount
+      fund_account.save
     end
   end
 end
