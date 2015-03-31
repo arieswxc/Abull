@@ -8,6 +8,19 @@
       %span.input-group-addon  元
   %button.btn-u.btn-u-default.third-charge-btn{:name => "commit", :type => "submit"} 提交
 
+
+#chargeConfirm.modal.fade.bs-example-modal-sm{:tabindex => "-1", :role => "dialog", 'aria-labelledby' => "myModalLabel", 'aria-hidden' => "true"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{'aria-hidden' => "true", 'data-dismiss' => "modal", :type => "button"} x
+        #myModalLabel.modal-title 充值确认
+      .modal-body
+        %label 充值已完成？
+      .modal-footer
+        %button.btn-u.btn-u-default{'data-dismiss' => "modal",:type => "button"} 取消
+        %button.btn-u.btn-u-blue{:type => "button"} 确定
+
 :javascript
   $(function(){
     $(".third-charge-btn").click(function(e){
@@ -26,7 +39,7 @@
         processData: false,
         success: function(data){
           window.open(data.url,"_blank");
-          confirm("充值已完成？");
+          $("#chargeConfirm").modal();
         },
         error: function(){
           // window.open("","_blank");
