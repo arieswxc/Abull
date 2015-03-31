@@ -50,6 +50,8 @@ Rails.application.routes.draw do
   end
 
   resources :funds do
+    get :get_history_data, on: :member
+    get :show_history_data, on: :member
     resources :invests do
       post :unlock, on: :collection
     end

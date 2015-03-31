@@ -5,4 +5,5 @@ class HomsAccount < ActiveRecord::Base
   validates :amount,    presence: true
   validates :amount,    numericality: true
   belongs_to :fund
+  has_many :homs_properties
 end
