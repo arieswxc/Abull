@@ -84,7 +84,8 @@ class BillingsController < ApplicationController
     
     hashed_params[:sign]                = Digest::MD5.hexdigest(p_string + key)
     @params = hashed_params
-    # uri.query                           = URI.encode_www_form(hashed_params)
+    uri.query                           = URI.encode_www_form(hashed_params)
+    @uri = uri
     # res                                 = Net::HTTP.get_response(uri)
   end
 
