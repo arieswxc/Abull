@@ -45,17 +45,16 @@ class UsersController < ApplicationController
     @leverages        = @user.leverages
     @topics           = Topic.where(user_id: @user.following_users.ids)
     @recommend_funds  = Fund.where(user_id: @user.following_users.ids)
-    funds_hash, invests_hash = user.funds_and_invests_data
+    funds_hash, invests_hash = @user.funds_and_invests_data
     respond_to do |format|
       format.html { render :show }
-      format.json { 
-        fund_data:{
+      format.json { render json: 
+        {fund_data:{
           labels: funds_hash.keys,
-          data: funds_hash.values
-          },
+          data: funds_hash.values},
         invest_data:{
           labels: invests_hash.keys,
-          data: invests.values
+          data: invests.values},
         }       
       }
     end
