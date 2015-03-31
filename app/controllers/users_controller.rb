@@ -40,8 +40,8 @@ class UsersController < ApplicationController
 
   def show
     @user             = User.find(params[:id])
-    @funds            = @user.funds
-    @invests          = @user.invests
+    @funds            = @user.funds.order(created_at: :desc)
+    @invests          = @user.invests.order(created_at: :desc)
     @leverages        = @user.leverages
     @topics           = Topic.where(user_id: @user.following_users.ids)
     @recommend_funds  = Fund.where(user_id: @user.following_users.ids)
