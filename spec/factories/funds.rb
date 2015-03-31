@@ -15,5 +15,6 @@ FactoryGirl.define do
     description           "This is a fund description."
     frontend_risk_method  "This is a fund risk method."
     initial_amount        "9.99"
+    management_fee        {rand(20)}
   end
 end

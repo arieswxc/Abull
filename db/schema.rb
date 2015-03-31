@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150331054916) do
+ActiveRecord::Schema.define(version: 20150331063933) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -145,6 +145,7 @@ ActiveRecord::Schema.define(version: 20150331054916) do
     t.integer  "ending_days",           limit: 4
     t.integer  "private_code",          limit: 4
     t.string   "line_csv",              limit: 255
+    t.decimal  "management_fee",                      precision: 10,           default: 0
   end
 
   add_index "funds", ["user_id"], name: "index_funds_on_user_id", using: :btree

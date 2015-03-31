@@ -22,4 +22,19 @@ RSpec.describe HomsAccount, type: :model do
     expect(homs_account).to be_invalid
     expect(homs_account.errors[:fund_id]).to include(I18n.t('errors.messages.blank'))
   end
+
+  # amount
+  it "is invalid without amount" do
+    homs_account = build(:homs_account, amount: nil)
+    homs_account.valid?
+    expect(homs_account).to be_invalid
+    expect(homs_account.errors[:amount]).to include(I18n.t('errors.messages.blank'))
+  end
+
+  it "is invalid when amount is not a number" do
+    homs_account = build(:homs_account, amount: "invalid")
+    homs_account.valid?
+    expect(homs_account).to be_invalid
+    expect(homs_account.errors[:amount]).to include(I18n.t('errors.messages.not_a_number'))
+  end
 end

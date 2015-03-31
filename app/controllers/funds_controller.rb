@@ -69,7 +69,8 @@ class FundsController < ApplicationController
         :name, :amount, :ending_days,
         :private_check, :minimum, :invest_starting_date,
         :duration, :expected_earning_rate, :description,
-        :frontend_risk_method, :backend_risk_method, :homs_account, :initial_amount, :state)
+        :frontend_risk_method, :backend_risk_method, :homs_account, 
+        :initial_amount, :state, :management_fee)
     end
 
     def check_fund_user

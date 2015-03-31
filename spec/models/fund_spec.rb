@@ -88,4 +88,17 @@ RSpec.describe Fund, type: :model do
   it "is invalid when duration is nil" do
     expect(build(:fund, duration: nil)).to be_invalid
   end
+
+  # management_fee
+  it "is invalid without management_fee" do
+    fund = build(:fund, management_fee: nil)
+    expect(fund).to be_invalid
+    expect(fund.errors[:management_fee]).to include(I18n.t('errors.messages.blank'))
+  end
+
+  it "is invalid when management_fee not a number" do
+    fund = build(:fund, management_fee: "invalid")
+    expect(fund).to be_invalid
+    expect(fund.errors[:management_fee]).to include(I18n.t('errors.messages.not_a_number'))
+  end
 end

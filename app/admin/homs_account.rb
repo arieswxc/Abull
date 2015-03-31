@@ -1,3 +1,3 @@
 ActiveAdmin.register HomsAccount do
-  permit_params :title, :password, :fund_id
+  permit_params :title, :password, :fund_id, :amount
 end
