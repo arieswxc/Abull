@@ -3,7 +3,7 @@
     .p20.text-center
       %label 暗号:
       %input
-      %a.btn-u.btn-u-orange.btn-u-xs UNLOCK
+      %a.btn-u.btn-u-orange.btn-u-xs.unlock_btn UNLOCK
   .row.mt10
     = render 'users/funder_info',{user: @fund.user}
   .row
@@ -78,6 +78,32 @@
 
 :javascript
   $(function(){
+     $(".unlock_btn").click(function(){
+       var unlock_val = $(".unlock_val").val();
+       var fund_id = "#{@fund.id}";
+       var postdata = {
+         "private_code": unlock_val
+       };
+       var post_url = "/funds/"+fund_id+"/invests/"+"unlock";
+       var post_type = 'post';
+       $.ajax({
+         url: post_url,
+         type: post_type,
+         dataType: 'json',
+         data: JSON.stringify(postdata),
+         processData: false,
+         headers: {
+           'X-CSRF-Token': $("input[name='authenticity_token']").val()
+         },
+         contentType: "application/json; charset=UTF-8",
+         success: function(data) {
+           location.reload();
+         },
+         error: function() {
+           console.log("系统繁忙，请稍后再试");
+         }
+       });
+     });
     $.ajax({
       url: "/funds/#{@fund.id}/get_history_data",
       type: 'get',

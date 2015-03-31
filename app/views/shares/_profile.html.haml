@@ -24,12 +24,12 @@
         .surplus.fn-clear
           .text-l.mr10 账户余额（元）
           .num-xl.color-red.mr5.w250
-            %label= current_user.account.balance
+            %label= current_user.account.balance + current_user.account.frost
         .surplus-detail.fn-clear.mt10
           .fn-left.mr40
             .text.mr10 冻结金额（元）
             .num.last
-              %label.color-red> 0.00
+              %label.color-red= current_user.account.frost
           .fn-right.last
             .text.mr10 可用金额（元）
             .num.last

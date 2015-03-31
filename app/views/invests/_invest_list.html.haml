@@ -49,7 +49,9 @@
             -# / %td= f.minimum
             -# %td{:class => "#{'formattime' unless f.fund.invest_starting_date.blank?}"}= f.fund.invest_starting_date
             -# %td{:class => "#{'formattime' unless f.fund.invest_ending_date.blank?}"}= f.fund.invest_ending_date
-            %td xxxxxx
+            %td
+              = current_user.account.frost
+              = '元' if current_user.account.frost
             %td
               = @invests[index].fund.expected_earning_rate
               = '%' if !@invests[index].fund.expected_earning_rate.blank?

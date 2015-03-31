@@ -40,6 +40,11 @@
           = Fund.human_attribute_name('duration')
           ：
         %label.mr10= @fund.duration
+      .float-left.mr40
+        %span.bold 受托管理费：
+        %label.mr10
+          = @fund.management_fee
+          = "%" if @fund.management_fee
 %table.table.table-striped.table-bordered
   %tbody
     %tr

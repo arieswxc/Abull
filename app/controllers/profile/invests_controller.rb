@@ -14,7 +14,7 @@ class Profile::InvestsController < ApplicationController
     @list_array = list_data.last(5).reverse
     @verify_photos = @user.verify_photos
     @fund_verify_photos  = @fund.fund_verify_photos
-    fund_list_data = parse_list_data(fund.line_csv.current_path)
+    fund_list_data = parse_list_data(@fund.line_csv.current_path)
     @fund_list_array = fund_list_data.last(5).reverse
   end
 
