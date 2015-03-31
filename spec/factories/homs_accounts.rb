@@ -3,5 +3,6 @@ FactoryGirl.define do
     title       "MyString"
     password    "MyString"
     association :fund
+    amount      0
   end
 end

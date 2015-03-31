@@ -21,12 +21,14 @@ account:（某个用户的账户，余额、角色、评论、私信）
   balance:decimal{12,2}
   has_many :billings
 
-homs
-子账户用户名、密码、
-has_many properties
+homs_account
+  title
+  password
+  fund_id
+  has_many properties
 
 property(关联到历史)
-  user_id
+  homs_account_id
   date
   amount(总资产)。
 
