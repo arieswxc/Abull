@@ -1,7 +1,7 @@
 class InvestsController < ApplicationController
   before_action :authenticate_user!, only: [:create,:edit]
   # before_action :check_invest_user, only: [:new, :create]
-  after_action :authenticate_user!, only: [:new]
+  # after_action :authenticate_user!, only: [:new]
   def index
     @fund         = Fund.find(params[:fund_id])
     @invests      = @fund.invests
@@ -21,7 +21,7 @@ class InvestsController < ApplicationController
     else
       @flag = @fund.private_check == 'public' ?  true : false
     end
-    @flag = true if @fund.check_user_bid(current_user)
+    @flag = true if current_user && @fund.check_user_bid(current_user)
     @verify_photos = user.verify_photos
 
     fund_list_data = parse_list_data(@fund.line_csv.current_path)

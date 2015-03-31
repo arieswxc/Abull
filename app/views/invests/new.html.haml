@@ -104,15 +104,19 @@
           .panel-title
             = render "invest_list"
 
-    .row
-      .col-md-12
-        .tag-box.tag-box-v3
-          评论。。
+    -# .row
+    -#   .col-md-12
+    -#     .tag-box.tag-box-v3
+    -#       评论。。/*cap1*/
 - @navItem = 'funds'
 
 :javascript
   $(function(){
    $(".unlock_btn").click(function(){
+     if ("#{current_user}" === "") {
+       alert("请登录...");
+       return;
+     }
      var unlock_val = $(".unlock_val").val();
      var fund_id = "#{@fund.id}";
      var postdata = {

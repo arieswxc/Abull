@@ -210,7 +210,6 @@
     });
     $('#submit').bind('click',function(){
       check_val($("input[name='leverage[amount]']"));
-      if (scrollToErr()) return;
     	var myBalance = parseFloat("#{current_user.account.balance if current_user}");
       var crt_amount = parseInt($("input[name='leverage[amount]']").val());
       if (crt_amount > myBalance) {

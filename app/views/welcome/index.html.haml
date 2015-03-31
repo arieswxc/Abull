@@ -134,37 +134,53 @@
               %h3.heading-sm 王先生
           .content-boxes-in-v3
             %p “我在摩尔街的配资体验非常不错，高效、服务好。而且他们团队成员都是名校毕业，安全性上也有保障。”
-  /
   .container.content
-
-    .col-md-7
-      #news-section.news.mb.fn-clear.pr40
-        .mt10
-          .headline.headline-md
-            %h2.on
-              最新动态
-            = link_to "查看更多","#",class: "darkgray float-right mt10"
-          %ul#news-list.ui-list.ui-list-m.ui-list-news
-            - @last_ten_news.each do |f|
-              %li.ui-list-item.fn-clear
-                %p.fn-left.field.decoration
-                %p.fn-left.field.text.color-silver-text.fn-text-overflow
-                  = link_to "#{f.title}","#",class: "title text-big rrd-dimgray"
-                  %span.content.text-small
-                %p.fn-left.field.date.color-darkgray-text.formattime= f.date
-    .col-md-5.border-left
-      .posts.pl40
+    .row
+      .col-md-12
         .headline.headline-md
-          %h2
-            热门话题
-          = link_to "查看更多","#",class: "darkgray float-right mt10"
-        - @last_ten_topics.each do |f|
-          %dl.dl-horizontal
-            %dt
-              %a{:href => "#"}
-                %img{:alt => "", :src => f.user.avatar}/
-            %dd
-              %p
-                %a{:href => "#"}= f.content
+          %h2 合作伙伴
+      .col-md-12.home_partners
+        .text-center
+          = image_tag "partners/1.jpg",class: "mr40"
+          = image_tag "partners/2.jpg",class: "mr40"
+          = image_tag "partners/3.jpg",class: "mr40"
+          = image_tag "partners/4.jpg",class: "mr40"
+        .text-center
+          = image_tag "partners/5.jpg",class: "mr40"
+          = image_tag "partners/6.jpg",class: "mr40"
+          = image_tag "partners/7.jpg",class: "mr40"
+          = image_tag "partners/8.jpg",class: "mr40"
+  / /*cap1*/
+  -# .container.content
+  -#
+  -#   .col-md-7
+  -#     #news-section.news.mb.fn-clear.pr40
+  -#       .mt10
+  -#         .headline.headline-md
+  -#           %h2.on
+  -#             最新动态
+  -#           = link_to "查看更多","#",class: "darkgray float-right mt10"
+  -#         %ul#news-list.ui-list.ui-list-m.ui-list-news
+  -#           - @last_ten_news.each do |f|
+  -#             %li.ui-list-item.fn-clear
+  -#               %p.fn-left.field.decoration
+  -#               %p.fn-left.field.text.color-silver-text.fn-text-overflow
+  -#                 = link_to "#{f.title}","#",class: "title text-big rrd-dimgray"
+  -#                 %span.content.text-small
+  -#               %p.fn-left.field.date.color-darkgray-text.formattime= f.date
+  -#   .col-md-5.border-left
+  -#     .posts.pl40
+  -#       .headline.headline-md
+  -#         %h2
+  -#           热门话题
+  -#         = link_to "查看更多","#",class: "darkgray float-right mt10"
+  -#       - @last_ten_topics.each do |f|
+  -#         %dl.dl-horizontal
+  -#           %dt
+  -#             %a{:href => "#"}
+  -#               %img{:alt => "", :src => f.user.avatar}/
+  -#           %dd
+  -#             %p
+  -#               %a{:href => "#"}= f.content
 
 - @navItem = 'home'

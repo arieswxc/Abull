@@ -8,9 +8,22 @@
       %span.input-group-addon  元
   %button.btn-u.btn-u-default.third-charge-btn{:name => "commit", :type => "submit"} 提交
 
+
+#chargeConfirm.modal.fade.bs-example-modal-sm{:tabindex => "-1", :role => "dialog", 'aria-labelledby' => "myModalLabel", 'aria-hidden' => "true"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{'aria-hidden' => "true", 'data-dismiss' => "modal", :type => "button"} x
+        #myModalLabel.modal-title 充值确认
+      .modal-body
+        %label 充值已完成？
+      .modal-footer
+        %button.btn-u.btn-u-default{'data-dismiss' => "modal",:type => "button"} 取消
+        %button.btn-u.btn-u-blue{'data-dismiss' => "modal",:type => "button"} 确定
+
 :javascript
   $(function(){
-    $(".third-charge-btn").click(function(){
+    $(".third-charge-btn").click(function(e){
       var postData = new FormData();
       var m = $("input[name='billing[amount]']").val();
       if (m < 1){
@@ -25,12 +38,15 @@
         contentType: false,
         processData: false,
         success: function(data){
-          confirm("充值已完成？");
-          window.open(data.url);
+          window.open(data.url,"_blank");
+          $("#chargeConfirm").modal();
         },
         error: function(){
+          // window.open("","_blank");
+          // confirm("充值已完成？");
           alert("系统繁忙，请稍后再试");
         }
       });
+      e.preventDefault();
     });
   });
