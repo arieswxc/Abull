@@ -10,9 +10,9 @@
         .box.mt20.p20
           %h3 发标记录图
           %canvas#fund_chart.chart_box
-        .box.mt20.p20
-          %h3 配资记录图
-          %canvas#leverage_chart.chart_box
+        -# .box.mt20.p20
+        -#   %h3 配资记录图
+        -#   %canvas#leverage_chart.chart_box/*cap1*/
 
 :javascript
   $(function(){
@@ -24,7 +24,7 @@
       success: function (data) {
         var invest_ctx = $("#invest_chart").get(0).getContext("2d");
         var fund_ctx = $("#fund_chart").get(0).getContext("2d");
-        var leverage_ctx = $("#leverage_chart").get(0).getContext("2d");
+        // var leverage_ctx = $("#leverage_chart").get(0).getContext("2d");
         // data = {
         //   invest_data: {
         //     labels: ["一月", "二月", "三月", "四月", "五月", "六月", "七月"],

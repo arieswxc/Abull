@@ -67,7 +67,7 @@
                   = link_to "我要发标",new_fund_path
                 - else
                   = link_to "我要发标",funds_welcome_index_path
-              %li{:class => "#{'active' if @navItem == 'leverage_new'}"}= link_to "我要配资",new_leverage_path
+              -# %li{:class => "#{'active' if @navItem == 'leverage_new'}"}= link_to "我要配资",new_leverage_path
               -# %li{:class => "#{'active' if @navItem == 'topics'}"}= link_to "交流互动",topics_path/*cap1*/
               %li.dropdown{:class => "#{'active' if @navItem == 'pages'}"}
                 %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "javascript:void(0);"}
