@@ -68,6 +68,27 @@ class User < ActiveRecord::Base
     Time.now.to_date.year - self.birthday.year if self.birthday
   end
 
+  def funds_and_invests_data
+    funds_hash = Hash.new(0)
+    invests_hash = Hash.new(0)
+     
+    if self.funds.any?
+      self.funds.each do |fund|
+        funds_hash["#{fund.created_at.year}.#{fund.created_at.month}月"] = funds_hash["#{fund.created_at.year}.#{fund.created_at.month}"] + fund.amount.to_i if fund
+      end
+    end
+
+    if self.invests.any?
+      self.invests.each do |invest|
+        invests_hash["#{invest.created_at.year}.#{invest.created_at.month}月"] = invests_hash["#{invest.created_at.year}.#{invest.created_at.month}"] + invest.amount.to_i if invest
+      end
+    end
+
+    sorted_funds_hash = funds_hash.sort_by { |key, value| key } 
+    sorted_invests_hash = invests_hash.sort_by { |key, value| key }
+    [sorted_funds_hash, sorted_invests_hash]
+  end
+
   #重置密码
   def reset_password(cell)
     password = 'a' + rand(1000000..9999999).to_s

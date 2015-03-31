@@ -83,17 +83,13 @@ class Fund < ActiveRecord::Base
     invests.sum(:amount) || 0
   end
 
-  #类方法
-  # def self.search_by_conditions(duration, amount, expected_earning_rate, private_check)
-  #   duration = 0 if duration.blank?
-  #   amount = 0 if amount.blank?
-  #   expected_earning_rate = 0 if expected_earning_rate.blank?
-  #   if private_check.blank?
-  #     funds = Fund.where("duration > ? and amount > ? and expected_earning_rate > ?", duration, amount, expected_earning_rate)
-  #   else
-  #     funds = Fund.where("duration > ? and amount > ? and expected_earning_rate > ? and private_check = ?", duration, amount, expected_earning_rate, private_check)
-  #   end
-  # end
+  def check_user_bid(current_user)
+    flag = false
+    self.invests.each do |invest|
+      flag = true if current_user = invest.user
+    end
+    flag
+  end
 
   def self.search_by_conditions(duration, amount, expected_earning_rate, private_check)
     duration = 0 if duration.blank?

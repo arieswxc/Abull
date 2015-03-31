@@ -28,19 +28,19 @@ ActiveAdmin.register Account do
     panel t('用户通知') do 
       attributes_table_for account do
         row('支付宝转账确认')  do 
-          form_for "", url: confirm_zhifubao_admin_account_path(account), method: :post do |f|
+          form_for "input", url: confirm_zhifubao_admin_account_path(account), method: :post do |f|
             f.text_field :amount
             f.submit
           end
         end 
         row('线下充值确认')  do 
-          form_for "", url: confirm_charge_admin_account_path(account), method: :post do |f|
+          form_for "input", url: confirm_charge_admin_account_path(account), method: :post do |f|
             f.text_field :amount
             f.submit
           end
         end
         row('客户申请提现确认')  do 
-          form_for "", url: confirm_withdraw_admin_account_path(account), method: :post do |f|
+          form_for "input", url: confirm_withdraw_admin_account_path(account), method: :post do |f|
             f.text_field :amount
             f.submit
           end
