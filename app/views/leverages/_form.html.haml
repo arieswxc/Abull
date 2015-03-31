@@ -1,7 +1,7 @@
 / https://github.com/plataformatec/simple_form
 .container.content
   .leverage-new
-    = simple_form_for(@leverage, html: { class: 'form-horizontal sky-form' }, |
+    = simple_form_for(@leverage, html: { class: 'form-horizontal sky-form',onsubmit: "return scrollToErr()" }, |
       wrapper: :horizontal_form,                                 |
       wrapper_mappings: {                                        |
       check_boxes: :horizontal_radio_and_checkboxes,             |
