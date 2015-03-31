@@ -13,7 +13,7 @@ class WelcomeController < ApplicationController
 
   def notify_url
     @billing = Billing.find_by_billing_number(params[:out_trade_no])
-    if (@billing.amount == params[:total_fee]) && (params[:is_success] == "T") && (@billing.state == "pending")
+    if (@billing.amount == params[:total_fee].to_f) && (params[:is_success] == "T") && (@billing.state == "pending")
       account = @billing.account
       account.balance += @billing.amount
       ActiveRecord::Base.transaction do
@@ -29,7 +29,7 @@ class WelcomeController < ApplicationController
 
   def return_url
     @billing = Billing.find_by_billing_number(params[:out_trade_no])
-    if (@billing.amount == params[:total_fee]) && (params[:is_success] == "T") && (@billing.state == "pending")
+    if (@billing.amount == params[:total_fee].to_f) && (params[:is_success] == "T") && (@billing.state == "pending")
       account = @billing.account
       account.balance += @billing.amount
       ActiveRecord::Base.transaction do
