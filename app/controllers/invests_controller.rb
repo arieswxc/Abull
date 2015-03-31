@@ -22,6 +22,7 @@ class InvestsController < ApplicationController
       @flag = @fund.private_check == 'public' ?  true : false
     end
     @verify_photos = user.verify_photos
+    @check_user_bid = @fund.check_user_bid(current_user)
   end
 
   def show
