@@ -74,13 +74,13 @@ class User < ActiveRecord::Base
 
     if self.funds.any?
       self.funds.each do |fund|
-        funds_hash["#{fund.created_at.year}.#{fund.created_at.month}月"] = funds_hash["#{fund.created_at.year}.#{fund.created_at.month}"] + fund.amount.to_i if fund
+        funds_hash["#{fund.created_at.year}.#{fund.created_at.month}月"] = funds_hash["#{fund.created_at.year}.#{fund.created_at.month}月"] + fund.amount.to_i if fund
       end
     end
 
     if self.invests.any?
       self.invests.each do |invest|
-        invests_hash["#{invest.created_at.year}.#{invest.created_at.month}月"] = invests_hash["#{invest.created_at.year}.#{invest.created_at.month}"] + invest.amount.to_i if invest
+        invests_hash["#{invest.created_at.year}.#{invest.created_at.month}月"] = invests_hash["#{invest.created_at.year}.#{invest.created_at.month}月"] + invest.amount.to_i if invest
       end
     end
 
