@@ -78,7 +78,6 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
-
   #用户登录后手动更新密码页面
   def edit_password
     @user = current_user

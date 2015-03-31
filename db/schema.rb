@@ -11,8 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 20150330115321) do
+
   create_table "accounts", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
     t.decimal  "balance",              precision: 12, scale: 2, default: 0.0
