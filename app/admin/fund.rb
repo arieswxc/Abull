@@ -1,7 +1,7 @@
 ActiveAdmin.register Fund do
   permit_params :name, :user_id, :amount, :ending_days, :earning, :expected_earning_rate, :earning_rate, :state, :private_check, :minimum, :invest_starting_date, :invest_ending_date, :description, 
     	:frontend_risk_method, :duration, :mandate,
-  		:backend_risk_method, :initial_amount, :created_at, :updated_at, :raised_amount, :genre, :private_code, fund_verify_photos_attributes: [:title, :photo]
+  		:backend_risk_method, :initial_amount, :created_at, :updated_at, :raised_amount, :genre, :private_code, :line_csv,fund_verify_photos_attributes: [:title, :photo]
     
   index do
     selectable_column
@@ -36,6 +36,7 @@ ActiveAdmin.register Fund do
       row :invest_starting_date
       row :invest_ending_date
       row :description
+      row :line_csv
       row :frontend_risk_method
       row :backend_risk_method
     end
@@ -132,6 +133,7 @@ ActiveAdmin.register Fund do
         f.input :expected_earning_rate
         f.input :state, as: :select, collection: ["pending", "applied", "gathering", "reached", "opened", "running", "finished", "closed", "denied"]
         f.input :user_id
+        f.input :line_csv
         f.inputs "上传证明文件" do
           f.has_many :fund_verify_photos do |t|
             t.input :title

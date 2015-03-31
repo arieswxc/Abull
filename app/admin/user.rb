@@ -64,7 +64,7 @@ ActiveAdmin.register User do
       attributes_table_for user do
         row :real_name
         row :id_card_number
-        user.photos.each do |p|
+        user.identity_photos.each do |p|
           row("#{p.title}") { link_to image_tag(p.photo, width:400, height:400), p.photo.url }    
           # row("#{p.title}") { link_to image_tag(p.photo.thumb), p.photo.url }        
         end

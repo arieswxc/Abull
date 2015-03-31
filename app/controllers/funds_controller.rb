@@ -45,6 +45,23 @@ class FundsController < ApplicationController
     end
   end
 
+  def get_csv_data
+    fund = Fund.find(params[:id])
+    if fund.line_csv
+      array_x, array_y = parse_csv(user.line_csv.current_path)
+      render json:{ labels: array_x, data: array_y }
+    else
+      render json:{ message: "Not found" }, status: 404
+    end
+  end
+
+  def show_csv_data
+    fund = Fund.find(params[:id])
+    if fund.line_csv
+      @list_data = parse_list_data(fund.line_csv.current_path)
+    end
+  end
+
   private
     def fund_params
       params.require(:fund).permit(
