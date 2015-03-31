@@ -46,7 +46,7 @@ class FundsController < ApplicationController
     end
   end
 
-  def get_csv_data
+  def get_history_data
     fund = Fund.find(params[:id])
     if fund.line_csv
       array_x, array_y = parse_csv(user.line_csv.current_path)
@@ -56,7 +56,7 @@ class FundsController < ApplicationController
     end
   end
 
-  def show_csv_data
+  def show_history_data
     fund = Fund.find(params[:id])
     if fund.line_csv
       @list_data = parse_list_data(fund.line_csv.current_path)
