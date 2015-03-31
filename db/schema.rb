@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150331063933) do
+ActiveRecord::Schema.define(version: 20150331083452) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -161,6 +161,16 @@ ActiveRecord::Schema.define(version: 20150331063933) do
 
   add_index "homs_accounts", ["fund_id"], name: "index_homs_accounts_on_fund_id", using: :btree
 
+  create_table "homs_properties", force: :cascade do |t|
+    t.date     "date"
+    t.decimal  "amount",                    precision: 12, scale: 2, default: 0.0
+    t.integer  "homs_account_id", limit: 4
+    t.datetime "created_at",                                                       null: false
+    t.datetime "updated_at",                                                       null: false
+  end
+
+  add_index "homs_properties", ["homs_account_id"], name: "index_homs_properties_on_homs_account_id", using: :btree
+
   create_table "interests", force: :cascade do |t|
     t.integer  "leverage_time",   limit: 4,                                              null: false
     t.decimal  "amount",                      precision: 12, scale: 2, default: 0.0,     null: false
@@ -278,6 +288,7 @@ ActiveRecord::Schema.define(version: 20150331063933) do
   add_foreign_key "fund_accounts", "funds"
   add_foreign_key "funds", "users"
   add_foreign_key "homs_accounts", "funds"
+  add_foreign_key "homs_properties", "homs_accounts"
   add_foreign_key "invests", "funds"
   add_foreign_key "invests", "users"
   add_foreign_key "leverages", "interests"
