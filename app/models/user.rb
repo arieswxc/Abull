@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :verify_photos, allow_destroy: true
   accepts_nested_attributes_for :identity_photos, allow_destroy: true
   # accepts_nested_attributes_for :photos, allow_destroy: true
-  
+
   acts_as_followable
   acts_as_follower
 
@@ -50,13 +50,13 @@ class User < ActiveRecord::Base
       transition :trader_applied => :investor
     end
 
-    event :down_to_inv do 
+    event :down_to_inv do
       transition :trader => :investor
     end
 
     event :down_to_un do
       transition :investor => :unverified
-    end 
+    end
   end
 
   def email_required?
@@ -64,29 +64,29 @@ class User < ActiveRecord::Base
   end
 
   #虚拟属性
-  def age 
+  def age
     Time.now.to_date.year - self.birthday.year if self.birthday
   end
 
   def funds_and_invests_data
     funds_hash = Hash.new(0)
     invests_hash = Hash.new(0)
-     
+
     if self.funds.any?
       self.funds.each do |fund|
-        funds_hash["#{fund.created_at.year}.#{fund.created_at.month}月"] = funds_hash["#{fund.created_at.year}.#{fund.created_at.month}"] + fund.amount.to_i if fund
+        funds_hash["#{fund.created_at.year}.#{fund.created_at.month}月"] = funds_hash["#{fund.created_at.year}.#{fund.created_at.month}月"] + fund.amount.to_i if fund
       end
     end
 
     if self.invests.any?
       self.invests.each do |invest|
-        invests_hash["#{invest.created_at.year}.#{invest.created_at.month}月"] = invests_hash["#{invest.created_at.year}.#{invest.created_at.month}"] + invest.amount.to_i if invest
+        invests_hash["#{invest.created_at.year}.#{invest.created_at.month}月"] = invests_hash["#{invest.created_at.year}.#{invest.created_at.month}月"] + invest.amount.to_i if invest
       end
     end
 
-    sorted_funds_hash = funds_hash.sort_by { |key, value| key } 
-    sorted_invests_hash = invests_hash.sort_by { |key, value| key }
-    [sorted_funds_hash, sorted_invests_hash]
+    # sorted_funds_hash = funds_hash.sort_by { |key, value| key }
+    # sorted_invests_hash = invests_hash.sort_by { |key, value| key }
+    [funds_hash, invests_hash]
   end
 
   #重置密码
@@ -103,7 +103,7 @@ class User < ActiveRecord::Base
       msg       = "新的账户密码为#{account_password},请及时登陆摩尔街来修改帐号密码"
       username  = 'zxnicv'
       password  = 'Txb123456'
-    
+
       res = Net::HTTP.post_form(uri, account: username, pswd: password, mobile: cell, msg: msg, needstatus: true)
       res.body.split[1]
     end
