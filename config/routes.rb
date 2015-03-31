@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   match 'return_url', to: 'welcome#return_url', via: [:get]
-  match 'notify_url', to: 'welcome#notify_url', via: [:post]
+  match 'notify_url', to: 'welcome#notify_url', via: [:get]
 
   resources :welcome do
     get :funds, on: :collection
