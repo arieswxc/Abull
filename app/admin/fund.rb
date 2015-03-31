@@ -5,6 +5,7 @@ ActiveAdmin.register Fund do
     
   index do
     selectable_column
+    column :id
     column :name
     column :amount
     column :minimum

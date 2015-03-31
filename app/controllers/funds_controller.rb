@@ -50,7 +50,9 @@ class FundsController < ApplicationController
     fund = Fund.find(params[:id])
     if fund.line_csv && fund.line_csv.current_path
       array_x, array_y = parse_csv(fund.line_csv.current_path)
-      render json:{ labels: array_x, data: array_y }
+      current_path = "#{Rails.root}/lib/LibFile/husheng_data.csv"
+      array1_x, array1_y = parse_csv(current_path)
+      render json:{ labels: array_x, datasets: [{data: array_y}, {data: array1_y}] }
     else
       render json:{ message: "Not found" }, status: 404
     end
