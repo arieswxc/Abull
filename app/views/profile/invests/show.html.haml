@@ -45,7 +45,7 @@
         .headline.headline-md
           %h4 证明图片
         .mt10
-          - if @fund_verify_photos
+          - if @fund_verify_photos && !@fund_verify_photos.empty?
             .owl-carousel-v2.owl-carousel-style-v1
               .owl-slider-v2
                 - @fund_verify_photos.each do |f|

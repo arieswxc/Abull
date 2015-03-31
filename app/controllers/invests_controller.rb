@@ -22,14 +22,15 @@ class InvestsController < ApplicationController
       @flag = @fund.private_check == 'public' ?  true : false
     end
     @verify_photos = user.verify_photos
-    @check_user_bid = @fund.check_user_bid(current_user)
+    @check_user_bid = @fund.check_user_bid(current_user).to_s
+    @fund_verify_photos  = @fund.fund_verify_photos
   end
 
   def show
     @fund = Fund.find(params[:fund_id])
     user = User.find(@fund.user_id)
     if user.line_csv
-      list_data = parse_list_data(user.line_csv.current_path) 
+      list_data = parse_list_data(user.line_csv.current_path)
       @list_array = list_data.last(5).reverse
     else
       @list_array = []

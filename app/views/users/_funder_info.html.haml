@@ -101,7 +101,7 @@
         .headline.headline-md
           %h4 证明图片
         .mt10
-          - if @verify_photos
+          - if @verify_photos && !@verify_photos.empty?
             .owl-carousel-v2.owl-carousel-style-v1
               .owl-slider-v2
                 - @verify_photos.each do |f|
