@@ -1,6 +1,6 @@
 %tr
   %td= billing.created_at.to_date
-  %td= billing.id
+  %td= billing.billing_number
   %td= billing.account.user.username if billing.account &&  billing.account.user
   %td= billing.billing_type
   %td= billing.amount

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150331083452) do
+ActiveRecord::Schema.define(version: 20150331122920) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -71,14 +71,15 @@ ActiveRecord::Schema.define(version: 20150331083452) do
   add_index "bank_cards", ["user_id"], name: "index_bank_cards_on_user_id", using: :btree
 
   create_table "billings", force: :cascade do |t|
-    t.integer  "account_id",    limit: 4
-    t.decimal  "amount",                    precision: 12, scale: 2, default: 0.0
-    t.string   "billing_type",  limit: 255
-    t.integer  "billable_id",   limit: 4
-    t.string   "billable_type", limit: 255
-    t.datetime "created_at",                                                       null: false
-    t.datetime "updated_at",                                                       null: false
-    t.string   "state",         limit: 255
+    t.integer  "account_id",     limit: 4
+    t.decimal  "amount",                     precision: 12, scale: 2, default: 0.0
+    t.string   "billing_type",   limit: 255
+    t.integer  "billable_id",    limit: 4
+    t.string   "billable_type",  limit: 255
+    t.datetime "created_at",                                                        null: false
+    t.datetime "updated_at",                                                        null: false
+    t.string   "state",          limit: 255
+    t.string   "billing_number", limit: 255
   end
 
   add_index "billings", ["account_id"], name: "index_billings_on_account_id", using: :btree

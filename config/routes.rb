@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   mount ChinaCity::Engine => '/china_city'
   root 'welcome#index'
 
+  match 'return_url', to: 'welcome#return_url', via: [:get]
+  match 'notify_url', to: 'welcome#notify_url', via: [:post]
+
   resources :welcome do
     get :funds, on: :collection
   end

@@ -10,4 +10,12 @@ class WelcomeController < ApplicationController
   def funds
     
   end
+
+  def notify_url
+
+  end
+
+  def return_url
+
+  end
 end
