@@ -1,11 +1,12 @@
 ActiveAdmin.register Account do
-  permit_params :balance, :user_id
+  permit_params :balance, :user_id, :frost
 
   index do
     selectable_column
     id_column
     column :user_id
     column :balance
+    column :frost
     column :created_at
     column :updated_at
     actions
