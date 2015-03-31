@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150328045101) do
+ActiveRecord::Schema.define(version: 20150330115321) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 20150328045101) do
     t.string   "billable_type", limit: 255
     t.datetime "created_at",                                                       null: false
     t.datetime "updated_at",                                                       null: false
+    t.string   "state",         limit: 255
   end
 
   add_index "billings", ["account_id"], name: "index_billings_on_account_id", using: :btree
@@ -111,6 +112,15 @@ ActiveRecord::Schema.define(version: 20150328045101) do
   add_index "follows", ["followable_id", "followable_type"], name: "fk_followables", using: :btree
   add_index "follows", ["follower_id", "follower_type"], name: "fk_follows", using: :btree
 
+  create_table "fund_accounts", force: :cascade do |t|
+    t.integer  "fund_id",    limit: 4
+    t.decimal  "balance",              precision: 12, scale: 2, default: 0.0
+    t.datetime "created_at",                                                  null: false
+    t.datetime "updated_at",                                                  null: false
+  end
+
+  add_index "fund_accounts", ["fund_id"], name: "index_fund_accounts_on_fund_id", using: :btree
+
   create_table "funds", force: :cascade do |t|
     t.string   "name",                  limit: 255
     t.integer  "user_id",               limit: 4
@@ -134,6 +144,7 @@ ActiveRecord::Schema.define(version: 20150328045101) do
     t.boolean  "mandate",               limit: 1
     t.integer  "ending_days",           limit: 4
     t.integer  "private_code",          limit: 4
+    t.string   "line_csv",              limit: 255
   end
 
   add_index "funds", ["user_id"], name: "index_funds_on_user_id", using: :btree
@@ -210,6 +221,7 @@ ActiveRecord::Schema.define(version: 20150328045101) do
     t.datetime "updated_at",                 null: false
     t.string   "imageable_id",   limit: 255
     t.string   "imageable_type", limit: 255
+    t.string   "photo_type",     limit: 255
   end
 
   add_index "photos", ["user_id"], name: "index_photos_on_user_id", using: :btree
@@ -261,6 +273,7 @@ ActiveRecord::Schema.define(version: 20150328045101) do
   add_foreign_key "accounts", "users"
   add_foreign_key "bank_cards", "users"
   add_foreign_key "billings", "accounts"
+  add_foreign_key "fund_accounts", "funds"
   add_foreign_key "funds", "users"
   add_foreign_key "homs_accounts", "funds"
   add_foreign_key "invests", "funds"

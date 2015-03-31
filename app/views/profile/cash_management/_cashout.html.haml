@@ -1,58 +1,96 @@
-.pb20.pt20.b-b.warn_tip
-  %em.red
-    首次提现，请先添加提现银行卡，请前往
-    %a.a1{:href => "#", :onclick => "$('#bankCardTab').click()"}> 银行卡管理
-    进行添加
-.pz-info-2
-  .ui-sub-form
-    %label.ui-label 账户余额
-    %em.h 6.32
-    %em.unit 元
-  .ui-sub-form
-    %label.ui-label 提现金额
-    = succeed "\u{5143}" do
-      %input#money.ui-input.mr10/
-  .ui-sub-form
-    %label.ui-label 提现银行卡
-    %select#cardId.sel-b.w240
-  .ui-sub-form
-    %label.ui-label 提现密码
-    %input#password.ui-input.mr10{:type => "password"}/
-    %a.blue{:href => "http://www.yztz.com/user/security.htm"} 忘记密码
-  .ui-sub-form{:style => "padding-top:10px;"}
-    %input#withdrawBtn.btn.btn-l{:onclick => "withdraw()", :type => "submit", :value => "提交"}/
-.uc-ext-desc.mb20
-  .uc-ext-desc-item.clearfix
-    %ul
-      %li.b-r.w230
-        %dl
-          %dt
-            最快
-            %span.fs20.red> 30分钟
-            到账
-          %dd
-            最快30分钟，一般情况3小时内到账
-            %br>/
-            所有提现24小时内到账(节假日除外)
-      %li.b-r.w190.pl45
-        %dl
-          %dt
-            提现
-            %span.fs20.red> 0
-            手续费
-          %dd
-            提现产生的银行手续费全免
-            %br>/
-            更多优质服务只在赢在投资
-      %li.w200.pl40
-        %dl
-          %dt
-            支持银行多达
-            %span.fs20.red> 10
-            多家
-          %dd
-            推荐您使用工商银行、建设银行、
-            %br>/
-            招商银行、农业银行提现，到账最快
-  .lh48.b-t.fs14
-    温馨提示：禁止洗钱、信用卡套现、虚假交易等行为，一经发现并确认，将终止该账户的使用。
+= simple_form_for(@billing, url: withdrawn_user_account_path,html: {onsubmit: "return doCashout()"}) do |f|
+  - unless current_user.bank_card
+    .pb20.pt20.b-b.warn_tip
+      %em.red
+        首次提现，请先添加提现银行卡，请前往
+        %a.a1{:href => user_bank_card_path(current_user)}> 银行卡管理
+        进行添加
+  .pz-info-2
+    .ui-sub-form
+      %label.ui-label 账户余额
+      %em.h= current_user.account.balance
+      %em.unit 元
+    .ui-sub-form
+      %label.ui-label 提现金额
+      %input#money.ui-input.mr10.numberic{:name => "billing[amount]", :maxlength => "7"}/
+    .ui-sub-form
+      %label.ui-label 提现银行卡
+      - unless current_user.bank_card
+        %label
+          还没有添加银行卡
+          %a.a1{:href => user_bank_card_path(current_user)}> 银行卡管理
+      - else
+        = current_user.bank_card.number
+
+    -# .ui-sub-form
+    -#   %label.ui-label 提现密码
+    -#   %input#password.ui-input.mr10{:type => "password"}/
+    -#   %a.blue{:href => "http://www.yztz.com/user/security.htm"} 忘记密码
+    .ui-sub-form{:style => "padding-top:10px;"}
+      %input#withdrawBtn.btn.btn-l{:type => "submit", :value => "提交"}/
+  .uc-ext-desc.mb20
+    .uc-ext-desc-item.clearfix
+      %ul
+        %li.b-r.w230
+          %dl
+            %dt
+              最快
+              %span.fs20.red> 30分钟
+              到账
+            %dd
+              最快30分钟，一般情况3小时内到账
+              %br>/
+              所有提现24小时内到账(节假日除外)
+        %li.b-r.w190.pl45
+          %dl
+            %dt
+              提现
+              %span.fs20.red> 0
+              手续费
+            %dd
+              提现产生的银行手续费全免
+              %br>/
+              更多优质服务只在赢在投资
+        %li.w200.pl40
+          %dl
+            %dt
+              支持银行多达
+              %span.fs20.red> 10
+              多家
+            %dd
+              推荐您使用工商银行、建设银行、
+              %br>/
+              招商银行、农业银行提现，到账最快
+    .lh48.b-t.fs14
+      温馨提示：禁止洗钱、信用卡套现、虚假交易等行为，一经发现并确认，将终止该账户的使用。
+:javascript
+  function doCashout(){
+    if ("#{current_user.bank_card}" === ""){
+      alert("您还没有填写提现银行卡, 请到我的银行卡添加");
+      return false;
+    }
+    var m = $("#money").val();
+  	if(''==m){
+  		alert("请填写提现金额");
+  		return false;
+  	}
+  	// if(!X.valid.isMoney(m)){
+  	// 	alert('充值金额填写错误',1,{notify:function(){$("#alimoney").focus();}});
+  	// 	return false;
+  	// }
+    var myBalance = parseFloat("#{current_user.account.balance}");
+    if (parseFloat(m) > myBalance) {
+      if(confirm("您余额不足，请充值，确认充值？")){
+        window.open("#{bankcard_charge_user_account_path(current_user)}");
+      }
+      return false;
+    }
+  	if(parseFloat(m)<1){
+  		alert('提现金额必须大于等于1元');
+  		return false;
+  	}
+  	if(parseFloat(m)>1000000){
+  		alert('提现金额不能大于100万');
+  		return false;
+  	}
+  }

@@ -1,9 +1,9 @@
 require 'net/http'
 
 class SMSGateway
-  SMS_GATEWAY_URL = 'http://222.73.117.158/msg/HttpSendSM'
-  SMS_GATEWAY_USERNAME = 'jiekou-cs-01'
-  SMS_GATEWAY_PASSWORD = 'Tch147259'
+  SMS_GATEWAY_URL = 'http://222.73.117.158:80/msg/HttpBatchSendSM'
+  SMS_GATEWAY_USERNAME = 'jiekou-cs-02'
+  SMS_GATEWAY_PASSWORD = 'Tch147256'
   # SMS_GATEWAY_ENABLED = Rails.env.development?
   
   def self.send(phone, message)

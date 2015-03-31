@@ -25,9 +25,14 @@ class InvestsController < ApplicationController
   end
 
   def show
+    @fund = Fund.find(params[:fund_id])
     user = User.find(@fund.user_id)
-    list_data = parse_list_data(user.line_csv.current_path)
-    @list_array = list_data.last(5).reverse
+    if user.line_csv
+      list_data = parse_list_data(user.line_csv.current_path) 
+      @list_array = list_data.last(5).reverse
+    else
+      @list_array = []
+    end
     @verify_photos = user.verify_photos
   end
 
@@ -40,6 +45,28 @@ class InvestsController < ApplicationController
     if @fund.state == "gathering" && (@fund.raised_amount + params[:invest][:amount].to_i <= @fund.amount) && flag && @invest.save
       current_user.follow(@fund.user)
       @invest.update(user_id: current_user.id)
+      invest_account  = current_user.account
+      fund_account    = @fund.fund_account
+      billing_out = Billing.new(
+        account_id:   invest_account.id,
+        amount:       -@invest.amount,
+        billing_type: "Invest",
+        billable:     @invest)
+      billing_in = Billing.new(
+        account_id:   fund_account.id,
+        amount:       @invest.amount,
+        billing_type: "From Invest",
+        billable:     @fund)
+      invest_account.balance -= @invest.amount
+      fund_account.balance += @invest.amount
+      ActiveRecord::Base.transaction do
+        billing_in.save
+        billing_out.save
+        invest_account.save
+        fund_account.save
+      end
+      billing_in.confirm
+      billing_out.confirm
       @invest.check_reached
       redirect_to fund_invest_path(@fund, @invest)
     else

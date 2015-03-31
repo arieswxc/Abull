@@ -1,0 +1,32 @@
+- @activeSubItem = 'bankcards'
+.pg-container-content
+  #pg-account-index.pg-account
+    .container_12.mt10.fn-clear
+      = render "shares/profile_side_navbar", {activeItem: "account"}
+      .inline-block.relative.pg-account-detail
+        = render "shares/profile"
+        -# = render "profile/cash_management/bankcard"
+        .panel.panel-default
+          .panel-heading
+            %h3.panel-title 我的银行卡
+          .panel-body
+            %dl.dl-horizontal
+              - if @bank_card
+                %dt= t('card number')
+                %dd= @bank_card.number
+                %dt= t('real name')
+                %dd= @bank_card.user.real_name
+                %dt= t('bank name')
+                %dd= @bank_card.bank_name
+                %dt= t('bank branch')
+                %dd= @bank_card.bank_branch
+                %dt= t('state')
+                %dd= @bank_card.state
+                %p= link_to t('edit'), edit_user_bank_card_path(user_id: @bank_card.user)
+              - else
+                - @bank_card = current_user.build_bank_card
+                = simple_form_for(@bank_card, url: user_bank_card_path, html:{class: "sky-form"}) do |f|
+                  = f.input :number
+                  = f.input :bank_name
+                  = f.input :bank_branch
+                  = f.button :submit

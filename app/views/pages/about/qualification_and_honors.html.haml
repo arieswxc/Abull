@@ -6,15 +6,24 @@
         .row
           .col-md-12.text-center
             %h3.zdy-red.text-left 营业执照
-            = image_tag "about_us/营业执照副.jpg",width: "60%"
+            %a.fancybox-button.zoomer{:href => asset_path('about_us/营业执照副.jpg'), 'data-rel' => "fancybox-button"}
+              %span.overlay-zoom.margin-auto{:style => "width:60%;"}
+                = image_tag 'about_us/营业执照副.jpg',class: "img-responsive"
+                %span.zoom-icon{:style => "width:100%;"}
         .row
           .col-md-12.text-center
             %h3.zdy-red.text-left 组织机构代码证
-            = image_tag "about_us/组织机构代码证.png",width: "80%"
+            %a.fancybox-button.zoomer{:href => asset_path('about_us/组织机构代码证.png'), 'data-rel' => "fancybox-button"}
+              %span.overlay-zoom.margin-auto{:style => "width:80%;"}
+                = image_tag 'about_us/组织机构代码证.png',class: "img-responsive"
+                %span.zoom-icon{:style => "width:100%;"}
         .row
           .col-md-12.text-center
             %h3.zdy-red.text-left 税务登记证
-            = image_tag "about_us/税务登记证.png",width: "80%"
+            %a.fancybox-button.zoomer{:href => asset_path('about_us/税务登记证.png'), 'data-rel' => "fancybox-button"}
+              %span.overlay-zoom.margin-auto{:style => "width:80%;"}
+                = image_tag 'about_us/税务登记证.png',class: "img-responsive"
+                %span.zoom-icon{:style => "width:100%;"}
         .row
           .col-md-12
             %h3.zdy-red 信用机构代码证
@@ -23,4 +32,3 @@
             %h3.zdy-red 开户许可证
 
 - @navItem = 'pages'
-

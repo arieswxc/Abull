@@ -6,4 +6,14 @@ class Billing < ActiveRecord::Base
   validates :billing_type,  presence: true
   belongs_to :account
   belongs_to :billable, polymorphic: true
+
+  state_machine :state, :initial => :pending do
+    event :confirm do
+      transition :pending => :confirmed
+    end
+
+    event :deny do
+      transition :pending => :denied
+    end
+  end
 end

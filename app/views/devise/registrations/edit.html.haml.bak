@@ -1,0 +1,141 @@
+.pg-container-content
+  #pg-account-index.pg-account
+    .container_12.mt10.fn-clear
+      = render "shares/profile_side_navbar", {activeItem: "useredit"}
+      .inline-block.relative.pg-account-detail
+        .tab-v1
+          %ul.nav.nav-tabs
+            %li.active
+              %a{"data-toggle" => "tab", :href => "#baseProfile"} 基本信息
+            %li
+              %a{"data-toggle" => "tab", :href => "#authenticationProfile"} 认证信息
+          .tab-content
+            #baseProfile.tab-pane.fade.active.in
+              = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'sky-form'}) do |f|
+                = devise_error_messages!
+                %dl.dl-horizontal
+                  %dt 个人简介
+                  %dd
+                    %section
+                      %label.input
+                        %i.icon-append.fa.fa-user
+                        %input{:name => "user[abstract]", :type => "text", :value => "#{resource.abstract}"}/
+                  %dt 昵称
+                  %dd
+                    %section
+                      %label.input
+                        %i.icon-append.fa.fa-user
+                        %input{:name => "user[username]", :placeholder => "Username", :type => "text", :value => "#{resource.username}"}/
+                        %b.tooltip.tooltip-bottom-right 登录网站所用
+                  %dt 邮箱
+                  %dd
+                    %section
+                      %label.input
+                        %i.icon-append.fa.fa-envelope
+                        %input{:name => "user[email]", :placeholder => "Email address", :type => "email", :value => "#{resource.email}"}/
+                        %b.tooltip.tooltip-bottom-right 验证账户所用
+                  %dt 密码
+                  %dd
+                    %section
+                      %label.input
+                        %i.icon-append.fa.fa-lock
+                        %input#password{:name => "user[password]", :placeholder => "Password", :type => "password"}/
+                        %b.tooltip.tooltip-bottom-right 不要忘了你的密码
+                  %dt 确认密码
+                  %dd
+                    %section
+                      %label.input
+                        %i.icon-append.fa.fa-lock
+                        %input{:name => "user[password_confirmation]", :placeholder => "Confirm password", :type => "password"}/
+                        %b.tooltip.tooltip-bottom-right 不要忘了你的密码
+                %button.btn-u.btn-u-default.ml100{:type => "reset"} 取消
+                %button.btn-u{:type => "submit"} 保存修改
+            #authenticationProfile.tab-pane.fade
+              %h3 实名认证
+              %hr
+              = simple_nested_form_for(@user,url: investor_applied_user_path(current_user),   |
+                html: { class: 'form-horizontal sky-form', id: 'authentication_form',enctype: "multipart/form-data" },                     |
+                wrapper: :horizontal_form,                              |
+                wrapper_mappings: {                                     |
+                check_boxes: :horizontal_radio_and_checkboxes,          |
+                radio_buttons: :horizontal_radio_and_checkboxes,      |
+                file: :horizontal_file_input,                         |
+                boolean: :horizontal_boolean}) do |f|                 |
+                - if current_user.real_name.blank?
+                  = f.input :real_name
+                  = f.input :id_card_number
+                - else
+                  .form-group.optional
+                    %label.optional.col-sm-3.control-label
+                      %span
+                        = User.human_attribute_name('real_name')
+                        \:
+                    .col-sm-9.mt5
+                      %span.bold= current_user.real_name
+                  .form-group.optional
+                    %label.optional.col-sm-3.control-label
+                      %span
+                        = User.human_attribute_name('id_card_number')
+                        \:
+                    .col-sm-9.mt5
+                      %span.bold= current_user.id_card_number
+                = f.fields_for :identity_photos do |photo_form|
+                  .form-group.optional
+                    %label.optional.col-sm-3.control-label
+                      %span{:name => "user[identity_photos_attributes][#{photo_form.index}][title]", :value => "#{photo_form.object.title}"}= photo_form.object.title
+                    .col-sm-9
+                      %label.input.input-file
+                        .button
+                          %input{:type =>"file", :name =>"user[identity_photos_attributes][#{photo_form.index}][photo]", :multiple => "", :onchange => "this.parentNode.nextElementSibling.value = this.value", :accept => "image/*"} 浏览
+                        %input{:type => "text", :readonly => ""}
+                  .text-center
+                    = image_tag current_user.identity_photos[photo_form.index].photo.url,class: "img-thumbnail img-rounded #{'w300' if !current_user.identity_photos[photo_form.index].photo.blank?}"
+                .text-center
+                  = f.button :submit
+              %hr
+              %h3 发表人审核
+              %hr
+              = simple_nested_form_for(@user,url: trader_applied_user_path(current_user),  |
+                html: { class: 'form-horizontal sky-form', id: 'trader_authentication_form',enctype: "multipart/form-data" },                   |
+                wrapper: :horizontal_form,                            |
+                wrapper_mappings: {                                   |
+                check_boxes: :horizontal_radio_and_checkboxes,        |
+                radio_buttons: :horizontal_radio_and_checkboxes,      |
+                file: :horizontal_file_input,                         |
+                boolean: :horizontal_boolean}) do |f|                 |
+                = f.input :real_name, disabled: true, as: :hidden
+                = f.input :cell, input_html: {class: 'numberic', maxlength: '11', pattern: "\d{3}-\d{8}|\d{4}-\{7,8}"}
+                = f.input :birthday, as: :date, html5: true
+                = f.input :gender, collection: [:male, :female],include_blank: false
+                = f.input :education
+                .user_education.form-group.optional
+                  %label.string.optional.col-sm-3.control-label
+                    %span
+                      (学历图片证明)
+                  %label.input.input-file.col-sm-9.state-success
+                    .button
+                      %input{:type => "file",:name =>"education_photo", :onchange => "this.parentNode.nextElementSibling.value = this.value", :accept => "image/*"}
+                        %span
+                          浏览
+                    %input{:type => "text", :readonly => ""}
+                = f.input :address
+                .user_address.form-group.optional
+                  %label.string.optional.col-sm-3.control-label
+                    %span
+                      (住址图片证明)
+                  %label.input.input-file.col-sm-9.state-success
+                    .button
+                      %input#address_photo{:type => "file", :name => "address_photo", :onchange => "this.parentNode.nextElementSibling.value =this.value", :value => "this.parentNode.nextElementSibling.value =this.value"}
+                        %span
+                          浏览
+                    %input{:type => "text", :readonly => ""}
+                = f.input :job
+                .text-center
+                  = f.button :submit
+:javascript
+  $(function() {
+    var ptn = /\/users\/edit\/#authencation*$/;
+    if (ptn.test(window.location.href)) {
+      $("#pg-account-index .tab-v1 ul.nav.nav-tabs li:nth-child(2) a").tab('show');
+    }
+  });

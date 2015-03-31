@@ -30,6 +30,7 @@ Rails.application.config.assets.precompile += %w( plugins/owl.carousel.css)
 Rails.application.config.assets.precompile += %w( plugins/settings.css)
 Rails.application.config.assets.precompile += %w( plugins/jquery.fancybox.css)
 Rails.application.config.assets.precompile += %w( pages/page_job.css)
+Rails.application.config.assets.precompile += %w( pages/feature_timeline2.css)
 
 Rails.application.config.assets.precompile += %w( custom.css)
 Rails.application.config.assets.precompile += %w( common.css)

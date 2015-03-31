@@ -26,6 +26,7 @@
     %link{:href => asset_path("plugins/owl.carousel.css"), :rel => "stylesheet"}/
     %link{:href => asset_path("plugins/settings.css"), :rel => "stylesheet"}/
     %link{:href => asset_path("pages/page_job.css"), :rel => "stylesheet"}/
+    %link{:href => asset_path("pages/feature_timeline2.css"), :rel => "stylesheet"}/
     / CSS Customization
     %link{:href => asset_path("custom.css"), :rel => "stylesheet"}/
     %link{:href => asset_path("common.css"), :rel => "stylesheet"}/
@@ -85,6 +86,8 @@
           if (_self.files.length == 0) return;
           var data = new FormData();
           data.append('avatar', _self.files[0]);
+          $(".picloader").show();
+          alert('正在上传请稍候...');
           $.ajax({
             data:data,
             url: "/users/#{current_user.id if current_user}/save_avatar",
@@ -105,9 +108,12 @@
               };
 
               reader.readAsDataURL(_self.files[0]);
+              $(".picloader").hide();
+              alert('上传成功...');
             },
             error: function () {
-
+              $(".picloader").hide();
+              alert('上传失败...');
             }
           });
         });
@@ -116,6 +122,8 @@
           if (_self.files.length == 0) return;
           var data = new FormData();
           data.append('avatar', _self.files[0]);
+          $(".picloader").show();
+          alert('正在上传请稍候...');
           $.ajax({
             data:data,
             url: "/users/#{current_user.id if current_user}/save_avatar",
@@ -136,9 +144,12 @@
               };
 
               reader.readAsDataURL(_self.files[0]);
+              $(".picloader").hide();
+              alert('上传成功...');
             },
             error: function () {
-
+              $(".picloader").hide();
+              alert('上传失败...');
             }
           });
         });

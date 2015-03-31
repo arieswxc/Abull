@@ -37,10 +37,28 @@ RSpec.describe Billing, type: :model do
   end
 
   # billable
-  it "is invalid without billable" do
-    billing = build(:billing, billable_id: nil)
+  it "is valid without billable" do
+    expect(build(:billing, billable_id: nil)).to be_valid
+  end
+
+  # state
+  it "is invalid without state" do
+    billing = build(:billing, state: nil)
     billing.valid?
     expect(billing).to be_invalid
-    expect(billing.errors[:billable_id]).to include(I18n.t("errors.messages.blank"))
+    expect(billing.errors[:state]).to include(I18n.t("errors.messages.invalid"))
+  end
+
+  it "is invalid if state is not included" do
+    billing = build(:billing, state: "invalid")
+    billing.valid?
+    expect(billing).to be_invalid
+    expect(billing.errors[:state]).to include(I18n.t("errors.messages.invalid"))
+  end
+
+  it "is valid if state is included" do
+    expect(create(:billing, state: "pending")).to be_valid
+    expect(create(:billing, state: "confirmed")).to be_valid
+    expect(create(:billing, state: "denied")).to be_valid
   end
 end

@@ -13,17 +13,17 @@ ActiveAdmin.register User do
     column :username
     column :real_name
     column :cell
-    column :id_card_number
-    column :abstract
+    # column :id_card_number
+    # column :abstract
     column :level
-    column :birthday
-    column :gender
-    column :education
-    column :address
-    column :job
-    column :current_sign_in_at
-    column :sign_in_count
-    column :created_at
+    # column :birthday
+    # column :gender
+    # column :education
+    # column :address
+    # column :job
+    # column :current_sign_in_at
+    # column :sign_in_count
+    # column :created_at
     actions
   end
 
@@ -64,7 +64,7 @@ ActiveAdmin.register User do
       attributes_table_for user do
         row :real_name
         row :id_card_number
-        user.photos.each do |p|
+        user.identity_photos.each do |p|
           row("#{p.title}") { link_to image_tag(p.photo, width:400, height:400), p.photo.url }    
           # row("#{p.title}") { link_to image_tag(p.photo.thumb), p.photo.url }        
         end
