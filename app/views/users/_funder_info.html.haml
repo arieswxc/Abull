@@ -2,7 +2,7 @@
   .row
     .col-md-3.text-center.mb40
       .avatar
-        = image_tag user.avatar.url,class: "img-thumbnail img-rounded w70"
+        = image_tag user.avatar.url,class: "img-thumbnail img-rounded w70 #{'blur' unless @flag}"
       .username.mt5
         %span 基金发起人：
         %span

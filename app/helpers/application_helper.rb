@@ -54,8 +54,8 @@ module ApplicationHelper
 
   def check_private(resource, private = 'private')
     if resource && private == "private"
-      tmps = resource.length > 3 ? "*" * (resource.length - 3) : "***"
-      resource.first(3) + tmps
+      resource = resource.length > 1 ? resource.first(1) + "*" * (resource.length - 1) : "***"
+      # resource.first(3) + tmps
     else
       resource
     end
