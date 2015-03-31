@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   after_action :send_email, only: [:create]
-  before_action :authenticate_user!, except: [:generate_verification_code, :update_password]
+  before_action :authenticate_user!, except: [:generate_verification_code, :update_password, :get_history_data]
 
   def investor_apply
     @user = User.find(params[:id])
