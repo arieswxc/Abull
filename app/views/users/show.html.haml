@@ -25,20 +25,20 @@
         var invest_ctx = $("#invest_chart").get(0).getContext("2d");
         var fund_ctx = $("#fund_chart").get(0).getContext("2d");
         var leverage_ctx = $("#leverage_chart").get(0).getContext("2d");
-        data = {
-          invest_data: {
-            labels: ["一月", "二月", "三月", "四月", "五月", "六月", "七月"],
-            datas: [65, 59, 80, 81, 56, 55]
-          },
-          fund_data: {
-            labels: ["一月", "二月", "三月", "四月", "五月", "六月", "七月"],
-            datas: [65, 59, 80, 81, 56, 51]
-          },
-          leverage_data: {
-            labels: ["一月", "二月", "三月", "四月", "五月", "六月", "七月"],
-            datas: [65, 59, 80, 81, 56, 54]
-          }
-        };
+        // data = {
+        //   invest_data: {
+        //     labels: ["一月", "二月", "三月", "四月", "五月", "六月", "七月"],
+        //     datas: [65, 59, 80, 81, 56, 55]
+        //   },
+        //   fund_data: {
+        //     labels: ["一月", "二月", "三月", "四月", "五月", "六月", "七月"],
+        //     datas: [65, 59, 80, 81, 56, 51]
+        //   },
+        //   leverage_data: {
+        //     labels: ["一月", "二月", "三月", "四月", "五月", "六月", "七月"],
+        //     datas: [65, 59, 80, 81, 56, 54]
+        //   }
+        // };
         var invest_data = {
                               labels: data.invest_data.labels,
                               datasets: [
@@ -50,7 +50,7 @@
                                       pointStrokeColor: "#fff",
                                       pointHighlightFill: "#fff",
                                       pointHighlightStroke: "rgba(220,220,220,1)",
-                                      data: data.invest_data.datas
+                                      data: data.invest_data.data
                                   }
                               ]
                           };
@@ -65,29 +65,29 @@
                                       pointStrokeColor: "#fff",
                                       pointHighlightFill: "#fff",
                                       pointHighlightStroke: "rgba(220,220,220,1)",
-                                      data: data.fund_data.datas
+                                      data: data.fund_data.data
                                   }
                               ]
                           };
-        var leverage_data = {
-                              labels: data.leverage_data.labels,
-                              datasets: [
-                                  {
-                                      label: "My First dataset",
-                                      fillColor: "rgba(220,220,220,0.2)",
-                                      strokeColor: "rgba(220,220,220,1)",
-                                      pointColor: "rgba(220,220,220,1)",
-                                      pointStrokeColor: "#fff",
-                                      pointHighlightFill: "#fff",
-                                      pointHighlightStroke: "rgba(220,220,220,1)",
-                                      data: data.leverage_data.datas
-                                  }
-                              ]
-                          };
+        // var leverage_data = {
+        //                       labels: data.leverage_data.labels,
+        //                       datasets: [
+        //                           {
+        //                               label: "My First dataset",
+        //                               fillColor: "rgba(220,220,220,0.2)",
+        //                               strokeColor: "rgba(220,220,220,1)",
+        //                               pointColor: "rgba(220,220,220,1)",
+        //                               pointStrokeColor: "#fff",
+        //                               pointHighlightFill: "#fff",
+        //                               pointHighlightStroke: "rgba(220,220,220,1)",
+        //                               data: data.leverage_data.datas
+        //                           }
+        //                       ]
+        //                   };
 
         var investChart = new Chart(invest_ctx).Bar(invest_data);
         var fundChart = new Chart(fund_ctx).Bar(fund_data);
-        var leverageChart = new Chart(leverage_ctx).Bar(leverage_data);
+        // var leverageChart = new Chart(leverage_ctx).Bar(leverage_data);
       },
       error: function () {
         console.log("get_chart_data error...");

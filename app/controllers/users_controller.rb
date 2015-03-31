@@ -48,14 +48,17 @@ class UsersController < ApplicationController
     funds_hash, invests_hash = @user.funds_and_invests_data
     respond_to do |format|
       format.html { render :show }
-      format.json { render json: 
-        {fund_data:{
-          labels: funds_hash.keys,
-          data: funds_hash.values},
-        invest_data:{
-          labels: invests_hash.keys,
-          data: invests.values},
-        }       
+      format.json { render json:
+        {
+          fund_data:{
+            labels: funds_hash.keys,
+            data: funds_hash.values
+          },
+          invest_data:{
+            labels: invests_hash.keys,
+            data: invests.values
+          },
+        }
       }
     end
   end
@@ -95,7 +98,7 @@ class UsersController < ApplicationController
   def edit_password
     @user = current_user
   end
-  
+
   #用户登录后手动更新密码接口
   def reset_password
     @user = User.find(current_user.id)
@@ -109,7 +112,18 @@ class UsersController < ApplicationController
   end
 
   def get_chart_data
-    render json: {message: "success"}
+    @user = User.find(params[:id])
+    funds_hash, invests_hash = @user.funds_and_invests_data
+    render json:{
+        fund_data:{
+          labels: funds_hash.keys,
+          data: funds_hash.values
+        },
+        invest_data:{
+          labels: invests_hash.keys,
+          data: invests_hash.values
+        },
+      }
   end
 
   def get_history_data
@@ -136,7 +150,7 @@ class UsersController < ApplicationController
   end
 
   def cashout
-  
+
   end
 
   private
