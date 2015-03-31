@@ -6,4 +6,31 @@
     .input-group.w200
       %input.form-control.text-center.numberic{:name => "billing[amount]",:maxlength => 7}
       %span.input-group-addon  元
-  %button.btn-u.btn-u-default{:name => "commit", :type => "submit"} 提交
+  %button.btn-u.btn-u-default.third-charge-btn{:name => "commit", :type => "submit"} 提交
+
+:javascript
+  $(function(){
+    $(".third-charge-btn").click(function(){
+      var postData = new FormData();
+      var m = $("input[name='billing[amount]']").val();
+      if (m < 1){
+        alert("充值必须大于等于1元");
+        return;
+      }
+      postData.append('billing[amount]', m);
+      $.ajax({
+        data: postData,
+        url: "/users/#{current_user.id}/account/third_charged",
+        type: 'post',
+        contentType: false,
+        processData: false,
+        success: function(data){
+          confirm("充值已完成？");
+          window.open(data.url);
+        },
+        error: function(){
+          alert("系统繁忙，请稍后再试");
+        }
+      });
+    });
+  });
