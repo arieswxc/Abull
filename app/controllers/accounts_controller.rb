@@ -46,16 +46,29 @@ class AccountsController < ApplicationController
   end
 
   def withdrawn
-    balance = current_user.account.balance if current_user
-    @billing = current_user.account.billings.build(billing_params)
-    @billing.billing_type = "Withdraw"
-    if @billing.amount < balance
-      if @billing.save
-        @billing.update(amount: -@billing.amount )
-        redirect_to user_account_billings_path
-      else
-        render 'withdrawn'
+    balance           = current_user.account.balance if current_user
+    account           = current_user.account
+    @billing_out      = account.billings.build(billing_params)
+    @billing_in       = account.billings.build(billing_params)
+    @billing_withdraw = account.billings.build(billing_params)
+    @billing_out.billing_type       = "From Balance"
+    @billing_in.billing_type        = "To Frost"
+    @billing_withdraw.billing_type  = "Withdraw"
+
+    account.balance -= @billing_out.amount
+    account.frost += @billing_out.amount
+    if @billing_out.amount < balance
+      ActiveRecord::Base.transaction do
+        @billing_out.save
+        @billing_in.save
+        @billing_withdraw.save
+        @billing_out.update(amount: -@billing_out.amount )
+        @billing_withdraw.update(amount: -@billing_withdraw.amount)
+        account.save
+        @billing_out.confirm
+        @billing_in.confirm
       end
+      redirect_to user_account_billings_path
     else
       flash[:notice] = "没有足够余额"
       render 'withdraw'

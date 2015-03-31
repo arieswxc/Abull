@@ -45,10 +45,10 @@
 				alert("您输入的投资额小于最小投资额");
 				return;
 			}
-			var myBalance = parseFloat("#{current_user.account.balance}");
+			var myBalance = parseFloat("#{current_user.account.balance if current_user}");
 			if (crt_amount > myBalance) {
 				if(confirm("您余额不足，请充值，确认充值？")){
-					window.open("#{bankcard_charge_user_account_path(current_user)}");
+					window.open("#{bankcard_charge_user_account_path(current_user) if current_user} #{'javascript:;' unless current_user}");
 				}
 				return;
 			}

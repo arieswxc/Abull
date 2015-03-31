@@ -26,7 +26,7 @@ function check_length(em){
       var  maxl = parseInt($(_self).attr("maxlength"));
       if (tmpval > maxl) {
         $(_self.parentNode).addClass("state-error");
-        _self.setCustomValidity($(_self).attr('tooltip'));
+        _self.setCustomValidity($(_self).attr('tooltip')+"，当前字数"+tmpval);
         return;
       }
     }
@@ -34,7 +34,7 @@ function check_length(em){
       var minl = parseInt($(_self).attr("minlength"));
       if (tmpval < minl) {
         $(_self.parentNode).addClass("state-error");
-        _self.setCustomValidity($(_self).attr('tooltip'));
+        _self.setCustomValidity($(_self).attr('tooltip')+"，当前字数"+tmpval);
         return;
       }
     }

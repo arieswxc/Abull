@@ -1,17 +1,33 @@
-- if @fund.state == 'pending'
+- if @fund.state == 'pending' ||  @fund.state == 'applied'
 	- @result_type = 'fund'
 	= render 'shares/result', ojbect: @restult_type
 - else
 	.container.content
-		- @result_type = 'fund'
-		= render 'users/funder_info',{user: @fund.user,ojbect: @result_type}
-		.pl60.pr90
-			= render 'fund_info'
-			=# todo other more
-			.text-center.mt40
-				- if @fund.state == "gathering"
-					= link_to '投标', new_fund_invest_path(fund_id: @fund), class: "btn-u btn-u-blue"
-				- else
-					= link_to '投标', "javascript:;", class: "btn-u btn-u-default"
+		.row
+			.col-md-12
+				%label.mr15
+					%span HOMS账号：
+					%span
+				%label.mr15
+					%span 密码：
+					%span
+				%label
+					%span 暗标码：
+					%span= @fund.private_code
+		.row
+			.col-md-12
+				= render 'funds/fund_base_info'
+		-# .row
+		-# 	.col-md-12
+		-# 		.panel.panel-grey
+		-# 			.panel-heading
+		-# 				.panel-title 申购记录
+		-# 			.panel-title
+		-# 				= render "invests/invest_list"
+		.row
+			.col-md-12
+				.tag-box.tag-box-v3
+					评论。。
+
 
 - @navItem = 'fund_new'

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   after_action :send_email, only: [:create]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:generate_verification_code, :update_password]
 
   def investor_apply
     @user = User.find(params[:id])
@@ -78,7 +78,6 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
-
   #用户登录后手动更新密码页面
   def edit_password
     @user = current_user
@@ -147,8 +146,8 @@ class UsersController < ApplicationController
     def send_sms(code, cell)
       uri       = URI.parse("http://222.73.117.158/msg/HttpBatchSendSM")
       msg       = "欢迎注册摩尔街账户，您的激活码为#{code},请在注册页面填写【bull】"
-      username  = 'jiekou-cs-02'
-      password  = 'Tch147256'
+      username  = 'zxnicv'
+      password  = 'Txb123456'
       puts "激活码为 #{code}"
       res = Net::HTTP.post_form(uri, account: username, pswd: password, mobile: cell, msg: msg, needstatus: true)
       res.body.split[1]

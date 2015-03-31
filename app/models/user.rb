@@ -80,8 +80,8 @@ class User < ActiveRecord::Base
     def send_password(cell, account_password)
       uri       = URI.parse("http://222.73.117.158/msg/HttpBatchSendSM")
       msg       = "新的账户密码为#{account_password},请及时登陆摩尔街来修改帐号密码"
-      username  = 'jiekou-cs-02'
-      password  = 'Tch147256'
+      username  = 'zxnicv'
+      password  = 'Txb123456'
     
       res = Net::HTTP.post_form(uri, account: username, pswd: password, mobile: cell, msg: msg, needstatus: true)
       res.body.split[1]
