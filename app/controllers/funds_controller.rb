@@ -26,6 +26,7 @@ class FundsController < ApplicationController
     if @fund.save
       @fund.create_fund_account
       @fund.apply
+      @fund.create_homs_account(title: @fund.name)
       redirect_to @fund
     else
       render 'new'
