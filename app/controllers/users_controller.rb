@@ -107,7 +107,7 @@ class UsersController < ApplicationController
       sign_in @user, :bypass => true
       redirect_to root_path
     else
-      render "edit_password"
+      redirect_to edit_user_registration_path
     end
   end
 
