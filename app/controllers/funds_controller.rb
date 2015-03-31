@@ -48,8 +48,8 @@ class FundsController < ApplicationController
 
   def get_history_data
     fund = Fund.find(params[:id])
-    if fund.line_csv
-      array_x, array_y = parse_csv(user.line_csv.current_path)
+    if fund.line_csv && fund.line_csv.current_path
+      array_x, array_y = parse_csv(fund.line_csv.current_path)
       render json:{ labels: array_x, data: array_y }
     else
       render json:{ message: "Not found" }, status: 404
@@ -69,7 +69,7 @@ class FundsController < ApplicationController
         :name, :amount, :ending_days,
         :private_check, :minimum, :invest_starting_date,
         :duration, :expected_earning_rate, :description,
-        :frontend_risk_method, :backend_risk_method, :homs_account, 
+        :frontend_risk_method, :backend_risk_method, :homs_account,
         :initial_amount, :state, :management_fee)
     end
 
