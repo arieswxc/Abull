@@ -45,10 +45,10 @@
         = link_to(user_funds_path(current_user),class: "ui-side-item-link pt0") do
           %i.glyphicon.glyphicon-usd.index.mr10.ml10>
           发标管理
-      %li{:class => "ui-side-item #{'active' if activeItem=='leverage'}"}
-        = link_to(user_leverages_path(current_user),class: "ui-side-item-link pt0") do
-          %i.glyphicon.glyphicon-usd.index.mr10.ml10>
-          配资管理
+      -# %li{:class => "ui-side-item #{'active' if activeItem=='leverage'}"}
+      -#   = link_to(user_leverages_path(current_user),class: "ui-side-item-link pt0") do
+      -#     %i.glyphicon.glyphicon-usd.index.mr10.ml10>
+      -#     配资管理
       -# %li{:class => "ui-side-item #{'active' if activeItem=='following'}"}
       -#   = link_to(user_following_topics_path(current_user),class: "ui-side-item-link pt0") do
       -#     %i.glyphicon.glyphicon-usd.index.mr10.ml10>
