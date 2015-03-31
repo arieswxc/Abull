@@ -1092,4 +1092,38 @@ img.picloader {
   left: 30px;
   top: 35px;
 }
+
+
+.zztooltip {
+  opacity:0;
+  position: absolute;
+  background: #fff;
+  padding: 8px;
+  position: absolute;
+  z-index: 9999;
+  border: solid 1px #B5B5B5;
+  left: 52px;
+  margin-top: 18px;
+  font-size: 12px;
+  font-weight: 100;
+  box-shadow: -2px 4px 18px #5E5555;
+  min-width: 200px;
+}
+.zztooltip:before {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 0;
+  left: 1px;
+  top: -11px;
+  border-bottom: 11px solid #C7C7C7;
+  border-right: 9px solid transparent;
+  border-left: 9px solid transparent;
+  border-top: none;
+}
+.fa-warning:before, .fa-exclamation-triangle:before {
+  color: #E7141A;
+}
+
+
 /* index site-menu end */
