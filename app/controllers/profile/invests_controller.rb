@@ -16,6 +16,12 @@ class Profile::InvestsController < ApplicationController
     @fund_verify_photos  = @fund.fund_verify_photos
     fund_list_data = parse_list_data(@fund.line_csv.current_path)
     @fund_list_array = fund_list_data.last(5).reverse
+    if !session[@fund.id].nil?
+      @flag = @fund.private_check == 'public' ?  true : session[@fund.id]
+    else
+      @flag = @fund.private_check == 'public' ?  true : false
+    end
+    @flag = true if @fund.check_user_bid(current_user)
   end
 
 end
