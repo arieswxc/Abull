@@ -23,20 +23,20 @@
                     %section
                       %label.input
                         %i.icon-append.fa.fa-user
-                        %input{:name => "user[abstract]", :type => "text", :value => "#{resource.abstract}"}/
+                        %input{:name => "user[abstract]", :type => "text", :value => "#{current_user.abstract}"}/
                   %dt 昵称
                   %dd
                     %section
                       %label.input
                         %i.icon-append.fa.fa-user
-                        %input{:name => "user[username]", :placeholder => "Username", :type => "text", :value => "#{resource.username}"}/
+                        %input{:name => "user[username]", :placeholder => "昵称", :type => "text", :value => "#{current_user.username}"}/
                         %b.tooltip.tooltip-bottom-right 登录网站所用
                   %dt 邮箱
                   %dd
                     %section
                       %label.input
                         %i.icon-append.fa.fa-envelope
-                        %input{:name => "user[email]", :placeholder => "Email address", :type => "email", :value => "#{resource.email}"}/
+                        %input{:name => "user[email]", :placeholder => "电子邮箱", :type => "email", :value => "#{current_user.email}"}/
                         %b.tooltip.tooltip-bottom-right 验证账户所用
                 %button.btn-u.btn-u-default.ml100{:type => "reset"} 取消
                 %button.btn-u{:type => "submit"} 保存修改
