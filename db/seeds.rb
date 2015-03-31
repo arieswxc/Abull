@@ -12,11 +12,6 @@ AdminUser.create!(
   password_confirmation: 'password123', 
   role: "customer_service", 
   email: "foobar1@example.com")
-user = User.create!(
-  cell: '12345678901', 
-  password: 'password123', 
-  password_confirmation: 'password123', 
-  email: "foobar2@example.com")
 admin = User.create!(
   email: 'moerjie@molstr.com',
   password: 'mol6868068',
@@ -26,4 +21,3 @@ admin = User.create!(
   birthday: '2015-03-06',
   education: '博士')
 Account.create!(user_id: admin.id, balance: 0)
-Account.create!(user_id: user.id, balance: 0)
