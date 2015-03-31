@@ -38,7 +38,7 @@ function check_length(em){
         validate = false;
       }
     }
-    if (validate === true){
+    if (validate == true){
       zzToolTip(_self,"false");
     }
     // _self.setCustomValidity("");
@@ -49,7 +49,7 @@ function check_val(em){
     var _self = this;
     var tmpval = parseInt($(_self).val()) || 0;
     if (tmpval > 0) {
-      zzToolTip(_self,false);
+      zzToolTip(_self,"false");
     } else {
       zzToolTip(_self);
     }
