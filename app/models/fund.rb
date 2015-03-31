@@ -11,6 +11,8 @@ class Fund < ActiveRecord::Base
   validates :duration,  presence: true
   validates :expected_earning_rate, presence: true
   validates :expected_earning_rate, numericality: true
+  validates :management_fee,      presence: true
+  validates :management_fee,      numericality: true
   
   mount_uploader :line_csv, FundLineCsvUploader
 
