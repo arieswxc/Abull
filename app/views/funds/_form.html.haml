@@ -82,6 +82,13 @@
                 %option{:value => "#{index}", :selected => "#{'selected' if index == 30}"}= "#{index}"
             %i
           %span.input-group-addon  天
+    .form-group.text-center
+      .col-sm-2
+      .col-sm-4
+        %label 受托管理费（占超额业绩的）
+        .input-group
+          %input.form-control.text-center.numberic{:name => "fund[management_fee]",:maxlength => 3}
+          %span.input-group-addon  ％
     -# .form-group.text-center
     -#   .col-sm-2
     -#   .col-sm-4
