@@ -21,7 +21,11 @@ class InvestsController < ApplicationController
     else
       @flag = @fund.private_check == 'public' ?  true : false
     end
+
     @verify_photos = user.verify_photos
+    list_data = parse_list_data(user.line_csv.current_path)
+    @list_array = list_data.last(5).reverse
+    @fund_verify_photos  = @fund.fund_verify_photos
     @check_user_bid = @fund.check_user_bid(current_user)
   end
 
