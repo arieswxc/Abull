@@ -1,22 +1,23 @@
+- unless current_user.bank_card
+  .pb20.pt20.b-b.warn_tip
+    %em.red
+      首次提现，请先添加提现银行卡，请前往
+      %a.a1{:href => user_bank_card_path(current_user)}> 银行卡管理
+      进行添加
 = simple_form_for(@billing, url: withdrawn_user_account_path,html: {onsubmit: "return doCashout()"}) do |f|
-  - unless current_user.bank_card
-    .pb20.pt20.b-b.warn_tip
-      %em.red
-        首次提现，请先添加提现银行卡，请前往
-        %a.a1{:href => user_bank_card_path(current_user)}> 银行卡管理
-        进行添加
   .pz-info-2
+    / .ui-sub-form
+    /   %label.ui-label 账户余额
+    /   %em.h= current_user.account.balance
+    /   %em.unit 元
     .ui-sub-form
-      %label.ui-label 账户余额
-      %em.h= current_user.account.balance
-      %em.unit 元
+      %label.ui-label{:style => "width:100px;text-align:left;font-weight:100;line-height:40px"} 提现金额：
+      %input#money.ui-input.mr10.numberic{:name => "billing[amount]", :maxlength => "7",:style => "width:300px;margin-left: -100px"}/
+      %span 元
     .ui-sub-form
-      %label.ui-label 提现金额
-      %input#money.ui-input.mr10.numberic{:name => "billing[amount]", :maxlength => "7"}/
-    .ui-sub-form
-      %label.ui-label 提现银行卡
+      %label.ui-label{:style => "width:100px;text-align:left;font-weight:100"} 提现银行卡
       - unless current_user.bank_card
-        %label
+        %label{:style => "margin-left:-100px"}
           还没有添加银行卡
           %a.a1{:href => user_bank_card_path(current_user)}> 银行卡管理
       - else
@@ -27,7 +28,7 @@
     -#   %input#password.ui-input.mr10{:type => "password"}/
     -#   %a.blue{:href => "http://www.yztz.com/user/security.htm"} 忘记密码
     .ui-sub-form{:style => "padding-top:10px;"}
-      %input#withdrawBtn.btn.btn-l{:type => "submit", :value => "提交"}/
+      %input#withdrawBtn.btn.btn-l{:type => "submit", :value => "提交", :style => "width:100px;background:red;color:white"}/
   .uc-ext-desc.mb20
     .uc-ext-desc-item.clearfix
       %ul
