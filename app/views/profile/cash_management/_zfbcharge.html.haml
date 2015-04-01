@@ -1,18 +1,18 @@
 #alipay1{:style => "padding:20px 50px 50px;"}
   %div{:style => "height:40px; line-height:40px; padding:10px 0 30px;"}
     %img{:src => asset_path('alipay.jpg'), :style => "float:left; margin-left:-25px;"}/
-    %em{:style => "color:#B20000;"} 支付宝转账（手机转账0手续费）
+    %em{:style => "color:red;"} 支付宝转账（手机转账0手续费）
   %div{:style => "padding-bottom:20px;"}
     %table{:width => "100%"}
       %tbody
         %tr
-          %td{:align => "right", :style => "font-size:16px; padding-right:15px;", :width => "100"} 支付宝账号
+          %td{:align => "right", :style => "font-size:14px; padding-right:15px;", :width => "100"} 支付宝账号：
           %td{:style => "padding:15px 0;"}
-            %input#alipayName.ui-input{:name => "alipayName", :style => " width:200px; padding:7px;", :type => "text"}/
+            %input#alipayName.ui-input{:name => "alipayName", :style => " width:250px; padding:7px;", :type => "text"}/
         %tr
-          %td{:align => "right", :style => "font-size:16px; padding-right:15px;"} 充值金额
+          %td{:align => "right", :style => "font-size:14px; padding-right:15px;"} 充值金额：
           %td{:style => "padding:15px 0;"}
-            %input#alimoney.ui-input.numberic{:name => "money", :style => " width:200px; padding:7px;", :type => "text",:maxlength => "7"}/
+            %input#alimoney.ui-input.numberic{:name => "money", :style => " width:250px; padding:7px;", :type => "text",:maxlength => "7"}/
             %input#alicharge{:name => "charge", :type => "hidden", :value => "0"}/
         %tr
           %td
@@ -59,10 +59,11 @@
             %a.zfb{:href => "https://shenghuo.alipay.com/send/payment/fill.htm?_tosheet=true&_pdType=afcabecbafgggffdhjch", :target => "_blank"}
               %img{:src => asset_path("alipay.jpg"), :style => "display:block;"}/
 %div
-  %div{:style => "height:40px; line-height:40px; font-size:16px; padding:15px 30px 0; border-top:1px dashed #CCCCCC;"}
+  %div{:style => "height:90px; font-size:16px; padding:15px 30px 0 66px; border-top:1px dashed #CCCCCC;"}
     到账时间
-    %span{:style => "color:#B20000; padding-left:20px; font-size:12px;"} 如需马上到账或长时间未到账，可拨打客服电话：400-8888-566
-  %div{:style => "padding:0px 30px 40px;"}
-    %ul
-      %li ·  08:30 - 20:30 （30分钟内到账）
-      %li ·  20:30 以后     （次日09:00前到账）
+    %div
+      %ul.pl60
+        %li ·  08:30 - 20:30 （30分钟内到账）
+        %li ·  20:30 以后     （次日09:00前到账）
+  %div
+    %span{:style => "color:#B20000; padding-left:66px; font-size:12px;"} * 如需马上到账或长时间未到账，可拨打客服电话：400-8888-566

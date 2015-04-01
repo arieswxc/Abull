@@ -1010,8 +1010,8 @@ em.unit {
   padding: 2px 5px;
   width: 88px;
   font-size: 14px;
-  height: 20px;
-  line-height: 20px;
+  height: 40px;
+  line-height: 40px;
   border-radius: 2px;
 }
 .sel-b {
@@ -1066,10 +1066,20 @@ a.ui-side-sub-item-link:hover {
   background: #FF8589;
 }
 .ui-side-sub-item.active a.ui-side-sub-item-link, .ui-side-sub-item.active a.ui-side-sub-item-link:hover {
-  background: #FF8589;
+  border-left: 3px solid red;
+  color: red;
+  background:transparent;
 }
 a.ui-side-sub-item-link {
   color: #626262;
+  display: block;
+  margin-left: 0;
+  padding-left: 0;
+  text-align: center;
+  height: 36px;
+  line-height: 36px;
+  cursor: pointer;
+  border-bottom: 1px solid #f2f2f2;
 }
 .timeline-v2 > li .cbp_tmlabel {
   background: #CFCFCF;
@@ -1137,5 +1147,21 @@ img.picloader {
 .footer-v1 .footer {
   padding: 20px 0 5px;
 }
-
+.tab-v2 .nav-tabs li.active a{
+  font-size: 16px;
+  color: red;
+  background: #fff;
+  padding: 7px 15px 9px;
+  border: none;
+  border-bottom: none;
+  border-bottom: solid 2px #e7141a !important;
+}
+#aliSubmitBtn{
+  background: red;
+  color: #fff;
+  width: 100px;
+}
+form#new_billing{
+  margin: 50px 0 50px 60px;
+}
 /* index site-menu end */
