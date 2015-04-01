@@ -1,10 +1,9 @@
 %tr
   %td= billing.created_at.to_date
   %td= billing.billing_number
-  %td= billing.account.user.username if billing.account &&  billing.account.user
+  -# %td= billing.account.user.username if billing.account &&  billing.account.user
   %td= billing.billing_type
   %td= billing.amount
-  %td= billing.billable_type
-  %td= billing.billable_id
-  %td= billing.state
+  %td
+  %td= t(billing.state)
   %td= link_to '在线支付', 'javascript:;','data-index': billing.id  if billing.billing_type == "Third"

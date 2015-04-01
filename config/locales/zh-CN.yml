@@ -4,12 +4,12 @@ zh-CN:
     models:
       admin_user: 后台用户
       user: 用户
-      fund: 发标
+      fund: 操盘
       topic: 话题
       comment: 评论
       follow: 关注
       homs_account: HOMS账号
-      invest: 投标
+      invest: 投资
       leverage: 配资
       news: 动态
       photo: 照片
@@ -56,8 +56,8 @@ zh-CN:
         invest_ending_date: 操盘结束时间
         expected_earning_rate: 预期年化收益率
         state: 状态
-        user_id: 发标人
-        user: 发标人
+        user_id: 操盘人
+        user: 操盘人
         earning: 收益
         earning_rate: 收益率
         initial_amount: 初始募集数额
@@ -84,12 +84,12 @@ zh-CN:
         follower_id: 关注id
         follower_type: 关注类型
       invest:
-        user_id: 投标人
-        user: 投标人
-        fund_id: 发标
+        user_id: 投资人
+        user: 投资人
+        fund_id: 操盘
         amount: 投资数额
         initial_amount: 初始募集数额
-        date: 投标时间
+        date: 投资时间
         payback: 回报
         close_day: 清算日期
         created_at: 创建日期
@@ -97,7 +97,7 @@ zh-CN:
       homs_account:
         title: 账号名
         password: 密码
-        fund_id: 发标
+        fund_id: 操盘
         created_at: 创建日期
         updated_at: 更新日期
       leverage:
