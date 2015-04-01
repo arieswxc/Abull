@@ -4,7 +4,9 @@ ActiveAdmin.register Account do
   index do
     selectable_column
     id_column
-    column :user_id
+    column :user do |account|
+      account.user.username
+    end
     column :balance
     column :frost
     column :created_at
@@ -19,7 +21,7 @@ ActiveAdmin.register Account do
   show do |account|
     attributes_table  do 
       row('用户id') do 
-        link_to account.user_id, admin_user_path(account.user_id)
+        link_to account.user.username, admin_user_path(account.user_id)
       end
       row :balance
       row :created_at
