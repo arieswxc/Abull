@@ -13,25 +13,26 @@
           %td{:align => "right", :style => "font-size:14px; padding-right:15px;"} 充值金额：
           %td{:style => "padding:15px 0;"}
             %input#alimoney.ui-input.numberic{:name => "money", :style => " width:250px; padding:7px;", :type => "text",:maxlength => "7"}/
+            %span 元
             %input#alicharge{:name => "charge", :type => "hidden", :value => "0"}/
         %tr
           %td
           %td{:style => "padding:15px 0;"}
             %input#aliSubmitBtn.btn.btn-l{:onclick => "doAliCharge();", :type => "button", :value => "下一步"}/
 #alipay2{:style => "padding:40px 0 0; display:none;"}
-  %div{:style => "padding:20px 0; background:#F8F8F8;"}
+  %div{:style => "padding:20px 0; background:#F8F8F8;border-bottom: 1px solid #efefef;"}
     %table{:width => "100%"}
       %tbody
         %tr
           %td{:align => "right", :width => "200"} 收款人支付宝账户：
           %td{:style => "padding:0 20px;"}
             / 17178@yztz.com
-            %a#popBtn.ml15{"data-clipboard-target" => "popText", :href => "javascript:;"} 复制
+            %a#popBtn{"data-clipboard-target" => "popText", :href => "javascript:;"} 复制
             %input#popText{:type => "hidden", :value => "17178@yztz.com"}/
         %tr
           %td{:align => "right"} 账户名称：
           %td{:style => "padding:0 20px;"} 臣乾金融信息服务（上海）有限公司
-  %div{:style => "padding:20px 0;"}
+  %div{:style => "padding:20px 0; background:#F8F8F8;border-bottom: 1px solid #efefef;"}
     %table{:width => "100%"}
       %tbody
         %tr
@@ -44,7 +45,7 @@
             %em#u_money{:style => "color:#B30606;"}> 100
             元
             %a{:href => "javascript:;", :onclick => "toAliCharge();", :style => "margin-left:40px;"} 修改金额
-  %div{:style => "padding:0 0 60px;"}
+  %div{:style => "padding:0 0 60px;background:#F8F8F8;"}
     %table{:width => "100%"}
       %tbody
         %tr
