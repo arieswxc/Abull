@@ -1,9 +1,10 @@
 ActiveAdmin.register Billing do
-  permit_params :account_id, :amount, :billing_type, :billable_type, :billable_id, :state
+  permit_params :account_id, :amount, :billing_type, :billable_type, :billable_id, :state, :billing_number
 
   show do |billing|
     attributes_table do
       row :id
+      row :billing_number
       row :account_id
       row :amount
       row :billing_type

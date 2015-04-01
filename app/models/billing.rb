@@ -16,4 +16,8 @@ class Billing < ActiveRecord::Base
       transition :pending => :denied
     end
   end
+
+  after_save do
+    update_column(:billing_number, (DateTime.now.strftime(" %Y%m%d%H%M%S%L") + self.id.to_s)) if self.billing_number.nil?
+  end
 end

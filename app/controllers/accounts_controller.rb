@@ -91,8 +91,8 @@ class AccountsController < ApplicationController
       hashed_params[:service]             = "create_direct_pay_by_user"
       hashed_params[:partner]             = "201501131139398055"
       hashed_params[:sign_type]           = "MD5"
-      hashed_params[:notify_url]          = 'http://localhost:3000/online_service'
-      hashed_params[:return_url]          = 'http://localhost:3000/notify_service'
+      hashed_params[:notify_url]          = 'http://www.molstr.com/notify_url'
+      hashed_params[:return_url]          = 'http://www.molstr.com/return_url'
       hashed_params[:error_notify_url]    = ""
 
       # 反钓鱼用参数
@@ -101,7 +101,7 @@ class AccountsController < ApplicationController
       hashed_params[:exter_invoke_ip]     = current_user ? current_user.current_sign_in_ip : ""
 
       # 易八通合作商户网站唯一订单号
-      hashed_params[:out_trade_no]        = billing.id
+      hashed_params[:out_trade_no]        = billing.billing_number
       hashed_params[:subject]             = billing.billing_type
       hashed_params[:payment_type]        = "1"
 
