@@ -101,6 +101,7 @@ zh-CN:
         fund_id: 操盘
         created_at: 创建日期
         updated_at: 更新日期
+        amount: 金额
       leverage:
         user_id: 用户
         user: 用户
