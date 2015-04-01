@@ -16,6 +16,7 @@ zh-CN:
       interest: 利率
       account: 账户
       bank_card: 银行卡
+      billing: 账单
     attributes:
       admin_user:
         email: 电子邮件
@@ -152,6 +153,18 @@ zh-CN:
         bank_branch: 支行
         number: 卡号
         state: 状态
+        created_at: 创建日期
+        updated_at: 更新日期
+      billing:
+        account_id: 账户
+        amount: 金额
+        billing_type: 账单类型
+        billable_type: 关联类型
+        billable_id: 关联id
+        state: 状态
+        created_at: 创建日期
+        updated_at: 更新日期
+        billing_number: 账单号
   formtastic:
     yes: "YES"
     no: "NO"
@@ -180,3 +193,6 @@ zh-CN:
   bank branch: 开户银行所在分行
   state: 状态
   edit: 编辑
+  pending: 待定
+  confirmed: 已确认
+  deny: 拒绝
