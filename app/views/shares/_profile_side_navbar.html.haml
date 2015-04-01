@@ -17,7 +17,8 @@
     .mb30.bg-gray.input-image-wrapper.width-all
       .input.input-file.input-image.pointer
         .button
-          %input#selectAvatarBtn{:type =>"file", :multiple => "", :accept => "image/*"} 更换头像
+          %input#selectAvatarBtn{:type =>"file", :multiple => "", :accept => "image/*"}/
+          更换头像
   #sidebar.ui-side.ui-side-withicon
     %ul.ui-side-list.nav.nav-list.bs-docs-sidenav
       %li{:class => "ui-side-item first #{'active' if activeItem=='user'}"}
