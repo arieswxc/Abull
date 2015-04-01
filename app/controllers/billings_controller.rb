@@ -70,7 +70,7 @@ class BillingsController < ApplicationController
     hashed_params[:show_url]            = ""
     hashed_params[:pay_method]          = "bankPay"
     hashed_params[:default_bank]        = ""
-    
+
     hashed_params[:input_charset]       = "utf-8"
     hashed_params[:royalty_parameters]  = ""
     hashed_params[:royalty_type]        = ""
@@ -81,11 +81,12 @@ class BillingsController < ApplicationController
       p_string = p_string + ( show ? "#{key}=#{value}" : "&#{key}=#{value}")
       show = false
     end
-    
+
     hashed_params[:sign]                = Digest::MD5.hexdigest(p_string + key)
     @params = hashed_params
     uri.query                           = URI.encode_www_form(hashed_params)
     @uri = uri
+    render json: {url: uri.to_s}
     # res                                 = Net::HTTP.get_response(uri)
   end
 

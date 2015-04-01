@@ -20,6 +20,29 @@
                   %th 金额
                   %th Billable Type
                   %th Billable id
+                  %th 状态
                   %th 在线付款
                 %tbody
                   = render @billings
+
+= render "profile/cash_management/charge_confirm"
+
+:javascript
+  $(function(){
+    $("#billings a").click(function(){
+      var index = this.dataset.index;
+      $.ajax({
+        url: "/billings/"+index+"/realtime_trade",
+        type: 'get',
+        // contentType: false,
+        // processData: false,
+        success: function(data){
+          window.open(data.url,'_blank');
+          $("#chargeConfirm").modal();
+        },
+        error: function(){
+          alert("系统繁忙，请稍后再试...");
+        }
+      })
+    });
+  });

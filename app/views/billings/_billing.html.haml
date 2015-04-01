@@ -7,4 +7,4 @@
   %td= billing.billable_type
   %td= billing.billable_id
   %td= billing.state
-  %td= link_to '在线支付', realtime_trade_billing_path(billing)  if billing.billing_type == "Third"
+  %td= link_to '在线支付', 'javascript:;','data-index': billing.id  if billing.billing_type == "Third"
