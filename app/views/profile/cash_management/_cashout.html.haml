@@ -81,7 +81,7 @@
     var myBalance = parseFloat("#{current_user.account.balance}");
     if (parseFloat(m) > myBalance) {
       if(confirm("您余额不足，请充值，确认充值？")){
-        window.open("#{bankcard_charge_user_account_path(current_user)}");
+        window.open("#{bankcard_charge_user_account_path(current_user)}",'_blank');
       }
       return false;
     }

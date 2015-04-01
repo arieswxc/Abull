@@ -1,81 +1,81 @@
-%body
-  .nav-box
-    %header.sl-header.ng-scope
-      %nav.navbar.navbar-inverse.navbar-static-top.site-nav
-        .container
-          / Contact info
-          %ul.nav.navbar-nav.site-nav-sns
-            %li.site-nav-sns-phone
-              %span.navbar-text 客服热线：400-108-8182
+
+.nav-box
+  %header.sl-header.ng-scope
+    %nav.navbar.navbar-inverse.navbar-static-top.site-nav
+      .container
+        / Contact info
+        %ul.nav.navbar-nav.site-nav-sns
+          %li.site-nav-sns-phone
+            %span.navbar-text 客服热线：400-108-8182
+          %li
+            %a.icon-sns.qq{:href => "#"}
+              .social-content
+                %p.social-title 摩尔街官方QQ群
+                %p 425047714
+          %li
+            %a.icon-sns.weibo{:href => "http://weibo.com/molstr", :rel => "nofollow", :target => "_blank"}
+          %li
+            %a.icon-sns.wechat{:href => "#"}
+              .social-content
+                %p.social-title 扫描关注微信公众号
+                %p
+                  %img{:src => asset_path("qr-code.jpg")}/
+        %ul#nonLoginBar.nav.navbar-nav.navbar-right.navbar-sm.site-nav-login.ng-scope
+          - if user_signed_in?
             %li
-              %a.icon-sns.qq{:href => "#"}
-                .social-content
-                  %p.social-title 摩尔街官方QQ群
-                  %p 425047714
+              = link_to(current_user.cell,user_path(current_user),id: "login-panel",class: "btn btn-sm",rel: "nofollow")
             %li
-              %a.icon-sns.weibo{:href => "http://weibo.com/molstr", :rel => "nofollow", :target => "_blank"}
+              = link_to "登出", destroy_user_session_path, :method => :delete, :id => "sign-out"
+          - else
             %li
-              %a.icon-sns.wechat{:href => "#"}
-                .social-content
-                  %p.social-title 扫描关注微信公众号
-                  %p
-                    %img{:src => asset_path("qr-code.jpg")}/
-          %ul#nonLoginBar.nav.navbar-nav.navbar-right.navbar-sm.site-nav-login.ng-scope
-            - if user_signed_in?
-              %li
-                = link_to(current_user.cell,user_path(current_user),id: "login-panel",class: "btn btn-sm",rel: "nofollow")
-              %li
-                = link_to "登出", destroy_user_session_path, :method => :delete, :id => "sign-out"
-            - else
-              %li
-                = link_to("登录",new_user_session_path,id: "login-panel",class: "btn btn-sm",rel: "nofollow")
-              %li
-                = link_to("注册账户",new_user_registration_path,id: "create-account",class: "btn btn-sm",rel: "nofollow")
-        :javascript
-          jQuery(document).ready(function() {
-            $(".nav.navbar-nav > li > a").hover(function(){
-          		$(this).children().each(function() {
-          			if ($(this).hasClass("social-content")) {
-          				$(this).toggle(true);
-          			}
-          		})
-          	},function() {
-          		$(this).children().each(function() {
-          			if ($(this).hasClass("social-content")) {
-          				$(this).toggle(false);
-          			}
-          		})
-          	});
-          });
-    .header
-      .navbar.navbar-default.mega-menu{:role => "navigation"}
-        .container
-          / Brand and toggle get grouped for better mobile display
-          .navbar-header.pl20
-            %button.navbar-toggle{"data-target" => ".navbar-responsive-collapse", "data-toggle" => "collapse", :type => "button"}
-              %span.sr-only Toggle navigation
-              %span.fa.fa-bars
-            %a.navbar-brand{:href => "/"}
-              %img#logo-header{:alt => "Logo", :src => asset_path("logo.png")}/
-          / Collect the nav links, forms, and other content for toggling
-          .collapse.navbar-collapse.navbar-responsive-collapse.nav-menu
-            %ul.nav.navbar-nav
-              %li{:class => "#{'active' if @navItem == 'home'}"}= link_to "首页",root_path
-              %li{:class => "#{'active' if @navItem == 'funds'}"}= link_to "我要投标",funds_path
-              %li{:class => "#{'active' if @navItem == 'fund_new'}"}
-                - if user_signed_in?
-                  = link_to "我要发标",new_fund_path
-                - else
-                  = link_to "我要发标",funds_welcome_index_path
-              -# %li{:class => "#{'active' if @navItem == 'leverage_new'}"}= link_to "我要配资",new_leverage_path
-              -# %li{:class => "#{'active' if @navItem == 'topics'}"}= link_to "交流互动",topics_path/*cap1*/
-              %li.dropdown{:class => "#{'active' if @navItem == 'pages'}"}
-                %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "javascript:void(0);"}
-                  关于我们
-                %ul.dropdown-menu
-                  %li= link_to "公司简介",page_path("about/about_us")
-                  %li= link_to "员工风采",page_path("about/about_staff")
-                  %li= link_to "团队介绍",page_path("about/our_team")
-                  %li= link_to "资质荣誉",page_path("about/qualification_and_honors")
-                  %li= link_to "媒体报道",page_path("about/media_reports")
-                  %li= link_to "大事记",page_path("about/our_events")
+              = link_to("登录",new_user_session_path,id: "login-panel",class: "btn btn-sm",rel: "nofollow")
+            %li
+              = link_to("注册账户",new_user_registration_path,id: "create-account",class: "btn btn-sm",rel: "nofollow")
+      :javascript
+        jQuery(document).ready(function() {
+          $(".nav.navbar-nav > li > a").hover(function(){
+        		$(this).children().each(function() {
+        			if ($(this).hasClass("social-content")) {
+        				$(this).toggle(true);
+        			}
+        		})
+        	},function() {
+        		$(this).children().each(function() {
+        			if ($(this).hasClass("social-content")) {
+        				$(this).toggle(false);
+        			}
+        		})
+        	});
+        });
+  .header
+    .navbar.navbar-default.mega-menu{:role => "navigation"}
+      .container
+        / Brand and toggle get grouped for better mobile display
+        .navbar-header.pl20
+          %button.navbar-toggle{"data-target" => ".navbar-responsive-collapse", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            %span.fa.fa-bars
+          %a.navbar-brand{:href => "/"}
+            %img#logo-header{:alt => "Logo", :src => asset_path("logo.png")}/
+        / Collect the nav links, forms, and other content for toggling
+        .collapse.navbar-collapse.navbar-responsive-collapse.nav-menu
+          %ul.nav.navbar-nav
+            %li{:class => "#{'active' if @navItem == 'home'}"}= link_to "首页",root_path
+            %li{:class => "#{'active' if @navItem == 'funds'}"}= link_to "我要投标",funds_path
+            %li{:class => "#{'active' if @navItem == 'fund_new'}"}
+              - if user_signed_in?
+                = link_to "我要发标",new_fund_path
+              - else
+                = link_to "我要发标",funds_welcome_index_path
+            -# %li{:class => "#{'active' if @navItem == 'leverage_new'}"}= link_to "我要配资",new_leverage_path
+            -# %li{:class => "#{'active' if @navItem == 'topics'}"}= link_to "交流互动",topics_path/*cap1*/
+            %li.dropdown{:class => "#{'active' if @navItem == 'pages'}"}
+              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "javascript:void(0);"}
+                关于我们
+              %ul.dropdown-menu
+                %li= link_to "公司简介",page_path("about/about_us")
+                %li= link_to "员工风采",page_path("about/about_staff")
+                %li= link_to "团队介绍",page_path("about/our_team")
+                %li= link_to "资质荣誉",page_path("about/qualification_and_honors")
+                %li= link_to "媒体报道",page_path("about/media_reports")
+                %li= link_to "大事记",page_path("about/our_events")

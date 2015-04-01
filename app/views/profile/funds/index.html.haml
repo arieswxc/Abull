@@ -17,7 +17,7 @@
     $("#profile-fund-show tbody tr").click(function() {
 
       var invest_id = this.dataset.index;
-      window.open("/users/" + "#{current_user.id}" +"/funds/" + invest_id);
+      window.open("/users/" + "#{current_user.id}" +"/funds/" + invest_id,'_blank');
     });
     $("#profile-fund-show tbody tr").addClass("pointer");
   });

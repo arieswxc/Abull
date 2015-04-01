@@ -31,13 +31,22 @@
   $(function(){
     $("#billings a").click(function(){
       var index = this.dataset.index;
+      var newTab=window.open('about:blank');
       $.ajax({
         url: "/billings/"+index+"/realtime_trade",
         type: 'get',
         // contentType: false,
         // processData: false,
         success: function(data){
-          window.open(data.url,'_blank');
+          if(!newTab){
+            alert("弹出的订单处理窗口被阻止了，请手动设置允许此窗口被打开。");
+          }else{
+            try{
+              newTab.location.href=data.url;
+            }catch(exp){
+              alert("弹出的订单处理窗口被手动关闭了");
+            }
+          }
           $("#chargeConfirm").modal();
         },
         error: function(){
