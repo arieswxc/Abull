@@ -87,7 +87,9 @@ ActiveAdmin.register Fund do
           link_to t('Confirm'), confirm_fund_admin_fund_path(fund), :method => :put, :class => 'button'
         end
         row('拒绝发标申请')  do 
-          link_to t('Reject'), deny_fund_admin_fund_path(fund), :method => :get, :class => 'button'
+          if fund.state == 'applied'
+            link_to t('Reject'), deny_fund_admin_fund_path(fund), :method => :get, :class => 'button'
+          end
         end          
         row('填写拒绝原因')  do
           if fund.state == 'denied'
