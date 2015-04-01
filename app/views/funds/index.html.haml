@@ -65,7 +65,7 @@
   $(function(){
     $("table tbody tr").click(function() {
       // if (this.dataset.state === 'gathering') {
-        var invest_id = this.dataset.index;
+        var invest_id = $(this).attr("data-index");
         window.location.href = "/funds/" + invest_id + "/invests/new";
       // }
     });
