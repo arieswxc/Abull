@@ -41,11 +41,11 @@
       %li{:class => "ui-side-item #{'active' if activeItem=='invest'}"}
         = link_to(user_invests_path(current_user),class: "ui-side-item-link pt0") do
           %i.glyphicon.glyphicon-usd.index.mr10.ml10>
-          投标管理
+          投资管理
       %li{:class => "ui-side-item #{'active' if activeItem=='fund'}"}
         = link_to(user_funds_path(current_user),class: "ui-side-item-link pt0") do
           %i.glyphicon.glyphicon-usd.index.mr10.ml10>
-          发标管理
+          操盘管理
       -# %li{:class => "ui-side-item #{'active' if activeItem=='leverage'}"}
       -#   = link_to(user_leverages_path(current_user),class: "ui-side-item-link pt0") do
       -#     %i.glyphicon.glyphicon-usd.index.mr10.ml10>

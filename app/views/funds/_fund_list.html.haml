@@ -52,7 +52,7 @@
         - unless @current=="xxx"
           %td
             - if f.state == "gathering"
-              = link_to "我要投标","javascript:;",class: "btn-u btn-u-xs btn-u-blue" unless @invest
+              = link_to "我要投资","javascript:;",class: "btn-u btn-u-xs btn-u-blue" unless @invest
             - elsif f.state == "reached"
               = link_to "已投满","javascript:;",class: "btn-u btn-u-xs btn-u-default" unless @invest
         - else
