@@ -22,8 +22,8 @@
       contentType: false,
       processData: false,
       success: function (data) {
-        var invest_ctx = $("#invest_chart").get(0).getContext("2d");
-        var fund_ctx = $("#fund_chart").get(0).getContext("2d");
+        var invest_ctx = $("#invest_chart")[0].getContext("2d");
+        var fund_ctx = $("#fund_chart")[0].getContext("2d");
         // var leverage_ctx = $("#leverage_chart").get(0).getContext("2d");
         // data = {
         //   invest_data: {

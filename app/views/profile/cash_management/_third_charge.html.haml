@@ -17,9 +17,11 @@
       var m = $("input[name='billing[amount]']").val();
       if (m < 1){
         alert("充值必须大于等于1元");
+        e.preventDefault();
         return;
       }
       postData.append('billing[amount]', m);
+      var newTab=window.open('about:blank');
       $.ajax({
         data: postData,
         url: "/users/#{current_user.id}/account/third_charged",
@@ -27,7 +29,15 @@
         contentType: false,
         processData: false,
         success: function(data){
-          window.open(data.url,"_blank");
+          if(!newTab){
+            alert("弹出的订单处理窗口被阻止了，请手动设置允许此窗口被打开。");
+          }else{
+            try{
+              newTab.location.href=data.url;
+            }catch(exp){
+              alert("弹出的订单处理窗口被手动关闭了");
+            }
+          }
           $("#chargeConfirm").modal();
         },
         error: function(){
