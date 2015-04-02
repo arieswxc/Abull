@@ -5,7 +5,7 @@ class RegistrationsController < Devise::RegistrationsController
   after_filter :add_three_photos
 
   def create
-    if session[:code] != params[:verification_code].to_i
+    if session[params[:user][:cell].to_i] != params[:verification_code].to_i
       flash[:notice] = "验证码错误"
       redirect_to new_registration_path(resource_name)
     elsif User.find_by(username: params[:user][:username])

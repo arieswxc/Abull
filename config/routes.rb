@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     get :get_history_data, on: :member
     get :show_history_data, on: :member
     get :edit_password, on: :member
+    get :forget_password_edit, on: :collection
+    
     patch :reset_password, on: :collection
     resource :bank_card
     resource :account do

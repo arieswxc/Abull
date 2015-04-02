@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   after_action :send_email, only: [:create]
-  before_action :authenticate_user!, except: [:generate_verification_code, :update_password, :get_history_data]
+  before_action :authenticate_user!, except: [:generate_verification_code, :update_password, :get_history_data, :forget_password_edit]
 
   def investor_apply
     @user = User.find(params[:id])
@@ -76,21 +76,25 @@ class UsersController < ApplicationController
 
   def generate_verification_code
     code      = rand(100000..999999)
-    session[:code] = code
-    batch_code  = send_sms(code, params[:cell])
+    session[params[:cell].to_i] = code
+    msg = "欢迎注册摩尔街账户，您的验证码为#{code},请在注册页面填写【bull】"
+    msg = "你的验证码为#{code}" if params[:forget_pswd].to_i == 1
+    batch_code  = send_sms(code, params[:cell], msg)
 
-    if batch_code
+    if params[:forget_pswd].to_i == 1
+      render "forget_password_edit"
+    elsif batch_code
       render json: {message: 'success'}
     else
       render json: {error: 'failed'}
     end
   end
 
-  #忘记密码，短信发送新密码接口
+  #忘记密码，更新密码接口
   def update_password
     user = User.find_by(cell: params[:user][:cell].to_i)
-    if user
-      user.reset_password(params[:user][:cell])
+    if user && session[params[:user][:cell].to_i] == params[:user][:code].to_i
+      user.reset_password(params[:user][:password])
     end
     redirect_to root_path
   end
@@ -154,6 +158,9 @@ class UsersController < ApplicationController
 
   end
 
+  def forget_password_edit
+  end
+
   private
     def user_params
       params.require(:user).permit(
@@ -171,9 +178,9 @@ class UsersController < ApplicationController
       UserMailer.welcome_email(@user).deliver_now
     end
 
-    def send_sms(code, cell)
+    def send_sms(code, cell, msg)
       uri       = URI.parse("http://222.73.117.158:80/msg/HttpBatchSendSM")
-      msg       = "欢迎注册摩尔街账户，您的激活码为#{code},请在注册页面填写【bull】"
+      # msg       = "欢迎注册摩尔街账户，您的验证码为#{code},请在注册页面填写【bull】"
       username  = 'zxnicv'
       password  = 'Txb123456'
       puts "激活码为 #{code}"

@@ -90,22 +90,20 @@ class User < ActiveRecord::Base
   end
 
   #重置密码
-  def reset_password(cell)
-    password = 'a' + rand(1000000..9999999).to_s
+  def reset_password(password)
     self.password = password
     self.save
-    send_password(cell, password)
   end
 
   private
-    def send_password(cell, account_password)
-      uri       = URI.parse("http://222.73.117.158:80/msg/HttpBatchSendSM")
-      msg       = "新的账户密码为#{account_password},请及时登陆摩尔街来修改帐号密码"
-      username  = 'zxnicv'
-      password  = 'Txb123456'
+    # def send_password(cell, account_password)
+    #   uri       = URI.parse("http://222.73.117.158:80/msg/HttpBatchSendSM")
+    #   msg       = "新的账户密码为#{account_password},请及时登陆摩尔街来修改帐号密码"
+    #   username  = 'zxnicv'
+    #   password  = 'Txb123456'
 
-      res = Net::HTTP.post_form(uri, account: username, pswd: password, mobile: cell, msg: msg, needstatus: true)
-      res.body.split[1]
-    end
+    #   res = Net::HTTP.post_form(uri, account: username, pswd: password, mobile: cell, msg: msg, needstatus: true)
+    #   res.body.split[1]
+    # end
 
 end
