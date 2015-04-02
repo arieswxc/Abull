@@ -94,17 +94,17 @@
         $('#avatarModal').show();
         $('#user-pic-des').hide();
         var uploadView = $("#upload_component")[0];
-        if (uploadView.files === undefined || uploadView.files.length === 0){
+        // if (uploadView.files === undefined || uploadView.files.length === 0){
             // var parentView = uploadView.get('parentView');
             image.crossOrigin="anonymous";
-            image.src = "#{current_user.avatar.url}";
-        }
+            image.src = $("#avatar-img")[0].src;
+        // }
     }
 
     //模态窗口关闭时清除数据
     function avatarModalClear(){
         theSelection.init(50, 50, 100, 100);
-        drawScene();
+        // drawScene();
         $('#avatarModal').hide();
     }
 
@@ -167,6 +167,7 @@
 
     function getResults() {
         //获取图片大小
+
         var result_img = document.getElementById('avatar-pre');
         var result_ctx = result_img.getContext('2d');
         var imgWidth = result_img.width;
@@ -177,6 +178,7 @@
         var uploadView = $('#upload_component')[0];
         // var parentView = uploadView.get('parentView');
         avatarData = vData;
+
     }
 
     function initCanvas(){
@@ -221,6 +223,15 @@
       $("#user-pic-des").show();
     });
 
+    $('#upload_component').bind('change',function(){
+      var reader = new window.FileReader();
+      reader.onload = function(value) {
+        image.src = value.target.result;
+        initCanvas();
+      },
+      reader.readAsDataURL(this.files[0]);
+    });
+
     $('#user-pic-des,#avatar-img,#selectAvatarBtn').on('click',function(){
         avatarModalInit();
     });
@@ -232,6 +243,7 @@
         avatarModalClear();
         var data = new FormData();
         data.append('avatar', avatarData);
+        console.log(avatarData);
         alert('正在上传请稍候...');
         $.ajax({
           data:data,
