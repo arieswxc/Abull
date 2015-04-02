@@ -5,7 +5,7 @@ require 'active_support/all'
 
 class BillingsController < ApplicationController
   def index
-    @billings = current_user.account.billings.order(id: :desc)
+    @billings = current_user.account.billings.order(id: :desc).where.not(billing_type: ["To Frost", "From Balance", "From Frost", "To Balance"], state: "cancelled")
   end
 
   def order_result_query
@@ -36,6 +36,30 @@ class BillingsController < ApplicationController
         @state = true
       end
     end
+  end
+
+  def cancel_withdraw
+    billing = Billing.find(params[:id])
+    account = billing.account
+    billing_out = Billing.new(
+      account_id: account.id,
+      amount: billing.amount,
+      billing_type: "From Frost")
+    billing_in = Billing.new(
+      account_id: account.id,
+      amount: -billing.amount,
+      billing_type: "To Balance")
+    account.balance += billing_in.amount
+    account.frost += billing_out.amount
+    ActiveRecord::Base.transaction do
+      billing.cancel
+      billing_out.save
+      billing_in.save
+      billing_out.confirm
+      billing_in.confirm
+      account.save
+    end
+    redirect_to billings_path
   end
 
   def realtime_trade
