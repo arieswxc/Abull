@@ -9,8 +9,8 @@ var RevolutionSlider = function () {
 	            revapi = jQuery('.tp-banner').revolution(
 	            {
 	                delay:9000,
-	                startwidth:1170,
-	                startheight:350,
+	                startwidth:1100,
+	                startheight:370,
 	                hideThumbs:10,
                   navigationStyle:"preview4"
 	            });
@@ -24,7 +24,7 @@ var RevolutionSlider = function () {
 	           revapi = jQuery('.tp-banner').revolution(
 	            {
 	                delay:15000,
-	                startwidth:1170,
+	                startwidth:1100,
 	                startheight:350,
 	                hideThumbs:10,
 	                fullWidth:"off",
