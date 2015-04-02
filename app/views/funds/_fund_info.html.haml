@@ -26,7 +26,7 @@
           %td.formattime= @fund.invest_ending_date
         %tr
           %td= Fund.human_attribute_name('description')
-          %td= @fund.description
+          %td=raw @fund.description
         %tr
           %td= Fund.human_attribute_name('frontend_risk_method')
           %td= @fund.frontend_risk_method

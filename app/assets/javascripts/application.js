@@ -24,10 +24,14 @@ function check_length(em){
     var _self = this;
     var tmpval = $(_self).val().length;
     var validate = true;
+    if (!$(_self).attr('tooltip')){
+      $(_self).attr('tooltip','请填写该字段');
+    }
+    var tooltip = $(_self).attr('tooltip');
     if ($(_self).attr("maxlength")) {
       var  maxl = parseInt($(_self).attr("maxlength"));
       if (tmpval > maxl) {
-        zzToolTip(_self);
+        zzToolTip(_self,tooltip);
         validate = false;
         // _self.setCustomValidity($(_self).attr('tooltip')+"，当前字数"+tmpval);
       }
@@ -35,24 +39,61 @@ function check_length(em){
     if ($(_self).attr("minlength")) {
       var minl = parseInt($(_self).attr("minlength"));
       if (tmpval < minl) {
-        zzToolTip(_self);
+        zzToolTip(_self,tooltip);
         validate = false;
       }
     }
     if (validate == true){
-      zzToolTip(_self,"false");
+      zzToolTip(_self,tooltip,"false");
     }
     // _self.setCustomValidity("");
   });
 }
+function check_cke_length(em){
+  em.each(function(){
+    var _self = this;
+    var em_id = $(_self).attr('id');
+    var iframe_dom = $("#cke_" + em_id).find("iframe");
+    var tmpval = iframe_dom.contents().find("body").text().length;
+    if (!$(_self).attr('tooltip')){
+      $(_self).attr('tooltip','请填写该字段');
+    }
+    var tooltip = $(_self).attr('tooltip');
+    var validate = true;
+    if ($(_self).attr("maxlength")) {
+      var  maxl = parseInt($(_self).attr("maxlength"));
+      if (tmpval > maxl) {
+        zzToolTip(iframe_dom[0],tooltip);
+        validate = false;
+        // _self.setCustomValidity($(_self).attr('tooltip')+"，当前字数"+tmpval);
+      }
+    }
+    if ($(_self).attr("minlength")) {
+      var minl = parseInt($(_self).attr("minlength"));
+      if (tmpval < minl) {
+        zzToolTip(iframe_dom[0],tooltip);
+        validate = false;
+      }
+    }
+    if (validate == true){
+      zzToolTip(iframe_dom[0],tooltip,"false");
+    }
+    // _self.setCustomValidity("");
+  });
+}
+
 function check_val(em){
   em.each(function(){
     var _self = this;
     var tmpval = parseInt($(_self).val()) || 0;
+    if (!$(_self).attr('tooltip')){
+      $(_self).attr('tooltip','请填写该字段');
+    }
+    var tooltip = $(_self).attr('tooltip');
     if (tmpval > 0) {
-      zzToolTip(_self,"false");
+      zzToolTip(_self,tooltip,"false");
     } else {
-      zzToolTip(_self);
+      zzToolTip(_self,tooltip);
     }
   });
 }
@@ -67,20 +108,18 @@ function scrollToErr() {
   return true;
 }
 
-function zzToolTip(elem){
+function zzToolTip(elem,tooltip){
   var _self = elem;
-  if (arguments[1] && arguments[1] == "false"){
+  if (arguments[2] && arguments[2] == "false"){
     $(_self.parentNode).find('.zztooltip').stop(true,true);
     $(_self.parentNode).removeClass("state-error");
     $(_self.parentNode).find('.zztooltip').css({opacity:0});
     $(_self.parentNode).find('.zztooltip').hide();
   }else{
     $(_self.parentNode).addClass("state-error");
-    if (!$(_self).attr('tooltip')){
-      $(_self).attr('tooltip','请填写该字段');
-    }
+
     if ($(_self.parentNode).find('.zztooltip').length > 0){
-      $(_self.parentNode).find('.zztooltip').html("<i class='fa fa-exclamation-triangle'></i>  "+$(_self).attr('tooltip'));
+      $(_self.parentNode).find('.zztooltip').html("<i class='fa fa-exclamation-triangle'></i>  "+tooltip);
       $(_self.parentNode).find('.zztooltip').stop(true,true);
       $(_self.parentNode).find('.zztooltip').css({'opacity':1,'display':'block'});
       $(_self.parentNode).find('.zztooltip').animate({'opacity':0},3000);
@@ -88,7 +127,7 @@ function zzToolTip(elem){
         $(_self.parentNode).find('.zztooltip').hide();
       },3000);
     }else {
-      $(_self.parentNode).append("<div class='zztooltip'><i class='fa fa-exclamation-triangle'></i>  "+$(_self).attr('tooltip'));
+      $(_self.parentNode).append("<div class='zztooltip'><i class='fa fa-exclamation-triangle'></i>  "+tooltip);
       $(_self.parentNode).find('.zztooltip').css({'opacity':1,'display':'block'});
       var ptop = $(_self.parentNode).height() + 1;
       $(_self.parentNode).find('.zztooltip').css({'top': ptop + 'px'});
@@ -98,7 +137,10 @@ function zzToolTip(elem){
       },3000);
     }
   }
-  _self.setCustomValidity("");
+  if (_self.setCustomValidity){
+    _self.setCustomValidity("");
+  }
+
 }
 
 $.v = function(){
