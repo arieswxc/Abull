@@ -79,7 +79,7 @@ class BillingsController < ApplicationController
     hashed_params[:exter_invoke_ip]     = current_user ? current_user.current_sign_in_ip : ""
 
     # 易八通合作商户网站唯一订单号
-    hashed_params[:out_trade_no]        = billing.id
+    hashed_params[:out_trade_no]        = billing.billing_number
     hashed_params[:subject]             = billing.billing_type
     hashed_params[:payment_type]        = "1"
 
