@@ -39,7 +39,7 @@
       alert("请填写您的银行卡号");
       return false;
     }
-    if ($("#bank_number_confirm").val() !== $("#bank_card_number").val()){
+    if ($("#bank_number_confirm").val().split(" ").join("") !== $("#bank_card_number").val().split(" ").join("")){
       alert("两次输入的卡号不一致，请确认！");
       return false;
     }
