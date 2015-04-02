@@ -17,6 +17,7 @@ zh-CN:
       account: 账户
       bank_card: 银行卡
       billing: 账单
+      fund_account: 操盘账户
     attributes:
       admin_user:
         email: 电子邮件
@@ -166,6 +167,10 @@ zh-CN:
         created_at: 创建日期
         updated_at: 更新日期
         billing_number: 账单号
+      fund_account:
+        fund: 操盘
+        fund_id: 操盘
+        balance: 余额
   formtastic:
     yes: "YES"
     no: "NO"
@@ -188,10 +193,10 @@ zh-CN:
   Agree: 同意
   Deny: 拒绝
   Reject: 拒绝
-  card number: 卡号
-  real name: 真实姓名
-  bank name: 开户银行
-  bank branch: 开户银行所在分行
+  card_number: 卡号
+  real_name: 真实姓名
+  bank_name: 开户银行
+  bank_branch: 开户银行所在分行
   state: 状态
   edit: 编辑
   pending: 待定
