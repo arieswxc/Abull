@@ -19,9 +19,7 @@
         = current_user.cell
     .mb30.bg-gray.input-image-wrapper.width-all
       .input.input-file.input-image.pointer
-        .button
-          %input#selectAvatarBtn{:type =>"file", :multiple => "", :accept => "image/*"}/
-          更换头像
+        .button#selectAvatarBtn 更换头像
   #sidebar.ui-side.ui-side-withicon
     %ul.ui-side-list.nav.nav-list.bs-docs-sidenav
       %li{:class => "ui-side-item first #{'active' if activeItem=='user'}"}
@@ -78,8 +76,8 @@
           %canvas#avatar-pre{:height => "130px", :width => "130px"}
       .modal-footer
         .btn-group.avatar-btn
-          %a.btn.btn-primary.save{:type => "button"} 确认
-          %a.btn.btn-default.close{:type => "button"} 取消
+          %a.btn-u.btn-u-primary.save{:type => "button"} 确认
+          %a.btn-u.btn-u-default.cancel{:type => "button"} 取消
 :javascript
   $(function(){
     var canvas, ctx;
@@ -236,7 +234,7 @@
         avatarModalInit();
     });
 
-    $("#avatarModal .close").click(function(){
+    $("#avatarModal .close,#avatarModal .cancel").click(function(){
         avatarModalClear();
     });
     $("#avatarModal .save").click(function(){
