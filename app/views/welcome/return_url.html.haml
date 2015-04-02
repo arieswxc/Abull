@@ -7,3 +7,19 @@
     %h2.text-center 充值成功
   - else
     %h2.text-center 订单未处理
+
+:javascript
+  $(function(){
+    setTimeout(function(){
+      var current_location = window.location.origin;
+      var patt_location=new RegExp("www");
+      if ("#{current_user}" !== ""){
+        if (patt_location.test(current_location)){
+          window.location = "http://molstr.com/";
+        }else {
+          window.location = "http://www.molstr.com/";
+        }
+
+      }
+    },3000);
+  });
