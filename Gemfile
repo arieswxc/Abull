@@ -94,3 +94,4 @@ group :test do
 end
 
 gem "erb2haml", group: :development
+gem 'ckeditor'

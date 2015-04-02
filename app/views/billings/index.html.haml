@@ -29,7 +29,7 @@
 :javascript
   $(function(){
     $("#billings a").click(function(){
-      var index = this.dataset.index;
+      var index = $(this).attr("data-index");
       var newTab=window.open('about:blank');
       $.ajax({
         url: "/billings/"+index+"/realtime_trade",

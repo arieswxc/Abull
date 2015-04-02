@@ -16,7 +16,7 @@
   jQuery(document).ready(function() {
     $("#profile-fund-show tbody tr").click(function() {
 
-      var invest_id = this.dataset.index;
+      var invest_id = $(this).attr("data-index");
       window.open("/users/" + "#{current_user.id}" +"/funds/" + invest_id,'_blank');
     });
     $("#profile-fund-show tbody tr").addClass("pointer");
