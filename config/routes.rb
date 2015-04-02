@@ -49,7 +49,6 @@ Rails.application.routes.draw do
 
   resources :billings do
     get :realtime_trade, on: :member
-    get :order_result_query, on: :member
     get :cancel_withdraw, on: :member
   end
 
