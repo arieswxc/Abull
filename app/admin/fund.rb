@@ -39,10 +39,16 @@ ActiveAdmin.register Fund do
       row :genre
       row :invest_starting_date
       row :invest_ending_date
-      row :description
+      row :description do
+        sanitize(fund.description.truncate(30)) if fund.description
+      end
       row :line_csv
-      row :frontend_risk_method
-      row :backend_risk_method
+      row :frontend_risk_method do
+        sanitize(fund.frontend_risk_method.truncate(30)) if fund.frontend_risk_method
+      end
+      row :backend_risk_method do
+        sanitize(fund.backend_risk_method.truncate(30)) if fund.backend_risk_method
+      end
       row :management_fee
     end
   
@@ -52,6 +58,16 @@ ActiveAdmin.register Fund do
         column "照片" do |f|
           image_tag f.photo, width:400, height:400
         end
+      end
+    end
+
+    panel t('Homs') do 
+      attributes_table_for fund.homs_account do
+        row :title do
+          link_to fund.homs_account.title, admin_homs_account_path(fund.homs_account)
+        end
+        row :password
+        row :amount
       end
     end
 
@@ -73,7 +89,7 @@ ActiveAdmin.register Fund do
     panel t('该标的投标信息') do
       table_for fund.invests do
         column "用户" do |i|
-          link_to User.find(i.user_id).email, admin_user_path(i.user_id)
+          link_to i.user.username, admin_user_path(i.user_id)
         end
         column "投标数额", :amount
       end
@@ -116,6 +132,13 @@ ActiveAdmin.register Fund do
         row('发标提前清盘')  do 
           link_to t('confirm'), fund_liquidation_inform_admin_fund_path(fund), :method => :get, :class => 'button'
         end   
+      end
+    end
+    panel t("清盘") do  
+      attributes_table_for fund do 
+        row('清盘')  do 
+          link_to t('confirm'), liquidate_admin_fund_path(fund), :method => :get, :class => 'button'
+        end
       end
     end
   end
@@ -224,4 +247,65 @@ ActiveAdmin.register Fund do
     fund_inform(resource, 'fund_liquidation_inform')
   end
 
+  member_action :liquidate, :method => :get do
+    fund = Fund.find(params[:id])
+    homs_account = fund.homs_account
+
+    profit            = homs_account.amount - fund.amount
+    management_profit = profit * (fund.management_fee.to_f / 100)
+    shared_profit     = profit - management_profit
+    rate              = (shared_profit / fund.amount) + 1
+
+    funder_account = fund.user.account
+    fund_billing_out = Billing.new(
+      account_id:     funder_account.id,
+      amount:         -management_profit,
+      billing_type:   "清盘返现",
+      billable:       fund)
+    fund_billing_in = Billing.new(
+      account_id:     funder_account.id,
+      amount:         management_profit,
+      billing_type:   "清盘提款",
+      billable:       fund)
+    homs_account.amount     += fund_billing_out.amount
+    funder_account.balance  += fund_billing_in.amount
+    ActiveRecord::Base.transaction do
+      fund_billing_in.save
+      fund_billing_in.confirm
+      fund_billing_out.save
+      fund_billing_out.confirm
+      homs_account.save
+      funder_account.save
+    end
+
+    if homs_account.amount >= fund.amount
+      fund.invests.each do |invest|
+        account = invest.user.account
+        billing_in = Billing.new(
+          account_id:   account.id,
+          amount:       (invest.amount * rate),
+          billing_type: "清盘返现",
+          billable:     invest)
+        billing_out = Billing.new(
+          account_id:   fund.user.account.id,
+          amount:       -(invest.amount * rate),
+          billing_type: "清盘提款",
+          billable:      fund)
+        account.balance       += billing_in.amount
+        homs_account.amount  += billing_out.amount
+        ActiveRecord::Base.transaction do
+          account.save
+          homs_account.save
+          billing_in.save
+          billing_in.confirm
+          billing_out.save
+          billing_out.confirm
+        end
+      end
+    end
+    if homs_account.amount == 0
+      fund.close
+    end
+    redirect_to admin_fund_path(fund)
+  end
 end

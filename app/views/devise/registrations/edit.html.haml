@@ -95,7 +95,23 @@
                 boolean: :horizontal_boolean}) do |f|                 |
                 = f.input :real_name, disabled: true, as: :hidden
                 = f.input :cell, input_html: {class: 'numberic', maxlength: '11', pattern: "\d{3}-\d{8}|\d{4}-\{7,8}"}
-                = f.input :birthday, as: :date, html5: true
+                .form-group
+                  %label.col-sm-3.control-label 生日
+                  .col-sm-9
+                    .birthday
+                      %input#birthday{:name => "user[birthday]",:class => "birthday_input", :type => "hidden", :value => current_user.birthday}/
+                      .w100.inline-block
+                        .select
+                          %select{:class => "birthday_year",:rel => "1990", :type => "text"}
+                          %i
+                      .w100.inline-block
+                        .select
+                          %select{:class => "birthday_month",:rel => "2", :type => "text"}
+                          %i
+                      .w100.inline-block
+                        .select
+                          %select{:class => "birthday_day",:rel => "14", :type => "text"}
+                          %i
                 = f.input :gender, collection: [[t(:male),:male], [t(:female),:female]],include_blank: false
                 = f.input :education
                 .user_education.form-group.optional
@@ -105,8 +121,8 @@
                   %label.input.input-file.col-sm-9.state-success
                     .button
                       %input{:type => "file",:name =>"education_photo", :onchange => "this.parentNode.nextElementSibling.value = this.value", :accept => "image/*"}
-                        %span
-                          浏览
+                      %span
+                        浏览
                     %input{:type => "text", :readonly => ""}
                 = f.input :address
                 .user_address.form-group.optional
@@ -116,8 +132,8 @@
                   %label.input.input-file.col-sm-9.state-success
                     .button
                       %input#address_photo{:type => "file", :name => "address_photo", :onchange => "this.parentNode.nextElementSibling.value =this.value", :value => "this.parentNode.nextElementSibling.value =this.value"}
-                        %span
-                          浏览
+                      %span
+                        浏览
                     %input{:type => "text", :readonly => ""}
                 = f.input :job
                 .text-center
@@ -159,4 +175,19 @@
     if (ptn.test(window.location.href)) {
       $("#pg-account-index .tab-v1 ul.nav.nav-tabs li:nth-child(2) a").tab('show');
     }
+    console.log("#{current_user.birthday}");
+    var birth_day = $("#birthday").val();
+    var birth_day_spl1 = birth_day.split('-');
+    var birth_day_spl2 = birth_day.split('/');
+    if (birth_day_spl1.length === 3){
+      $(".birthday_year").attr('rel',birth_day_spl1[0]);
+      $(".birthday_month").attr('rel',birth_day_spl1[1]);
+      $(".birthday_day").attr('rel',birth_day_spl1[2]);
+    }else if(birth_day_spl2.length === 3) {
+      $(".birthday_year").attr('rel',birth_day_spl2[0]);
+      $(".birthday_month").attr('rel',birth_day_spl2[1]);
+      $(".birthday_day").attr('rel',birth_day_spl2[2]);
+    }
+
+    $.ms_DatePicker('birthday')
   });
