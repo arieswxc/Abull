@@ -28,7 +28,7 @@
 
 :javascript
   $(function(){
-    $("#billings a").click(function(){
+    $("#billings a.online-cashout").click(function(){
       var index = $(this).attr("data-index");
       var newTab=window.open('about:blank');
       $.ajax({
