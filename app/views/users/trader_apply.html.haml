@@ -12,7 +12,7 @@
     = f.input :real_name, disabled: true, as: :hidden
     = f.input :cell, input_html: {class: 'numberic', maxlength: '11', pattern: "\d{3}-\d{8}|\d{4}-\{7,8}"}
     = f.input :birthday, as: :date, html5: true
-    = f.input :gender, collection: [:male, :female],include_blank: false
+    = f.input :gender, collection: [[t(:male),:male], [t(:female),:female]],include_blank: false
     = f.input :education
     = f.input :address
     = f.input :job
