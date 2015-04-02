@@ -20,13 +20,27 @@
                 %dd= @bank_card.bank_name
                 %dt= t('bank branch')
                 %dd= @bank_card.bank_branch
-                %dt= t('state')
-                %dd= @bank_card.state
+                -# %dt= t('state')
+                -# %dd= @bank_card.state
                 %div.w100.text-center.bg-color-red.mt20.ml175= link_to t('edit'), edit_user_bank_card_path(user_id: @bank_card.user),class: "color-white"
               - else
                 - @bank_card = current_user.build_bank_card
-                = simple_form_for(@bank_card, url: user_bank_card_path, html:{class: "sky-form"}) do |f|
+                = simple_form_for(@bank_card, url: user_bank_card_path, html:{class: "sky-form",onsubmit: "return confirm_bank()"}) do |f|
                   = f.input :number
+                  .form-group.string
+                    %label.control-label 确认卡号
+                    %input#bank_number_confirm.form-control{:type => "text"}
                   = f.input :bank_name
                   = f.input :bank_branch
                   = f.button :submit
+:javascript
+  function confirm_bank() {
+    if ($("#bank_card_number").val().split(" ").join("") === ""){
+      alert("请填写您的银行卡号");
+      return false;
+    }
+    if ($("#bank_number_confirm").val().split(" ").join("") !== $("#bank_card_number").val().split(" ").join("")){
+      alert("两次输入的卡号不一致，请确认！");
+      return false;
+    }
+  }

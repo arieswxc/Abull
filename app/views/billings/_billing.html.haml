@@ -4,7 +4,11 @@
   -# %td= billing.account.user.username if billing.account &&  billing.account.user
   %td.w90= billing.billing_type
   %td.color-red= billing.amount
-  %td 
+  %td
   %td= billing.state
-  %td.w75= link_to '在线支付', 'javascript:;','data-index': billing.id  if billing.billing_type == "Third"
-
+  - if billing.billing_type == "Third" && billing.state == "pending"
+    %td.w75= link_to '在线支付', 'javascript:;','data-index': billing.id,class: 'online-cashout'  
+  - elsif billing.billing_type == "Withdraw" && billing.state == "pending"
+    %td.w75= link_to t('cancel'), cancel_withdraw_billing_path(billing)
+  - else
+    %td.w75

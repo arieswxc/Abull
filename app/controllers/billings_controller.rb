@@ -5,37 +5,31 @@ require 'active_support/all'
 
 class BillingsController < ApplicationController
   def index
-    @billings = current_user.account.billings.order(id: :desc)
+    @billings = current_user.account.billings.order(id: :desc).where.not(billing_type: ["To Frost", "From Balance", "From Frost", "To Balance"], state: "cancelled")
   end
 
-  def order_result_query
-    billing                       = Billing.find(params[:id])
-    uri                           = URI('http://180.168.127.5/gateway.htm')
-    hashed_params                 = Hash.new
-    hashed_params[:service]       = "single_direct_query"
-    hashed_params[:sign_type]     = "MD5"
-    hashed_params[:input_charset] = "utf-8"
-    hashed_params[:partner]       = "201501131139398055"
-    hashed_params[:out_trade_no]  = billing.id
-    key                           = "2XYEF5RDNQ0U7H25WWSHM3IF8YK0YVvgyftw"
-    hashed_params[:sign]          = Digest::MD5.hexdigest(hashed_params.sort.to_h.to_param + key)
-    uri.query                     = URI.encode_www_form(hashed_params)
-    res                           = Net::HTTP.get_response(uri)
-    doc                           = res.body
-    @state                         = false
-    if Nokogiri::XML(res.body).xpath("//orderQuery").at_xpath("status").content == "SUCCESS"
-      status      = "SUCCESS"
-      charset     = Nokogiri::XML(res.body).xpath("//orderQuery").at_xpath("charset").content
-      outTradeNo  = Nokogiri::XML(res.body).xpath("//result").at_xpath("outTradeNo").content
-      subject     = Nokogiri::XML(res.body).xpath("//result").at_xpath("subject").content
-      tradeNo     = Nokogiri::XML(res.body).xpath("//result").at_xpath("tradeNo").content
-      tradeStatus = Nokogiri::XML(res.body).xpath("//result").at_xpath("tradeStatus").content
-      totalFee    = Nokogiri::XML(res.body).xpath("//result").at_xpath("totalFee").content
-      sign        = Digest::MD5.hexdigest(status + charset + outTradeNo + subject + tradeNo + tradeStatus + totalFee + key)
-      if sign == Nokogiri::XML(res.body).at_xpath("//sign").content
-        @state = true
-      end
+  def cancel_withdraw
+    billing = Billing.find(params[:id])
+    account = billing.account
+    billing_out = Billing.new(
+      account_id: account.id,
+      amount: billing.amount,
+      billing_type: "From Frost")
+    billing_in = Billing.new(
+      account_id: account.id,
+      amount: -billing.amount,
+      billing_type: "To Balance")
+    account.balance += billing_in.amount
+    account.frost += billing_out.amount
+    ActiveRecord::Base.transaction do
+      billing.cancel
+      billing_out.save
+      billing_in.save
+      billing_out.confirm
+      billing_in.confirm
+      account.save
     end
+    redirect_to billings_path
   end
 
   def realtime_trade
@@ -55,7 +49,7 @@ class BillingsController < ApplicationController
     hashed_params[:exter_invoke_ip]     = current_user ? current_user.current_sign_in_ip : ""
 
     # 易八通合作商户网站唯一订单号
-    hashed_params[:out_trade_no]        = billing.id
+    hashed_params[:out_trade_no]        = billing.billing_number
     hashed_params[:subject]             = billing.billing_type
     hashed_params[:payment_type]        = "1"
 
