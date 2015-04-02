@@ -7,7 +7,7 @@
         - [1,2,3].each do |i|
           %li.revolution-mch-1{"data-masterspeed" => "1000", "data-slotamount" => "3", "data-transition" => "fade"}
             / MAIN IMAGE
-            = image_tag "#{'banner0'+i.to_s()}.png", :alt => "darkblurbg", "data-bgfit" => "cover", "data-bgposition" => "center", "data-bgrepeat" => "no-repeat", 'width' => "100%"
+            = image_tag "http://7vzs7d.com1.z0.glb.clouddn.com/banner0#{i.to_s}.jpg", :alt => "darkblurbg", "data-bgfit" => "cover", "data-bgposition" => "center", "data-bgrepeat" => "no-repeat", 'width' => "100%"
           / END SLIDE
   / === End Slider ===
   -# .int-box
@@ -58,9 +58,9 @@
           %h3.zdy-red 投资列表
           .border-bottom.w80.border-red
         %ul#loan-list.ui-list.ui-list-m.ui-list-invest.table-cell
-          %li#loan-list-header.ui-list-header.fn-clear.zdy-bg-gray
+          %li#loan-list-header.ui-list-header.fn-clear.zdy-bg-gray.w1000
             %span.ui-list-title.fn-left.color-gray-text.w110 发标人
-            %span.ui-list-title.fn-left.color-gray-text.w260 名称
+            %span.ui-list-title.fn-left.color-gray-text.w200 名称
             %span.ui-list-title.fn-left.color-gray-text.w90 类型
             %span.ui-list-title.fn-left.color-gray-text.text-center.w160 金额
             %span.ui-list-title.fn-left.color-gray-text.text-center.w120 预期收益率
@@ -68,28 +68,28 @@
             %span.ui-list-title.fn-left.color-gray-text.text-center.w110 进度
             %span.ui-list-title.fn-left.color-gray-text.text-center.w80  状态
           - @last_ten_funds.each do |f|
-            %li.ui-list-item.fn-clear
+            %li.ui-list-item.fn-clear.w1000
               %a{:href => new_fund_invest_path(f.id)}
                 %span.ui-list-field.fn-left.text-big.w110.text-center
                   %img.img-circle.ui-progressbar-mid{:height => "50", :src => f.user.avatar.url, :width => "50",:class => "#{'blur' if f.private_check == 'private'}"}/
-                %span.ui-list-field.fn-left.text-big.w260.text-center
-                  %span.fn-left.w260.rrd-dimgray.fn-text-overflow= check_private(f.name,f.private_check)
+                %span.ui-list-field.fn-left.text-big.w200.text-center
+                  %span.fn-left.w200.rrd-dimgray.fn-text-overflow= check_private(f.name,f.private_check)
                 %span.ui-list-field.fn-left.text-big.w90
                   %em.value>= check_private(f.genre,f.private_check)
                 %span.ui-list-field.fn-left.num.text-right.w160.text-center
                   %em.value>= f.amount
                   元
-                %span.ui-list-field.fn-left.num.text-right.w90.pr30.zdy-red
+                %span.ui-list-field.fn-left.num.text-center.w120.zdy-red
                   %em.value>= f.expected_earning_rate
                   = "%" if f.expected_earning_rate
-                %span.ui-list-field.fn-left.num.text-center.w130.pr0.ellipsis
+                %span.ui-list-field.fn-left.num.text-center.w100.pr0.ellipsis
                   %em.value>= f.duration
                   个月
-                %span.ui-list-field.fn-left.w60.pr30
+                %span.ui-list-field.fn-left.w90.pl10
                   %strong.ui-progressbar-mid{:class => "ui-progressbar-mid-"+"#{(f.raised_amount/f.amount * 100).floor}"}
                     %em>= (f.raised_amount/f.amount * 100).floor
                     \%
-                %span.ui-list-field.fn-left.w80
+                %span.ui-list-field.fn-left.w80.pl12
                   - if f.state == 'gathering'
                     %button.ui-button.ui-button-mid.ui-button-red.ui-list-invest-button
                       募集中
@@ -99,7 +99,7 @@
                   - else
                     %button.ui-button.ui-button-mid.ui-button-gray.ui-list-invest-button
                       = f.state
-          %li.ui-list-more
+          %li.ui-list-more.w1000
             =link_to "查看更多投资理财项目",funds_path
   .block-v1
     .container

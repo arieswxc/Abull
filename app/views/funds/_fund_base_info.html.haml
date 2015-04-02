@@ -1,61 +1,56 @@
-.tag-box.tag-box-v3.mb0
-  .ml40.mt20
-    .row
-      .float-left.bold.mr20
+
+.panel.panel-grey.mb0
+  .panel-heading
+    .panel-title
+      申购记录
+      .ml20.mr20.inline-block
         募集进度：
-      .float-left
-        .progress.w300
-          .progress-bar.progress-bar-info.progress-bar-striped{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "#{( @fund.raised_amount/ @fund.amount * 100).floor}", :role => "progressbar", :style => "width: #{( @fund.raised_amount/ @fund.amount * 100).floor}%"}
-            = ( @fund.raised_amount/ @fund.amount * 100).floor.to_s + "%"
-  .ml40.mt20
-    .row
-      .float-left.mr40
-        %span.bold
-          = Fund.human_attribute_name('name')
-          ：
-        %label.mr10
-          - if (@fund.state == 'pending' || @fund.state == 'applied')
-            = check_private(@fund.name,'private')
-          - else
-            = @fund.name
-      .float-left.mr40
-        %span.bold 类型：
-        %label.mr10= @fund.genre
-      .float-left.mr40
-        %span.bold
-          = Fund.human_attribute_name('amount')
-          ：
-        %label.mr10
-          = @fund.amount
-          = '元' unless @fund.amount.blank?
-      .float-left.mr40
-        %span.bold
-          = Fund.human_attribute_name('expected_earning_rate')
-          ：
-        %label.mr10
-          = @fund.expected_earning_rate
-          \%
-      .float-left.mr40
-        %span.bold
-          = Fund.human_attribute_name('duration')
-          ：
-        %label.mr10= @fund.duration
-      .float-left.mr40
-        %span.bold 受托管理费：
-        %label.mr10
-          = @fund.management_fee
-          = "%" if @fund.management_fee
+      .progress.w300.inline-block.mb0.middle
+        .progress-bar.progress-bar-info.progress-bar-striped{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "#{( @fund.raised_amount/ @fund.amount * 100).floor}", :role => "progressbar", :style => "width: #{( @fund.raised_amount/ @fund.amount * 100).floor}%"}
+          = ( @fund.raised_amount/ @fund.amount * 100).floor.to_s + "%"
+  .panel-title
+    %table.table.table-striped.table-bordered
+      %tbody
+        %tr
+          %td= Fund.human_attribute_name('name')
+          %td
+            - if (@fund.state == 'pending' || @fund.state == 'applied')
+              = check_private(@fund.name,'private')
+            - else
+              = @fund.name
+        %tr
+          %td 类型
+          %td= @fund.genre
+        %tr
+          %td= Fund.human_attribute_name('amount')
+          %td
+            = @fund.amount
+            = '元' unless @fund.amount.blank?
+        %tr
+          %td= Fund.human_attribute_name('expected_earning_rate')
+          %td
+            = @fund.expected_earning_rate
+            \%
+        %tr
+          %td= Fund.human_attribute_name('duration')
+          %td= @fund.duration
+        %tr
+          %td 受托管理费
+          %td
+            = @fund.management_fee
+            = "%" if @fund.management_fee
+
 %table.table.table-striped.table-bordered
   %tbody
     %tr
       %td
         %h4= Fund.human_attribute_name('description')
         .mt10
-          = @fund.description
+          =raw @fund.description
     %tr
       %td
         %h4= Fund.human_attribute_name('frontend_risk_method')
-        .mt10= @fund.frontend_risk_method
+        .mt10=raw @fund.frontend_risk_method
     %tr
       %td
         %h4= Fund.human_attribute_name('backend_risk_method')

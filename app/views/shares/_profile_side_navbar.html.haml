@@ -1,12 +1,15 @@
 .grid_2
   .row.sky-form.text-center
-    .input-image-wrapper.h100.w90.margin-auto.mb10-i.relative
-      .input.input-file.input-image.pointer
-        .button.circle
-          %input#selectAvatar.pointer{:type =>"file", :multiple => "", :accept => "image/*"}
-          %img.img-thumbnail.img-rounded.mw90.mh90{:src => "#{current_user.avatar.url}"}/
-      = image_tag "cbp-loading.gif",class: 'picloader'
-    %label.user_name.mt50
+    -# .input-image-wrapper.h100.w90.margin-auto.mb10-i.relative
+    -#   .input.input-file.input-image.pointer
+    -#     .button.circle
+    -#       %input#selectAvatar.pointer{:type =>"file", :multiple => "", :accept => "image/*"}
+    -#       %img.img-thumbnail.img-rounded.mw90.mh90{:src => "#{current_user.avatar.url}"}/
+    -#   = image_tag "cbp-loading.gif",class: 'picloader'
+    .mt10.relative
+      %img.img-circle.mw110.mh110.width-all#avatar-img{:src => "#{current_user.avatar.url}"}/
+      %span#user-pic-des{:hidden => "true"} 点击修改头像
+    %label.user_name.mt30
       hi,
       - if !current_user.real_name.blank?
         = current_user.real_name
@@ -16,9 +19,7 @@
         = current_user.cell
     .mb30.bg-gray.input-image-wrapper.width-all
       .input.input-file.input-image.pointer
-        .button
-          %input#selectAvatarBtn{:type =>"file", :multiple => "", :accept => "image/*"}/
-          更换头像
+        .button#selectAvatarBtn 更换头像
   #sidebar.ui-side.ui-side-withicon
     %ul.ui-side-list.nav.nav-list.bs-docs-sidenav
       %li{:class => "ui-side-item first #{'active' if activeItem=='user'}"}
@@ -58,8 +59,149 @@
         = link_to(edit_user_registration_path,class: "ui-side-item-link pt0") do
           %i.glyphicon.glyphicon-cog.index.mr10.ml10>
           账号管理
+
+#avatarModal.modal.avatarModal{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+        %h4#myModalLabel.modal-title 修改头像
+      .modal-body
+        #avatar-ori-pannel.col-md-8.avatar-ori-pannel
+          %canvas#panel
+        .col-md-4.avatar-pre-pannel
+          %input#upload_component.ember-view.ember-text-field{:accept => ".jpg,.JPEG,.png,.gif,.BMP", :type => "file"}/
+          %h3 预览
+          %canvas#avatar-pre{:height => "130px", :width => "130px"}
+      .modal-footer
+        .btn-group.avatar-btn
+          %a.btn-u.btn-u-primary.save{:type => "button"} 确认
+          %a.btn-u.btn-u-default.cancel{:type => "button"} 取消
 :javascript
   $(function(){
+    var canvas, ctx;
+    var image;
+    var iMouseX, iMouseY = 1;
+    var theSelection;
+    var scaleMin = 1;
+    var avatarData = "";
+
+      //模态窗口显示时的初始化
+    function avatarModalInit(){
+        $('#avatarModal').show();
+        $('#user-pic-des').hide();
+        var uploadView = $("#upload_component")[0];
+        // if (uploadView.files === undefined || uploadView.files.length === 0){
+            // var parentView = uploadView.get('parentView');
+            image.crossOrigin="anonymous";
+            image.src = $("#avatar-img")[0].src;
+        // }
+    }
+
+    //模态窗口关闭时清除数据
+    function avatarModalClear(){
+        theSelection.init(50, 50, 100, 100);
+        // drawScene();
+        $('#avatarModal').hide();
+    }
+
+    // define Selection constructor
+    function Selection(x, y, w, h){
+        this.init(x, y, w, h);
+    }
+
+    // define Selection draw method
+    Selection.prototype.draw = function(){
+        ctx.strokeStyle = '#000';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(this.x, this.y, this.w, this.h);
+
+        // draw part of original image
+        if (this.w > 0 && this.h > 0) {
+            ctx.drawImage(image, this.x / scaleMin, this.y / scaleMin, this.w / scaleMin, this.h / scaleMin, this.x, this.y, this.w, this.h);
+        }
+
+        // draw resize cubes
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(this.x - this.iCSize[0], this.y - this.iCSize[0], this.iCSize[0] * 2, this.iCSize[0] * 2);
+        ctx.fillRect(this.x + this.w - this.iCSize[1], this.y - this.iCSize[1], this.iCSize[1] * 2, this.iCSize[1] * 2);
+        ctx.fillRect(this.x + this.w - this.iCSize[2], this.y + this.h - this.iCSize[2], this.iCSize[2] * 2, this.iCSize[2] * 2);
+        ctx.fillRect(this.x - this.iCSize[3], this.y + this.h - this.iCSize[3], this.iCSize[3] * 2, this.iCSize[3] * 2);
+        getResults();
+    };
+
+    Selection.prototype.init = function(x, y, w, h){
+        this.x = x; // initial positions
+        this.y = y;
+        this.w = w; // and size
+        this.h = h;
+
+        this.px = x; // extra variables to dragging calculations
+        this.py = y;
+
+        this.csize = 6; // resize cubes size
+        this.csizeh = 10; // resize cubes size (on hover)
+
+        this.bHow = [false, false, false, false]; // hover statuses
+        this.iCSize = [this.csize, this.csize, this.csize, this.csize]; // resize cubes sizes
+        this.bDrag = [false, false, false, false]; // drag statuses
+        this.bDragAll = false; // drag whole selection
+    };
+
+    function drawScene() { // main drawScene function
+        ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // clear canvas
+
+        // draw source image
+        ctx.drawImage(image, 0, 0, ctx.canvas.width, ctx.canvas.height);
+
+        // and make it darker
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
+        ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+        // draw selection
+        theSelection.draw();
+    }
+
+    function getResults() {
+        //获取图片大小
+
+        var result_img = document.getElementById('avatar-pre');
+        var result_ctx = result_img.getContext('2d');
+        var imgWidth = result_img.width;
+        var imgHeight = result_img.height;
+        result_ctx.clearRect(0, 0, result_ctx.canvas.width, result_ctx.canvas.height);
+        result_ctx.drawImage(image, theSelection.x / scaleMin, theSelection.y / scaleMin, theSelection.w / scaleMin, theSelection.h / scaleMin, 0, 0, imgWidth, imgHeight);
+        var vData = result_img.toDataURL();
+        var uploadView = $('#upload_component')[0];
+        // var parentView = uploadView.get('parentView');
+        avatarData = vData;
+
+    }
+
+    function initCanvas(){
+        //获取图片大小
+        var imgWidth = image.width;
+        var imgHeight = image.height;
+        //获取可视窗口大小
+        var visibleWidth = parseFloat($('#avatar-ori-pannel').css('height'));
+        var visibleHeight = parseFloat($('#avatar-ori-pannel').css('width'));
+        //缩放图片
+        var scaleX = visibleWidth/imgWidth;
+        var scaleY = visibleHeight/imgHeight;
+
+        scaleMin = (scaleX < scaleY)? scaleX:scaleY;
+
+        // creating canvas and context objects
+        canvas = document.getElementById('panel');
+        canvas.width = imgWidth*scaleMin;
+        canvas.height = imgHeight*scaleMin;
+
+        ctx = canvas.getContext('2d');
+
+        drawScene();
+    }
+
     $(".ui-side-list > li > a").click(function() {
       $(this).parent().children().each(function() {
         if ($(this).hasClass("ui-side-sub-list")) {
@@ -67,4 +209,206 @@
         }
       })
     });
+
+    $("#avatar-img").hover(function(){
+      $("#user-pic-des").show();
+    },function(){
+      $("#user-pic-des").hide();
+    });
+    $("#user-pic-des").hover(function(){
+      $("#user-pic-des").show();
+    },function(){
+      $("#user-pic-des").show();
+    });
+
+    $('#upload_component').bind('change',function(){
+      var reader = new window.FileReader();
+      reader.onload = function(value) {
+        image.src = value.target.result;
+        initCanvas();
+      },
+      reader.readAsDataURL(this.files[0]);
+    });
+
+    $('#user-pic-des,#avatar-img,#selectAvatarBtn').on('click',function(){
+        avatarModalInit();
+    });
+
+    $("#avatarModal .close,#avatarModal .cancel").click(function(){
+        avatarModalClear();
+    });
+    $("#avatarModal .save").click(function(){
+        avatarModalClear();
+        var data = new FormData();
+        data.append('avatar', avatarData);
+        console.log(avatarData);
+        alert('正在上传请稍候...');
+        $.ajax({
+          data:data,
+          url: "/users/#{current_user.id if current_user}/save_avatar",
+          type: 'post',
+          contentType: false,
+          processData: false,
+          // xhr: xhr_provider,
+          success: function () {
+            $("#avatar-img")[0].src = avatarData;
+            alert('上传成功...');
+          },
+          error: function () {
+            alert('上传失败...');
+          }
+        });
+    });
+
+    image = new window.Image();
+      image.onload = function () {
+          initCanvas();
+      };
+      // create initial selection
+      theSelection = new Selection(50, 50, 100, 100);
+
+      $('#panel').mousemove(function(e) { // binding mouse move event
+          if (canvas === undefined){
+              e.preventDefault();
+              return;
+          }
+          var canvasOffset = $(canvas).offset();
+          iMouseX = Math.floor(e.pageX - canvasOffset.left);
+          iMouseY = Math.floor(e.pageY - canvasOffset.top);
+
+          // in case of drag of whole selector
+          if (theSelection.bDragAll) {
+              theSelection.x = iMouseX - theSelection.px;
+              theSelection.y = iMouseY - theSelection.py;
+          }
+
+          for (var i = 0; i < 4; i++) {
+              theSelection.bHow[i] = false;
+              theSelection.iCSize[i] = theSelection.csize;
+          }
+
+          // hovering over resize cubes
+          if (iMouseX > theSelection.x - theSelection.csizeh && iMouseX < theSelection.x + theSelection.csizeh &&
+              iMouseY > theSelection.y - theSelection.csizeh && iMouseY < theSelection.y + theSelection.csizeh) {
+
+              theSelection.bHow[0] = true;
+              theSelection.iCSize[0] = theSelection.csizeh;
+          }
+          if (iMouseX > theSelection.x + theSelection.w-theSelection.csizeh && iMouseX < theSelection.x + theSelection.w + theSelection.csizeh &&
+              iMouseY > theSelection.y - theSelection.csizeh && iMouseY < theSelection.y + theSelection.csizeh) {
+
+              theSelection.bHow[1] = true;
+              theSelection.iCSize[1] = theSelection.csizeh;
+          }
+          if (iMouseX > theSelection.x + theSelection.w-theSelection.csizeh && iMouseX < theSelection.x + theSelection.w + theSelection.csizeh &&
+              iMouseY > theSelection.y + theSelection.h-theSelection.csizeh && iMouseY < theSelection.y + theSelection.h + theSelection.csizeh) {
+
+              theSelection.bHow[2] = true;
+              theSelection.iCSize[2] = theSelection.csizeh;
+          }
+          if (iMouseX > theSelection.x - theSelection.csizeh && iMouseX < theSelection.x + theSelection.csizeh &&
+              iMouseY > theSelection.y + theSelection.h-theSelection.csizeh && iMouseY < theSelection.y + theSelection.h + theSelection.csizeh) {
+
+              theSelection.bHow[3] = true;
+              theSelection.iCSize[3] = theSelection.csizeh;
+          }
+
+          // in case of dragging of resize cubes
+          var iFW, iFH, iFX, iFY;
+          if (theSelection.bDrag[0]) {
+              iFX = iMouseX - theSelection.px;
+              iFY = iMouseY - theSelection.py;
+              iFW = theSelection.w + theSelection.x - iFX;
+              iFH = theSelection.h + theSelection.y - iFY;
+              iFH = iFW; //
+              iFY = theSelection.h + theSelection.y - iFH; //
+          }
+          if (theSelection.bDrag[1]) {
+              iFX = theSelection.x;
+              iFY = iMouseY - theSelection.py;
+              iFW = iMouseX - theSelection.px - iFX;
+              iFH = theSelection.h + theSelection.y - iFY;
+              iFH = iFW; //
+              iFY = theSelection.h + theSelection.y - iFH; //
+          }
+          if (theSelection.bDrag[2]) {
+              iFX = theSelection.x;
+              iFY = theSelection.y;
+              iFW = iMouseX - theSelection.px - iFX;
+              iFH = iMouseY - theSelection.py - iFY;
+              iFH = iFW; //
+          }
+          if (theSelection.bDrag[3]) {
+              iFX = iMouseX - theSelection.px;
+              iFY = theSelection.y;
+              iFW = theSelection.w + theSelection.x - iFX;
+              iFH = iMouseY - theSelection.py - iFY;
+              iFH = iFW; //
+          }
+
+          if (iFW > theSelection.csizeh * 2 && iFH > theSelection.csizeh * 2) {
+              theSelection.w = iFW;
+              theSelection.h = iFH;
+
+              theSelection.x = iFX;
+              theSelection.y = iFY;
+          }
+
+          drawScene();
+      });
+
+      $('#panel').mousedown(function(e) { // binding mousedown event
+          if (canvas === undefined){
+              e.preventDefault();
+              return;
+          }
+          var canvasOffset = $(canvas).offset();
+          iMouseX = Math.floor(e.pageX - canvasOffset.left);
+          iMouseY = Math.floor(e.pageY - canvasOffset.top);
+
+          theSelection.px = iMouseX - theSelection.x;
+          theSelection.py = iMouseY - theSelection.y;
+
+          if (theSelection.bHow[0]) {
+              theSelection.px = iMouseX - theSelection.x;
+              theSelection.py = iMouseY - theSelection.y;
+          }
+          if (theSelection.bHow[1]) {
+              theSelection.px = iMouseX - theSelection.x - theSelection.w;
+              theSelection.py = iMouseY - theSelection.y;
+          }
+          if (theSelection.bHow[2]) {
+              theSelection.px = iMouseX - theSelection.x - theSelection.w;
+              theSelection.py = iMouseY - theSelection.y - theSelection.h;
+          }
+          if (theSelection.bHow[3]) {
+              theSelection.px = iMouseX - theSelection.x;
+              theSelection.py = iMouseY - theSelection.y - theSelection.h;
+          }
+
+
+          if (iMouseX > theSelection.x + theSelection.csizeh && iMouseX < theSelection.x+theSelection.w - theSelection.csizeh &&
+              iMouseY > theSelection.y + theSelection.csizeh && iMouseY < theSelection.y+theSelection.h - theSelection.csizeh) {
+
+              theSelection.bDragAll = true;
+          }
+
+          for (var i = 0; i < 4; i++) {
+              if (theSelection.bHow[i]) {
+                  theSelection.bDrag[i] = true;
+              }
+          }
+      });
+
+      $('#panel').mouseup(function(e) { // binding mouseup event
+          theSelection.bDragAll = false;
+
+          for (var i = 0; i < 4; i++) {
+              theSelection.bDrag[i] = false;
+          }
+          theSelection.px = 0;
+          theSelection.py = 0;
+      });
+
+
   });
