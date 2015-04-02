@@ -6,5 +6,9 @@
   %td.color-red= billing.amount
   %td 
   %td= billing.state
-  %td.w75= link_to '在线支付', 'javascript:;','data-index': billing.id  if billing.billing_type == "Third"
-
+  - if billing.billing_type == "Third"
+    %td.w75= link_to '在线支付', 'javascript:;','data-index': billing.id  
+  - elsif billing.billing_type == "Withdraw" && billing.state == "pending"
+    %td.w75= link_to t('cancel'), cancel_withdraw_billing_path(billing)
+  - else
+    %td.w75
