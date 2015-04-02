@@ -14,21 +14,20 @@ ActiveAdmin.register_page "Dashboard" do
     #
     # columns do
     #   column do
-    #     panel "Recent Posts" do
-    #       ul do
-    #         Post.recent(5).map do |post|
-    #           li link_to(post.title, admin_post_path(post))
-    #         end
-    #       end
+    #     panel "解析账单程序" do
+    #           link_to t('执行'), admin_dashboard_path, :method => :get, :class => 'button' 
     #     end
     #   end
-
+    # end
     #   column do
     #     panel "Info" do
     #       para "Welcome to ActiveAdmin."
     #     end
     #   end
     # end
-  end # content
-  
+   # # content
+   #  collection_action :process, :method => :put do
+   #  end
+
+  end
 end
