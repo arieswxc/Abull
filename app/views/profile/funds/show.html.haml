@@ -3,7 +3,7 @@
     .col-md-12
       %label.mr15
         %span HOMS账号：
-        %span= @fund.homs_account.title if @fund.homs_account
+        %span= @fund.homs_account.title if @fund.homs_account && (@fund.homs_account.title != "undefined")
       %label.mr15
         %span 密码：
         %span
