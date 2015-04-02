@@ -1,25 +1,32 @@
 ActiveAdmin.register Billing do
-  permit_params :account_id, :amount, :billing_type, :billable_type, :billable_id, :state
+  permit_params :account_id, :amount, :billing_type, :billable_type, :billable_id, :state, :billing_number
 
   show do |billing|
     attributes_table do
       row :id
-      row :account_id
+      row :billing_number
+      row :account_id do |billing|
+        billing.account.user.username
+      end
       row :amount
       row :billing_type
       row :billable_type
       row :billable_id
-      row :state
+      row :state do |billing|
+        t(billing.state)
+      end
     end
   end
 
-  sidebar "State", only: :show do
+  sidebar "状态", only: :show do
     attributes_table_for billing do
-      row :state
-      row('Confirm')  do 
+      row :state do
+        t(billing.state)
+      end
+      row(t('confirm'))  do 
           link_to t('Confirm'), confirm_admin_billing_path(billing), :method => :put, :class => 'button' 
       end
-      row('Deny')  do 
+      row(t('deny'))  do 
           link_to t('Deny'), deny_admin_billing_path(billing), :method => :put, :class => 'button' 
       end
     end

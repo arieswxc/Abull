@@ -48,7 +48,7 @@ class InvestsController < ApplicationController
     @invests = @fund.invests
     flag = @fund.private_check == 'public' ?  true : session[@fund.id]
 
-    if @fund.state == "gathering" && (@fund.raised_amount + params[:invest][:amount].to_i <= @fund.amount) && flag && @invest.save
+    if @fund.state == "gathering" && (@fund.raised_amount + params[:invest][:amount].to_i <= @fund.amount) && (params[:invest][:amount].to_f <= current_user.account.balance) && flag && @invest.save
       current_user.follow(@fund.user)
       @invest.update(user_id: current_user.id)
       invest_account  = current_user.account

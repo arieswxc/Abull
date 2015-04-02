@@ -10,4 +10,32 @@ class WelcomeController < ApplicationController
   def funds
     
   end
+
+  def notify_url
+    @billing = Billing.find_by_billing_number(params[:out_trade_no])
+    if (@billing.amount == params[:total_fee].to_f) && (params[:is_success] == "T") && (@billing.state == "pending")
+      account = @billing.account
+      account.balance += @billing.amount
+      ActiveRecord::Base.transaction do
+        @billing.confirm
+        account.save
+      end
+      render json: {is_success: "T"}
+    else
+      render json: {is_success: "F"}
+    end
+
+  end
+
+  def return_url
+    @billing = Billing.find_by_billing_number(params[:out_trade_no])
+    if (@billing.amount == params[:total_fee].to_f) && (params[:is_success] == "T") && (@billing.state == "pending")
+      account = @billing.account
+      account.balance += @billing.amount
+      ActiveRecord::Base.transaction do
+        @billing.confirm
+        account.save
+      end
+    end
+  end
 end

@@ -1,7 +1,7 @@
 =# TODO 登录缺少错误提示
 .container.content
   .row
-    .col-md-4.col-md-offset-4.col-sm-6.col-sm-offset-3
+    .col-md-4.col-md-offset-4.col-sm-6.col-sm-offset-3{:style => "width:400px"}
       = form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'reg-page'}) do |f|
         .reg-header
           %h2 登录
@@ -25,3 +25,4 @@
           %a.color-blue{:href => new_user_password_path}
             %span
               忘记密码?
+

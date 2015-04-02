@@ -2,7 +2,7 @@
 
 %div.container.content
   .headline.headline-md
-    %h2.zdy-red 项目投标
+    %h2.zdy-red 投资列表
 
   %div.container.content
     %form.sky-form
@@ -65,7 +65,7 @@
   $(function(){
     $("table tbody tr").click(function() {
       // if (this.dataset.state === 'gathering') {
-        var invest_id = this.dataset.index;
+        var invest_id = $(this).attr("data-index");
         window.location.href = "/funds/" + invest_id + "/invests/new";
       // }
     });

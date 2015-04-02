@@ -33,6 +33,13 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     %script{:src => asset_path("plugins/jquery-migrate.min.js"), :type => "text/javascript"}
 
+
+    = csrf_meta_tags
+  %body
+    .wapper
+      = render "shares/navbar"
+      = yield
+      = render "shares/footer"
     / JS Implementing Plugins
 
     %script{:src => asset_path("plugins/back-to-top.js"), :type => "text/javascript"}
@@ -54,12 +61,6 @@
     %script{:src => asset_path("plugins/Chart.min.js")}
     / JS Page Level
     %script{:src => asset_path("common.js")}
-    = csrf_meta_tags
-  %body
-    .wapper
-      = render "shares/navbar"
-      = yield
-      = render "shares/footer"
     :javascript
       jQuery(document).ready(function() {
         App.init();

@@ -50,6 +50,7 @@ a:focus, a:hover {
 #login-panel,#create-account,#sign-out {
   padding-top: 0;
   padding-bottom: 0;
+  font-size: 14px;
 }
 
 .sl-header .site-nav .site-nav-sns>li>.icon-sns {
@@ -544,14 +545,17 @@ a.fn-left.ui-button.ui-button-blue.ui-button-mid.last {
 .home-aq {
   background-image: url(<%= asset_path 'home_aq.png' %>);
   background-repeat: no-repeat;
+  background-size: cover;
 }
 .home-sy {
   background-image: url(<%= asset_path 'home_sy.png' %>);
   background-repeat: no-repeat;
+  background-size: cover;
 }
 .home-bz {
   background-image: url(<%= asset_path 'home_bz.png' %>);
   background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .home-aq-icon {
@@ -585,7 +589,7 @@ a.fn-left.ui-button.ui-button-blue.ui-button-mid.last {
   font-size: 16px;
 }
 .sl-header.ng-scope .navbar.navbar-inverse.navbar-static-top.site-nav {
-  padding: 4px;
+  padding: 8px;
 }
 a.sky-blue-i {
   color: #2da5da;
@@ -597,7 +601,7 @@ a.sky-blue-i:hover {
   width: 250px;
 }
 .ui-list-more {
-  text-align: right;
+  text-align: center;
 }
 .ui-list-more a,.headline.headline-md a{
   color: #6578A9;
@@ -612,6 +616,9 @@ a.sky-blue-i:hover {
   }
   .leverage_amount .col-md-4.ml70 {
     margin-left: 0px;
+  }
+  .navbar-header.pl20.w400 > img {
+    display: none;
   }
 }
 
@@ -1009,8 +1016,8 @@ em.unit {
   padding: 2px 5px;
   width: 88px;
   font-size: 14px;
-  height: 20px;
-  line-height: 20px;
+  height: 40px;
+  line-height: 40px;
   border-radius: 2px;
 }
 .sel-b {
@@ -1061,14 +1068,30 @@ em.unit {
 .tparrows.preview4 .tp-arr-allwrapper, .tparrows.preview4 .tp-arr-imgholder2, .tparrows.preview4 .tp-arr-imgholder {
   width: 280px;
 }
+a.ui-side-sub-item-link {
+  margin-left: 0;
+  padding-left: 45px;
+}
 a.ui-side-sub-item-link:hover {
-  background: #FF8589;
+  border-left: 3px solid #E7141A;
+  color: #E7141A;
+  background:transparent;
 }
 .ui-side-sub-item.active a.ui-side-sub-item-link, .ui-side-sub-item.active a.ui-side-sub-item-link:hover {
-  background: #FF8589;
+  border-left: 3px solid #E7141A;
+  color: #E7141A;
+  background:transparent;
 }
 a.ui-side-sub-item-link {
   color: #626262;
+  display: block;
+  margin-left: 0;
+  padding-left: 0;
+  text-align: center;
+  height: 36px;
+  line-height: 36px;
+  cursor: pointer;
+  border-bottom: 1px solid #f2f2f2;
 }
 .timeline-v2 > li .cbp_tmlabel {
   background: #CFCFCF;
@@ -1130,4 +1153,39 @@ img.picloader {
   max-height: 100px;
 }
 
+.ui-footer-verification-item {
+  background: url(<%= asset_path 'footer-icons.png' %>) no-repeat 0 0;
+}
+.footer-v1 .footer {
+  padding: 20px 0 5px;
+}
+.tab-v2 .nav-tabs li.active a{
+  font-size: 16px;
+  color: red;
+  background: #fff;
+  padding: 7px 15px 9px;
+  border: none;
+  border-bottom: none;
+  border-bottom: solid 2px #e7141a !important;
+}
+#aliSubmitBtn{
+  background: red;
+  color: #fff;
+  width: 100px;
+}
+form#new_billing{
+  margin: 15px 0 50px 60px;
+}
+.w400 {
+  width: 400px;
+}
+.white {
+  color: #eee;
+}
+.ui-side-item .ui-side-item-link:hover {
+  background: transparent;
+  border-left: solid 4px #E7141A;
+  color: #E7141A;
+  padding-left: 6px;
+}
 /* index site-menu end */

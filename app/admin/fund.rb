@@ -162,7 +162,25 @@ ActiveAdmin.register Fund do
     elsif fund.state == 'gathering'
       fund.reach
     elsif fund.state == 'reached'
-      fund.open_homs
+      billing_out = fund.user.account.billings.build(
+        amount:       -fund.amount, 
+        billing_type: "From Fund Account",
+        billable:     fund.fund_account)
+      billing_in = fund.user.account.billings.build(
+        amount:       fund.amount, 
+        billing_type: "To homs_account",
+        billable:     fund.homs_account)
+      fund_account          = fund.fund_account
+      homs_account          = fund.homs_account
+      fund_account.balance  -= fund.amount
+      homs_account.amount   += fund.amount
+      ActiveRecord::Base.transaction do
+        billing_in.save
+        billing_out.save
+        fund_account.save
+        homs_account.save
+        fund.open_homs
+      end
     elsif fund.state == 'opened'
       fund.run 
     elsif fund.state == 'running'

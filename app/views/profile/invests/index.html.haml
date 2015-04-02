@@ -16,8 +16,8 @@
 :javascript
   jQuery(document).ready(function() {
     $("#profile-invest-show tbody tr").click(function() {
-      var invest_id = this.dataset.index;
-      window.open("/users/" + "#{current_user.id}" +"/invests/" + invest_id);
+      var invest_id = $(this).attr("data-index");
+      window.open("/users/" + "#{current_user.id}" +"/invests/" + invest_id,'_blank');
     });
     $("#profile-invest-show tbody tr").addClass("pointer");
   });
