@@ -43,7 +43,7 @@ zh-CN:
         gender: 性别
         education: 学历
         address: 地址
-        job: 工作
+        job: 职业
       fund:
         name: 标名
         amount: 募集数额
