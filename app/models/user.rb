@@ -99,7 +99,7 @@ class User < ActiveRecord::Base
 
   private
     def send_password(cell, account_password)
-      uri       = URI.parse("http://222.73.117.158/msg/HttpBatchSendSM")
+      uri       = URI.parse("http://222.73.117.158:80/msg/HttpBatchSendSM")
       msg       = "新的账户密码为#{account_password},请及时登陆摩尔街来修改帐号密码"
       username  = 'zxnicv'
       password  = 'Txb123456'
