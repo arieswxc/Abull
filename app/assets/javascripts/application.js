@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require ckeditor/init
 //= require_tree .
 //= require jquery_nested_form
 //= require 'china_city/jquery.china_city'
