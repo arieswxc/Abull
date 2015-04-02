@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150331122920) do
+ActiveRecord::Schema.define(version: 20150402055009) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -100,6 +100,16 @@ ActiveRecord::Schema.define(version: 20150331122920) do
   add_index "comments", ["commentable_type"], name: "index_comments_on_commentable_type", using: :btree
   add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
+  create_table "csv_files", force: :cascade do |t|
+    t.string   "file",           limit: 255
+    t.string   "title",          limit: 255
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.string   "data_file_id",   limit: 255
+    t.string   "data_file_type", limit: 255
+    t.string   "csv_file_type",  limit: 255
+  end
+
   create_table "follows", force: :cascade do |t|
     t.integer  "followable_id",   limit: 4,                   null: false
     t.string   "followable_type", limit: 255,                 null: false
@@ -145,7 +155,6 @@ ActiveRecord::Schema.define(version: 20150331122920) do
     t.boolean  "mandate",               limit: 1
     t.integer  "ending_days",           limit: 4
     t.integer  "private_code",          limit: 4
-    t.string   "line_csv",              limit: 255
     t.decimal  "management_fee",                      precision: 10,           default: 0
   end
 
@@ -276,7 +285,6 @@ ActiveRecord::Schema.define(version: 20150331122920) do
     t.string   "address",                limit: 255
     t.string   "job",                    limit: 255
     t.string   "verify_file",            limit: 255
-    t.string   "line_csv",               limit: 255
     t.string   "address_photo",          limit: 255
     t.string   "education_photo",        limit: 255
   end

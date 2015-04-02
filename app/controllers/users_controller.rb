@@ -128,8 +128,8 @@ class UsersController < ApplicationController
 
   def get_history_data
     user = User.find(params[:id])
-    if user.line_csv &&user.line_csv.current_path
-      array_x, array_y = parse_csv(user.line_csv.current_path)
+    if user.line_csv &&user.line_csv.file.current_path
+      array_x, array_y = parse_csv(user.line_csv.file.current_path)
       current_path = "#{Rails.root}/lib/LibFile/husheng_data.csv"
       array1_x, array1_y = parse_csv(current_path)
       render json:{ labels: array_x, datasets: [{data: array_y}, {data: array1_y}] }
@@ -140,8 +140,8 @@ class UsersController < ApplicationController
 
   def show_history_data
     user = User.find(params[:id])
-    if user.line_csv
-      @list_data = parse_list_data(user.line_csv.current_path)
+    if user.line_csv && user.line_csv.file.current_path
+      @list_data = parse_list_data(user.line_csv.file.current_path)
     end
   end
 
