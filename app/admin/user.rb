@@ -117,7 +117,9 @@ ActiveAdmin.register User do
   #侧边窗口
   sidebar "用户等级", only: :show do
     attributes_table_for user do
-      row :level
+      row :level do |u|
+        t(u.level)
+      end
       row('升级')  do 
           link_to t('Confirm'), upgrade_user_admin_user_path(user), :method => :put, :class => 'button' 
       end  if check_user(current_admin_user)
