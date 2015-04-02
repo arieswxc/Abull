@@ -2,6 +2,23 @@
   if the third pay is successful
   the state shold be confirmed,
   or it should be pending
+:javascript
+  $(function(){
+    var current_location = window.location.origin;
+    var patt_location=new RegExp("www");
+    if ("#{current_user}" === ""){
+      if (patt_location.test(current_location)){
+        window.location.href = "http://molstr.com" +window.location.pathname+window.location.search;
+      }else {
+        window.location = "http://www.molstr.com"+window.location.pathname+window.location.search;
+      }
+
+    }else {
+      setTimeout(function(){
+        window.location.href = window.location.origin + "/users/#{current_user.id}"
+      },3000);
+    }
+  });
 .container.content.fund-show-pending
   - if @billing.state == "confirmed"
     %h2.text-center 充值成功
