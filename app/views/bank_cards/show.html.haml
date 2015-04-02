@@ -22,7 +22,7 @@
                 %dd= @bank_card.bank_branch
                 %dt= t('state')
                 %dd= @bank_card.state
-                %div{:style => "width:100px;text-align:center;background:red"}= link_to t('edit'), edit_user_bank_card_path(user_id: @bank_card.user)
+                %div.w100.text-center.bg-color-red.mt20.ml175= link_to t('edit'), edit_user_bank_card_path(user_id: @bank_card.user),class: "color-white"
               - else
                 - @bank_card = current_user.build_bank_card
                 = simple_form_for(@bank_card, url: user_bank_card_path, html:{class: "sky-form"}) do |f|
