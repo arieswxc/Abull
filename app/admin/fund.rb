@@ -1,8 +1,8 @@
 ActiveAdmin.register Fund do
   permit_params :name, :user_id, :amount, :ending_days, :earning, :expected_earning_rate, :earning_rate, :state, :private_check, :minimum, :invest_starting_date, :invest_ending_date, :description, 
     	:frontend_risk_method, :duration, :mandate, :management_fee,
-  		:backend_risk_method, :initial_amount, :created_at, :updated_at, :raised_amount, :genre, :private_code, :line_csv,fund_verify_photos_attributes: [:title, :photo]
-    
+  		:backend_risk_method, :initial_amount, :created_at, :updated_at, :raised_amount, :genre, :private_code,fund_verify_photos_attributes: [:title, :photo],
+      line_csv_attributes: [:title, :file]
   index do
     selectable_column
     column :id
@@ -14,7 +14,9 @@ ActiveAdmin.register Fund do
     column :ending_days
     column :invest_starting_date
     column :invest_ending_date
-    column :state
+    column :state do |fund|
+      t(fund.state)
+    end
     column :management_fee
     actions defaults: false do |fund|
       item "Preview", admin_fund_path(fund), class: "member_link"
@@ -87,7 +89,9 @@ ActiveAdmin.register Fund do
           link_to t('Confirm'), confirm_fund_admin_fund_path(fund), :method => :put, :class => 'button'
         end
         row('拒绝发标申请')  do 
-          link_to t('Reject'), deny_fund_admin_fund_path(fund), :method => :get, :class => 'button'
+          if fund.state == 'applied'
+            link_to t('Reject'), deny_fund_admin_fund_path(fund), :method => :get, :class => 'button'
+          end
         end          
         row('填写拒绝原因')  do
           if fund.state == 'denied'
@@ -137,7 +141,6 @@ ActiveAdmin.register Fund do
         f.input :state, as: :select, collection: ["pending", "applied", "gathering", "reached", "opened", "running", "finished", "closed", "denied"]
         f.input :user_id
         f.input :management_fee
-        f.input :line_csv
         f.inputs "上传证明文件" do
           f.has_many :fund_verify_photos do |t|
             t.input :title
@@ -145,6 +148,10 @@ ActiveAdmin.register Fund do
           end
         end
       end
+        f.inputs "上传csv文件", for: [:line_csv, f.object.line_csv] do |file|
+          file.input :title
+          file.input :file
+        end
       f.actions
   end
 

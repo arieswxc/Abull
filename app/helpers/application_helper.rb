@@ -9,7 +9,7 @@ module ApplicationHelper
       name: user.real_name,
       amount: amount
     }
-    resource.send_sms(user.cell, type, hash)
+    resource.send_sms(user.cell, type, hash) if user.email
     redirect_to admin_account_path(resource)
   end
 
@@ -21,7 +21,7 @@ module ApplicationHelper
       fund_name: fund_name,
       date: resource.created_at.to_date
     }
-    UserMailer.fund_email(type, hash).deliver_now
+    UserMailer.fund_email(type, hash).deliver_now if user.email
     resource.send_sms(user.cell, type, hash)
     redirect_to admin_fund_path(resource)
   end
@@ -47,7 +47,7 @@ module ApplicationHelper
       fund_name: fund_name,
       date: resource.created_at.to_date
     }
-    UserMailer.invest_email(type, hash).deliver_now
+    UserMailer.invest_email(type, hash).deliver_now if user.email
     resource.send_sms(user.cell, type, hash)
     redirect_to admin_invest_path(resource)
   end

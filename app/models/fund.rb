@@ -13,17 +13,16 @@ class Fund < ActiveRecord::Base
   validates :expected_earning_rate, numericality: true
   validates :management_fee,      presence: true
   validates :management_fee,      numericality: true
-  
-  mount_uploader :line_csv, FundLineCsvUploader
-
+    
   belongs_to  :user
   has_many    :invests
   has_many    :fund_verify_photos, :class_name => "Photo", as: :imageable, dependent: :destroy
   has_one     :fund_account
-  
+  has_one     :line_csv, :class_name => "CsvFile", as: :data_file, dependent: :destroy
   before_validation :generate_fundname, on: :create
   acts_as_commentable
   accepts_nested_attributes_for :fund_verify_photos, allow_destroy: true
+  accepts_nested_attributes_for :line_csv, allow_destroy: true, :reject_if => proc { |attributes| attributes["file"].blank? }
 
   state_machine :state, :initial => :pending do
     event :apply do

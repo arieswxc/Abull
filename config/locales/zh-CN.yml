@@ -134,9 +134,9 @@ zh-CN:
         created_at: 创建日期
         updated_at: 更新日期
       interest:
-        leverage_time: 配资数额
+        leverage_time: 杠杆
         amount: 金额
-        duration: 时间
+        duration: 持续时间(月)
         interest_rate: 利率
         managerment_fee: 管理费率
         show: 显示

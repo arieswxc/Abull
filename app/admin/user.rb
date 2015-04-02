@@ -1,7 +1,8 @@
 include ApplicationHelper
 ActiveAdmin.register User do
   permit_params :email, :password, :password_confirmation, :username, :real_name, :avatar, :cell, :id_card_number, :abstract, :level,
-                :account, :birthday, :verify_file, :line_csv, :gender, :education, :address,:job, verify_photos_attributes: [:title, :photo]
+                :account, :birthday, :verify_file, :line_csv, :gender, :education, :address,:job, verify_photos_attributes: [:title, :photo], 
+                line_csv_attributes: [:title, :file]
  
   index do
     selectable_column
@@ -126,7 +127,7 @@ ActiveAdmin.register User do
     end
   end
 
-  form do |f|
+  form(:html => { :multipart => true }) do |f|    
     f.inputs "Admin Details" do
       f.input :avatar
       f.input :email
@@ -139,13 +140,17 @@ ActiveAdmin.register User do
       # f.input :password
       # f.input :password_confirmation
       f.input :verify_file
-      f.input :line_csv
       f.inputs "上传证明文件" do
         f.has_many :verify_photos do |t|
           t.input :title
-          t.input :photo
+          t.input :photo, hint: image_tag(t.object.photo.url)
+          t.input :_destroy, :as=>:boolean, :required => false, :label=>'Remove'
         end
       end
+    end
+    f.inputs "上传csv文件", for: [:line_csv, f.object.line_csv || CsvFile.new] do |file|
+      file.input :title
+      file.input :file
     end
     f.actions
   end
