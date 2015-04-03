@@ -177,7 +177,8 @@ zh-CN:
         data_file_type: 多态类型
         csv_file_type: 文件类型
       fund_account:
-        fund_id: 标
+        fund: 操盘
+        fund_id: 操盘
         balance: 余额
         created_at: 创建日期
         updated_at: 更新日期
