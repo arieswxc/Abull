@@ -95,3 +95,5 @@ end
 
 gem "erb2haml", group: :development
 gem 'ckeditor'
+gem 'activeadmin-dragonfly', github: 'stefanoverna/activeadmin-dragonfly'
+gem 'activeadmin-wysihtml5', github: 'stefanoverna/activeadmin-wysihtml5'

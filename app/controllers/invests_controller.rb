@@ -14,8 +14,10 @@ class InvestsController < ApplicationController
     @invest = @fund.invests.build()
     @invest.date = Time.now()
     user = User.find(@fund.user_id)
-    list_data = parse_list_data(user.line_csv.file.current_path)
-    @list_array = list_data.last(5).reverse
+    if user.line_csv && user.line_csv.file
+      list_data = parse_list_data(user.line_csv.file.current_path)
+      @list_array = list_data.last(5).reverse
+    end
     if !session[@fund.id].nil?
       @flag = @fund.private_check == 'public' ?  true : session[@fund.id]
     else
@@ -23,9 +25,11 @@ class InvestsController < ApplicationController
     end
     @flag = true if current_user && @fund.check_user_bid(current_user)
     @verify_photos = user.verify_photos
-
-    fund_list_data = parse_list_data(@fund.line_csv.file.current_path)
-    @fund_list_array = fund_list_data.last(5).reverse
+    
+    if @fund.line_csv && user.line_csv.file
+      fund_list_data = parse_list_data(@fund.line_csv.file.current_path)
+      @fund_list_array = fund_list_data.last(5).reverse
+    end
     @fund_verify_photos  = @fund.fund_verify_photos
     @check_user_bid = @fund.check_user_bid(current_user).to_s
   end

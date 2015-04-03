@@ -153,9 +153,9 @@ ActiveAdmin.register Fund do
         f.input :earning_rate
         f.input :private_check
         f.input :private_code
-        f.input :description
-        f.input :frontend_risk_method
-        f.input :backend_risk_method
+        f.input :description, as: :wysihtml5 
+        f.input :frontend_risk_method, as: :wysihtml5
+        f.input :backend_risk_method, as: :wysihtml5
         f.input :initial_amount
         f.input :mandate, as: :select, collection: [ 'true', 'false' ]
         f.input :minimum
