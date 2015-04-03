@@ -78,8 +78,8 @@
                         .button
                           %input{:type =>"file", :name =>"user[identity_photos_attributes][#{photo_form.index}][photo]", :multiple => "", :onchange => "this.parentNode.nextElementSibling.value = this.value", :accept => "image/*"} 浏览
                         %input{:type => "text", :readonly => ""}
-                  .text-center
-                    = image_tag current_user.identity_photos[photo_form.index].photo.url,class: "img-thumbnail img-rounded #{'w300' if !current_user.identity_photos[photo_form.index].photo.blank?}"
+                  .text-center.w140.margin-auto
+                    = image_tag current_user.identity_photos[photo_form.index].photo.url,class: "img-thumbnail img-rounded #{'w140' if !current_user.identity_photos[photo_form.index].photo.blank?}"
                 .text-center
                   = f.button :submit
             #fabiao.tab-pane.fade
