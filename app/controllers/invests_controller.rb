@@ -56,7 +56,7 @@ class InvestsController < ApplicationController
       current_user.follow(@fund.user)
       @invest.update(user_id: current_user.id)
       invest_account  = current_user.account
-      fund_account    = @fund.fund_account
+      fund_account    = @fund.user.account
       billing_out = Billing.new(
         account_id:   invest_account.id,
         amount:       -@invest.amount,
