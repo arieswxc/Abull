@@ -171,9 +171,13 @@
 
 :javascript
   $(function() {
-    var ptn = /\/users\/edit\/#authencation*$/;
+    var ptn = /\/users\/edit\/#auth*$/;
     if (ptn.test(window.location.href)) {
       $("#pg-account-index .tab-v1 ul.nav.nav-tabs li:nth-child(2) a").tab('show');
+    }
+    var ptn = /\/users\/edit\/#trader_auth*$/;
+    if (ptn.test(window.location.href)) {
+      $("#pg-account-index .tab-v1 ul.nav.nav-tabs li:nth-child(3) a").tab('show');
     }
     console.log("#{current_user.birthday}");
     var birth_day = $("#birthday").val();
