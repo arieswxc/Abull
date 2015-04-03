@@ -62,4 +62,4 @@
           %td
             = @invests[index].amount
             = '元' unless @invests[index].amount.blank?
-          %td.formattime= @invests[index].date
+          %td{:class => "#{'formattime' unless @invests[index].date.blank? }"}= @invests[index].date
