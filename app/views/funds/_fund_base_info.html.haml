@@ -2,7 +2,7 @@
 .panel.panel-grey.mb0
   .panel-heading
     .panel-title
-      申购记录
+      标的要素表
       .ml20.mr20.inline-block
         募集进度：
       .progress.w300.inline-block.mb0.middle
@@ -22,20 +22,22 @@
           %td 类型
           %td= @fund.genre
         %tr
-          %td= Fund.human_attribute_name('amount')
           %td
-            = @fund.amount
-            = '元' unless @fund.amount.blank?
+            = Fund.human_attribute_name('amount')
+            = '(元)'
+          %td= @fund.amount
         %tr
           %td= Fund.human_attribute_name('expected_earning_rate')
           %td
             = @fund.expected_earning_rate
-            \%
+            \％
         %tr
-          %td= Fund.human_attribute_name('duration')
+          %td
+            = Fund.human_attribute_name('duration')
+            = '(月)'
           %td= @fund.duration
         %tr
-          %td 受托管理费
+          %td 受托管理费(占超额业绩百分比)
           %td
             = @fund.management_fee
             = "%" if @fund.management_fee
