@@ -1,10 +1,13 @@
 .container.content
   %h2 忘记密码?
-  = form_for(resource, url: update_password_users_path, html: { method: :post }) do |f|
+  = form_for(resource, url: generate_verification_code_users_path, html: { method: :get }) do |f|
     = devise_error_messages!
     .field
       = f.label :cell
       %br/
-      = f.text_field :cell
+      %input{:type => 'text', :name => 'cell'}
+    .field
+      %br/
+      %input{:type => 'hidden', :name => 'forget_pswd', :value => 1}
     .actions.mt15
-      = f.submit "发送新密码到手机", class: "btn-u btn-u-default"
+      = f.submit "发送验证码到手机", class: "btn-u btn-u-default"

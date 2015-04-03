@@ -100,7 +100,9 @@ ActiveAdmin.register Fund do
   sidebar "控制栏", only: :show do
     panel t("发标状态操控") do
       attributes_table_for fund do
-        row :state
+        row :state do |fund|
+          t(fund.state)
+        end
         row('状态提升')  do 
           link_to t('Confirm'), confirm_fund_admin_fund_path(fund), :method => :put, :class => 'button'
         end

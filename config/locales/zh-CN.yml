@@ -58,6 +58,7 @@ zh-CN:
         invest_ending_date: 操盘结束时间
         expected_earning_rate: 预期年化收益率
         state: 状态
+        line_csv: csv文件
         user_id: 操盘人
         user: 操盘人
         earning: 收益
@@ -167,10 +168,26 @@ zh-CN:
         created_at: 创建日期
         updated_at: 更新日期
         billing_number: 账单号
+      csv_file:
+        title: 名称
+        file: 文件位置
+        created_at: 创建日期
+        updated_at: 更新日期
+        data_file_id: 多态类型ID
+        data_file_type: 多态类型
+        csv_file_type: 文件类型
       fund_account:
         fund: 操盘
         fund_id: 操盘
         balance: 余额
+        created_at: 创建日期
+        updated_at: 更新日期
+      homs_property:
+        date: 日期 
+        amount: 金额
+        homs_account_id: homs账户
+        created_at: 创建日期
+        updated_at: 更新日期
   formtastic:
     yes: "YES"
     no: "NO"
@@ -186,7 +203,14 @@ zh-CN:
         resource_type: 资源类型
         author_type: 作者类型
   female: 女
+  applied: 申请
   gathering: 募集中
+  reached: 募集完成
+  opened: 开标
+  running: 运行中
+  finished: 运行结束
+  closed: 关闭
+  denied: 拒绝
   male: 男
   Confirm: 确认
   confirm: 确认
@@ -204,3 +228,7 @@ zh-CN:
   deny: 拒绝
   cancel: 取消
   cancelled: 取消
+  investor: 投资人
+  trader: 交易员
+  investor_applied: 投资人申请中
+  trader_applied: 交易员申请中
