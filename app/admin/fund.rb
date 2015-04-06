@@ -27,6 +27,9 @@ ActiveAdmin.register Fund do
   # page of show
   show do |fund|
     attributes_table  do 
+      row :state do
+        t(fund.state)
+      end
       row :id
       row :name
       row :amount
@@ -101,16 +104,44 @@ ActiveAdmin.register Fund do
     panel t("发标状态操控") do
       attributes_table_for fund do
         row :state do |fund|
-          t(fund.state)
+          t('pending')
         end
-        row('状态提升')  do 
-          link_to t('Confirm'), confirm_fund_admin_fund_path(fund), :method => :put, :class => 'button'
+        row :state do |fund|
+          t('applied')
         end
-        row('拒绝发标申请')  do 
-          if fund.state == 'applied'
-            link_to t('Reject'), deny_fund_admin_fund_path(fund), :method => :get, :class => 'button'
-          end
-        end          
+        row :state do |fund|
+          link_to_if (fund.state == "applied"), t('denied'), deny_fund_admin_fund_path(fund), :method => :get, :class => 'button'
+        end
+        row :state do |fund|
+          link_to_if (fund.state == "applied"), t('gathering'), confirm_fund_admin_fund_path(fund), :method => :put, :class => 'button'
+        end
+        row :state do |fund|
+          link_to_if (fund.state == "gathering"), t('返款'), return_money_admin_fund_path(fund), :method => :get, :class => 'button'
+        end
+        row :state do |fund|
+          link_to_if (fund.state == "gathering"), t('Force_reach'), confirm_fund_admin_fund_path(fund), :method => :put, :class => 'button'
+        end
+        row :state do |fund|
+          t('reached')
+        end
+        row :state do |fund|
+          link_to_if (fund.state == "reached"), t('opened'), confirm_fund_admin_fund_path(fund), :method => :put, :class => 'button'  
+        end
+        row :state do |fund|
+          link_to_if (fund.state == "opened"), t('running'), confirm_fund_admin_fund_path(fund), :method => :put, :class => 'button'  
+        end
+        row :state do |fund|
+          link_to_if (fund.state == "running"), t('提前清盘'), clear_admin_fund_path(fund), :method => :get, :class => 'button'
+        end
+        row :state do |fund|
+          t('finished')
+        end
+        row :state do |fund|
+          link_to_if (fund.state == "finished"), t('清盘'), clear_admin_fund_path(fund), :method => :put, :class => 'button'
+        end
+        row :state do |fund|
+          t('closed')
+        end        
         row('填写拒绝原因')  do
           if fund.state == 'denied'
             form_for "Reason", url: input_reason_admin_fund_path(fund), method: :post do |f|
@@ -132,13 +163,6 @@ ActiveAdmin.register Fund do
         row('发标提前清盘')  do 
           link_to t('confirm'), fund_liquidation_inform_admin_fund_path(fund), :method => :get, :class => 'button'
         end   
-      end
-    end
-    panel t("清盘") do  
-      attributes_table_for fund do 
-        row('清盘')  do 
-          link_to t('confirm'), liquidate_admin_fund_path(fund), :method => :get, :class => 'button'
-        end
       end
     end
   end
@@ -183,14 +207,13 @@ ActiveAdmin.register Fund do
   
   member_action :confirm_fund, :method => :put do 
     fund = Fund.find(params[:id])
-    if fund.state == 'pending'
-      fund.apply
-    elsif fund.state == 'denied'
+    if fund.state == 'denied'
       fund.apply
     elsif fund.state == 'applied'
       fund.approve
     elsif fund.state == 'gathering'
       fund.reach
+      fund.update(amount: fund.invests.sum(:amount))
     elsif fund.state == 'reached'
       billing_out = fund.user.account.billings.build(
         amount:       -fund.amount, 
@@ -209,8 +232,10 @@ ActiveAdmin.register Fund do
         billing_out.save
         fund_account.save
         homs_account.save
-        fund.open_homs
+        billing_in.confirm
+        billing_out.confirm
       end
+      fund.open_homs
     elsif fund.state == 'opened'
       if fund.homs_account.title == 'undefined'
       else
@@ -220,8 +245,6 @@ ActiveAdmin.register Fund do
       fund.finish
     elsif fund.state == 'finished'
       fund.close
-    elsif fund.state == 'closed'
-      fund.reset
     end      
     redirect_to admin_fund_path(fund)
   end
@@ -250,7 +273,39 @@ ActiveAdmin.register Fund do
     fund_inform(resource, 'fund_liquidation_inform')
   end
 
-  member_action :liquidate, :method => :get do
+  member_action :return_money, :method => :get do
+    fund = Fund.find(params[:id])
+    fund_account = fund.fund_account
+
+    fund.invests.each do |invest|
+      invest_account = invest.user.account
+      billing_out = Billing.new(
+        account_id: invest_account.id,
+        amount: -invest.amount,
+        billing_type: "提前清盘返款",
+        billable: invest)
+      billing_in = Billing.new(
+        account_id: fund.user.account.id,
+        amount: invest.amount,
+        billing_type: "提前清盘返款",
+        billable: fund)
+      fund_account.balance    += billing_out.amount
+      invest_account.balance  += billing_in.amount
+      ActiveRecord::Base.transaction do
+        billing_out.save!
+        billing_in.save!
+        fund_account.save!
+        invest_account.save!
+        billing_in.confirm
+        billing_out.confirm
+      end
+    end
+
+    fund.close if fund_account.balance == 0
+    redirect_to admin_fund_path(fund)
+  end
+
+  member_action :clear, :method => :get do
     fund = Fund.find(params[:id])
     homs_account = fund.homs_account
 

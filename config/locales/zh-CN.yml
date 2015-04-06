@@ -18,6 +18,7 @@ zh-CN:
       bank_card: 银行卡
       billing: 账单
       fund_account: 操盘账户
+      homs_property: HOMS资产
     attributes:
       admin_user:
         email: 电子邮件
