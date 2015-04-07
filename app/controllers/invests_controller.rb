@@ -61,7 +61,8 @@ class InvestsController < ApplicationController
         account_id:   invest_account.id,
         amount:       -@invest.amount,
         billing_type: "投标成功",
-        billable:     @invest)
+        billable:     @invest,
+        remark:       @fund.name)
       billing_in = Billing.new(
         account_id:   fund_account.fund.user.account.id,
         amount:       @invest.amount,

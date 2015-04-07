@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150403015955) do
+ActiveRecord::Schema.define(version: 20150407151451) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(version: 20150403015955) do
     t.datetime "updated_at",                                                        null: false
     t.string   "state",          limit: 255
     t.string   "billing_number", limit: 255
+    t.string   "remark",         limit: 255
   end
 
   add_index "billings", ["account_id"], name: "index_billings_on_account_id", using: :btree

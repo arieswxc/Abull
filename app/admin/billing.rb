@@ -4,7 +4,7 @@ require 'net/http'
 require 'active_support/all'
 
 ActiveAdmin.register Billing do
-  permit_params :account_id, :amount, :billing_type, :billable_type, :billable_id, :state, :billing_number
+  permit_params :account_id, :amount, :billing_type, :billable_type, :billable_id, :state, :billing_number, :remark
 
   controller do
     def order_result_query(billing)
@@ -73,6 +73,7 @@ ActiveAdmin.register Billing do
       row :state do |billing|
         t(billing.state)
       end
+      row :remark
     end
   end
 

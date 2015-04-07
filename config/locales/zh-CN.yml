@@ -169,6 +169,7 @@ zh-CN:
         created_at: 创建日期
         updated_at: 更新日期
         billing_number: 账单号
+        remark: 备注
       csv_file:
         title: 名称
         file: 文件位置
