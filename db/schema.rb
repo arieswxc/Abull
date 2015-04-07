@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 20150403015955) do
     t.decimal  "balance",              precision: 12, scale: 2, default: 0.0
     t.datetime "created_at",                                                  null: false
     t.datetime "updated_at",                                                  null: false
-    t.decimal  "freeze",               precision: 12, scale: 2
     t.decimal  "frost",                precision: 12, scale: 2, default: 0.0
   end
 
