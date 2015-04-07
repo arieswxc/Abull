@@ -27,11 +27,16 @@ class ApplicationController < ActionController::Base
   def parse_list_data(current_path)
     array = []
     if current_path
-      File.open(current_path, "r") do |file|
-        file.each_line do |line|
-          pos_x, pos_y = line.chomp.split(",")
-          array = array << [pos_x, pos_y]
+      begin
+        File.open(current_path, "r") do |file|
+          file.each_line do |line|
+            pos_x, pos_y = line.chomp.split(",")
+            array = array << [pos_x, pos_y]
+          end
         end
+
+      rescue
+        array =[]
       end
     end
     array
