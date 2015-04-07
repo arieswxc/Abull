@@ -12,25 +12,20 @@
         %label 暗号:
         %input.unlock_val
         %a.btn-u.btn-u-orange.btn-u-xs.unlock_btn UNLOCK
-    .row.mt10
-      = render 'users/funder_info',{user: @fund.user}
     .row
       - if @fund.state == "gathering"
         - if @flag
           .col-md-12.new_invest_form
-            = render 'form'
-          .col-md-12.fund_base_info
-            = render 'funds/fund_base_info'
-          
+            %p= render 'form'
         - else
           .col-md-12.hide.new_invest_form
-            = render 'form'
-          .col-md-12.fund_base_info
-            = render 'funds/fund_base_info'
-          
-      - else
-        .col-md-12.fund_base_info
-          = render 'funds/fund_base_info'
+            %p= render 'form'
+    .row.mt10
+      = render 'users/funder_info',{user: @fund.user}
+    .row
+      .col-md-12.fund_base_info
+        = render 'funds/fund_base_info'
+      
     .tag-box.tag-box-v3.mt20.p20.pt0
       .row
         .col-md-8
