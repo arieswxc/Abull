@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   #   0.upto(array_x.length) do |index|
   #     array_x[index] = "" if index % interval != 0
   #   end
-    
+
   #   array_x.reverse!
   #   [array_x, array_y]
   # end

@@ -63,7 +63,7 @@ class FundsController < ApplicationController
     # if fund.line_csv && fund.line_csv.file.current_path
       current_path = "#{Rails.root}/lib/LibFile/hs300_data.csv"
       items = parse_csv(current_path)
-      render json:{ [{data: [items]}, {data: [items]}] }
+      render json:[{data: items}, {data: items}]
     # else
     #   render json:{ message: "Not found" }, status: 404
     # end
