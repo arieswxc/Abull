@@ -5,38 +5,53 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   # def parse_csv(current_path)
   #   # if user.line_csv
-  #   array_x = []
-  #   array_y = []
+  #   items = []
   #   File.open(current_path, "r") do |file|
   #     file.each_line do |line|
-  #       pos_x, pos_y = line.chomp.split(",")
-  #       array_x = array_x << pos_x
-  #       array_y = array_y << pos_y
+  #       array = line.chomp.split(" ")
+  #       time = array[0].to_time.to_i.to_s + "000"
+  #       time = time.to_i
+  #       data = array[1]
+  #       item = [time, array[1].to_i]
+  #       items << item
   #     end
   #   end
-  #   interval = (array_x.length / 10).to_i
-  #   array_x.reverse!
-  #   0.upto(array_x.length) do |index|
-  #     array_x[index] = "" if index % interval != 0
-  #   end
-
-  #   array_x.reverse!
-  #   [array_x, array_y]
+  #   items
   # end
-  def parse_csv(current_path)
-    # if user.line_csv
+
+  def parse_csv(data_path)
     items = []
-    File.open(current_path, "r") do |file|
+    hushen300_path = "#{Rails.root}/lib/LibFile/husheng_data.csv"
+    
+    File.open(data_path, "r") do |file|
       file.each_line do |line|
-        array = line.chomp.split(" ")
+        array = line.chomp.split(",")
         time = array[0].to_time.to_i.to_s + "000"
         time = time.to_i
         data = array[1]
         item = [time, array[1].to_i]
-        items << item
+        data << item
       end
     end
-    items
+
+    begin_date = Time.at(data.first[0]).to_date
+    end_date = Time.at(data.last[0]).to_date
+
+    
+    File.open(hushen300_path, "r") do |file|
+      file.each_line do |line|
+        array = line.chomp.split(" ")
+        if array[0].to_date >= begin_date .. array[0].to_date <= end_date
+          time = array[0].to_time.to_i.to_s + "000"
+          time = time.to_i
+          data = array[1]
+          item = [time, array[1].to_i]
+          hushen_data << item
+        end
+      end
+    end
+    
+    [data,hushen_data]
   end
 
   def parse_list_data(current_path)
