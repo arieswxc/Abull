@@ -3,55 +3,48 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
-  # def parse_csv(current_path)
-  #   # if user.line_csv
-  #   items = []
-  #   File.open(current_path, "r") do |file|
-  #     file.each_line do |line|
-  #       array = line.chomp.split(" ")
-  #       time = array[0].to_time.to_i.to_s + "000"
-  #       time = time.to_i
-  #       data = array[1]
-  #       item = [time, array[1].to_i]
-  #       items << item
-  #     end
-  #   end
-  #   items
-  # end
 
   def parse_csv(data_path)
     items = []
-    hushen300_path = "#{Rails.root}/lib/LibFile/husheng_data.csv"
-    
+    other_data = []
+    hushen_data = []
+    hushen300_path = "#{Rails.root}/lib/LibFile/hs300_data.csv"
+    initial_value = 0
+
     File.open(data_path, "r") do |file|
-      file.each_line do |line|
+      file.each_line.with_index do |line, index|
         array = line.chomp.split(",")
+        initial_value = array[1].to_f if index == 0
         time = array[0].to_time.to_i.to_s + "000"
         time = time.to_i
-        data = array[1]
-        item = [time, array[1].to_i]
-        data << item
+        data = (array[1].to_f / initial_value)
+        item = [time, data]
+        other_data << item
       end
     end
 
-    begin_date = Time.at(data.first[0]).to_date
-    end_date = Time.at(data.last[0]).to_date
+    begin_date = Time.at(other_data.first[0].to_s.slice(0, other_data.first[0].to_s.length - 3).to_i)
+    end_date = Time.at(other_data.last[0].to_s.slice(0, other_data.last[0].to_s.length - 3).to_i)
 
-    
+    flag = 0
+
     File.open(hushen300_path, "r") do |file|
-      file.each_line do |line|
+      file.each_line.with_index do |line, index|
         array = line.chomp.split(" ")
-        if array[0].to_date >= begin_date .. array[0].to_date <= end_date
+        initial_value = array[1].to_f if index == 0
+        
+        if array[0].to_time >= begin_date && flag == 0 .. array[0].to_time > end_date
           time = array[0].to_time.to_i.to_s + "000"
           time = time.to_i
-          data = array[1]
-          item = [time, array[1].to_i]
+          data = array[1].to_f / initial_value
+          item = [time, data]
           hushen_data << item
+          flag = 1 if array[0].to_time > end_date
         end
       end
     end
     
-    [data,hushen_data]
+    [other_data,hushen_data]
   end
 
   def parse_list_data(current_path)
