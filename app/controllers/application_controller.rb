@@ -29,7 +29,10 @@ class ApplicationController < ActionController::Base
     File.open(current_path, "r") do |file|
       file.each_line do |line|
         array = line.chomp.split(" ")
-        item = [array[0].to_time.to_i, array[1]]
+        time = array[0].to_time.to_i.to_s + "000"
+        time = time.to_i
+        data = array[1]
+        item = [time, array[1].to_i]
         items << item
       end
     end
