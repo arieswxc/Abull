@@ -58,8 +58,8 @@
             %td
               = @invests[index].fund.earning_rate
               = '%' if !@invests[index].fund.earning_rate.blank?
-            %td= @invests[index].fund.state
+            %td= t(@invests[index].fund.state)
           %td
             = @invests[index].amount
             = '元' unless @invests[index].amount.blank?
-          %td.formattime= @invests[index].date
+          %td{:class => "#{'formattime' unless @invests[index].date.blank? }"}= @invests[index].date

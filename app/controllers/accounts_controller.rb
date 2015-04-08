@@ -10,6 +10,8 @@ class AccountsController < ApplicationController
 
   def bankcard_charged
     @billing = current_user.account.billings.build(billing_params)
+    @billing.billing_type = "充值"
+    @billing.remark = "银行转账"
     if @billing.save
       redirect_to user_account_billings_path
     else
@@ -23,7 +25,8 @@ class AccountsController < ApplicationController
 
   def alipay_charged
     @billing = current_user.account.billings.build(billing_params)
-    @billing.billing_type = "Alipay " + @billing.billing_type
+    @billing.billing_type = "充值"
+    @billing.remark = "支付宝转账"
     if @billing.save
       # redirect_to user_account_billings_path
       render json: {message: "seccess"}
@@ -38,7 +41,8 @@ class AccountsController < ApplicationController
 
   def third_charged
     @billing = current_user.account.billings.build(billing_params)
-    @billing.billing_type = "Third"
+    @billing.billing_type = "充值"
+    @billing.remark = "第三方支付"
     if @billing.save
       render json: {url: realtime_trade(@billing).to_s}
     else
@@ -58,7 +62,7 @@ class AccountsController < ApplicationController
     @billing_withdraw = account.billings.build(billing_params)
     @billing_out.billing_type       = "From Balance"
     @billing_in.billing_type        = "To Frost"
-    @billing_withdraw.billing_type  = "Withdraw"
+    @billing_withdraw.billing_type  = "提现"
 
     account.balance -= @billing_out.amount
     account.frost += @billing_out.amount

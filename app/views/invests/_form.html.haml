@@ -2,10 +2,9 @@
 	= f.input :fund_id, value: @fund.id, as: :hidden
 	= f.input :date, as: :hidden
 	.form-group
-
 		%label
 			= "剩余投资额 : " + (@fund.amount - @invests.sum(:amount)).to_s() +"元"
-		%br
+	.form-group
 		%label
 			= "最小投资额 : "
 			- if @fund.minimum
@@ -13,13 +12,13 @@
 			- else
 				0.0
 			= "元"
-		%br
-		%label
-			= Invest.human_attribute_name('amount')
-			\:
-		.input-group
-			%input#invest_input_can.form-control.text-center.numberic{:name => "invest[amount]",:maxlength => 7,:placeholder => "大于等于最小投资额，小于等于剩余投资额"}
-			%span.input-group-addon  元
+	/ .form-group
+	/ 	%label
+	/ 		= Invest.human_attribute_name('amount')
+	/ 		\:
+	.input-group
+		%input#invest_input_can.form-control.text-center.numberic{:name => "invest[amount]",:maxlength => 7,:placeholder => "请输入计划投资的金额"}
+		%span.input-group-addon  元
 	.mb10
 		%input#check{:type => "checkbox",:checked => ""}/
 		我已阅读并同意

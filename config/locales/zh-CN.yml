@@ -18,6 +18,7 @@ zh-CN:
       bank_card: 银行卡
       billing: 账单
       fund_account: 操盘账户
+      homs_property: HOMS资产
     attributes:
       admin_user:
         email: 电子邮件
@@ -168,6 +169,7 @@ zh-CN:
         created_at: 创建日期
         updated_at: 更新日期
         billing_number: 账单号
+        remark: 备注
       csv_file:
         title: 名称
         file: 文件位置
@@ -206,16 +208,19 @@ zh-CN:
   applied: 申请
   gathering: 募集中
   reached: 募集完成
-  opened: 开标
-  running: 运行中
-  finished: 运行结束
+  running: 操盘中
+  finished: 操盘到期
   closed: 关闭
   denied: 拒绝
   male: 男
   Confirm: 确认
   confirm: 确认
+  open_homs: 开立HOMS账号
   Agree: 同意
+  approve: 确认
   Deny: 拒绝
+  clear: 清盘
+  force_clear: 提前清盘
   Reject: 拒绝
   card_number: 卡号
   real_name: 真实姓名

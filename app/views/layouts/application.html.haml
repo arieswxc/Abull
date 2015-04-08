@@ -72,7 +72,9 @@
         RevolutionSlider.initRSfullWidth();
         FancyBox.initFancybox();
         $(".formattime").each(function() {
-          $(this).text(moment($(this).text()).format('YYYY-MM-DD hh:mm'));
+          if (moment($(this).text(),"YYYY-MM-DD HH:mm:ss Z").isValid()) {
+            $(this).text(moment($(this).text(),"YYYY-MM-DD HH:mm:ss Z").format('YYYY-MM-DD HH:mm:ss'));
+          }
         });
 
         $(".pz_tips_1").hover(function(){
