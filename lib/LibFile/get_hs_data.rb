@@ -26,9 +26,6 @@ end
 
 open(@address) do |f|
   f.each_line.with_index do |line,index|
-    # if index == 0
-    #   print "            "
-    # end
     arr=line.split(",")
     arr.each do |data|
       print "#{data}      "
