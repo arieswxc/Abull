@@ -1,13 +1,13 @@
 .footer-v1
   .footer
     .container
-      .row
+      .row.pl20.pr20
         / About
 
         / End About
         / Link List
-        .col-xs-2
-          %a{:href => "/"}
+        .col-xs-3
+          %a.block.text-center{:href => "/"}
             %img#logo-header{:alt => "Logo", :src => asset_path("logo.png")}/
           .mt15.text-center
             %span.white 客服热线
