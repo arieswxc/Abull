@@ -46,16 +46,27 @@ class FundsController < ApplicationController
     end
   end
 
+  # def get_history_data
+  #   fund = Fund.find(params[:id])
+  #   if fund.line_csv && fund.line_csv.file.current_path
+  #     array_x, array_y = parse_csv(fund.line_csv.file.current_path)
+  #     current_path = "#{Rails.root}/lib/LibFile/husheng_data.csv"
+  #     array1_x, array1_y = parse_csv(current_path)
+  #     render json:{ labels: array_x, datasets: [{data: array_y}, {data: array1_y}] }
+  #   else
+  #     render json:{ message: "Not found" }, status: 404
+  #   end
+  # end
+
   def get_history_data
     fund = Fund.find(params[:id])
-    if fund.line_csv && fund.line_csv.file.current_path
-      array_x, array_y = parse_csv(fund.line_csv.file.current_path)
-      current_path = "#{Rails.root}/lib/LibFile/husheng_data.csv"
-      array1_x, array1_y = parse_csv(current_path)
-      render json:{ labels: array_x, datasets: [{data: array_y}, {data: array1_y}] }
-    else
-      render json:{ message: "Not found" }, status: 404
-    end
+    # if fund.line_csv && fund.line_csv.file.current_path
+      current_path = "#{Rails.root}/lib/LibFile/hs300_data.csv"
+      items = parse_csv(current_path)
+      render json:{ [{data: [items]}, {data: [items]}] }
+    # else
+    #   render json:{ message: "Not found" }, status: 404
+    # end
   end
 
   def show_history_data

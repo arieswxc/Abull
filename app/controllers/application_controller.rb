@@ -3,25 +3,37 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
+  # def parse_csv(current_path)
+  #   # if user.line_csv
+  #   array_x = []
+  #   array_y = []
+  #   File.open(current_path, "r") do |file|
+  #     file.each_line do |line|
+  #       pos_x, pos_y = line.chomp.split(",")
+  #       array_x = array_x << pos_x
+  #       array_y = array_y << pos_y
+  #     end
+  #   end
+  #   interval = (array_x.length / 10).to_i
+  #   array_x.reverse!
+  #   0.upto(array_x.length) do |index|
+  #     array_x[index] = "" if index % interval != 0
+  #   end
+    
+  #   array_x.reverse!
+  #   [array_x, array_y]
+  # end
   def parse_csv(current_path)
     # if user.line_csv
-    array_x = []
-    array_y = []
+    items = []
     File.open(current_path, "r") do |file|
       file.each_line do |line|
-        pos_x, pos_y = line.chomp.split(",")
-        array_x = array_x << pos_x
-        array_y = array_y << pos_y
+        array = line.chomp.split(" ")
+        item = [array[0].to_time.to_i, array[1]]
+        items << item
       end
     end
-    interval = (array_x.length / 10).to_i
-    array_x.reverse!
-    0.upto(array_x.length) do |index|
-      array_x[index] = "" if index % interval != 0
-    end
-    
-    array_x.reverse!
-    [array_x, array_y]
+    items
   end
 
   def parse_list_data(current_path)
