@@ -6,6 +6,7 @@ var OwlCarousel = function () {
         initOwlCarousel: function () {
 	        //Owl Slider v1
 			var owl = jQuery(".owl-slider").owlCarousel({
+                items: 1,
                 itemsDesktop : [1000,5],
                 itemsDesktopSmall : [900,4],
                 itemsTablet: [600,3],
