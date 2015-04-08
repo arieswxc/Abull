@@ -1,5 +1,5 @@
 ActiveAdmin.register Fund do
-  permit_params :name, :user_id, :amount, :ending_days, :earning, :expected_earning_rate, :earning_rate, :state, :private_check, :minimum, :invest_starting_date, :invest_ending_date, :description, 
+  permit_params :name, :user_id, :amount, :ending_days, :earning, :expected_earning_rate, :earning_rate, :state, :private_check, :minimum, :invest_starting_date, :invest_ending_date, :description,
     	:frontend_risk_method, :duration, :mandate, :management_fee,
   		:backend_risk_method, :initial_amount, :created_at, :updated_at, :raised_amount, :genre, :private_code,fund_verify_photos_attributes: [:title, :photo],
       line_csv_attributes: [:title, :file]
@@ -26,7 +26,7 @@ ActiveAdmin.register Fund do
 
   # page of show
   show do |fund|
-    attributes_table  do 
+    attributes_table  do
       row :state do
         t(fund.state)
       end
@@ -54,9 +54,9 @@ ActiveAdmin.register Fund do
       end
       row :management_fee
     end
-  
+
     panel t('证明文件照片') do
-      table_for fund.fund_verify_photos do |f| 
+      table_for fund.fund_verify_photos do |f|
         column "标题", :title
         column "照片" do |f|
           image_tag f.photo, width:400, height:400
@@ -64,7 +64,7 @@ ActiveAdmin.register Fund do
       end
     end
 
-    panel t('Homs') do 
+    panel t('Homs') do
       attributes_table_for fund.homs_account do
         row :title do
           link_to fund.homs_account.title, admin_homs_account_path(fund.homs_account)
@@ -74,7 +74,7 @@ ActiveAdmin.register Fund do
       end
     end
 
-    panel t('操盘手个人信息') do 
+    panel t('操盘手个人信息') do
       attributes_table_for fund.user do
         row :email
         row :username
@@ -117,7 +117,7 @@ ActiveAdmin.register Fund do
             form_for "Reason", url: input_reason_admin_fund_path(fund), method: :post do |f|
               f.text_area :reason
               f.submit
-            end        
+            end
           end
         end
         row t('gathering'), :state do |fund|
@@ -127,7 +127,7 @@ ActiveAdmin.register Fund do
           link_to_if (fund.state == "gathering"), t('强制完成募集'), confirm_fund_admin_fund_path(fund), :method => :put, :class => 'button'
         end
         row t('reached'), :state do |fund|
-          link_to_if (fund.state == "reached"), t('open_homs'), confirm_fund_admin_fund_path(fund), :method => :put, :class => 'button'  
+          link_to_if (fund.state == "reached"), t('open_homs'), confirm_fund_admin_fund_path(fund), :method => :put, :class => 'button'
         end
         row t('running'), :state do |fund|
           link_to_if (fund.state == "running"), t('force_clear'), clear_admin_fund_path(fund), :method => :get, :class => 'button'
@@ -140,17 +140,17 @@ ActiveAdmin.register Fund do
         end
       end
     end
-    panel t("发标通知") do  
-      attributes_table_for fund do 
-        row('发标审核通过')  do 
+    panel t("发标通知") do
+      attributes_table_for fund do
+        row('发标审核通过')  do
           link_to t('confirm'), fund_confirm_inform_admin_fund_path(fund), :method => :get, :class => 'button'
         end
-        row('发标审核未通过')  do 
+        row('发标审核未通过')  do
           link_to t('confirm'), fund_deny_inform_admin_fund_path(fund), :method => :get, :class => 'button'
         end
-        row('发标提前清盘')  do 
+        row('发标提前清盘')  do
           link_to t('confirm'), fund_liquidation_inform_admin_fund_path(fund), :method => :get, :class => 'button'
-        end   
+        end
       end
     end
   end
@@ -165,7 +165,7 @@ ActiveAdmin.register Fund do
         f.input :earning_rate
         f.input :private_check
         f.input :private_code
-        f.input :description, as: :wysihtml5 
+        f.input :description, as: :wysihtml5
         f.input :frontend_risk_method, as: :wysihtml5
         f.input :backend_risk_method, as: :wysihtml5
         f.input :initial_amount
@@ -185,15 +185,15 @@ ActiveAdmin.register Fund do
           end
         end
       end
-        f.inputs "上传csv文件", for: [:line_csv, f.object.line_csv] do |file|
+        f.inputs "上传csv文件", for: [:line_csv, f.object.line_csv || CsvFile.new] do |file|
           file.input :title
           file.input :file
         end
       f.actions
   end
 
-  
-  member_action :confirm_fund, :method => :put do 
+
+  member_action :confirm_fund, :method => :put do
     fund = Fund.find(params[:id])
     if fund.state == 'denied'
       fund.apply
@@ -204,11 +204,11 @@ ActiveAdmin.register Fund do
       fund.update(amount: fund.invests.sum(:amount))
     elsif fund.state == 'reached'
       billing_out = fund.user.account.billings.build(
-        amount:       -fund.amount, 
+        amount:       -fund.amount,
         billing_type: "从资金账户到交易账户",
         billable:     fund.fund_account)
       billing_in = fund.user.account.billings.build(
-        amount:       fund.amount, 
+        amount:       fund.amount,
         billing_type: "从资金账户到交易账户",
         billable:     fund.homs_account)
       fund_account          = fund.fund_account
@@ -230,7 +230,7 @@ ActiveAdmin.register Fund do
       fund.finish
     elsif fund.state == 'finished'
       fund.close
-    end      
+    end
     redirect_to admin_fund_path(fund)
   end
 
@@ -295,7 +295,7 @@ ActiveAdmin.register Fund do
     homs_account = fund.homs_account
 
     profit            = homs_account.amount - fund.amount
-    management_profit = (profit > 0) ? profit * (fund.management_fee.to_f / 100) : 0 
+    management_profit = (profit > 0) ? profit * (fund.management_fee.to_f / 100) : 0
     shared_profit     = profit - management_profit
     rate              = (shared_profit / fund.amount) + 1
 
