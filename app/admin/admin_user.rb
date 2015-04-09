@@ -20,8 +20,8 @@ ActiveAdmin.register AdminUser do
 
   form do |f|
     f.inputs "Admin Details" do
-      f.input :email
-      f.input :role, as: :select, collection: ["risk_controller", "teller", "account_manager", "customer_service"]
+      f.input :email if current_admin_user.role == "admin"
+      f.input :role, as: :select, collection: ["risk_controller", "teller", "account_manager", "customer_service"] if current_admin_user.role == "admin"
       f.input :password
       f.input :password_confirmation
     end

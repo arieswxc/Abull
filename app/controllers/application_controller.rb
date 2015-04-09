@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def access_denied(exception)
+    redirect_to admin_dashboard_path, alert: exception.message
+  end
+
   def parse_csv(data_path)
     items = []
     other_data = []
