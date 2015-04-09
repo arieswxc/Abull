@@ -204,6 +204,10 @@ zh-CN:
     comments:
         resource_type: 资源类型
         author_type: 作者类型
+  devise:
+    sessions:
+      user:
+        valid username or password: 用户名或密码错误
   female: 女
   applied: 申请
   gathering: 募集中

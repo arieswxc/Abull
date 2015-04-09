@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
-  devise_for :users, controllers: { registrations: 'registrations'}
+  devise_for :users, controllers: { registrations: 'registrations', sessions: 'sessions'}
   ActiveAdmin.routes(self)
   mount ChinaCity::Engine => '/china_city'
   root 'welcome#index'

@@ -5,6 +5,9 @@
       = form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'reg-page'}) do |f|
         .reg-header
           %h2 登录
+        .red
+          - if flash.now[:error]
+            = flash.now[:error]
         .input-group.margin-bottom-20
           %span.input-group-addon
             %i.fa.fa-user
