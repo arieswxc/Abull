@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def access_denied(exception)
+    redirect_to admin_dashboard_path, alert: exception.message
+  end
+
   def parse_csv(data_path)
     items = []
     other_data = []
@@ -33,18 +37,28 @@ class ApplicationController < ActionController::Base
         array = line.chomp.split(" ")
         initial_value = array[1].to_f if index == 0
         
-        if array[0].to_time >= begin_date && flag == 0 .. array[0].to_time > end_date
+        if array[0].to_time >= begin_date && flag == 0 .. array[0].to_time >= end_date
           time = array[0].to_time.to_i.to_s + "000"
           time = time.to_i
           data = array[1].to_f / initial_value
           item = [time, data]
           hushen_data << item
-          flag = 1 if array[0].to_time > end_date
+          flag = 1 if array[0].to_time >= end_date
         end
       end
     end
     
-    [other_data,hushen_data]
+    hs_data = []
+    other_data.each do |a|
+      hushen_data.each do |b|
+        if b[0] == a[0]
+          hs_data << b
+          break
+        end
+      end
+    end
+    
+    [other_data,hs_data]
   end
 
   def parse_list_data(current_path)

@@ -81,8 +81,11 @@ class UsersController < ApplicationController
     msg = "你的验证码为#{code}" if params[:forget_pswd].to_i == 1
     batch_code  = send_sms(code, params[:cell], msg)
 
-    if params[:forget_pswd].to_i == 1
+    if params[:forget_pswd].to_i == 1 && User.find_by(cell: params[:user][:cell])
       render "forget_password_edit"
+    elsif params[:forget_pswd].to_i == 1 && User.find_by(cell: params[:user][:cell]).nil?
+      flash[:error] = "手机号错误，用户不存在"
+      redirect_to new_user_password_path
     elsif batch_code
       render json: {message: 'success'}
     else

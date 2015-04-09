@@ -79,6 +79,7 @@ gem 'acts_as_commentable'
 gem 'thin'
 
 gem 'state_machines-activerecord'
+gem 'cancancan'
 
 group :development, :test do
   gem 'rspec-rails'

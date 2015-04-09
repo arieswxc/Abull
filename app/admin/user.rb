@@ -164,7 +164,7 @@ ActiveAdmin.register User do
     elsif user.level == 'trader_applied'
       user.up_to_td
     end
-    redirect_to admin_user_path(user)
+    redirect_to admin_user_path(user), notice: "执行成功"
   end
 
   member_action :degrade_user, :method => :put do
@@ -174,7 +174,7 @@ ActiveAdmin.register User do
     elsif user.level == 'investor'
       user.down_to_un
     end
-    redirect_to admin_user_path(user)
+    redirect_to admin_user_path(user), notice: "执行成功"
   end
 
 end

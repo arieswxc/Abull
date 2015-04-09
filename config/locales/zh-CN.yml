@@ -151,6 +151,7 @@ zh-CN:
         user: 用户
         created_at: 创建日期
         updated_at: 更新日期
+        frost: 冻结资金
       bank_card:
         user_id: 持卡人
         bank_name: 开户行

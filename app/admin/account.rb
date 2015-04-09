@@ -60,14 +60,17 @@ ActiveAdmin.register Account do
   end
 
   member_action :confirm_charge, :method => :post do
+    flash[:notice] = "发送成功"
     inform(resource, 'offline', params[:input][:amount])
   end
 
   member_action :confirm_zhifubao, :method => :post do
+    flash[:notice] = "发送成功"
     inform(resource, 'zhifubao', params[:input][:amount])
   end
 
   member_action :confirm_withdraw, :method => :post do
+    flash[:notice] = "发送成功"
     inform(resource, 'withdraw', params[:input][:amount])
   end
 
