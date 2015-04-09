@@ -1,6 +1,6 @@
-.p20.col-md-12
+.p20.col-xs-12
   .row
-    .col-md-3.text-center.mb40
+    .col-xs-3.text-center.mb40
       .avatar
         = image_tag user.avatar.url,class: "img-thumbnail img-rounded w70 #{'blur' unless @flag}"
       .username.mt5
@@ -13,8 +13,8 @@
       -# .btn-group.mt5
       -#   %a.btn-u.btn-u-blue{:href => "javascript:;"} 关注
       -#   %a.btn-u.btn-u-red{:href => "javascript:;"} 私信 /* cap1 */
-    .col-md-9
-      .tag-box.tag-box-v3.col-md-12.mr20
+    .col-xs-9
+      .tag-box.tag-box-v3.col-xs-12.mr20
         .row
           .col-md-5
             姓名：
@@ -68,12 +68,12 @@
 
   .tag-box.tag-box-v3.mb0
     .row
-      .col-xs-4
+      .col-md-4.col-sm-6.col-xs-6
         .headline.headline-md.relative
           %h4 历史业绩
         .text-center
           #history_chart.chart_box
-      .col-xs-4
+      .col-md-4.col-sm-6.col-xs-6
         .headline.headline-md
           %h4 历史数据
           = link_to "更多",show_history_data_user_path(user.id),class: "float-right"
@@ -93,7 +93,7 @@
                       = f[1]
           - else
             %h2.text-center.p20 还没有历史数据
-      .col-xs-4
+      .col-md-4.col-sm-12.col-xs-12
         .headline.headline-md
           %h4 证明图片
         .mt10
@@ -126,7 +126,7 @@
               chart:
               {
                   renderTo: 'history_chart',
-                  width: 340,
+                  width: 300,
                   height: 260
               },
 

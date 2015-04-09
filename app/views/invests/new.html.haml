@@ -15,15 +15,15 @@
     .row
       - if @fund.state == "gathering"
         - if @flag
-          .col-md-12.new_invest_form
+          .col-xs-12.new_invest_form
             %p= render 'form'
         - else
-          .col-md-12.hide.new_invest_form
+          .col-xs-12.hide.new_invest_form
             %p= render 'form'
     .row.mt10
       = render 'users/funder_info',{user: @fund.user}
     .row
-      .col-md-12.fund_base_info
+      .col-xs-12.fund_base_info
         = render 'funds/fund_base_info'
 
     .tag-box.tag-box-v3.mt20.p20.pt0
@@ -80,7 +80,7 @@
             -else
               %h2.text-center.p20 请投标后查看
     .row
-      .col-md-12
+      .col-xs-12
         .panel.panel-grey
           .panel-heading
             .panel-title
