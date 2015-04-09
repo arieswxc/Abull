@@ -36,7 +36,8 @@
             %li.ui-list-item.fn-clear
               %a{:href => new_fund_invest_path(f.id)}
                 %span.ui-list-field.fn-left.text-big.w110.text-center
-                  %img.img-circle.ui-progressbar-mid{:height => "50", :src => f.user.avatar.url, :width => "50",:class => "#{'blur' if f.private_check == 'private'}"}/
+                  %em.value>= check_private(f.user.username,f.private_check)
+                  -# %img.img-circle.ui-progressbar-mid{:height => "50", :src => f.user.avatar.url, :width => "50",:class => "#{'blur' if f.private_check == 'private'}"}/
                 %span.ui-list-field.fn-left.text-big.w200.text-center
                   %span.fn-left.w200.rrd-dimgray.fn-text-overflow= check_private(f.name,f.private_check)
                 %span.ui-list-field.fn-left.text-big.w90
@@ -91,7 +92,7 @@
               %h2.heading-sm 投资人
               %h3.heading-sm 刘女士
           .content-boxes-in-v3
-            %p “随时股市行情上升，股票投资的收益远远超过其他理财方式。由于平时要上班，没时间研究股票，但通过摩尔街，可以找到最好的操盘手为我服务，收益也非常有保障。”
+            %p “随时股市行情上升，股票投资的收益远远超过其他理财方式。由于平时要上班，没时间研究股票，但通过摩尔街，可以找到最好的操盘手为我服务，收益也有保障。”
         .col-md-4.col-sm-4
           .row
             .col-md-2.col-sm-2
@@ -101,7 +102,7 @@
               %h2.heading-sm 配资客户
               %h3.heading-sm 王先生
           .content-boxes-in-v3
-            %p “我在摩尔街的配资体验非常不错，高效、服务好。而且他们团队成员都是名校毕业，安全性上也有保障。”
+            %p “我在摩尔街的配资体验非常不错，高效、服务好。而且他们团队成员都是名校毕业，安全性上也有保障，我会跟他们长期合作。”
   .container.content.pt0i
     .row
       .col-md-12
