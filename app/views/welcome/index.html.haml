@@ -28,27 +28,21 @@
   -#           %p.text-right
   -#             已有账号？#{link_to("立即登录",new_user_session_path,rel: "nofollow")}
   / 安全  收益 保障
-  .container.content.pb0i
+  .container.content.pb0i.aq-sy-bz
     / Begin Service Block
-    .row.margin-bottom-40
-      .col-md-4.col-xs-4
-        .service-block.service-or.home-aq
-          .service-bg
-          = image_tag "home_aq_icon.png",height: '38px'
-          %h2.heading-md 安全
-          %p 账户券商托管、资金银行托管、全程无其他方介入，全程透明可见，资金、账户保证安全。
-      .col-md-4.col-xs-4
-        .service-block.service-or.home-sy
-          .service-bg
-          = image_tag "home_sy_icon.png",height: '38px'
-          %h2.heading-md 简单
-          %p 全方位交流、信息全面、在线委托操盘，实时查看，简单、安心、便捷，良好体验。
-      .col-md-4.col-xs-4
-        .service-block.service-or.home-bz
-          .service-bg
-          = image_tag "home_bz_icon.png",height: '38px'
-          %h2.heading-md 收益
-          %p 以20%的风险换取20%-200%的浮动收益，小风险大回报，财富快速增值，值得一试。
+    .row.text-center.margin-bottom-60
+      .col-md-4.md-margin-bottom-50
+        = image_tag "home_aq_icon.png",class:"image-md margin-bottom-20"
+        %h1.title-v3-md.margin-bottom-10 资金安全
+        %p 账户券商托管，资金银行托管，全程无其他方介入，透明可见，资金，账户保证安全。
+      .col-md-4.flat-service.md-margin-bottom-50
+        = image_tag "home_sy_icon.png",class:"image-md margin-bottom-20"
+        %h1.title-v3-md.margin-bottom-10 收益更高
+        %p 以20%的风险换取20%-200%的浮动收益，小风险大回报，财富快速增值，值得一试。
+      .col-md-4.flat-service
+        = image_tag "home_bz_icon.png",class:"image-md margin-bottom-20"
+        %h1.title-v3-md.margin-bottom-10 简单方便
+        %p 全方位交流、信息全面、在线委托操盘，实时查看，简单、安心、便捷，良好体验。
     / End Begin Service Block
   / 投资操盘列表
   .container.content.pt0i.pb0i
