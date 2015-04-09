@@ -5,6 +5,9 @@
         = devise_error_messages!
         .reg-header
           %h2 忘记密码?
+        .red
+          - if flash[:error]
+            = flash[:error]
         .input-group.margin-bottom-20
           %span.input-group-addon
             %i.fa.fa-phone

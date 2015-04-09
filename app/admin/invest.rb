@@ -49,10 +49,12 @@ ActiveAdmin.register Invest do
   end
 
   member_action :advanced_liquidation, :method => :get do
+    flash[:notice] = "发送成功"
     invest_inform(resource, 'advanced_liquidation')
   end
 
   member_action :due_liquidation, :method => :get do
+    flash[:notice] = "发送成功"
     invest_inform(resource, 'due_liquidation')
   end
 

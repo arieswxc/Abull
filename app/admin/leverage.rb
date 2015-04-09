@@ -85,7 +85,7 @@ ActiveAdmin.register Leverage do
     elsif leverage.state == 'confirmed'
       leverage.close
     end
-    redirect_to admin_leverage_path(leverage)
+    redirect_to admin_leverage_path(leverage), notice: "执行成功"
   end
 
   member_action :deny_leverage, :method => :put do
@@ -93,14 +93,16 @@ ActiveAdmin.register Leverage do
     if leverage.state = 'applied'
       leverage.deny 
     end
-    redirect_to admin_leverage_path(leverage)
+    redirect_to admin_leverage_path(leverage), notice: "执行成功"
   end
 
   member_action :leverage_confirm_inform, :method => :get do
+    flash[:notice] = "发送成功"    
     leverage_inform(resource, 'leverage_confirm_inform')
   end
 
   member_action :add_deposit_inform, :method => :get do
+    flash[:notice] = "发送成功"
     leverage_inform(resource, 'add_deposit_inform')
   end
 
@@ -115,7 +117,7 @@ ActiveAdmin.register Leverage do
     }
     UserMailer.leverage_email('add_interests_inform', hash).deliver_now
     resource.send_sms(user.cell, 'add_interests_inform', hash)
-    redirect_to admin_leverage_path(resource)
+    redirect_to admin_leverage_path(resource), notice: "执行成功"
   end
 
 

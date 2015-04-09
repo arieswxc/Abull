@@ -111,13 +111,13 @@ ActiveAdmin.register Billing do
       billing.confirm
       account.save
     end
-    redirect_to admin_billing_path(billing)
+    redirect_to admin_billing_path(billing), notice: "执行成功"
   end
 
   member_action :deny, :method => :put do
     billing = Billing.find(params[:id])
     billing.deny
-    redirect_to admin_billing_path(billing)
+    redirect_to admin_billing_path(billing), notice: "执行成功"
   end
 
   member_action :confirm_thirdpay, :method => :put do
@@ -130,6 +130,6 @@ ActiveAdmin.register Billing do
         account.save
       end
     end
-    redirect_to admin_billing_path(billing)
+    redirect_to admin_billing_path(billing), notice: "执行成功"
   end
 end
