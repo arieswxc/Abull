@@ -1,4 +1,4 @@
-%table.table.table-striped
+%table.table.table-striped.text-center
   %thead
     %tr
       - unless @current=="xxx"
@@ -28,10 +28,10 @@
       - if @invests[index].user
         %tr{'data-index' => @invests[index].id}
           - unless @current=="xxx"
-            %td= index+1
+            %td.index= index+1
             %td= "#{@invests[index].user.username}"
           - else
-            %td= @invests[index].id
+            %td.index= @invests[index].id
             %td= @invests[index].fund.name
             %td
               - if @invests[index].fund.user.username

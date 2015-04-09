@@ -39,18 +39,20 @@
             = link_to "更多","#",class: "float-right"
           .mt10
             - if @fund_list_array
-              %table.table.table-striped
+              %table.table.table-striped.table-bordered
                 %thead
                   %tr
-                    %th 日期
-                    %th 净值
+                    %th.text-center 净值时间
+                    %th.text-center 单位净值
+                    %th.text-center 增长率
                 %tbody
                   - @fund_list_array.each do |f|
                     %tr
-                      %td
+                      %td.text-center
                         = f[0]
-                      %td
+                      %td.text-center
                         = f[1]
+                      %td.text-center
             - else
               %h2.text-center.p20 还没有历史数据
         .col-md-4.col-sm-12.col-xs-12
@@ -86,14 +88,15 @@
             .panel-title
               %label.mr40
                 申购记录
-              %label.mr15
-                %span 人次：
-                %span= @invests.count
-              %label
-                %span 投标总额：
-                %span
-                  = @invests.sum(:amount)
-                  元
+              %label.float-right
+                %label.mr15
+                  %span 人次：
+                  %span= @invests.count
+                %label
+                  %span 投标总额：
+                  %span
+                    = @invests.sum(:amount)
+                    元
           .panel-title
             = render "invest_list"
 
