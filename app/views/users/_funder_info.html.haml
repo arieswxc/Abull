@@ -68,12 +68,12 @@
 
   .tag-box.tag-box-v3.mb0
     .row
-      .col-md-4
+      .col-xs-4
         .headline.headline-md.relative
           %h4 历史业绩
         .text-center
           #history_chart.chart_box
-      .col-md-4
+      .col-xs-4
         .headline.headline-md
           %h4 历史数据
           = link_to "更多",show_history_data_user_path(user.id),class: "float-right"
@@ -93,7 +93,7 @@
                       = f[1]
           - else
             %h2.text-center.p20 还没有历史数据
-      .col-md-4
+      .col-xs-4
         .headline.headline-md
           %h4 证明图片
         .mt10
