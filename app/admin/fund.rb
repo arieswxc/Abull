@@ -237,24 +237,27 @@ ActiveAdmin.register Fund do
   member_action :deny_fund, :method => :get do
     fund = Fund.find(params[:id])
     fund.deny if fund.state == 'applied'
-    redirect_to admin_fund_path(fund)
+    redirect_to admin_fund_path(fund), notice: "执行成功"
   end
 
   member_action :input_reason, :method => :post do
     fund = Fund.find(params[:id])
     ActiveAdmin::Comment.create("resource" => fund, "body"=>"#{params[:Reason][:reason]}", "namespace": "admin")
-    redirect_to admin_fund_path(fund)
+    redirect_to admin_fund_path(fund), notice: "执行成功"
   end
 
   member_action :fund_confirm_inform, :method => :get do
+    flash[:notice] = "发送成功"
     fund_inform(resource, 'fund_confirm_inform')
   end
 
   member_action :fund_deny_inform, :method => :get do
+    flash[:notice] = "发送成功"
     fund_inform(resource, 'fund_deny_inform')
   end
 
   member_action :fund_liquidation_inform, :method => :get do
+    flash[:notice] = "发送成功"
     fund_inform(resource, 'fund_liquidation_inform')
   end
 
@@ -287,7 +290,7 @@ ActiveAdmin.register Fund do
     end
 
     fund.close if fund_account.balance == 0
-    redirect_to admin_fund_path(fund)
+    redirect_to admin_fund_path(fund), notice: "执行成功"
   end
 
   member_action :clear, :method => :get do
@@ -350,6 +353,6 @@ ActiveAdmin.register Fund do
     if homs_account.amount == 0
       fund.close
     end
-    redirect_to admin_fund_path(fund)
+    redirect_to admin_fund_path(fund), notice: "执行成功"
   end
 end
