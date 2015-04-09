@@ -15,7 +15,7 @@
             %table.table.table-striped.table-bordered
               %tbody
                 %tr
-                  %td= Fund.human_attribute_name('name')
+                  %td.half= Fund.human_attribute_name('name')
                   %td
                     - if (@fund.state == 'pending' || @fund.state == 'applied')
                       = check_private(@fund.name,'private')
@@ -44,20 +44,31 @@
                   %td
                     = @fund.management_fee
                     = "%" if @fund.management_fee
-      .col-xs-4
-        - if @fund.private_check == 'private'
-          .p20.text-center
-            %label 暗号:
-            %input.unlock_val
-            %a.btn-u.btn-u-orange.btn-u-xs.unlock_btn UNLOCK
+                %tr
+                  %td 最小投资额(元)
+                  %td
+                    - if @fund.minimum
+                      = @fund.minimum
+                    - else
+                      0.0
+      .col-xs-4.invest_form_containter
         .row
-          - if @fund.state == "gathering"
-            - if @flag
-              .col-xs-12.new_invest_form
-                %p= render 'form'
-            - else
-              .col-xs-12.hide.new_invest_form
-                %p= render 'form'
+          - if @fund.private_check == 'private'
+            .row.mb20
+              .col-md-12
+                %label 暗标码:
+              .col-md-7.md-margin-bottom-10
+                %input.unlock_val
+              .col-md-4.col-md-offset-1
+                %a.btn-u.btn-u-orange.btn-u-xs.unlock_btn UNLOCK
+          .row
+            - if @fund.state == "gathering"
+              - if @flag
+                .col-xs-12.new_invest_form
+                  %p= render 'form'
+              - else
+                .col-xs-12.can_invest.new_invest_form
+                  %p= render 'form'
 
 .tag-box.tag-box-v3.mt20.p20.pt0
   .row
