@@ -1,13 +1,17 @@
 .container.content
-  %h2 忘记密码?
-  = form_for(resource, url: generate_verification_code_users_path, html: { method: :get }) do |f|
-    = devise_error_messages!
-    .field
-      = f.label :cell
-      %br/
-      %input{:type => 'text', :name => 'cell'}
-    .field
-      %br/
-      %input{:type => 'hidden', :name => 'forget_pswd', :value => 1}
-    .actions.mt15
-      = f.submit "发送验证码到手机", class: "btn-u btn-u-default"
+  .row
+    .col-md-4.col-md-offset-4.col-sm-6.col-sm-offset-3
+      = form_for(resource, url: generate_verification_code_users_path, html: { method: :get,class: "reg-page" }) do |f|
+        = devise_error_messages!
+        .reg-header
+          %h2 忘记密码?
+        .input-group.margin-bottom-20
+          %span.input-group-addon
+            %i.fa.fa-phone
+          = f.text_field :cell, autofocus: true, placeholder: "手机号", class: "form-control"
+        .field
+          %br/
+          %input{:type => 'hidden', :name => 'forget_pswd', :value => 1}
+        .row
+          .col-md-12
+            %button.btn-u.btn-u-default.pull-right.col-sm-12{:type => "submit"} 发送验证码到手机

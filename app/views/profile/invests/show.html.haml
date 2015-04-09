@@ -11,12 +11,12 @@
       = render 'funds/fund_base_info'
   .tag-box.tag-box-v3.mt20.p20.pt0
     .row
-      .col-md-4
+      .col-xs-4
         .headline.headline-md.relative
           %h4 当前标的业绩
         .text-center
           #fund_history_chart.chart_box
-      .col-md-4
+      .col-xs-4
         .headline.headline-md
           %h4 当前标的数据
           = link_to "更多","#",class: "float-right"
@@ -36,7 +36,7 @@
                       = f[1]
           - else
             %h2.text-center.p20 还没有历史数据
-      .col-md-4
+      .col-xs-4
         .headline.headline-md
           %h4 证明图片
         .mt10
@@ -119,7 +119,7 @@
               chart:
               {
                   renderTo: 'fund_history_chart',
-                  width: 360,
+                  width: 340,
                   height: 260
               },
 
