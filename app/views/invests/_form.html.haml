@@ -1,30 +1,31 @@
 = simple_form_for [@fund, @invest] do |f|
 	= f.input :fund_id, value: @fund.id, as: :hidden
 	= f.input :date, as: :hidden
-	.form-group
+	.form-group.mb0
 		%label
-			= "剩余投资额 : " + (@fund.amount - @invests.sum(:amount)).to_s() +"元"
+			= "剩余投资额（元）"
+		%br
+		%label.fs28.zdy-gold
+			%i.fa.fa-jpy
+			= (@fund.amount - @invests.sum(:amount)).to_s()
 	.form-group
+		%label.mr20 账户余额（元）:
 		%label
-			= "最小投资额 : "
-			- if @fund.minimum
-				= @fund.minimum.to_s()
+			- if current_user
+				= current_user.account.balance
 			- else
-				0.0
-			= "元"
-	/ .form-group
-	/ 	%label
-	/ 		= Invest.human_attribute_name('amount')
-	/ 		\:
+				= link_to("登录",new_user_session_path,id: "login-panel",class: "btn btn-sm",rel: "nofollow")
+				= "后可见"
 	.input-group
 		%input#invest_input_can.form-control.text-center.numberic{:name => "invest[amount]",:maxlength => 7,:placeholder => "请输入计划投资的金额"}
-		%span.input-group-addon  元
+		%span.input-group-addon.zdy-bg-gold  元
 	.mb10
 		%input#check{:type => "checkbox",:checked => ""}/
 		我已阅读并同意
 		%a.color-blue.sky-blue-i.gppz_items{:href => "javascript:;"} 条款
 	= f.submit class: "hide",id: 'subbtn'
-	%button.btn-u.btn-u-red#submit{:name => "commit", :type => "button"} 我要投资
+	.text-center
+		%button.btn-u.btn-u-orange#submit{:name => "commit", :type => "button"} 我要投资
 
 :javascript
 	$(function(){
@@ -35,7 +36,10 @@
 		}
 		$('#submit').bind('click',function(){
 			var crt_amount = parseInt($("#invest_input_can").val()) || 0;
-
+			if ($(".can_invest").length > 0) {
+				alert("请填写正确的暗标码，并解锁");
+				return;
+			}
 			if (maxmum <= 0) {
 				alert("当前标的已投满，正等待审核");
 				return;

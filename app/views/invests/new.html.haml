@@ -7,33 +7,33 @@
     .text-center.min-height300.pt80
       %h3 您已提交实名认证申请，请等待审核
   - else
-    - if @fund.private_check == 'private'
-      .p20.text-center
-        %label 暗号:
-        %input.unlock_val
-        %a.btn-u.btn-u-orange.btn-u-xs.unlock_btn UNLOCK
-    .row
-      - if @fund.state == "gathering"
-        - if @flag
-          .col-md-12.new_invest_form
-            %p= render 'form'
-        - else
-          .col-md-12.hide.new_invest_form
-            %p= render 'form'
+    -# - if @fund.private_check == 'private'
+    -#   .p20.text-center
+    -#     %label 暗号:
+    -#     %input.unlock_val
+    -#     %a.btn-u.btn-u-orange.btn-u-xs.unlock_btn UNLOCK
+    -# .row
+    -#   - if @fund.state == "gathering"
+    -#     - if @flag
+    -#       .col-xs-12.new_invest_form
+    -#         %p= render 'form'
+    -#     - else
+    -#       .col-xs-12.hide.new_invest_form
+    -#         %p= render 'form'
     .row.mt10
       = render 'users/funder_info',{user: @fund.user}
     .row
-      .col-md-12.fund_base_info
+      .col-xs-12.fund_base_info
         = render 'funds/fund_base_info'
 
     .tag-box.tag-box-v3.mt20.p20.pt0
       .row
-        .col-xs-4
+        .col-md-4.col-sm-6.col-xs-6
           .headline.headline-md.relative
             %h4 当前标的业绩
           .text-center
             #fund_history_chart.chart_box
-        .col-xs-4
+        .col-md-4.col-sm-6.col-xs-6
           .headline.headline-md
             %h4 当前标的数据
             = link_to "更多","#",class: "float-right"
@@ -53,7 +53,7 @@
                         = f[1]
             - else
               %h2.text-center.p20 还没有历史数据
-        .col-xs-4
+        .col-md-4.col-sm-12.col-xs-12
           .headline.headline-md
             %h4 证明图片
           .mt10
@@ -80,7 +80,7 @@
             -else
               %h2.text-center.p20 请投标后查看
     .row
-      .col-md-12
+      .col-xs-12
         .panel.panel-grey
           .panel-heading
             .panel-title
@@ -144,8 +144,8 @@
              chart:
              {
                  renderTo: 'fund_history_chart',
-                 width: 340,
-                 height: 260
+                 width: 300,
+                 height: 230
              },
 
              credits:
@@ -275,7 +275,7 @@
              navigator:
              {
                  enabled:true,
-                 top:190,
+                 top:160,
                  height:20,
                  xAxis:
                  {
@@ -354,52 +354,52 @@
 
    });
    jqxhr.error(function(){
-     // $("#fund_history_chart").hide();
-     // $("#fund_history_chart").parent().html('<h2 class="text-center p20">还没有历史数据</h2>')
-     var data = [
-       {
-         data:[
-           [1147651200000,376.20],
-           [1147737600000,371.30],
-           [1147824000000,374.50],
-           [1147910400000,370.99],
-           [1147996800000,370.02],
-           [1148256000000,370.95],
-           [1148342400000,375.58],
-           [1148428800000,381.25],
-           [1148515200000,382.99],
-           [1148601600000,381.35],
-           [1148947200000,371.94],
-           [1149033600000,371.82]
-         ]
-       },
-       {
-         data:[
-           [1147651200000,176.20],
-           [1147737600000,171.30],
-           [1147824000000,174.50],
-           [1147910400000,170.99],
-           [1147996800000,170.02],
-           [1148256000000,170.95],
-           [1148342400000,175.58],
-           [1148428800000,181.25],
-           [1148515200000,182.99],
-           [1148601600000,181.35],
-           [1148947200000,171.94],
-           [1149033600000,171.82]
-         ]
-       }
-     ]
+     $("#fund_history_chart").hide();
+     $("#fund_history_chart").parent().html('<h2 class="text-center p20">还没有历史数据</h2>')
+    //  var data = [
+    //    {
+    //      data:[
+    //        [1147651200000,376.20],
+    //        [1147737600000,371.30],
+    //        [1147824000000,374.50],
+    //        [1147910400000,370.99],
+    //        [1147996800000,370.02],
+    //        [1148256000000,370.95],
+    //        [1148342400000,375.58],
+    //        [1148428800000,381.25],
+    //        [1148515200000,382.99],
+    //        [1148601600000,381.35],
+    //        [1148947200000,371.94],
+    //        [1149033600000,371.82]
+    //      ]
+    //    },
+    //    {
+    //      data:[
+    //        [1147651200000,176.20],
+    //        [1147737600000,171.30],
+    //        [1147824000000,174.50],
+    //        [1147910400000,170.99],
+    //        [1147996800000,170.02],
+    //        [1148256000000,170.95],
+    //        [1148342400000,175.58],
+    //        [1148428800000,181.25],
+    //        [1148515200000,182.99],
+    //        [1148601600000,181.35],
+    //        [1148947200000,171.94],
+    //        [1149033600000,171.82]
+    //      ]
+    //    }
+    //  ]
+     //
 
-
-     $.each(names, function (i, name) {
-       seriesOptions[i] = {
-           name: name,
-           data: data[i].data
-       };
-     });
-
-     createChart();
+    //  $.each(names, function (i, name) {
+    //    seriesOptions[i] = {
+    //        name: name,
+    //        data: data[i].data
+    //    };
+    //  });
+     //
+    //  createChart();
 
    });
   });
