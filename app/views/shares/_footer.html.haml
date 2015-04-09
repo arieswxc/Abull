@@ -6,21 +6,21 @@
 
         / End About
         / Link List
-        .col-xs-3
+        .col-xs-4
           %a.block.text-center{:href => "/"}
-            %img#logo-header{:alt => "Logo", :src => asset_path("logo.png")}/
-          .mt15.text-center
-            %span.white 客服热线
+            %img#logo-footer{:alt => "Logo", :src => asset_path("logo.png")}/
+          .text-center
+            %span.white.fs-sm 客服热线
             %br
-            %span.white 400-108-8182
+            %span.white.fs-sm 400-108-8182
         .col-xs-2.md-margin-bottom-40
           %ul.list-unstyled.link-list
             %li
               = link_to "公司简介",page_path("about/about_us")
               %i.fa.fa-angle-right
-            %li
-              = link_to "员工风采",page_path("about/about_staff")
-              %i.fa.fa-angle-right
+            -# %li
+            -#   = link_to "员工风采",page_path("about/about_staff")
+            -#   %i.fa.fa-angle-right
             %li
               = link_to "加入我们",page_path("about/join_us")
               %i.fa.fa-angle-right
@@ -33,62 +33,59 @@
         .col-xs-2.md-margin-bottom-40
           %ul.list-unstyled.link-list
             %li
-              = link_to "信息安全",page_path("security/information_security")
+              = link_to "安全保障",page_path("security/information_security")
               %i.fa.fa-angle-right
-            %li
-              = link_to "资金安全",page_path("security/money_safety")
-              %i.fa.fa-angle-right
-            %li
-              = link_to "操作安全",page_path("security/processing_safety")
-              %i.fa.fa-angle-right
-            %li
-              = link_to "风控保障",page_path("security/risk_management")
-              %i.fa.fa-angle-right
-
-        / /col-md-3
-        / End Address
-        .col-xs-2.md-margin-bottom-40
-          %ul.list-unstyled.link-list
             %li
               = link_to "新手指南",page_path("guides/beginners_guide")
               %i.fa.fa-angle-right
             %li
-              = link_to "操作指引",page_path("guides/operating_procedure")
-              %i.fa.fa-angle-right
-            %li
               = link_to "常见问题",page_path("guides/faq")
               %i.fa.fa-angle-right
-            %li
-              = link_to "意见反馈",page_path("guides/feedback")
-              %i.fa.fa-angle-right
+
+        -# / /col-md-3
+        -# / End Address
+        -# .col-xs-2.md-margin-bottom-40
+        -#   %ul.list-unstyled.link-list
+        -#     %li
+        -#       = link_to "新手指南",page_path("guides/beginners_guide")
+        -#       %i.fa.fa-angle-right
+        -#     %li
+        -#       = link_to "操作指引",page_path("guides/operating_procedure")
+        -#       %i.fa.fa-angle-right
+        -#     %li
+        -#       = link_to "常见问题",page_path("guides/faq")
+        -#       %i.fa.fa-angle-right
+        -#     %li
+        -#       = link_to "意见反馈",page_path("guides/feedback")
+        -#       %i.fa.fa-angle-right
 
         .col-xs-2.md-margin-bottom-40
           %ul.list-unstyled.link-list
             %li
-              = link_to "负责声明",page_path("statment/statement")
+              = link_to "免责声明",page_path("statment/statement")
               %i.fa.fa-angle-right
             %li
               = link_to "费率说明",page_path("statment/tariff")
               %i.fa.fa-angle-right
-            %li
-              = link_to "自我保障",page_path("security/self_reliance")
-              %i.fa.fa-angle-right
+            -# %li
+            -#   = link_to "自我保障",page_path("security/self_reliance")
+            -#   %i.fa.fa-angle-right
             %li
               = link_to "软件下载",page_path("guides/download")
               %i.fa.fa-angle-right
   / /footer
   .copyright
     .container
+      .ui-footer-verification.ui-footer-narrow-hide.fn-clear
+        %a.ui-footer-verification-item.fn-left.credibility{:href => "javascript:;", :target => "_blank", :title => "人人贷荣获中国电子商务协会“诚信网站”认证殊荣"}
+        %a.ui-footer-verification-item.fn-left.trust{:href => "javascript:;", :target => "_blank", :title => "人人贷已通过中网权威数据库对比，获得“可信网站”身份验证，您可放心使用。"}
+        %a.ui-footer-verification-item.fn-left.internet{:href => "javascript:;", :target => "_blank", :title => "人人贷已通过认证联盟权威数据库对比，获得“互联网金融行业认证”，您可放心使用。"}
+        %a.ui-footer-verification-item.fn-left.itrust{:href => "javascript:;", :target => "_blank", :title => "人人贷已经成为中国互联网信用评价中心网络诚信联盟成员，并且完成企业信用评级 "}
+        %a.ui-footer-verification-item.fn-left.norton{:href => "javascript:;", :target => "_blank", :title => "人人贷已引入VeriSign SSL加密技术，您的隐私及个人资料安全已受最高级别的保护。"}
+        %a.ui-footer-verification-item.fn-left.police{:href => "javascript:;", :target => "_blank", :title => "人人贷已经完成在公安机关的信息备案，您可了解网站相关备案信息。"}
       .row
-        .col-md-12.text-center
+        .col-md-12.text-center.fs-sm
           版权所有  证津信息科技（上海）有限公司 Copyright Reserved 2015-2017
           %a{:href => "http://www.miibeian.gov.cn/", :target => "_blank", :rel => "nofollow"} 沪ICP备15010975号
-      .ui-footer-verification.ui-footer-narrow-hide.fn-clear
-        %a.ui-footer-verification-item.fn-left.credibility{:href => "https://search.szfw.org/cert/l/CX20140315003612003651", :target => "_blank", :title => "人人贷荣获中国电子商务协会“诚信网站”认证殊荣"}
-        %a.ui-footer-verification-item.fn-left.trust{:href => "https://ss.knet.cn/verifyseal.dll?sn=e13042311010040288j4wq000000&ct=df&a=1&pa=931969", :target => "_blank", :title => "人人贷已通过中网权威数据库对比，获得“可信网站”身份验证，您可放心使用。"}
-        %a.ui-footer-verification-item.fn-left.internet{:href => "http://si.trustutn.org/info?sn=881141203000033878231", :target => "_blank", :title => "人人贷已通过认证联盟权威数据库对比，获得“互联网金融行业认证”，您可放心使用。"}
-        %a.ui-footer-verification-item.fn-left.itrust{:href => "http://www.itrust.org.cn/yz/pjwx.asp?wm=2554879344", :target => "_blank", :title => "人人贷已经成为中国互联网信用评价中心网络诚信联盟成员，并且完成企业信用评级 "}
-        %a.ui-footer-verification-item.fn-left.norton{:href => "https://trustsealinfo.verisign.com/splash?form_file=fdf/splash.fdf&dn=www.renrendai.com&lang=zh_cn", :target => "_blank", :title => "人人贷已引入VeriSign SSL加密技术，您的隐私及个人资料安全已受最高级别的保护。"}
-        %a.ui-footer-verification-item.fn-left.police{:href => "http://gawa.bjchy.gov.cn/websearch/", :target => "_blank", :title => "人人贷已经完成在公安机关的信息备案，您可了解网站相关备案信息。"}
         / <a class="ui-footer-verification-item fn-left gongshang" title="人人贷已经完成在北京市工商局网站备案，您可了解网站相关备案信息。" href="http://www.hd315.gov.cn/beian/view.asp?bianhao=010202013052900002" target="_blank"></a>
   / /copyright
