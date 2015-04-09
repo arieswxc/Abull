@@ -1,32 +1,4 @@
 .jumbotron.home
-  / === Slider ===
-  .tp-banner-container.h350
-    .tp-banner
-      %ul
-        / SLIDE
-        - [1,2,3].each do |i|
-          %li.revolution-mch-1{"data-masterspeed" => "1000", "data-slotamount" => "3", "data-transition" => "fade"}
-            / MAIN IMAGE
-            = image_tag "http://7vzs7d.com1.z0.glb.clouddn.com/banner0#{i.to_s}.jpg", :alt => "darkblurbg", "data-bgfit" => "cover", "data-bgposition" => "center", "data-bgrepeat" => "no-repeat", 'width' => "100%"
-          / END SLIDE
-  / === End Slider ===
-  -# .int-box
-  -#   .container
-  -#     .int-wrapper
-  -#       %div{"ng-show" => "!isAuthenticated()"}
-  -#         %h6.int-title 摩尔街历史年化收益率
-  -#         %p
-  -#           %small 平均
-  -#           %span.big-int 14.07%
-  -#         %p
-  -#           %em.multi> 40
-  -#           倍活期存款收益
-  -#           %em> 3
-  -#           倍货币基金收益
-  -#         - unless user_signed_in?
-  -#           = link_to("立即注册",new_user_registration_path,class: "btn btn-block btn-secondary",rel: "nofollow")
-  -#           %p.text-right
-  -#             已有账号？#{link_to("立即登录",new_user_session_path,rel: "nofollow")}
   / 安全  收益 保障
   .container.content.pb0i.aq-sy-bz
     / Begin Service Block
