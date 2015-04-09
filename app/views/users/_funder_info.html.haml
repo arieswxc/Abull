@@ -1,70 +1,73 @@
 .p20.col-xs-12
-  .row
-    .col-xs-3.text-center.mb40
-      .avatar
-        = image_tag user.avatar.url,class: "img-thumbnail img-rounded w70 #{'blur' unless @flag}"
-      .username.mt5
-        %span 操盘人：
-        %span
-          - if @flag
-            = user.username
-          - else
-            = check_private(user.username,@fund.private_check)
-      -# .btn-group.mt5
-      -#   %a.btn-u.btn-u-blue{:href => "javascript:;"} 关注
-      -#   %a.btn-u.btn-u-red{:href => "javascript:;"} 私信 /* cap1 */
-    .col-xs-9
-      .tag-box.tag-box-v3.col-xs-12.mr20
-        .row
-          .col-md-5
-            姓名：
-            - if @flag
-              = user.real_name
-            - else
-              = check_private(user.real_name,@fund.private_check)
-          .col-md-3
-            年龄：
-            - if @flag
-              = user.age
-            - else
-              = check_private(user.age.to_s,@fund.private_check)
-            岁
-          .col-md-4
-            性别：
-            - if @flag
-              = I18n.t(user.gender)
-            - else
-              = check_private(I18n.t(user.gender),@fund.private_check)
-        .row.mt10
-          .col-md-5
-            用户ID：
-            - if @flag
-              = user.id
-            - else
-              = check_private(user.id.to_s,@fund.private_check)
-          .col-md-3
-            学历：
-            - if @flag
-              = user.education
-            - else
-              = check_private(user.education,@fund.private_check)
-          .col-md-4
-            职业：
-            - if @flag
-              = user.job
-            - else
-              = check_private(user.job,@fund.private_check)
-        .row.mt10
-          .col-md-12
-            现居地：
-            - if @flag
-              = user.address
-            - else
-              = check_private(user.address,@fund.private_check)
-        .row.mt10
-          .col-md-12
-            自我介绍：
-            = user.abstract
+  .tag-box.tag-box-v3.pt10.pb0i
+    .row
+      .col-xs-12
+        .col-xs-4.text-center.mb40
+          .avatar
+            = image_tag user.avatar.url,class: "img-thumbnail img-rounded w130 #{'blur' unless @flag}"
+          .username.mt5
+            %span 操盘人：
+            %span
+              - if @flag
+                = user.username
+              - else
+                = check_private(user.username,@fund.private_check)
+          -# .btn-group.mt5
+          -#   %a.btn-u.btn-u-blue{:href => "javascript:;"} 关注
+          -#   %a.btn-u.btn-u-red{:href => "javascript:;"} 私信 /* cap1 */
+        .col-xs-8
+          .tag-box.tag-box-v3.col-xs-12.mr20.mb20i
+            .row
+              .col-md-4
+                姓名：
+                - if @flag
+                  = user.real_name
+                - else
+                  = check_private(user.real_name,@fund.private_check)
+              .col-md-4
+                年龄：
+                - if @flag
+                  = user.age
+                - else
+                  = check_private(user.age.to_s,@fund.private_check)
+                岁
+              .col-md-4
+                性别：
+                - if @flag
+                  = I18n.t(user.gender)
+                - else
+                  = check_private(I18n.t(user.gender),@fund.private_check)
+            .row.mt10
+              .col-md-4
+                用户ID：
+                - if @flag
+                  = user.id
+                - else
+                  = check_private(user.id.to_s,@fund.private_check)
+              .col-md-4
+                学历：
+                - if @flag
+                  = user.education
+                - else
+                  = check_private(user.education,@fund.private_check)
+              .col-md-4
+                职业：
+                - if @flag
+                  = user.job
+                - else
+                  = check_private(user.job,@fund.private_check)
+            .row.mt10
+              .col-md-12
+                现居地：
+                - if @flag
+                  = user.address
+                - else
+                  = check_private(user.address,@fund.private_check)
+            .row.mt10
+              .col-md-12
+                自我介绍：
+                .tag-box.tag-box-v3.mb0.border-black
+                  = user.abstract
 
   .tag-box.tag-box-v3.mb0
     .row
@@ -79,18 +82,20 @@
           = link_to "更多",show_history_data_user_path(user.id),class: "float-right"
         .mt10
           - if @list_array
-            %table.table.table-striped
+            %table.table.table-striped.table-bordered
               %thead
                 %tr
-                  %th 日期
-                  %th 净值
+                  %th.text-center 净值时间
+                  %th.text-center 单位净值
+                  %th.text-center 增长率
               %tbody
                 - @list_array.each do |f|
                   %tr
-                    %td
+                    %td.text-center
                       = f[0]
-                    %td
+                    %td.text-center
                       = f[1]
+                    %td.text-center
           - else
             %h2.text-center.p20 还没有历史数据
       .col-md-4.col-sm-12.col-xs-12
@@ -127,7 +132,7 @@
               {
                   renderTo: 'history_chart',
                   width: 300,
-                  height: 260
+                  height: 230
               },
 
               credits:
@@ -257,7 +262,7 @@
               navigator:
               {
                   enabled:true,
-                  top:190,
+                  top:160,
                   height:20,
                   xAxis:
                   {

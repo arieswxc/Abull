@@ -7,19 +7,19 @@
     .text-center.min-height300.pt80
       %h3 您已提交实名认证申请，请等待审核
   - else
-    - if @fund.private_check == 'private'
-      .p20.text-center
-        %label 暗号:
-        %input.unlock_val
-        %a.btn-u.btn-u-orange.btn-u-xs.unlock_btn UNLOCK
-    .row
-      - if @fund.state == "gathering"
-        - if @flag
-          .col-xs-12.new_invest_form
-            %p= render 'form'
-        - else
-          .col-xs-12.hide.new_invest_form
-            %p= render 'form'
+    -# - if @fund.private_check == 'private'
+    -#   .p20.text-center
+    -#     %label 暗号:
+    -#     %input.unlock_val
+    -#     %a.btn-u.btn-u-orange.btn-u-xs.unlock_btn UNLOCK
+    -# .row
+    -#   - if @fund.state == "gathering"
+    -#     - if @flag
+    -#       .col-xs-12.new_invest_form
+    -#         %p= render 'form'
+    -#     - else
+    -#       .col-xs-12.hide.new_invest_form
+    -#         %p= render 'form'
     .row.mt10
       = render 'users/funder_info',{user: @fund.user}
     .row
@@ -145,7 +145,7 @@
              {
                  renderTo: 'fund_history_chart',
                  width: 300,
-                 height: 260
+                 height: 230
              },
 
              credits:
@@ -275,7 +275,7 @@
              navigator:
              {
                  enabled:true,
-                 top:190,
+                 top:160,
                  height:20,
                  xAxis:
                  {
