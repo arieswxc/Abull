@@ -1,38 +1,39 @@
 .pg-container-content
   #pg-account-index.pg-account
-    .container_12.mt10.fn-clear
-      = render "shares/about_us_side_nav", {activeItem: "our_events"}
-      .inline-block.relative.grid_10.p20
-        %ul.timeline-v2
-          %li
-            %time.cbp_tmtime{:datetime => ""}
-              %span 2015/3/15
-              %span 三月
-            %i.cbp_tmicon.rounded-x.hidden-xs
-            .cbp_tmlabel
-              %h2 网站正式上线
-              .row
-                .col-md-12
-                  %p 网站正式上线.
-          %li
-            %time.cbp_tmtime{:datetime => ""}
-              %span 2014/12/25
-              %span 十二月
-            %i.cbp_tmicon.rounded-x.hidden-xs
-            .cbp_tmlabel
-              %h2 网站测试版上线
-              .row
-                .col-md-12
-                  %p 网站测试版上线.
-          %li
-            %time.cbp_tmtime{:datetime => ""}
-              %span 2014/11/11
-              %span 十一月
-            %i.cbp_tmicon.rounded-x.hidden-xs
-            .cbp_tmlabel
-              %h2 团队成立
-              .row
-                .col-md-12
-                  %p 团队成立.
+    .container.content.fn-clear
+      .bg-white.p30
+        = render "shares/about_us_side_nav", {activeItem: "our_events"}
+        .inline-block.relative.grid_10.p20
+          %ul.timeline-v2
+            %li
+              %time.cbp_tmtime{:datetime => ""}
+                %span 2015/3/15
+                %span 三月
+              %i.cbp_tmicon.rounded-x.hidden-xs
+              .cbp_tmlabel
+                %h2 网站正式上线
+                .row
+                  .col-md-12
+                    %p 网站正式上线.
+            %li
+              %time.cbp_tmtime{:datetime => ""}
+                %span 2014/12/25
+                %span 十二月
+              %i.cbp_tmicon.rounded-x.hidden-xs
+              .cbp_tmlabel
+                %h2 网站测试版上线
+                .row
+                  .col-md-12
+                    %p 网站测试版上线.
+            %li
+              %time.cbp_tmtime{:datetime => ""}
+                %span 2014/11/11
+                %span 十一月
+              %i.cbp_tmicon.rounded-x.hidden-xs
+              .cbp_tmlabel
+                %h2 团队成立
+                .row
+                  .col-md-12
+                    %p 团队成立.
 
 - @navItem = 'pages'

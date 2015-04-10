@@ -1,29 +1,30 @@
 - @activeSubItem = 'cashin'
 .pg-container-content
   #pg-account-index.pg-account
-    .container_12.mt10.fn-clear
-      = render "shares/profile_side_navbar", {activeItem: "account"}
-      .inline-block.relative.pg-account-detail
-        = render "shares/profile"
-        .tab-v2
-          %ul.nav.nav-tabs
-            -# %li.active
-            -#   %a{"data-toggle" => "tab", :href => "#bankcharge"} 网银充值
-            %li
-              %a{"data-toggle" => "tab", :href => "#zfbcharge"} 支付宝转账
-            %li.active
-              %a{"data-toggle" => "tab", :href => "#thirdcharge"} 贝付支付
-            %li
-              %a{"data-toggle" => "tab", :href => "#banktrans"} 银行转账
-          .tab-content
-            -# #bankcharge.tab-pane.fade.active.in
-            -#   = render "profile/cash_management/bankcharge"
-            #zfbcharge.tab-pane.fade
-              = render "profile/cash_management/zfbcharge"
-            #thirdcharge.tab-pane.fade.active.in
-              = render "profile/cash_management/third_charge"
-            #banktrans.tab-pane.fade
-              = render "profile/cash_management/bank_trans"
+    .container.content.fn-clear
+      .bg-white.p30
+        = render "shares/profile_side_navbar", {activeItem: "account"}
+        .inline-block.relative.pg-account-detail
+          = render "shares/profile"
+          .tab-v2
+            %ul.nav.nav-tabs
+              -# %li.active
+              -#   %a{"data-toggle" => "tab", :href => "#bankcharge"} 网银充值
+              %li
+                %a{"data-toggle" => "tab", :href => "#zfbcharge"} 支付宝转账
+              %li.active
+                %a{"data-toggle" => "tab", :href => "#thirdcharge"} 贝付支付
+              %li
+                %a{"data-toggle" => "tab", :href => "#banktrans"} 银行转账
+            .tab-content
+              -# #bankcharge.tab-pane.fade.active.in
+              -#   = render "profile/cash_management/bankcharge"
+              #zfbcharge.tab-pane.fade
+                = render "profile/cash_management/zfbcharge"
+              #thirdcharge.tab-pane.fade.active.in
+                = render "profile/cash_management/third_charge"
+              #banktrans.tab-pane.fade
+                = render "profile/cash_management/bank_trans"
 
 :javascript
   $(function(){

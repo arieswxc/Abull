@@ -1,94 +1,95 @@
 .pg-container-content
   #pg-account-index.pg-account
-    .container_12.mt10.fn-clear
-      = render "shares/profile_side_navbar", {activeItem: "following"}
-      .inline-block.relative.pg-account-detail
-        = render "shares/profile"
-        .tag-box.tag-box-v3.mt20.p20
-          .row.pl0
-            .col-md-8
-              %h2.color-red.line 最新动态
-              %ul
-                %li.row.mt10
-                  .col-md-3.text-center
-                    %img.img-thumbnail.img-rounded.w70{:src => asset_path("testimonials/img1.jpg")}/
-                    %div 巴菲特
-                  .col-md-9.padding0.p10
-                    %label.bold 大鹏基金设立
-                    %span.float-right 2015－02-10
-                    %div 大鹏基金2012设立了，欢迎大家来投标
-                    %ul.list-inline.grid-boxes-news.mt10
-                      %li
-                        %a{:href => "#"}
-                          %i.fa.fa-star-o
-                          关注
-                      %li= "|"
-                      %li
-                        %a{:href => "#"}
-                          %i.fa.fa-comments-o
-                          评论(14)
-                      %li= "|"
-                      %li
-                        %a{:href => "#"}
-                          %i.fa.fa-heart-o
-                          收藏(141)
-                      %li= "|"
-                      %li
-                        %a{:href => "#"}
-                          %i.fa.fa-share
-                          分享(141)
-                %li.row.mt10
-                  .col-md-3.text-center
-                    %img.img-thumbnail.img-rounded.w70{:src => asset_path("testimonials/img1.jpg")}/
-                    %div 巴菲特
-                  .col-md-9.padding0.p10
-                    %label.bold 大鹏基金设立
-                    %span.float-right 2015－02-10
-                    %div 大鹏基金2012设立了，欢迎大家来投标
-                    %ul.list-inline.grid-boxes-news.mt10
-                      %li
-                        %a{:href => "#"}
-                          %i.fa.fa-star-o
-                          关注
-                      %li= "|"
-                      %li
-                        %a{:href => "#"}
-                          %i.fa.fa-comments-o
-                          评论(14)
-                      %li= "|"
-                      %li
-                        %a{:href => "#"}
-                          %i.fa.fa-heart-o
-                          收藏(141)
-                      %li= "|"
-                      %li
-                        %a{:href => "#"}
-                          %i.fa.fa-share
-                          分享(141)
-            .col-md-4
-              .tab-v2
-                %ul.nav.nav-tabs
-                  %li.active
-                    %a.color-red{"data-toggle" => "tab", :href => "#following-me-1"} 关注我的
-                  %li
-                    %a.color-red{"data-toggle" => "tab", :href => "#me-following-1"} 我关注的
-                .tab-content
-                  #following-me-1.tab-pane.fade.active.in
-                    .row.p20
-                      .col-md-6.text-center.mb20
-                        %img.img-thumbnail.img-rounded.w70{:src => asset_path("testimonials/img1.jpg")}/
-                        %span 巴菲特
-                      .col-md-6.text-center.mb20
-                        %img.img-thumbnail.img-rounded.w70{:src => asset_path("testimonials/img1.jpg")}/
-                        %div 巴菲特
-                  #me-following-1.tab-pane.fade
-                    .row.p20
-                      .col-md-6.text-center.mb20
-                        %img.img-thumbnail.img-rounded.w70{:src => asset_path("testimonials/img1.jpg")}/
-                        %div 巴菲特
-                      .col-md-6.text-center.mb20
-                        %img.img-thumbnail.img-rounded.w70{:src => asset_path("testimonials/img1.jpg")}/
-                        %div 巴菲特
-                      .col-md-6.text-center.mb20
-                        %img.img-thumbnail.img-rounded.w70{:src => asset_path("testimonials/img1.jpg")}/
-                        %div 巴菲特
+    .container.content.fn-clear
+      .bg-white.p30
+        = render "shares/profile_side_navbar", {activeItem: "following"}
+        .inline-block.relative.pg-account-detail
+          = render "shares/profile"
+          .tag-box.tag-box-v3.mt20.p20
+            .row.pl0
+              .col-md-8
+                %h2.color-red.line 最新动态
+                %ul
+                  %li.row.mt10
+                    .col-md-3.text-center
+                      %img.img-thumbnail.img-rounded.w70{:src => asset_path("testimonials/img1.jpg")}/
+                      %div 巴菲特
+                    .col-md-9.padding0.p10
+                      %label.bold 大鹏基金设立
+                      %span.float-right 2015－02-10
+                      %div 大鹏基金2012设立了，欢迎大家来投标
+                      %ul.list-inline.grid-boxes-news.mt10
+                        %li
+                          %a{:href => "#"}
+                            %i.fa.fa-star-o
+                            关注
+                        %li= "|"
+                        %li
+                          %a{:href => "#"}
+                            %i.fa.fa-comments-o
+                            评论(14)
+                        %li= "|"
+                        %li
+                          %a{:href => "#"}
+                            %i.fa.fa-heart-o
+                            收藏(141)
+                        %li= "|"
+                        %li
+                          %a{:href => "#"}
+                            %i.fa.fa-share
+                            分享(141)
+                  %li.row.mt10
+                    .col-md-3.text-center
+                      %img.img-thumbnail.img-rounded.w70{:src => asset_path("testimonials/img1.jpg")}/
+                      %div 巴菲特
+                    .col-md-9.padding0.p10
+                      %label.bold 大鹏基金设立
+                      %span.float-right 2015－02-10
+                      %div 大鹏基金2012设立了，欢迎大家来投标
+                      %ul.list-inline.grid-boxes-news.mt10
+                        %li
+                          %a{:href => "#"}
+                            %i.fa.fa-star-o
+                            关注
+                        %li= "|"
+                        %li
+                          %a{:href => "#"}
+                            %i.fa.fa-comments-o
+                            评论(14)
+                        %li= "|"
+                        %li
+                          %a{:href => "#"}
+                            %i.fa.fa-heart-o
+                            收藏(141)
+                        %li= "|"
+                        %li
+                          %a{:href => "#"}
+                            %i.fa.fa-share
+                            分享(141)
+              .col-md-4
+                .tab-v2
+                  %ul.nav.nav-tabs
+                    %li.active
+                      %a.color-red{"data-toggle" => "tab", :href => "#following-me-1"} 关注我的
+                    %li
+                      %a.color-red{"data-toggle" => "tab", :href => "#me-following-1"} 我关注的
+                  .tab-content
+                    #following-me-1.tab-pane.fade.active.in
+                      .row.p20
+                        .col-md-6.text-center.mb20
+                          %img.img-thumbnail.img-rounded.w70{:src => asset_path("testimonials/img1.jpg")}/
+                          %span 巴菲特
+                        .col-md-6.text-center.mb20
+                          %img.img-thumbnail.img-rounded.w70{:src => asset_path("testimonials/img1.jpg")}/
+                          %div 巴菲特
+                    #me-following-1.tab-pane.fade
+                      .row.p20
+                        .col-md-6.text-center.mb20
+                          %img.img-thumbnail.img-rounded.w70{:src => asset_path("testimonials/img1.jpg")}/
+                          %div 巴菲特
+                        .col-md-6.text-center.mb20
+                          %img.img-thumbnail.img-rounded.w70{:src => asset_path("testimonials/img1.jpg")}/
+                          %div 巴菲特
+                        .col-md-6.text-center.mb20
+                          %img.img-thumbnail.img-rounded.w70{:src => asset_path("testimonials/img1.jpg")}/
+                          %div 巴菲特

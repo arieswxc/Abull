@@ -1,16 +1,17 @@
 .pg-container-content
   #pg-account-index.pg-account
-    .container_12.mt10.fn-clear
-      = render "shares/profile_side_navbar", {activeItem: "fund"}
-      .inline-block.relative.pg-account-detail
-        = render "shares/profile"
-        #profile-fund-show.tag-box.tag-box-v3.mt20.p20
-          %h2
-            .glyphicon.glyphicon-usd
-            发标资金总额（元）：
-            %span.color-red.text-l
-              = @funds.sum(:amount)
-          = render "funds/fund_list", ojbect: @current="xxx"
+    .container.content.fn-clear
+      .bg-white.p30
+        = render "shares/profile_side_navbar", {activeItem: "fund"}
+        .inline-block.relative.pg-account-detail
+          = render "shares/profile"
+          #profile-fund-show.tag-box.tag-box-v3.mt20.p20
+            %h2
+              .glyphicon.glyphicon-usd
+              发标资金总额（元）：
+              %span.color-red.text-l
+                = @funds.sum(:amount)
+            = render "funds/fund_list", ojbect: @current="xxx"
 
 :javascript
   jQuery(document).ready(function() {

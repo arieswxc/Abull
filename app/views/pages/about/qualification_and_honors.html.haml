@@ -1,34 +1,35 @@
 .pg-container-content
   #pg-account-index.pg-account
-    .container_12.mt10.fn-clear
-      = render "shares/about_us_side_nav", {activeItem: "qualification_and_honors"}
-      .inline-block.relative.grid_10.p20
-        .row
-          .col-md-12.text-center
-            %h3.zdy-red.text-left 营业执照
-            %a.fancybox-button.zoomer{:href => asset_path('about_us/营业执照副.jpg'), 'data-rel' => "fancybox-button"}
-              %span.overlay-zoom.margin-auto{:style => "width:60%;"}
-                = image_tag 'about_us/营业执照副.jpg',class: "img-responsive"
-                %span.zoom-icon{:style => "width:100%;"}
-        .row
-          .col-md-12.text-center
-            %h3.zdy-red.text-left 组织机构代码证
-            %a.fancybox-button.zoomer{:href => asset_path('about_us/组织机构代码证.png'), 'data-rel' => "fancybox-button"}
-              %span.overlay-zoom.margin-auto{:style => "width:80%;"}
-                = image_tag 'about_us/组织机构代码证.png',class: "img-responsive"
-                %span.zoom-icon{:style => "width:100%;"}
-        .row
-          .col-md-12.text-center
-            %h3.zdy-red.text-left 税务登记证
-            %a.fancybox-button.zoomer{:href => asset_path('about_us/税务登记证.png'), 'data-rel' => "fancybox-button"}
-              %span.overlay-zoom.margin-auto{:style => "width:80%;"}
-                = image_tag 'about_us/税务登记证.png',class: "img-responsive"
-                %span.zoom-icon{:style => "width:100%;"}
-        .row
-          .col-md-12
-            %h3.zdy-red 信用机构代码证
-        .row
-          .col-md-12
-            %h3.zdy-red 开户许可证
+    .container.content.fn-clear
+      .bg-white.p30
+        = render "shares/about_us_side_nav", {activeItem: "qualification_and_honors"}
+        .inline-block.relative.grid_10.p20
+          .row
+            .col-md-12.text-center
+              %h3.zdy-red.text-left 营业执照
+              %a.fancybox-button.zoomer{:href => asset_path('about_us/营业执照副.jpg'), 'data-rel' => "fancybox-button"}
+                %span.overlay-zoom.margin-auto{:style => "width:60%;"}
+                  = image_tag 'about_us/营业执照副.jpg',class: "img-responsive"
+                  %span.zoom-icon{:style => "width:100%;"}
+          .row
+            .col-md-12.text-center
+              %h3.zdy-red.text-left 组织机构代码证
+              %a.fancybox-button.zoomer{:href => asset_path('about_us/组织机构代码证.png'), 'data-rel' => "fancybox-button"}
+                %span.overlay-zoom.margin-auto{:style => "width:80%;"}
+                  = image_tag 'about_us/组织机构代码证.png',class: "img-responsive"
+                  %span.zoom-icon{:style => "width:100%;"}
+          .row
+            .col-md-12.text-center
+              %h3.zdy-red.text-left 税务登记证
+              %a.fancybox-button.zoomer{:href => asset_path('about_us/税务登记证.png'), 'data-rel' => "fancybox-button"}
+                %span.overlay-zoom.margin-auto{:style => "width:80%;"}
+                  = image_tag 'about_us/税务登记证.png',class: "img-responsive"
+                  %span.zoom-icon{:style => "width:100%;"}
+          .row
+            .col-md-12
+              %h3.zdy-red 信用机构代码证
+          .row
+            .col-md-12
+              %h3.zdy-red 开户许可证
 
 - @navItem = 'pages'

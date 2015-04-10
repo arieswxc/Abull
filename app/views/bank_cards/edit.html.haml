@@ -1,23 +1,24 @@
 - @activeSubItem = 'bankcards'
 .pg-container-content
   #pg-account-index.pg-account
-    .container_12.mt10.fn-clear
-      = render "shares/profile_side_navbar", {activeItem: "account"}
-      .inline-block.relative.pg-account-detail
-        = render "shares/profile"
-        .panel.panel-default
-          .panel-heading
-            %h3.panel-title 我的银行卡
-          .panel-body
-            %dl.dl-horizontal
-              = simple_form_for(@bank_card, url: user_bank_card_path, html:{class: "sky-form",onsubmit: "return confirm_bank()"}) do |f|
-                = f.input :number
-                .form-group.string
-                  %label.control-label 确认卡号
-                  %input#bank_number_confirm.form-control{:type => "text"}
-                = f.input :bank_name
-                = f.input :bank_branch
-                = f.button :submit
+    .container.content.fn-clear
+      .bg-white.p30
+        = render "shares/profile_side_navbar", {activeItem: "account"}
+        .inline-block.relative.pg-account-detail
+          = render "shares/profile"
+          .panel.panel-default
+            .panel-heading
+              %h3.panel-title 我的银行卡
+            .panel-body
+              %dl.dl-horizontal
+                = simple_form_for(@bank_card, url: user_bank_card_path, html:{class: "sky-form",onsubmit: "return confirm_bank()"}) do |f|
+                  = f.input :number
+                  .form-group.string
+                    %label.control-label 确认卡号
+                    %input#bank_number_confirm.form-control{:type => "text"}
+                  = f.input :bank_name
+                  = f.input :bank_branch
+                  = f.button :submit
 
 :javascript
   function confirm_bank() {

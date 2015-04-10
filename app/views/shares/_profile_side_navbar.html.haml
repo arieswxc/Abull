@@ -210,15 +210,10 @@
       })
     });
 
-    $("#avatar-img").hover(function(){
+    $("#avatar-img,#user-pic-des").hover(function(){
       $("#user-pic-des").show();
     },function(){
       $("#user-pic-des").hide();
-    });
-    $("#user-pic-des").hover(function(){
-      $("#user-pic-des").show();
-    },function(){
-      $("#user-pic-des").show();
     });
 
     $('#upload_component').bind('change',function(){
