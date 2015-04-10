@@ -6,10 +6,10 @@
         = render "shares/profile_side_navbar", {activeItem: "account"}
         .inline-block.relative.pg-account-detail
           = render "shares/profile"
-          .tab-v2
+          .tab-v2.zdy-bg-gray.billings-index
             %ul.nav.nav-tabs
               %li.active
-                %a{"data-toggle" => "tab", :href => "#billings"} 交易记录
+                %a.transparent{"data-toggle" => "tab", :href => "#billings"} 交易记录
             .tab-content
               #billings.tab-pane.fade.active.in
                 %table.table.table-bordered
