@@ -1,7 +1,24 @@
-.box.box-user-info
+.box.box-user-info.border-all
   .user-info-container.mt15
     .fn-clear.relative
-      #info-box.fn-left.user-security-container
+      .fn-left.last.w500
+        .surplus.fn-clear
+          .text-l.mr10 账户余额（元）
+          .num-xl.color-red.mr5.w250
+            %label.mt15= current_user.account.balance + current_user.account.frost
+        .surplus-detail.fn-clear.mt10
+          .fn-left.mr40
+            .text.mr10 冻结金额（元）
+            .num.last
+              %label.color-red= current_user.account.frost
+          .fn-right.last
+            .text.mr10 可用金额（元）
+            .num.last
+              %label.color-red= current_user.account.balance
+        .charge-btns.mt15
+          = link_to "充值",bankcard_charge_user_account_path(current_user),class: "fn-left ui-button ui-button-blue ui-button-mid mr4"
+          = link_to "提现",withdraw_user_account_path(current_user),class: "fn-left ui-button ui-button-red ui-button-mid last ml20"
+      #info-box.fn-left.user-security-container.border-left.ml35.pl45
         .safe.fn-clear
           %span.fn-left.color-gray-text 安全认证
           #safe-progressbar.safe-progressbar.fn-left{:title => "25%"}
@@ -20,21 +37,4 @@
                 :href => "#{edit_user_registration_path+'/#trader_auth' if current_user.address.blank?}" "#{'javascript:;' if !current_user.address.blank?}"} 住址
               %a.btn-u.btn-u-xs{:class => "#{'btn-u-default direct_to_tab2' if current_user.education.blank?}" "#{'btn-u-yellow' if !current_user.education.blank?}",
                 :href => "#{edit_user_registration_path+'/#trader_auth' if current_user.education.blank?}" "#{'javascript:;' if !current_user.education.blank?}"} 学历
-      .fn-left.last.border-left.pl45.ml35.w500
-        .surplus.fn-clear
-          .text-l.mr10 账户余额（元）
-          .num-xl.color-red.mr5.w250
-            %label= current_user.account.balance + current_user.account.frost
-        .surplus-detail.fn-clear.mt10
-          .fn-left.mr40
-            .text.mr10 冻结金额（元）
-            .num.last
-              %label.color-red= current_user.account.frost
-          .fn-right.last
-            .text.mr10 可用金额（元）
-            .num.last
-              %label.color-red= current_user.account.balance
-        .charge-btns.mt15
-          = link_to "充值",bankcard_charge_user_account_path(current_user),class: "fn-left ui-button ui-button-blue ui-button-mid mr4"
-          = link_to "提现",withdraw_user_account_path(current_user),class: "fn-left ui-button ui-button-red ui-button-mid last ml20"
 %hr
