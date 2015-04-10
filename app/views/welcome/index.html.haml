@@ -1,61 +1,94 @@
 .jumbotron.home
+  / === Slider ===
+  .tp-banner-container.h350
+    .tp-banner
+      %ul
+        / SLIDE
+        - [1,2,3].each do |i|
+          %li.revolution-mch-1{"data-masterspeed" => "1000", "data-slotamount" => "3", "data-transition" => "fade"}
+            / MAIN IMAGE
+            = image_tag "http://7vzs7d.com1.z0.glb.clouddn.com/banner0#{i.to_s}.jpg", :alt => "darkblurbg", "data-bgfit" => "cover", "data-bgposition" => "center", "data-bgrepeat" => "no-repeat", 'width' => "100%"
+          / END SLIDE
+  / === End Slider ===
+  -# .int-box
+  -#   .container
+  -#     .int-wrapper
+  -#       %div{"ng-show" => "!isAuthenticated()"}
+  -#         %h6.int-title 摩尔街历史年化收益率
+  -#         %p
+  -#           %small 平均
+  -#           %span.big-int 14.07%
+  -#         %p
+  -#           %em.multi> 40
+  -#           倍活期存款收益
+  -#           %em> 3
+  -#           倍货币基金收益
+  -#         - unless user_signed_in?
+  -#           = link_to("立即注册",new_user_registration_path,class: "btn btn-block btn-secondary",rel: "nofollow")
+  -#           %p.text-right
+  -#             已有账号？#{link_to("立即登录",new_user_session_path,rel: "nofollow")}
   / 安全  收益 保障
-  .container.content.pb0i.aq-sy-bz
+  .container.content
     / Begin Service Block
-    .row.text-center.margin-bottom-60
-      .col-md-4.md-margin-bottom-50
-        = image_tag "home_aq_icon.png",class:"image-md margin-bottom-20"
-        %h1.title-v3-md.margin-bottom-10 资金安全
-        %p 账户券商托管，资金银行托管，全程无其他方介入，透明可见，资金，账户保证安全。
-      .col-md-4.flat-service.md-margin-bottom-50
-        = image_tag "home_sy_icon.png",class:"image-md margin-bottom-20"
-        %h1.title-v3-md.margin-bottom-10 收益更高
-        %p 以20%的风险换取20%-200%的浮动收益，小风险大回报，财富快速增值，值得一试。
-      .col-md-4.flat-service
-        = image_tag "home_bz_icon.png",class:"image-md margin-bottom-20"
-        %h1.title-v3-md.margin-bottom-10 简单方便
-        %p 全方位交流、信息全面、在线委托操盘，实时查看，简单、安心、便捷，良好体验。
+    .row.margin-bottom-40
+      .col-md-4.col-xs-4
+        .service-block.service-or.home-aq
+          .service-bg
+          = image_tag "home_aq_icon.png",height: '38px'
+          %h2.heading-md 安全
+          %p 账户券商托管、资金银行托管、全程无其他方介入，全程透明可见，资金、账户保证安全。
+      .col-md-4.col-xs-4
+        .service-block.service-or.home-sy
+          .service-bg
+          = image_tag "home_sy_icon.png",height: '38px'
+          %h2.heading-md 简单
+          %p 全方位交流、信息全面、在线委托操盘，实时查看，简单、安心、便捷，良好体验。
+      .col-md-4.col-xs-4
+        .service-block.service-or.home-bz
+          .service-bg
+          = image_tag "home_bz_icon.png",height: '38px'
+          %h2.heading-md 收益
+          %p 以20%的风险换取20%-200%的浮动收益，小风险大回报，财富快速增值，值得一试。
     / End Begin Service Block
   / 投资操盘列表
-  .container.content.pt0i.pb0i
-    .loan.mb.fn-clear.w1010
+  .container.content
+    .loan.mb.fn-clear
       .grid_12
         .headline.headline-md
           %h2.bold 投资列表
         %ul#loan-list.ui-list.ui-list-m.ui-list-invest.table-cell
-          %li#loan-list-header.ui-list-header.fn-clear.zdy-bg-gray
+          %li#loan-list-header.ui-list-header.fn-clear.zdy-bg-gray.w1000
             %span.ui-list-title.fn-left.color-gray-text.w110 发标人
             %span.ui-list-title.fn-left.color-gray-text.w200 名称
-            %span.ui-list-title.fn-left.color-gray-text.w180 类型
+            %span.ui-list-title.fn-left.color-gray-text.w90 类型
             %span.ui-list-title.fn-left.color-gray-text.text-center.w160 金额
-            %span.ui-list-title.fn-left.color-gray-text.text-center.w80 预期收益率
-            %span.ui-list-title.fn-left.color-gray-text.text-center.w80 期限
-            %span.ui-list-title.fn-left.color-gray-text.text-center.w90 进度
+            %span.ui-list-title.fn-left.color-gray-text.text-center.w120 预期收益率
+            %span.ui-list-title.fn-left.color-gray-text.text-center.w100 操作期限
+            %span.ui-list-title.fn-left.color-gray-text.text-center.w110 进度
             %span.ui-list-title.fn-left.color-gray-text.text-center.w80  状态
           - @last_ten_funds.each do |f|
-            %li.ui-list-item.fn-clear
+            %li.ui-list-item.fn-clear.w1000
               %a{:href => new_fund_invest_path(f.id)}
                 %span.ui-list-field.fn-left.text-big.w110.text-center
-                  %em.value>= check_private(f.user.username,f.private_check)
-                  -# %img.img-circle.ui-progressbar-mid{:height => "50", :src => f.user.avatar.url, :width => "50",:class => "#{'blur' if f.private_check == 'private'}"}/
+                  %img.img-circle.ui-progressbar-mid{:height => "50", :src => f.user.avatar.url, :width => "50",:class => "#{'blur' if f.private_check == 'private'}"}/
                 %span.ui-list-field.fn-left.text-big.w200.text-center
                   %span.fn-left.w200.rrd-dimgray.fn-text-overflow= check_private(f.name,f.private_check)
-                %span.ui-list-field.fn-left.text-big.w180.text-center
+                %span.ui-list-field.fn-left.text-big.w90
                   %em.value>= check_private(f.genre,f.private_check)
                 %span.ui-list-field.fn-left.num.text-right.w160.text-center
                   %em.value>= f.amount
                   元
-                %span.ui-list-field.fn-left.num.text-center.w80.zdy-red
+                %span.ui-list-field.fn-left.num.text-center.w120.zdy-red
                   %em.value>= f.expected_earning_rate
                   = "%" if f.expected_earning_rate
-                %span.ui-list-field.fn-left.num.text-center.w80.pr0.ellipsis
+                %span.ui-list-field.fn-left.num.text-center.w100.pr0.ellipsis
                   %em.value>= f.duration
                   个月
-                %span.ui-list-field.fn-left.w90
+                %span.ui-list-field.fn-left.w90.pl10
                   %strong.ui-progressbar-mid{:class => "ui-progressbar-mid-"+"#{(f.raised_amount/f.amount * 100).floor}"}
                     %em>= (f.raised_amount/f.amount * 100).floor
                     \%
-                %span.ui-list-field.fn-left.w80
+                %span.ui-list-field.fn-left.w80.pl12
                   - if f.state == 'gathering'
                     %button.ui-button.ui-button-mid.ui-button-red.ui-list-invest-button
                       募集中
@@ -65,9 +98,9 @@
                   - else
                     %button.ui-button.ui-button-mid.ui-button-gray.ui-list-invest-button
                       = f.state
-          %li.ui-list-more
+          %li.ui-list-more.w1000
             =link_to "查看更多投资理财项目",funds_path
-  .block-v1.pt0i.pb0i
+  .block-v1
     .container
       .row.content-boxes-v3
         .col-md-12
@@ -92,7 +125,7 @@
               %h2.heading-sm 投资人
               %h3.heading-sm 刘女士
           .content-boxes-in-v3
-            %p “随时股市行情上升，股票投资的收益远远超过其他理财方式。由于平时要上班，没时间研究股票，但通过摩尔街，可以找到最好的操盘手为我服务，收益也有保障。”
+            %p “随时股市行情上升，股票投资的收益远远超过其他理财方式。由于平时要上班，没时间研究股票，但通过摩尔街，可以找到最好的操盘手为我服务，收益也非常有保障。”
         .col-md-4.col-sm-4
           .row
             .col-md-2.col-sm-2
@@ -102,23 +135,31 @@
               %h2.heading-sm 配资客户
               %h3.heading-sm 王先生
           .content-boxes-in-v3
-            %p “我在摩尔街的配资体验非常不错，高效、服务好。而且他们团队成员都是名校毕业，安全性上也有保障，我会跟他们长期合作。”
-  .container.content.pt0i
+            %p “我在摩尔街的配资体验非常不错，高效、服务好。而且他们团队成员都是名校毕业，安全性上也有保障。”
+  .container.content
     .row
       .col-md-12
         .headline.headline-md
           %h2.bold 合作伙伴
-      .col-md-12.home_partners
-        .text-center
-          = image_tag "partners/1.jpg",class: "mr40"
-          = image_tag "partners/2.jpg",class: "mr40"
-          = image_tag "partners/3.jpg",class: "mr40"
-          = image_tag "partners/4.jpg",class: "mr40"
-        .text-center
-          = image_tag "partners/5.jpg",class: "mr40"
-          = image_tag "partners/6.jpg",class: "mr40"
-          = image_tag "partners/7.jpg",class: "mr40"
-          = image_tag "partners/8.jpg",class: "mr40"
+      .col-md-12.home_partners.text-center
+        .text-center.homebank.w800.mg-a
+          %a.bank_item{:href => "https://www.baidu.com"}
+            = image_tag "homebank.jpg",class:"homebank-img1"
+          %a.bank_item
+            = image_tag "homebank.jpg",class:"homebank-img2"
+          %a.bank_item
+            = image_tag "homebank.jpg",class:"homebank-img3"
+          %a.bank_item
+            = image_tag "homebank.jpg",class:"homebank-img4"
+          %a.bank_item
+            = image_tag "homebank.jpg",class:"homebank-img5"
+          %a.bank_item
+            = image_tag "homebank.jpg",class:"homebank-img6"
+          %a.bank_item
+            = image_tag "homebank.jpg",class:"homebank-img7"
+          %a.bank_item
+            = image_tag "homebank.jpg",class:"homebank-img8"
+
   / /*cap1*/
   -# .container.content
   -#
