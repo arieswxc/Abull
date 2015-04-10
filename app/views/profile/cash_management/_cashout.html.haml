@@ -11,13 +11,13 @@
     /   %em.h= current_user.account.balance
     /   %em.unit 元
     .ui-sub-form
-      %label.ui-label{:style => "width:100px;text-align:left;font-weight:100;line-height:40px"} 提现金额：
-      %input#money.ui-input.mr10.numberic{:name => "billing[amount]", :maxlength => "7",:style => "width:300px;margin-left: -100px"}/
+      %label.ui-label.mr10{:style => "width:100px;text-align:left;font-weight:100;line-height:40px"} 提现金额：
+      %input#money.ui-input.mr10.numberic{:name => "billing[amount]", :maxlength => "7",:style => "width:300px;"}/
       %span 元
     .ui-sub-form
-      %label.ui-label{:style => "width:100px;text-align:left;font-weight:100"} 提现银行卡
+      %label.ui-label.mr10{:style => "width:100px;text-align:left;font-weight:100"} 提现银行卡：
       - unless current_user.bank_card
-        %label{:style => "margin-left:-100px"}
+        %label{:style => "margin-left:0"}
           还没有添加银行卡
           %a.a1{:href => user_bank_card_path(current_user)}> 银行卡管理
       - else
@@ -27,8 +27,8 @@
     -#   %label.ui-label 提现密码
     -#   %input#password.ui-input.mr10{:type => "password"}/
     -#   %a.blue{:href => "http://www.yztz.com/user/security.htm"} 忘记密码
-    .ui-sub-form{:style => "padding-top:10px;"}
-      %input#withdrawBtn.btn.btn-l{:type => "submit", :value => "提交", :style => "width:100px;background:red;color:white"}/
+    .ui-sub-form{:style => "padding-top:10px;padding-left:10px;"}
+      %input#withdrawBtn.btn.btn-l.ml100{:type => "submit", :value => "提交", :style => "width:100px;background:red;color:white"}/
   .uc-ext-desc.mb20
     .uc-ext-desc-item.clearfix
       %ul
@@ -51,17 +51,17 @@
             %dd
               提现产生的银行手续费全免
               %br>/
-              更多优质服务只在赢在投资
-        %li.w200.pl40
-          %dl
-            %dt
-              支持银行多达
-              %span.fs20.red> 10
-              多家
-            %dd
-              推荐您使用工商银行、建设银行、
-              %br>/
-              招商银行、农业银行提现，到账最快
+              更多优质服务只在摩尔街
+        -# %li.w200.pl40
+        -#   %dl
+        -#     %dt
+        -#       支持银行多达
+        -#       %span.fs20.red> 10
+        -#       多家
+        -#     %dd
+        -#       推荐您使用工商银行、建设银行、
+        -#       %br>/
+        -#       招商银行、农业银行提现，到账最快
     .lh48.b-t.fs14
       温馨提示：禁止洗钱、信用卡套现、虚假交易等行为，一经发现并确认，将终止该账户的使用。
 :javascript

@@ -1,5 +1,5 @@
-.grid_2
-  .row.sky-form.text-center
+.grid_2.border-all.pb10.mr30
+  .row.sky-form.text-center.mt20
     -# .input-image-wrapper.h100.w90.margin-auto.mb10-i.relative
     -#   .input.input-file.input-image.pointer
     -#     .button.circle
@@ -7,9 +7,9 @@
     -#       %img.img-thumbnail.img-rounded.mw90.mh90{:src => "#{current_user.avatar.url}"}/
     -#   = image_tag "cbp-loading.gif",class: 'picloader'
     .mt10.relative
-      %img.img-circle.mw110.mh110.width-all#avatar-img{:src => "#{current_user.avatar.url}"}/
+      %img.img-circle.w190.width-all#avatar-img{:src => "#{current_user.avatar.url}"}/
       %span#user-pic-des{:hidden => "true"} 点击修改头像
-    %label.user_name.mt30
+    %label.user_name.mt15
       hi,
       - if !current_user.real_name.blank?
         = current_user.real_name
@@ -17,10 +17,10 @@
         = current_user.username
       - else
         = current_user.cell
-    .mb30.bg-gray.input-image-wrapper.width-all
-      .input.input-file.input-image.pointer
-        .button#selectAvatarBtn 更换头像
-  #sidebar.ui-side.ui-side-withicon
+    -# .mb30.bg-gray.input-image-wrapper.width-all
+    -#   .input.input-file.input-image.pointer
+    -#     .button#selectAvatarBtn 更换头像
+  #profile_sidebar.ui-side.ui-side-withicon.mt30
     %ul.ui-side-list.nav.nav-list.bs-docs-sidenav
       %li{:class => "ui-side-item first #{'active' if activeItem=='user'}"}
         = link_to(current_user,class: "ui-side-item-link pt0") do
@@ -210,15 +210,10 @@
       })
     });
 
-    $("#avatar-img").hover(function(){
+    $("#avatar-img,#user-pic-des").hover(function(){
       $("#user-pic-des").show();
     },function(){
       $("#user-pic-des").hide();
-    });
-    $("#user-pic-des").hover(function(){
-      $("#user-pic-des").show();
-    },function(){
-      $("#user-pic-des").show();
     });
 
     $('#upload_component').bind('change',function(){
