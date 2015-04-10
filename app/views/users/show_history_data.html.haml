@@ -1,7 +1,7 @@
 .container.content
   .headline.headline-md
     %h3 历史数据
-  - unless @list_data.empty?
+  - if @list_data
     %table.table.table-striped.w300i
       %thead
         %tr

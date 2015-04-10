@@ -56,6 +56,8 @@ Rails.application.config.assets.precompile += %w( shop.app.js)
 Rails.application.config.assets.precompile += %w( plugins/owl-carousel.js)
 Rails.application.config.assets.precompile += %w( plugins/revolution-slider.js)
 Rails.application.config.assets.precompile += %w( plugins/Chart.min.js)
+Rails.application.config.assets.precompile += %w( plugins/highstock.js)
+Rails.application.config.assets.precompile += %w( plugins/exporting.js)
 Rails.application.config.assets.precompile += %w( datefield.js)
 
 

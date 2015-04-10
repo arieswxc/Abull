@@ -3,35 +3,77 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_action :configure_permitted_parameters, if: :devise_controller?
-  def parse_csv(current_path)
-    # if user.line_csv
-    array_x = []
-    array_y = []
-    File.open(current_path, "r") do |file|
-      file.each_line do |line|
-        pos_x, pos_y = line.chomp.split(",")
-        array_x = array_x << pos_x
-        array_y = array_y << pos_y
+
+  def access_denied(exception)
+    redirect_to admin_dashboard_path, alert: exception.message
+  end
+
+  def parse_csv(data_path)
+    items = []
+    other_data = []
+    hushen_data = []
+    hushen300_path = "#{Rails.root}/lib/LibFile/hs300_data.csv"
+    initial_value = 0
+
+    File.open(data_path, "r") do |file|
+      file.each_line.with_index do |line, index|
+        array = line.chomp.split(",")
+        initial_value = array[1].to_f if index == 0
+        time = array[0].to_time.to_i.to_s + "000"
+        time = time.to_i
+        data = (array[1].to_f / initial_value)
+        item = [time, data]
+        other_data << item
       end
     end
-    interval = (array_x.length / 10).to_i
-    array_x.reverse!
-    0.upto(array_x.length) do |index|
-      array_x[index] = "" if index % interval != 0
+
+    begin_date = Time.at(other_data.first[0].to_s.slice(0, other_data.first[0].to_s.length - 3).to_i)
+    end_date = Time.at(other_data.last[0].to_s.slice(0, other_data.last[0].to_s.length - 3).to_i)
+
+    flag = 0
+
+    File.open(hushen300_path, "r") do |file|
+      file.each_line.with_index do |line, index|
+        array = line.chomp.split(" ")
+        initial_value = array[1].to_f if index == 0
+        
+        if array[0].to_time >= begin_date && flag == 0 .. array[0].to_time >= end_date
+          time = array[0].to_time.to_i.to_s + "000"
+          time = time.to_i
+          data = array[1].to_f / initial_value
+          item = [time, data]
+          hushen_data << item
+          flag = 1 if array[0].to_time >= end_date
+        end
+      end
     end
     
-    array_x.reverse!
-    [array_x, array_y]
+    hs_data = []
+    other_data.each do |a|
+      hushen_data.each do |b|
+        if b[0] == a[0]
+          hs_data << b
+          break
+        end
+      end
+    end
+    
+    [other_data,hs_data]
   end
 
   def parse_list_data(current_path)
     array = []
     if current_path
-      File.open(current_path, "r") do |file|
-        file.each_line do |line|
-          pos_x, pos_y = line.chomp.split(",")
-          array = array << [pos_x, pos_y]
+      begin
+        File.open(current_path, "r") do |file|
+          file.each_line do |line|
+            pos_x, pos_y = line.chomp.split(",")
+            array = array << [pos_x, pos_y]
+          end
         end
+
+      rescue
+        array =[]
       end
     end
     array

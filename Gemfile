@@ -79,6 +79,7 @@ gem 'acts_as_commentable'
 gem 'thin'
 
 gem 'state_machines-activerecord'
+gem 'cancancan'
 
 group :development, :test do
   gem 'rspec-rails'
@@ -95,3 +96,6 @@ end
 
 gem "erb2haml", group: :development
 gem 'ckeditor'
+gem 'activeadmin-dragonfly', github: 'stefanoverna/activeadmin-dragonfly'
+gem 'activeadmin-wysihtml5', github: 'stefanoverna/activeadmin-wysihtml5'
+gem 'whenever', :require => false

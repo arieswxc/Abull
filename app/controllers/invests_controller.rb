@@ -14,8 +14,10 @@ class InvestsController < ApplicationController
     @invest = @fund.invests.build()
     @invest.date = Time.now()
     user = User.find(@fund.user_id)
-    list_data = parse_list_data(user.line_csv.file.current_path)
-    @list_array = list_data.last(5).reverse
+    if user.line_csv && user.line_csv.file
+      list_data = parse_list_data(user.line_csv.file.current_path)
+      @list_array = list_data.last(5).reverse
+    end
     if !session[@fund.id].nil?
       @flag = @fund.private_check == 'public' ?  true : session[@fund.id]
     else
@@ -24,8 +26,10 @@ class InvestsController < ApplicationController
     @flag = true if current_user && @fund.check_user_bid(current_user)
     @verify_photos = user.verify_photos
 
-    fund_list_data = parse_list_data(@fund.line_csv.file.current_path)
-    @fund_list_array = fund_list_data.last(5).reverse
+    if @fund.line_csv && @fund.line_csv.file
+      fund_list_data = parse_list_data(@fund.line_csv.file.current_path)
+      @fund_list_array = fund_list_data.last(5).reverse
+    end
     @fund_verify_photos  = @fund.fund_verify_photos
     @check_user_bid = @fund.check_user_bid(current_user).to_s
   end
@@ -47,7 +51,7 @@ class InvestsController < ApplicationController
     @invest = @fund.invests.build(invest_params)
     @invests = @fund.invests
     flag = @fund.private_check == 'public' ?  true : session[@fund.id]
-
+    flag = @fund.check_user_bid(current_user) if flag != true
     if @fund.state == "gathering" && (@fund.raised_amount + params[:invest][:amount].to_i <= @fund.amount) && (params[:invest][:amount].to_f <= current_user.account.balance) && flag && @invest.save
       current_user.follow(@fund.user)
       @invest.update(user_id: current_user.id)
@@ -56,12 +60,13 @@ class InvestsController < ApplicationController
       billing_out = Billing.new(
         account_id:   invest_account.id,
         amount:       -@invest.amount,
-        billing_type: "Invest",
-        billable:     @invest)
+        billing_type: "投标成功",
+        billable:     @invest,
+        remark:       @fund.name)
       billing_in = Billing.new(
-        account_id:   fund_account.id,
+        account_id:   fund_account.fund.user.account.id,
         amount:       @invest.amount,
-        billing_type: "From Invest",
+        billing_type: "获得投标",
         billable:     @fund)
       invest_account.balance -= @invest.amount
       fund_account.balance += @invest.amount

@@ -1,3 +1,5 @@
+require "open-uri"
+require "uri"
 namespace :data do
   task :greet => :environment do  
     puts "Hello World!"  
@@ -41,5 +43,22 @@ namespace :data do
       end
     end
   end
-  
+
+  task get_hs300_data: :environment do    
+    @end_date = Time.now.to_date.advance(days: -1)
+    @begin_date = Time.now.to_date.advance(days: -1)
+    @address="http://table.finance.yahoo.com/table.csv?s=000300.ss&a=#{@begin_date.mon - 1}&b=#{@begin_date.day}&c=#{@begin_date.year}&d=#{@end_date.mon - 1}&e=#{@end_date.day}&f=#{@end_date.year}&g=d"
+
+    File.open("#{Rails.root}/lib/LibFile/hs300_data.csv", "a+") do |file|
+      open(@address) do |f|
+        f.each_line.with_index do |line,index|
+          arr=line.split(",")
+          arr.each do |data|
+            file << "#{data}      " if index !=0 && !data.blank?
+          end            
+        end
+      end
+    end
+    
+  end
 end

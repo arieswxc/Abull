@@ -4,7 +4,7 @@ class AdminUser < ActiveRecord::Base
   devise :database_authenticatable, 
          :recoverable, :rememberable, :trackable, :validatable,:authentication_keys => [:cell]
   validates :role, presence: true
-  validates :role, inclusion: { in: ["risk_controller", "teller", "account_manager", "customer_service"] }
+  validates :role, inclusion: { in: ["admin", "risk_controller", "teller", "account_manager", "customer_service"] }
   def email_required?
     false
   end

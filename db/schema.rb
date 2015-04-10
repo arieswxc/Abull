@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150402055009) do
+ActiveRecord::Schema.define(version: 20150407151451) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -58,6 +58,20 @@ ActiveRecord::Schema.define(version: 20150402055009) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "assets", force: :cascade do |t|
+    t.string   "storage_uid",          limit: 255
+    t.string   "storage_name",         limit: 255
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "storage_width",        limit: 4
+    t.integer  "storage_height",       limit: 4
+    t.float    "storage_aspect_ratio", limit: 24
+    t.integer  "storage_depth",        limit: 4
+    t.string   "storage_format",       limit: 255
+    t.string   "storage_mime_type",    limit: 255
+    t.string   "storage_size",         limit: 255
+  end
+
   create_table "bank_cards", force: :cascade do |t|
     t.string   "number",      limit: 255
     t.string   "bank_name",   limit: 255
@@ -80,6 +94,7 @@ ActiveRecord::Schema.define(version: 20150402055009) do
     t.datetime "updated_at",                                                        null: false
     t.string   "state",          limit: 255
     t.string   "billing_number", limit: 255
+    t.string   "remark",         limit: 255
   end
 
   add_index "billings", ["account_id"], name: "index_billings_on_account_id", using: :btree

@@ -39,6 +39,7 @@
   %body
     .wapper
       = render "shares/navbar"
+      = render "shares/home_slider"
       = yield
       = render "shares/footer"
     / JS Implementing Plugins
@@ -60,7 +61,10 @@
     %script{:src => asset_path("plugins/owl-carousel.js")}
     %script{:src => asset_path("plugins/revolution-slider.js")}
     %script{:src => asset_path("plugins/Chart.min.js")}
+    %script{:src => asset_path("plugins/highstock.js")}
+    %script{:src => asset_path("plugins/exporting.js")}
     %script{:src => asset_path("datefield.js")}
+
 
     / JS Page Level
     %script{:src => asset_path("common.js")}
@@ -72,7 +76,9 @@
         RevolutionSlider.initRSfullWidth();
         FancyBox.initFancybox();
         $(".formattime").each(function() {
-          $(this).text(moment($(this).text()).format('YYYY-MM-DD hh:mm'));
+          if (moment($(this).text(),"YYYY-MM-DD HH:mm:ss Z").isValid()) {
+            $(this).text(moment($(this).text(),"YYYY-MM-DD HH:mm:ss Z").format('YYYY-MM-DD HH:mm:ss'));
+          }
         });
 
         $(".pz_tips_1").hover(function(){
@@ -86,5 +92,14 @@
             $(this).val(crt_amount);
           }
         });
+        // if ($(".half-table").length > 0){
+        //   $(".half-table").each(function(){
+        //     if ($(".half-table .index").length > 0){
+        //       $(".half-table .index").css("width","10%");
+        //     }else {
+        //
+        //     }
+        //   });
+        // }
 
       });

@@ -11,63 +11,72 @@
       = render 'funds/fund_base_info'
   .tag-box.tag-box-v3.mt20.p20.pt0
     .row
-      .col-md-8
+      .col-md-4.col-sm-6.col-xs-6
         .headline.headline-md.relative
           %h4 当前标的业绩
         .text-center
-          %span.chart-label1
-          %span.mr15 我的业绩
-          %span.chart-label2
-          %span 沪深300
-          %canvas#fund_history_chart.chart_box.h200
-      .col-md-4
+          #fund_history_chart.chart_box
+      .col-md-4.col-sm-6.col-xs-6
         .headline.headline-md
           %h4 当前标的数据
           = link_to "更多","#",class: "float-right"
         .mt10
           - if @fund_list_array
-            %table.table.table-striped
+            %table.table.table-striped.table-bordered
               %thead
                 %tr
-                  %th 日期
-                  %th 净值
+                  %th.text-center 净值时间
+                  %th.text-center 单位净值
+                  %th.text-center 增长率
               %tbody
-                - @list_array.each do |f|
+                - @fund_list_array.each do |f|
                   %tr
-                    %td
+                    %td.text-center
                       = f[0]
-                    %td
+                    %td.text-center
                       = f[1]
+                    %td.text-center
+
           - else
-            %h2.text-center 还没有历史数据
-    .row
-      .col-md-12
+            %h2.text-center.p20 还没有历史数据
+      .col-md-4.col-sm-12.col-xs-12
         .headline.headline-md
           %h4 证明图片
         .mt10
           - if @fund_verify_photos && !@fund_verify_photos.empty?
-            .owl-carousel-v2.owl-carousel-style-v1
-              .owl-slider-v2
+            .owl-carousel-v1.owl-carousel-style-v1
+              .owl-navigation
+                .customNavigation
+                  %a.owl-btn.prev-v1
+                    %i.fa.fa-angle-left
+                  %a.owl-btn.next-v1
+                    %i.fa.fa-angle-right
+              .owl-slider
                 - @fund_verify_photos.each do |f|
                   - if f.photo && f.photo.url
                     .item
                       %a.fancybox-button.zoomer{:href => f.photo.url, 'data-rel' => "fancybox-button"}
                         %span.overlay-zoom
-                          = image_tag f.photo.url.split("?")[0] + '?imageView2/5/w/200/h/100/interlace/1',class: "img-responsive"
+                          = image_tag f.photo.url.split("?")[0] + '?imageView2/1/w/335/h/168/interlace/1',class: "img-responsive"
                           %span.zoom-icon
-              .owl-navigation
-                .customNavigation
-                  %a.owl-btn.prev-v2
-                    %i.fa.fa-angle-left
-                  %a.owl-btn.next-v2
-                    %i.fa.fa-angle-right
+
           - else
-            %h2.text-center 还没有证明图片
+            %h2.text-center.p20 还没有证明图片
   .row
     .col-md-12
       .panel.panel-grey
         .panel-heading
-          .panel-title 申购记录
+          .panel-title
+            %label.mr40
+              申购记录
+            %label.mr15
+              %span 人次：
+              %span= @invests.count
+            %label
+              %span 投标总额：
+              %span
+                = @invests.sum(:amount)
+                元
         .panel-title
           = render "invests/invest_list"
 
@@ -104,63 +113,238 @@
          }
        });
      });
-    $.ajax({
-      url: "/funds/#{@fund.id}/get_history_data",
-      type: 'get',
-      contentType: false,
-      processData: false,
-      success: function (data) {
-        var history_ctx = $("#fund_history_chart").get(0).getContext("2d");
-        //  data = {
-        //       labels: [],
-        //       datasets: [
-        //           {
-        //               data: []
-        //           },
-        //           {
-        //               data: []
-        //           }
-        //       ]
-        //   };
-        var history_data = {
-                              labels: data.labels,
-                              datasets: [
-                                  {
-                                      label: "我的业绩",
-                                      fillColor: "rgba(220,220,220,0.2)",
-                                      strokeColor: "rgba(230,76,60,1)",
-                                      pointColor: "rgba(230,76,60,1)",
-                                      pointStrokeColor: "#fff",
-                                      pointHighlightFill: "#fff",
-                                      pointHighlightStroke: "rgba(220,220,220,1)",
-                                      data: data.datasets[0].data
-                                  },
-                                  {
-                                      label: "沪深300",
-                                      fillColor: "rgba(151,187,205,0.2)",
-                                      strokeColor: "rgba(52,151,218,1)",
-                                      pointColor: "rgba(52,151,218,1)",
-                                      pointStrokeColor: "#fff",
-                                      pointHighlightFill: "#fff",
-                                      pointHighlightStroke: "rgba(151,187,205,1)",
-                                      data: data.datasets[1].data
-                                  }
-                              ]
-                          };
-        var options = {
-          pointHitDetectionRadius : 2,
-          pointDot : false,
-          datasetFill : false,
-          scaleFontColor: "#666",
-          multiTooltipTemplate: "<%= datasetLabel %> - <%= value %>"
-        };
-        var historyChart = new Chart(history_ctx).Line(history_data,options);
-      },
-      error: function () {
-        $("#fund_history_chart").hide();
-        $("#fund_history_chart").parent().html('<h2 class="text-center p20">还没有历史数据</h2>')
-        console.log("get_chart_data error...");
+    var seriesOptions = [],
+        seriesCounter = 0,
+        names = ['我的业绩', '沪深300'],
+        createChart = function () {
+            var chart1 = new Highcharts.StockChart({
+              colors: ['#D5402E', '#1868AB'],
+              chart:
+              {
+                  renderTo: 'fund_history_chart',
+                  width: 300,
+                  height: 230
+              },
 
-      }
+              credits:
+              {
+                  enabled: true,
+                  href: null,
+                  text: ''
+              },
+              exporting:{ enabled:false},
+              title: { text:null, style:{color:'#004789'}},
+              rangeSelector: {  enabled:false},
+              tooltip:
+              {
+                  enabled: true,
+                  crosshairs: true,
+                  formatter: function()
+                  {
+
+                      var header = '<b>时间: ' + Highcharts.dateFormat('%Y年%m月%d日 ', this.x)+'</b>';
+                      $.each(this.points, function(i, point)
+                      {
+                          header += '<br/><span style="color:' + this.point.series.color + '">' + this.point.series.name +':'+Highcharts.numberFormat(this.y,4)+'</span>';
+                      });
+                      return header;
+                  }
+              },
+              xAxis:
+              {
+
+
+                  type: 'datetime',
+                  gridLineDashStyle: 'longdash',
+
+
+                  dateTimeLabelFormats:
+                  {
+                      second: '%Y-%m-%d<br/>%H:%M:%S',
+                      minute: '%Y-%m-%d<br/>%H:%M',
+                      hour: '%Y-%m-%d<br/>%H:%M',
+                      day: '%Y<br/>%m-%d',
+                      week: '%Y<br/>%m-%d',
+                      month: '%Y-%m',
+                      year: '%Y'
+                  },
+                  gridLineWidth: 1,
+                  lineColor: '#000',
+                  tickColor: '#000',
+                  showFirstLabel:true,
+                  showLastLabel:true,
+                  labels:
+                  {
+
+                      style:
+                      {
+                          color: '#000',
+                          font: '11px Trebuchet MS, Verdana, sans-serif',
+                          align: 'right',
+                          style: { font: 'normal 13px 宋体' }
+                      },
+                      formatter: function()
+                      {
+
+                          return Highcharts.dateFormat('%Y-%m-%d',this.value);
+                      }
+                  },
+                  title:
+                  {
+                      style:
+                      {
+                          color: '#333',
+                          fontWeight: 'bold',
+                          fontSize: '12px',
+                          fontFamily: 'Trebuchet MS, Verdana, sans-serif'
+                      }
+                  }
+              },
+
+              yAxis:
+              {
+                  showLastLabel :true,
+              //    max:max_shuzhi,
+              //    min:min_shuzhi,
+                  tickPixelInterval :40,
+                  lineColor: '#000',
+                  lineWidth: 1,
+                  tickWidth: 1,
+
+                  tickColor: '#000',
+                  labels:
+                  {
+                      align:'right',
+                      x:-10,
+                      y:5,
+                      style:
+                      {
+                          color: '#000',
+                          font: '11px Trebuchet MS, Verdana, sans-serif'
+                      }
+                  },
+                  title:
+                  {
+                      style:
+                      {
+                          color: '#333',
+                          fontWeight: 'bold',
+                          fontSize: '12px',
+                          fontFamily: 'Trebuchet MS, Verdana, sans-serif'
+                      }
+                  }
+              },
+              legend:
+              {
+                  enabled: true,
+                  itemStyle:
+                  {
+                      font: '9pt Trebuchet MS, Verdana, sans-serif',
+                      color: '#004789'
+
+                  },
+                  itemHoverStyle:
+                  {
+                      color: '#004789'
+                  }
+
+              },
+              scrollbar:{enabled:false},
+              navigator:
+              {
+                  enabled:true,
+                  top:160,
+                  height:20,
+                  xAxis:
+                  {
+                      labels:
+                      {
+                          enabled:false
+                      }
+                  }
+
+              },
+
+              plotOptions:
+              {
+                  series:{ lineWidth:1 },
+                  line:
+                  {
+                      cursor:'pointer',
+                      shadow:false,
+                      states:
+                      {	/*状态*/
+                          hover:
+                          {	/*(鼠标)悬浮状态*/
+                              lineWidth: 1	/*曲线宽*/
+                          }
+                      }
+                  }
+              } ,
+              //设置3条线宽度也可以在下面单独设置
+              series: seriesOptions
+            });
+          };
+
+    var jqxhr = $.getJSON('/funds/#{@fund.id}/get_history_data', function (data) {
+
+      $.each(names, function (i, name) {
+        seriesOptions[i] = {
+            name: name,
+            data: data[i].data
+        };
+      });
+
+      createChart();
+
+    });
+    jqxhr.error(function(){
+      $("#fund_history_chart").hide();
+      $("#fund_history_chart").parent().html('<h2 class="text-center p20">还没有历史数据</h2>')
+      // var data = [
+      //   {
+      //     data:[
+      //       [1147651200000,376.20],
+      //       [1147737600000,371.30],
+      //       [1147824000000,374.50],
+      //       [1147910400000,370.99],
+      //       [1147996800000,370.02],
+      //       [1148256000000,370.95],
+      //       [1148342400000,375.58],
+      //       [1148428800000,381.25],
+      //       [1148515200000,382.99],
+      //       [1148601600000,381.35],
+      //       [1148947200000,371.94],
+      //       [1149033600000,371.82]
+      //     ]
+      //   },
+      //   {
+      //     data:[
+      //       [1147651200000,176.20],
+      //       [1147737600000,171.30],
+      //       [1147824000000,174.50],
+      //       [1147910400000,170.99],
+      //       [1147996800000,170.02],
+      //       [1148256000000,170.95],
+      //       [1148342400000,175.58],
+      //       [1148428800000,181.25],
+      //       [1148515200000,182.99],
+      //       [1148601600000,181.35],
+      //       [1148947200000,171.94],
+      //       [1149033600000,171.82]
+      //     ]
+      //   }
+      // ]
+      //
+
+      // $.each(names, function (i, name) {
+      //   seriesOptions[i] = {
+      //       name: name,
+      //       data: data[i].data
+      //   };
+      // });
+      //
+      // createChart();
+
     });
   });
