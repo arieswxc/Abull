@@ -14,11 +14,16 @@
       #guide_invest.tab-pane.fade.active.in
         .mt20
           = image_tag "guide/guide_invest.png",width:"100%"
+          = link_to("立即注册",new_user_registration_path,class: "btn-u btn-u-red reg",rel: "nofollow")
+          %p 1分钟成为摩尔街会员，轻松开始理财
       #guide_fund.tab-pane.fade
         .mt20
           = image_tag "guide/guide_funder.png",width:"100%"
+          = link_to("立即注册",new_user_registration_path,class: "btn-u btn-u-red reg",rel: "nofollow")
+          %p 1分钟成为摩尔街会员，轻松开始理财
       #guide_secure.tab-pane.fade
         .mt20
           = image_tag "guide/guide_secure.png",width:"100%"
+
 
 - @navItem = 'guide'
