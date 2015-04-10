@@ -1,4 +1,25 @@
 .container.content
+  .guide_header
+    = image_tag "guide/guide_header.png",width:"100%"
+  .tab-v2.guide_tab
+    %div.text-center
+      %ul.nav.nav-tabs
+        %li.active
+          %a{"data-toggle" => "tab", :href => "#guide_invest"} 我要投资
+        %li
+          %a{"data-toggle" => "tab", :href => "#guide_fund"} 我要操盘
+        %li
+          %a{"data-toggle" => "tab", :href => "#guide_secure"} 安全保障
+    .tab-content.text-center.relative
+      #guide_invest.tab-pane.fade.active.in
+        .mt20
+          = image_tag "guide/guide_invest.png",width:"100%"
+      #guide_fund.tab-pane.fade
+        .mt20
+          = image_tag "guide/guide_funder.png",width:"100%"
+      #guide_secure.tab-pane.fade
+        .mt20
+          = image_tag "guide/guide_secure.png",width:"100%"
   %h2.text-center.zdy-red 只需四步，开始操盘之旅
   .row.mb40.mt40
     .col-md-1
