@@ -7,7 +7,7 @@
           .num-xl.color-red.mr5.w250
             %label.mt15= current_user.account.balance + current_user.account.frost
         .surplus-detail.fn-clear.mt10
-          .fn-left.mr40
+          .fn-left.mr0
             .text.mr10 冻结金额（元）
             .num.last.mt5
               %label.color-red= current_user.account.frost
@@ -16,7 +16,7 @@
             .num.last.mt5
               %label.color-red= current_user.account.balance
         .charge-btns.mt15
-          = link_to "充值",bankcard_charge_user_account_path(current_user),class: "fn-left btn-u btn-u-dark-blue mr4 w100 text-center rounded"
+          = link_to "充值",bankcard_charge_user_account_path(current_user),class: "fn-left btn-u btn-u-dark-blue mr10 w100 text-center rounded"
           = link_to "提现",withdraw_user_account_path(current_user),class: "fn-left btn-u btn-u-red last ml20 w100 text-center rounded"
       #info-box.fn-left.user-security-container.ml15.pl15
         .safe.fn-clear
