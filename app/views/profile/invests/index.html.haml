@@ -6,12 +6,23 @@
         .inline-block.relative.pg-account-detail
           = render "shares/profile"
           #profile-invest-show.tag-box.tag-box-v3.mt20
-            %h2
+            .w200.dis-in-block.border-r
               .glyphicon.glyphicon-usd
               已投资金额（元）：
-              %span.color-red.text-l
+              %div.color-red.text-l.font-s30
                 = @invests.sum(:amount)
-            .mt40
+            .w200.dis-in-block.border-r
+              .glyphicon.glyphicon-usd
+              已经赚取的金额（元）：
+              %div.color-red.text-l.font-s30
+                = @invests.sum(:amount)
+            .w200.dis-in-block
+              .glyphicon.glyphicon-usd
+              已经参与的项目（个）：
+              %div.color-red.text-l.font-s30
+                = @invests.sum(:amount)
+
+            .mt20    
             = render "invests/invest_list", ojbect: @current="xxx"
 
 :javascript

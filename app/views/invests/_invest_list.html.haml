@@ -5,7 +5,7 @@
         %th 序号
         %th= Invest.human_attribute_name('user')
       - else
-        %th= Invest.human_attribute_name('id')
+        / # %th= Invest.humn_attribute_name('id')
         %th= Fund.human_attribute_name('name')
         %th= Fund.human_attribute_name('user')
         / %th 发标人
@@ -22,16 +22,18 @@
         %th= Fund.human_attribute_name('state')
       %th= Invest.human_attribute_name('amount')
       %th= Invest.human_attribute_name('date')
+      %th 
+        合同
   -# todo, 处理 private_check
   %tbody
     - @invests.each_index do |index|
       - if @invests[index].user
         %tr{'data-index' => @invests[index].id}
           - unless @current=="xxx"
-            %td.index= index+1
+            / %td.index= index+1
             %td= "#{@invests[index].user.username}"
           - else
-            %td.index= @invests[index].id
+            / %td.index= @invests[index].id
             %td= @invests[index].fund.name
             %td
               - if @invests[index].fund.user.username
@@ -63,3 +65,5 @@
             = @invests[index].amount
             = '元' unless @invests[index].amount.blank?
           %td{:class => "#{'formattime' unless @invests[index].date.blank? }"}= @invests[index].date
+          %td 
+            ***
