@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 
   match 'return_url', to: 'welcome#return_url', via: [:get]
   match 'notify_url', to: 'welcome#notify_url', via: [:get]
-
   resources :welcome do
     get :funds, on: :collection
   end
@@ -66,4 +65,6 @@ Rails.application.routes.draw do
   end
   resources :topics,    only: [:show, :index]
   resources :news,      only: [:show, :index]
+  match 'entrusted_operation/:invest_id', to: 'welcome#entrusted_operation', via: [:get]
+  match 'trader_agreement/:fund_id', to: 'welcome#trader_agreement', via: [:get]
 end
