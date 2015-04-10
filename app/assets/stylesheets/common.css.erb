@@ -1495,4 +1495,26 @@ span#user-pic-des {
 .ui-footer-verification {
   width: 460px;
 }
+
+.guide_tab .tab-content{
+  background: white;
+  box-shadow: 0 5px 20px 3px #888;
+}
+.guide_tab .nav-tabs {
+  display: inline-block;
+  margin-bottom: -7px;
+}
+.guide_tab .nav-tabs li a,.guide_tab .nav-tabs li.active a  {
+  padding: 9px 16px;
+  background: url(<%= asset_path 'tab_select.png' %>) no-repeat;
+  background-size: contain;
+  width: 180px;
+  border: none;
+}
+.guide_tab .nav-tabs li.active a {
+  border-bottom: solid 2px white !important;
+  z-index: 5;
+}
+
+
 /* index site-menu end */
