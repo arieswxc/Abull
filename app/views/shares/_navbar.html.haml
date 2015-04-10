@@ -51,13 +51,13 @@
     .navbar.navbar-default.mega-menu{:role => "navigation"}
       .container
         / Brand and toggle get grouped for better mobile display
-        .navbar-header.pl20.w400
+        .navbar-header.pl20.w360
           %button.navbar-toggle{"data-target" => ".navbar-responsive-collapse", "data-toggle" => "collapse", :type => "button"}
             %span.sr-only Toggle navigation
             %span.fa.fa-bars
           %a.navbar-brand{:href => "/"}
             %img#logo-header{:alt => "Logo", :src => asset_path("logo.png")}/
-          = image_tag "nav_kouhao.jpg",class: "mt30 ml30"
+          = image_tag "nav_kouhao.jpg",class: "mt30"
         / Collect the nav links, forms, and other content for toggling
         .collapse.navbar-collapse.navbar-responsive-collapse.nav-menu
           %ul.nav.navbar-nav

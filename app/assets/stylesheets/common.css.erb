@@ -647,7 +647,7 @@ a.sky-blue-i:hover {
   .leverage_amount .col-md-4.ml70 {
     margin-left: 0px;
   }
-  .navbar-header.pl20.w400 > img {
+  .navbar-header.pl20 > img {
     display: none;
   }
 }
@@ -1615,10 +1615,22 @@ a.bank_item{
 #profile_sidebar a.ui-side-sub-item-link {
   font-size: 18px;
 }
-#profile_sidebar .ui-side-item,#profile_sidebar a.ui-side-item-link:focus {
+#profile_sidebar .ui-side-item {
   background: transparent;
+}
+#profile_sidebar a.ui-side-item-link:focus {
+  background: transparent;
+  color: #333;
+}
+#profile_sidebar .ui-side-item.active .ui-side-item-link,#profile_sidebar .ui-side-item.active .ui-side-item-link:hover,#profile_sidebar .ui-side-item.active .ui-side-item-link:focus{
+  cursor: default;
+  color: #fff;
+  background: #E7141A;
 }
 .text {
   font-size: 16px;
+}
+.w360 {
+  width: 360px;
 }
 /* index site-menu end */
