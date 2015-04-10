@@ -6,16 +6,16 @@
         = render "shares/profile_side_navbar", {activeItem: "account"}
         .inline-block.relative.pg-account-detail
           = render "shares/profile"
-          .tab-v2
+          .tab-v2.zdy-bg-gray.billings-index
             %ul.nav.nav-tabs
               -# %li.active
               -#   %a{"data-toggle" => "tab", :href => "#bankcharge"} 网银充值
               %li.active
-                %a{"data-toggle" => "tab", :href => "#zfbcharge"} 支付宝转账
+                %a.transparent{"data-toggle" => "tab", :href => "#zfbcharge"} 支付宝转账
               %li
-                %a{"data-toggle" => "tab", :href => "#thirdcharge"} 贝付支付
+                %a.transparent{"data-toggle" => "tab", :href => "#thirdcharge"} 贝付支付
               %li
-                %a{"data-toggle" => "tab", :href => "#banktrans"} 银行转账
+                %a.transparent{"data-toggle" => "tab", :href => "#banktrans"} 银行转账
             .tab-content
               -# #bankcharge.tab-pane.fade.active.in
               -#   = render "profile/cash_management/bankcharge"
