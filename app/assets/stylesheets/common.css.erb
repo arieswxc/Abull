@@ -735,19 +735,46 @@ a.sky-blue-i:hover {
 }
 * {
   font-size: 16px;
-  font-family: arial,"Microsoft Yahei","Hiragino Sans GB",sans-serif;
+  font-family: "Microsoft Yahei",arial,"Hiragino Sans GB",sans-serif;
 }
 body {
   font-size: 12px;
-  font-family: arial,"Microsoft Yahei","Hiragino Sans GB",sans-serif!important;
+  font-family: "Microsoft Yahei",arial,"Hiragino Sans GB",sans-serif!important;
   display: table;
   background: #f2f2f2;
+  color: #555;
+}
+div {
+  color: #555;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Microsoft Yahei",arial,"Hiragino Sans GB",sans-serif;
+  color: #333;
+}
+h1[class^="title-v3-"], h2[class^="title-v3-"], h3[class^="title-v3-"] {
+  color: #333;
 }
 p {
   color: #555;
+  font-family: "Microsoft Yahei",arial,"Hiragino Sans GB",sans-serif;
+}
+.header .navbar-default .navbar-nav > li > a {
+  color: #333;
+}
+@media (min-width: 992px){
+  .header .dropdown-menu li a {
+    color: #333;
+  }
+}
+@media (max-width: 991px){
+  .header .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #333;
+  }
 }
 table.table tr td,table.table tr th {
   vertical-align: middle;
+  font-family: "Microsoft Yahei",arial,"Hiragino Sans GB",sans-serif;
+  color: #555;
 }
 .table-striped > thead > tr:nth-of-type(odd) {
   background-color: #f2f2f2;
@@ -1393,7 +1420,7 @@ span#user-pic-des {
 .aq-sy-bz p{
   font-size: 14px;
   line-height: 1.72222;
-  color: #888;
+  color: #555;
 }
 .aq-sy-bz img.image-md {
   height: 100%;
@@ -1521,12 +1548,36 @@ a.bank_item{
 .mg-a{
   margin: auto;
 }
-
-
-
-
-
-
-
+.guide_tab {
+  margin-top: -24px;
+}
+.guide_tab .tab-content{
+  background: white;
+  box-shadow: 0 5px 20px 3px #888;
+}
+.guide_tab .nav-tabs {
+  display: inline-block;
+  margin-bottom: -7px;
+}
+.guide_tab .nav-tabs li a,.guide_tab .nav-tabs li.active a  {
+  padding: 9px 16px;
+  background: url(<%= asset_path 'tab_select.png' %>) no-repeat;
+  background-size: contain;
+  width: 180px;
+  border: none;
+}
+.guide_tab .nav-tabs li.active a {
+  border-bottom: solid 2px white !important;
+  z-index: 5;
+}
+.guide_tab a.reg {
+  width: 230px;
+  font-size: 20px;
+  border-radius: 5px!important;
+  margin-top: 20px;
+}
+.guide_tab p {
+  font-size: 20px;
+}
 
 /* index site-menu end */

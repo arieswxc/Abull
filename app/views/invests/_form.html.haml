@@ -14,7 +14,7 @@
 			- if current_user
 				= current_user.account.balance
 			- else
-				= link_to("登录",new_user_session_path,id: "login-panel",class: "btn btn-sm",rel: "nofollow")
+				= link_to("登录",new_user_session_path,class: "btn btn-sm",rel: "nofollow")
 				= "后可见"
 	.input-group
 		%input#invest_input_can.form-control.text-center.numberic{:name => "invest[amount]",:maxlength => 7,:placeholder => "请输入计划投资的金额"}

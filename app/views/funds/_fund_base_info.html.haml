@@ -53,7 +53,7 @@
                       0.0
       .col-xs-4.invest_form_containter
         .row
-          - if @fund.private_check == 'private'
+          - if @fund.private_check == 'private' && @fund.state == "gathering"
             - unless @flag
               .row
                 .col-md-12
@@ -71,7 +71,8 @@
                 .col-xs-12.can_invest.new_invest_form
                   %p= render 'form'
             - else
-              %h1.text-center.mt80 已投满
+              .mt25.mb25.text-center
+                =image_tag "full_invest.png",width: "240"
 
 .tag-box.tag-box-v3.mt20.p20.pt0
   .row
