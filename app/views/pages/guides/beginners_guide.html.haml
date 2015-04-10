@@ -1,39 +1,24 @@
-.pg-container-content
-  #pg-account-index.pg-account
-    .container_12.mt10.fn-clear
-      = render "shares/about_us_side_nav", {activeItem: "beginners_guide"}
-      .inline-block.relative.grid_10.p20
-        %h3.zdy-red.fs18.bold 什么是摩尔街？
+.container.content
+  .guide_header
+    = image_tag "guide/guide_header.png",width:"100%"
+  .tab-v2.guide_tab
+    %div.text-center
+      %ul.nav.nav-tabs
+        %li.active
+          %a{"data-toggle" => "tab", :href => "#guide_invest"} 我要投资
+        %li
+          %a{"data-toggle" => "tab", :href => "#guide_fund"} 我要操盘
+        %li
+          %a{"data-toggle" => "tab", :href => "#guide_secure"} 安全保障
+    .tab-content.text-center.relative
+      #guide_invest.tab-pane.fade.active.in
+        .mt20
+          = image_tag "guide/guide_invest.png",width:"100%"
+      #guide_fund.tab-pane.fade
+        .mt20
+          = image_tag "guide/guide_funder.png",width:"100%"
+      #guide_secure.tab-pane.fade
+        .mt20
+          = image_tag "guide/guide_secure.png",width:"100%"
 
-        %p 摩尔街是证津集团旗下的专注于证券投资信息服务的互联网金融平台，秉承互联网普惠精神，着力推动证券投资信息交流定制化，社区化，解决一般投资者与民间操盘手互相难以发现的信息难题，使二者成功对接，并享受到摩尔街的行政人服务。最终使投资者投资更理性、更专业，同时培养出优秀的私募基金经理人，让证券市场机构化健康发展。
-
-        %h3.zdy-red.fs18.bold 在摩尔街能干什么？
-
-        %p
-          委托操盘，用户由于平时工作缘故不方便实时盯盘或者由于自身操作水平欠佳等导致证券投资盈利不理想等情况，就可以通过摩尔街发布的信息，寻觅到适合自己风险偏好的操盘手，将自己的证券账户委托给他，由他来替用户操作，由摩尔街来管理风险，用户轻轻松松收取收益！
-          %br
-          受托操盘，用户如果是证券投资高手，那么可以作为受托人，接受其他用户的委托，对他人的证券账户进行操作，实现超额盈利后，双方在摩尔街的见证下就盈利部分协议分成。
-          %br
-          股票配资，如果用户自有资金不能满足暂时的投资需求，可以通过摩尔街平台发布借款信息，其他用户在摩尔街的见证下将自有闲散资金出借给借款用户，借款用户到期还本付息，超额盈利归自己所有。
-
-        %h3.zdy-red.fs18.bold 为什么选择摩尔街？
-
-        %p
-          摩尔街采用最新的互联网模式以及技术，解决金融信息不对称给交易方带来的价值损失，解决传统金融信息不透明的弊端，破解信任难题；采取了风险准备金制度以及严格的风险管控策略，最大程度保证用户利益。
-          %br
-          摩尔街与知名第三方支付机构“贝付”达成战略合作协议，保障了用户委托账户资金支付渠道的安全性，同时与招商银行达成合作协议，由招商银行对所有用户账户资金进行全方位监管。
-          %br
-          摩尔街网罗全国各地民间炒股高手作为用户的操盘手，摩尔街做严格风控，保证用户投资0.8的净值。用户以20%的风险换取30%-200%的预期收益率，财富加速升值。
-          %br
-          摩尔街股东实力雄厚，拥有强大的技术团队以及金融界资源，创始团队均是来自各大知名企业并具有硕士以上学历的精英人士，对互联网以及金融都有深刻的理解与独到的见解，经验丰富，踏实勤奋，能给用户带来的价值
-
-        %h3.zdy-red.fs18.bold 摩尔街能在那些方面为您做的最好？
-
-        %p
-          摩尔街与大型券商国金证券、华泰证券、中信证券、海通证券、五矿证券合作并与国内领先的金融交易软件商恒生电子，金证科技、同花顺等合作，保证用户委托与受托操盘整个流程的透明、顺畅与安全。
-          %br
-          摩尔街拥有强大的技术团队，对平台不断进行完善，能让用户感受到最优化的操作体验，同时财务团队、风控团队以及其他后勤保障团队完美衔接，能保证所有的流程顺畅及时，给用户已最舒心的服务。
-          %br
-          摩尔街与上海市某知名律师事务所合作，对每一份委托合同，借贷合同以及其他法律文书进行严格审核，确保用户所有操作行为的合法合规性，能确保用户的权益。
-
-- @navItem = 'pages'
+- @navItem = 'guide'
