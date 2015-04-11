@@ -1,4 +1,4 @@
-= simple_form_for [@fund, @invest] do |f|
+= simple_form_for [@fund, @invest],url: "/funds/#{@fund.id}/invests",method: "post" do |f|
 	= f.input :fund_id, value: @fund.id, as: :hidden
 	= f.input :date, as: :hidden
 	.form-group.mb0
@@ -7,7 +7,7 @@
 		%br
 		%label.fs28.zdy-gold
 			%i.fa.fa-jpy
-			= (@fund.amount - @invests.sum(:amount)).to_s()
+			= (@fund.amount - invests_amount).to_s()
 	.form-group
 		%label.mr20 账户余额（元）:
 		%label
@@ -30,7 +30,7 @@
 :javascript
 	$(function(){
 		var minimum = parseInt("#{@fund.minimum}");
-		var maxmum = parseInt("#{(@fund.amount - @invests.sum(:amount))}");
+		var maxmum = parseInt("#{(@fund.amount - invests_amount)}");
 		if(maxmum > 0 && maxmum < minimum) {
 			minimum = maxmum;
 		}

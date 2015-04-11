@@ -16,7 +16,7 @@
 					%span= @fund.private_code
 		.row
 			.col-md-12
-				= render 'funds/fund_base_info'
+				= render 'funds/fund_base_info', {invests_amount: @fund.invests.sum(:amount)}
 		-# .row
 		-# 	.col-md-12
 		-# 		.panel.panel-grey

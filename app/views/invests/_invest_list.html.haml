@@ -21,8 +21,9 @@
         %th= Fund.human_attribute_name('state')
       %th= Invest.human_attribute_name('amount')
       %th= Invest.human_attribute_name('date')
-      %th
-        合同
+      - if @current=="xxx"
+        %th
+          合同
   -# todo, 处理 private_check
   %tbody
     - @invests.each_index do |index|
@@ -64,5 +65,6 @@
             = @invests[index].amount
             = '元' unless @invests[index].amount.blank?
           %td{:class => "#{'formattime' unless @invests[index].date.blank? }"}= @invests[index].date
-          %td
-            ***
+          - if @current=="xxx"
+            %td
+              ***

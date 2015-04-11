@@ -56,5 +56,5 @@
             - elsif f.state == "reached"
               = link_to "已投满","javascript:;",class: "btn-u btn-u-xs btn-u-default" unless @invest
         - else
-          %td= f.state
+          %td= t(f.state)
           %td= f.private_code
