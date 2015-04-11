@@ -70,6 +70,6 @@
             = '元' unless @invests[index].amount.blank?
           %td{:class => "#{'formattime' unless @invests[index].date.blank? }"}= @invests[index].date
           - if @current=="xxx"
-            %td=link_to '合同',"/entrusted_operation/"+@invests[index].id.to_s
+            %td=link_to '合同',"/entrusted_operation/"+@invests[index].id.to_s,target: "blank"
 .text-right
   = will_paginate @invests
