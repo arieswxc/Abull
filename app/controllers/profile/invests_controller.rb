@@ -1,15 +1,18 @@
 class Profile::InvestsController < ApplicationController
   def index
     @user               = User.find(params[:user_id])
-    @invests            = @user.invests.order(id: :desc)
-    @total_invest_value = @invests.sum(:amount)
+    invests            = @user.invests.order(id: :desc)
+    @total_invest_value = invests.sum(:amount)
+    @invests            = invests.paginate(:page => params[:page], :per_page => 10)
   end
 
   def show
     @user               = User.find(params[:user_id])
     @invest             = @user.invests.find(params[:id])
     @fund               = @invest.fund
-    @invests            = @fund.invests
+    invests            = @user.invests.order(id: :desc)
+    @total_invest_value = @fund.invests.sum(:amount)
+    @invests            = invests.paginate(:page => params[:page], :per_page => 10)
     if @user.line_csv && @user.line_csv.file
       list_data = parse_list_data(@user.line_csv.file.current_path)
       @list_array = list_data.last(5).reverse

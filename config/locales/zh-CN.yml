@@ -57,7 +57,7 @@ zh-CN:
         collection_deadline: 募集截止时间
         invest_starting_date: 操盘开始时间
         invest_ending_date: 操盘结束时间
-        expected_earning_rate: 预期年化收益率
+        expected_earning_rate: 预期收益
         state: 状态
         line_csv: csv文件
         user_id: 交易员

@@ -23,7 +23,9 @@
                     %th 状态
                     %th 操作
                   %tbody
-                    = will_paginate @billings
+                    = render @billings
+                .text-right
+                  = will_paginate @billings
 
 = render "profile/cash_management/charge_confirm"
 

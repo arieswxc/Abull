@@ -6,54 +6,62 @@
 
   %div.container.content
     %form.sky-form
-      %section.col.col-2
-        %label.fs18 操盘时间(>=)
+      %section.col.col-3
+        %label.fs18 操盘时间
         .input-group
-          .select 
+          .select
             %select{:name => "duration"}
               - [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1].each do |index|
-                %option{:value => "#{index}", :selected => "#{'selected' if index == 1}"}= "#{index}"
+                - if params[:duration] == index.to_s
+                  %option{:value => "#{index}", :selected => ""}= "#{index}"
+                - else
+                  %option{:value => "#{index}"}= "#{index}"
             %i
           %span.input-group-addon  个月
-      %section.col.col-2
+      %section.col.col-3
         %label.fs18 募集总额
         .input-group
           .select
+            - @slt_amount = [[0,'全部'],[1,'1-100'],[2,'100-300'],[3,'300-500'],[4,'>500']]
             %select{:name => "amount"}
-              %option{:value => "0", :selected => "selected"}= "全部"
-              %option{:value => "1"}= "1-100"
-              %option{:value => "2"}= "100-300"
-              %option{:value => "3"}= "300-500"
-              %option{:value => "4"}= ">500"
+              - @slt_amount.each do |d|
+                - if params[:amount] == d[0].to_s
+                  %option{:value => d[0], :selected => ""}= d[1]
+                - else
+                  %option{:value => d[0]}= d[1]
             %i
           %span.input-group-addon  万元
-      %section.col.col-2
-        %label.fs18 预期年化收益率
+      %section.col.col-3
+        %label.fs18 预期收益
         .input-group
           .select
+            - @slt_rate = [[0,'全部'],[1,'1-20'],[2,'20-50'],[3,'50-100'],[4,'>100']]
             %select{:name => "expected_earning_rate"}
-              %option{:value => "0", :selected => "selected"}= "全部"
-              %option{:value => "1"}= "1-20"
-              %option{:value => "2"}= "20-50"
-              %option{:value => "3"}= "50-100"
-              %option{:value => "4"}= ">100"
+              - @slt_rate.each do |d|
+                - if params[:expected_earning_rate] == d[0].to_s
+                  %option{:value => d[0], :selected => ""}= d[1]
+                - else
+                  %option{:value => d[0]}= d[1]
             %i
           %span.input-group-addon  ％
-      %section.col.col-2
+      %section.col.col-3
         %label.fs18 明／暗标
         .input-group
           .select
+            - @slt_private = [[0,'全部'],['public','明'],['private','暗']]
             %select{:name => "private_check"}
-              %option{:value => "0", :selected => "selected"}= "全部"
-              %option{:value => "public"}= "明"
-              %option{:value => "private"}= "暗"
+              - @slt_private.each do |d|
+                - if params[:private_check] == d[0].to_s
+                  %option{:value => d[0], :selected => ""}= d[1]
+                - else
+                  %option{:value => d[0]}= d[1]
             %i
           %span.input-group-addon  标
-      %section.col.col-4
+      .col-md-12.text-right.block
         %button.btn-u.btn-u-dark-blue.mt32.mr10.w90{:type => "submit"}
           %i.fa.fa-search
           搜索
-        %a.btn-u.btn-u-red.mt32.w90.text-center{:href => "/funds"} 查看所有
+        %a.btn-u.btn-u-red.mt32.w90.text-center{:href => "/funds"} 全部
       -# %section.col.col-3
       -#   %div.input-group
       -#     %span.input-group-btn.custom-right
