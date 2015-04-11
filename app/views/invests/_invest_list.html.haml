@@ -28,13 +28,17 @@
   %tbody
     - @invests.each_index do |index|
       - if @invests[index].user
-        %tr{'data-index' => @invests[index].id}
+        %tr{'data-index' => "#{@invests[index].id unless @current === 'xxx'}"}
           - unless @current=="xxx"
             %td.index= index+1
             %td= "#{@invests[index].user.username}"
           - else
             / %td.index= @invests[index].id
-            %td= @invests[index].fund.name
+            %td
+              - unless @current === "xxx"
+                = @invests[index].fund.name
+              - else
+                =link_to @invests[index].fund.name,user_invest_path(user_id: current_user,id: @invests[index].id)
             %td
               - if @invests[index].fund.user.username
                 = @invests[index].fund.user.username
@@ -66,7 +70,6 @@
             = '元' unless @invests[index].amount.blank?
           %td{:class => "#{'formattime' unless @invests[index].date.blank? }"}= @invests[index].date
           - if @current=="xxx"
-            %td
-              ***
+            %td=link_to '合同',"/entrusted_operation/"+@invests[index].id.to_s
 .text-right
   = will_paginate @invests

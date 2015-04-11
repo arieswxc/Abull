@@ -23,14 +23,15 @@
   -# todo, 处理 private_check
   %tbody
     - @funds.each do |f|
-      %tr{'data-index' => f.id,'data-state' => f.state}
+      %tr{'data-index' => "#{f.id unless @current === 'xxx'}",'data-state' => f.state}
         -# %td= f.id
         - unless @current=="xxx"
           %td= check_private(f.user.username,f.private_check)
           %td= f.name
           %td= check_private(f.genre,f.private_check)
         - else
-          %td= f.name
+          -# %td= f.name
+          %td=link_to f.name,user_fund_path(user_id: current_user,id: f.id)
           %td= f.genre
         %td.color-red
           = f.amount
@@ -59,6 +60,6 @@
         - else
           %td= t(f.state)
           %td= f.private_code
-          %td xx
+          %td=link_to '合同',"/trader_agreement/"+f.id.to_s,target: "blank"
 .text-right
   = will_paginate @funds
