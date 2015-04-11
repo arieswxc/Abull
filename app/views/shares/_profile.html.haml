@@ -49,7 +49,7 @@
               未填写
           %br
           %label.ft-thin 身份证：
-          %label.ft-thin= current_user.id_card_number.first(3)+"************"+current_user.cell.last(4)
+          %label.ft-thin= current_user.id_card_number.first(3)+"************"+current_user.cell.last(4) if current_user.id_card_number
           %br
           %label.ft-thin 住址：
           %label.ft-thin

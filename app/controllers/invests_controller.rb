@@ -16,16 +16,23 @@ class InvestsController < ApplicationController
     @invest = @fund.invests.build()
     @invest.date = Time.now()
     user = User.find(@fund.user_id)
+    
     if user.line_csv && user.line_csv.file
       list_data = parse_list_data(user.line_csv.file.current_path)
       @list_array = list_data.last(5).reverse
     end
-    if !session[@fund.id].nil?
-      @flag = @fund.private_check == 'public' ?  true : session[@fund.id]
-    else
-      @flag = @fund.private_check == 'public' ?  true : false
-    end
-    @flag = true if current_user && @fund.check_user_bid(current_user)
+
+    # 判断是非投过
+    @is_invest = false
+    @is_invest = @fund.check_user_bid(current_user) if current_user
+
+    
+    # 判断是非解锁
+    @is_unlock = @fund.private_check == 'public' ?  true : false
+    @is_unlock = true if session[@fund.id] or @is_invest 
+     
+    # @flag = true if current_user && @fund.check_user_bid(current_user)
+    
     @verify_photos = user.verify_photos
 
     if @fund.line_csv && @fund.line_csv.file

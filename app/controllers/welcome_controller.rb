@@ -48,7 +48,14 @@ require 'number_to_cn'
     @current_user = current_user
     @amount = @invest.amount.to_f.to_cn_words 
     @management_fee = @fund.management_fee.to_f.to_cn_words
-    render "entrusted_operation", layout: false
+    respond_to do |format|
+      format.html
+      format.pdf{
+        render :pdf => "entrusted_operation.pdf",
+        :template => 'welcome/entrusted_operation.html.erb'
+      }
+    end
+    # render "entrusted_operation", layout: false
   end
 
   def trader_agreement
@@ -56,7 +63,14 @@ require 'number_to_cn'
     @fund_user = current_user
     @raised_amount = @fund.raised_amount.to_f.to_cn_words
     @management_fee = @fund.management_fee.to_f.to_cn_words 
-    render "trader_agreement", layout: false
+    respond_to do |format|
+      format.html
+      format.pdf{
+        render pdf: "trader_agreement",
+        :template => 'trader_agreement.html.erb'
+      }
+    end
+    # render "trader_agreement", layout: false
   end
 
 end
