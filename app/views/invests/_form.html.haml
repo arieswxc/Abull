@@ -12,11 +12,11 @@
 		%label.fs18.mr20 我的账户余额（元）
 		%br
 		%label.zdy-gold
-			%i.fa.fa-jpy
 			- if current_user
+				%i.fa.fa-jpy
 				= current_user.account.balance
 			- else
-				= link_to("登录",new_user_session_path,class: "btn btn-sm",rel: "nofollow")
+				= link_to("登录",new_user_session_path,class: "",rel: "nofollow")
 				= "后可见"
 	.input-group
 		%input#invest_input_can.form-control.text-center.numberic{:name => "invest[amount]",:maxlength => 7,:placeholder => "请输入计划投资的金额"}

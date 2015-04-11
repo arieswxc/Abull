@@ -23,14 +23,21 @@
                 - if @flag
                   = user.real_name
                 - else
-                  = check_private(user.real_name,@fund.private_check)
+                  - if @fund.private_check == 'private'
+                    = user.real_name.first(1) + "**"
+                  - else
+                    = user.real_name
+                  -# = check_private(user.real_name,@fund.private_check)
               .col-md-4
                 年龄：
                 - if @flag
                   = user.age
                 - else
-                  = check_private(user.age.to_s,@fund.private_check)
-                岁
+                  - if @fund.private_check == 'private'
+                    = "***"
+                  - else
+                    = user.age.to_s
+                    岁
               .col-md-4
                 性别：
                 - if @flag
@@ -38,12 +45,12 @@
                 - else
                   = check_private(I18n.t(user.gender),@fund.private_check)
             .row.mt10
-              .col-md-4
-                用户ID：
-                - if @flag
-                  = user.id
-                - else
-                  = check_private(user.id.to_s,@fund.private_check)
+              -# .col-md-4
+              -#   用户ID：
+              -#   - if @flag
+              -#     = user.id
+              -#   - else
+              -#     = check_private(user.id.to_s,@fund.private_check)
               .col-md-4
                 学历：
                 - if @flag
@@ -56,18 +63,31 @@
                   = user.job
                 - else
                   = check_private(user.job,@fund.private_check)
-            .row.mt10
-              .col-md-12
+              .col-md-4
                 现居地：
                 - if @flag
                   = user.address
                 - else
                   = check_private(user.address,@fund.private_check)
+            -# .row.mt10
+            -#   .col-md-12
+            -#     现居地：
+            -#     - if @flag
+            -#       = user.address
+            -#     - else
+            -#       = check_private(user.address,@fund.private_check)
             .row.mt10.abstract
               .col-md-12
                 %label.zdy-red 自我介绍：
                 -# .tag-box.tag-box-v3.mb0.border-black.mt10
-                = user.abstract
+                -# = user.abstract
+                - if @flag
+                  = user.abstract
+                - else
+                  - if @fund.private_check == 'private'
+                    = "*****"
+                  - else
+                    = user.abstract
 
   .tag-box.tag-box-v3.mb0
     .row
@@ -113,9 +133,9 @@
               .owl-slider
                 - @verify_photos.each do |f|
                   .item
-                    %a.fancybox-button.zoomer{:href => f.photo.url, 'data-rel' => "fancybox-button"}
+                    %a.fancybox-button.zoomer{:href => f.photo.url.split("?")[0] + "#{'?imageMogr2/blur/50x50' unless @flag}", 'data-rel' => "fancybox-button"}
                       %span.overlay-zoom
-                        = image_tag f.photo.url.split("?")[0] + '?imageView2/1/w/335/h/168/interlace/1',class: "img-responsive" if f.photo && f.photo.url
+                        = image_tag f.photo.url.split("?")[0] + "?imageView2/1/w/335/h/168/interlace/1" + "#{'&imageMogr2/blur/50x50'  unless @flag}",class: "img-responsive" if f.photo && f.photo.url
                         %span.zoom-icon
 
           - else
