@@ -24,10 +24,12 @@
 
 /* The date/time */
 .timeline-v2 > li .cbp_tmtime {
-	width: 25%;
-	display: block;
-	position: absolute;
-	padding-right: 80px;
+	   width: 25%;
+	  display: block;
+	  position: absolute;
+	  padding-right: 51px;
+	  padding-top: 10px;
+	  font-size: 13px;
 }
 
 .timeline-v2 > li .cbp_tmtime span {
@@ -45,14 +47,14 @@
 
 .timeline-v2 > li .cbp_tmtime span:last-child {
 	color: #585f69;
-	font-size: 20px;
+	font-size: 18px;
 	font-weight: normal;
 
 }
 
 /* Right content */
 .timeline-v2 > li .cbp_tmlabel {
-	color: #fff;
+	color: #333;
 	padding: 10px 20px 20px;
 	background: #f3f3f3;
 	line-height: 1.4;
