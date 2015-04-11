@@ -10,7 +10,7 @@
         %th= Fund.human_attribute_name('user')
         / %th 发标人
         -# %th= Fund.human_attribute_name('minimum')
-        %th= Fund.human_attribute_name('amount')
+        -# %th= Fund.human_attribute_name('amount')
 
         -# %th= Fund.human_attribute_name('collection_deadline')
         -#
@@ -43,9 +43,9 @@
             -# %td
             -#   = f.fund.minimum
             -#   = '元' unless f.fund.minimum.blank?
-            %td
-              = @invests[index].fund.amount
-              = '元' unless @invests[index].fund.amount.blank?
+            -# %td
+            -#   = @invests[index].fund.amount
+            -#   = '元' unless @invests[index].fund.amount.blank?
 
             -# %td.formattime= f.fund.collection_deadline
             -# / %td= f.minimum

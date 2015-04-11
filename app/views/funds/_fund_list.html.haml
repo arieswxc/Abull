@@ -19,6 +19,7 @@
       %th= Fund.human_attribute_name('state')
       - if @current=="xxx"
         %th 暗标码
+        %th 合同
   -# todo, 处理 private_check
   %tbody
     - @funds.each do |f|
@@ -58,3 +59,4 @@
         - else
           %td= t(f.state)
           %td= f.private_code
+          %td xx
