@@ -86,8 +86,8 @@
         .panel.panel-grey
           .panel-heading
             .panel-title
-              %label.mr40
-                申购记录
+              %label.mr40.fs18
+                投资记录
               %label.float-right
                 %label.mr15
                   %span 人次：
@@ -114,6 +114,10 @@
        return;
      }
      var unlock_val = $(".unlock_val").val();
+     if (unlock_val === "") {
+       alert("请输入暗标码...");
+       return;
+     }
      var fund_id = "#{@fund.id}";
      var postdata = {
        "private_code": unlock_val

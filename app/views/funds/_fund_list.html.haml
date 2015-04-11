@@ -52,9 +52,9 @@
         - unless @current=="xxx"
           %td
             - if f.state == "gathering"
-              = link_to "我要投资","javascript:;",class: "btn-u btn-u-xs btn-u-blue" unless @invest
+              = link_to "我要投资","javascript:;",class: "btn-u btn-u btn-u-blue w90 text-center" unless @invest
             - elsif f.state == "reached"
-              = link_to "已投满","javascript:;",class: "btn-u btn-u-xs btn-u-default" unless @invest
+              = link_to "已投满","javascript:;",class: "btn-u btn-u btn-u-default w90 text-center" unless @invest
         - else
           %td= t(f.state)
           %td= f.private_code

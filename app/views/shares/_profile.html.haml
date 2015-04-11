@@ -3,24 +3,24 @@
     .fn-clear.relative
       .fn-left.last.w500
         .surplus.fn-clear
-          .text-l.mr10.fs20 账户余额（元）
-          .num-xl.color-red.mr5.w250
+          .mr10.fs18 账户余额（元）
+          .color-red.mr5.w250
             %label.mt15= current_user.account.balance + current_user.account.frost
         .surplus-detail.fn-clear.mt10
           .fn-left.mr0
-            .text.mr10 冻结金额（元）
-            .num.last.mt5
+            .mr10.fs18 冻结金额（元）
+            .mt5
               %label.color-red= current_user.account.frost
           .fn-right.last
-            .text.mr10 可用金额（元）
-            .num.last.mt5
+            .mr10.fs18 可用金额（元）
+            .mt5
               %label.color-red= current_user.account.balance
         .charge-btns.mt15
           = link_to "充值",bankcard_charge_user_account_path(current_user),class: "fn-left btn-u btn-u-dark-blue mr10 w100 text-center rounded"
           = link_to "提现",withdraw_user_account_path(current_user),class: "fn-left btn-u btn-u-red last ml20 w100 text-center rounded"
       #info-box.fn-left.user-security-container.ml15.pl15
         .safe.fn-clear
-          .text-l.mr10.fs20 安全认证
+          .text-l.mr10.fs18 身份认证
           #safe-progressbar.safe-progressbar.fn-left{:title => "25%"}
             .bar{:style => "width: 25px;"}
         .icons.fn-clear.mt15
@@ -38,28 +38,28 @@
               %a.btn-u.btn-u-xs{:class => "#{'btn-u-default direct_to_tab2' if current_user.education.blank?}" "#{'btn-u-yellow' if !current_user.education.blank?}",
                 :href => "#{edit_user_registration_path+'/#trader_auth' if current_user.education.blank?}" "#{'javascript:;' if !current_user.education.blank?}"} 学历
         .mt15
-          %label 手机：
-          %label= current_user.cell.first(3)+"****"+current_user.cell.last(4)
+          %label.ft-thin 手机：
+          %label.ft-thin= current_user.cell.first(3)+"****"+current_user.cell.last(4)
           %br
-          %label 邮箱：
-          %label
+          %label.ft-thin 邮箱：
+          %label.ft-thin
             - if current_user.email && current_user.email != ""
               = current_user.email
             - else
               未填写
           %br
-          %label 身份证：
-          %label= current_user.id_card_number.first(3)+"************"+current_user.cell.last(4)
+          %label.ft-thin 身份证：
+          %label.ft-thin= current_user.id_card_number.first(3)+"************"+current_user.cell.last(4)
           %br
-          %label 住址：
-          %label
+          %label.ft-thin 住址：
+          %label.ft-thin
             - if current_user.address && current_user.address != ""
               = current_user.address
             - else
               未填写
           %br
-          %label 学历：
-          %label
+          %label.ft-thin 学历：
+          %label.ft-thin
             - if current_user.education && current_user.education != ""
               = current_user.education
             - else
