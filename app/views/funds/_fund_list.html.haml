@@ -6,7 +6,7 @@
   %thead
     %tr
       / %th 发标人
-      %th= Fund.human_attribute_name('id')
+      -# %th= Fund.human_attribute_name('id')
       - unless @current=="xxx"
         %th= Fund.human_attribute_name('user')
       %th= Fund.human_attribute_name('name')
@@ -23,7 +23,7 @@
   %tbody
     - @funds.each do |f|
       %tr{'data-index' => f.id,'data-state' => f.state}
-        %td= f.id
+        -# %td= f.id
         - unless @current=="xxx"
           %td= check_private(f.user.username,f.private_check)
           %td= f.name
@@ -56,5 +56,5 @@
             - elsif f.state == "reached"
               = link_to "已投满","javascript:;",class: "btn-u btn-u-xs btn-u-default" unless @invest
         - else
-          %td= f.state
+          %td= t(f.state)
           %td= f.private_code

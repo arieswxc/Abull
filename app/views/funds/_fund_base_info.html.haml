@@ -64,12 +64,8 @@
                   %a.btn-u.btn-u-orange.btn-u-xs.unlock_btn UNLOCK
           .row
             - if @fund.state == "gathering"
-              - if @flag
-                .col-xs-12.new_invest_form
-                  %p= render 'form'
-              - else
-                .col-xs-12.can_invest.new_invest_form
-                  %p= render 'form'
+              .col-xs-12.new_invest_form{class: "#{'can_invest' unless @flag }"}
+                %p= render 'invests/form', {invests_amount: invests_amount}
             - else
               .mt25.mb25.text-center
                 =image_tag "full_invest.png",width: "240"
