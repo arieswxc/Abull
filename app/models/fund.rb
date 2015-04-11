@@ -91,10 +91,10 @@ class Fund < ActiveRecord::Base
     amount = 0 if amount.blank?
     expected_earning_rate = 0 if expected_earning_rate.blank?
     amount_begin, amount_end, rate_begin, rate_end = match_condition(amount.to_i, expected_earning_rate.to_i)
-    if private_check.blank?
-      funds = Fund.where("duration > ? and amount > ? and amount < ? and expected_earning_rate > ? and expected_earning_rate < ?", duration, amount_begin, amount_end, rate_begin, rate_end)
+    if private_check.blank? or private_check.to_i == 0
+      funds = Fund.where("duration >= ? and amount > ? and amount < ? and expected_earning_rate > ? and expected_earning_rate < ?", duration, amount_begin, amount_end, rate_begin, rate_end)
     else
-      funds = Fund.where("duration > ? and amount > ? and amount < ? and expected_earning_rate > ? and expected_earning_rate < ? and private_check = ?", duration, amount_begin, amount_end, rate_begin, rate_end, private_check)
+      funds = Fund.where("duration >= ? and amount > ? and amount < ? and expected_earning_rate > ? and expected_earning_rate < ? and private_check = ?", duration, amount_begin, amount_end, rate_begin, rate_end, private_check)
     end
   end
 

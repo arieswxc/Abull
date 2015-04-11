@@ -7,12 +7,12 @@
   %div.container.content
     %form.sky-form
       %section.col.col-2
-        %label 操盘时间(>)
+        %label 操盘时间(>=)
         .input-group
-          .select
+          .select 
             %select{:name => "duration"}
-              - (1..12).each do |index|
-                %option{:value => "#{index}", :selected => "#{'selected' if index == 12}"}= "#{index}"
+              - [12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1].each do |index|
+                %option{:value => "#{index}", :selected => "#{'selected' if index == 1}"}= "#{index}"
             %i
           %span.input-group-addon  个月
       %section.col.col-2
@@ -20,7 +20,8 @@
         .input-group
           .select
             %select{:name => "amount"}
-              %option{:value => "1", :selected => "selected"}= "1-100"
+              %option{:value => "0", :selected => "selected"}= "全部"
+              %option{:value => "1"}= "1-100"
               %option{:value => "2"}= "100-300"
               %option{:value => "3"}= "300-500"
               %option{:value => "4"}= ">500"
@@ -31,7 +32,8 @@
         .input-group
           .select
             %select{:name => "expected_earning_rate"}
-              %option{:value => "1", :selected => "selected"}= "1-20"
+              %option{:value => "0", :selected => "selected"}= "全部"
+              %option{:value => "1"}= "1-20"
               %option{:value => "2"}= "20-50"
               %option{:value => "3"}= "50-100"
               %option{:value => "4"}= ">100"
@@ -42,8 +44,9 @@
         .input-group
           .select
             %select{:name => "private_check"}
+              %option{:value => "0", :selected => "selected"}= "全部"
               %option{:value => "public"}= "明"
-              %option{:value => "private", :selected => ""}= "暗"
+              %option{:value => "private"}= "暗"
             %i
           %span.input-group-addon  标
       %section.col.col-4
