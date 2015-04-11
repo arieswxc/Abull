@@ -60,8 +60,8 @@ zh-CN:
         expected_earning_rate: 预期年化收益率
         state: 状态
         line_csv: csv文件
-        user_id: 操盘人
-        user: 操盘人
+        user_id: 交易员
+        user: 交易员
         earning: 收益
         earning_rate: 收益率
         initial_amount: 初始募集数额
@@ -227,10 +227,10 @@ zh-CN:
   clear: 清盘
   force_clear: 提前清盘
   Reject: 拒绝
-  card_number: 卡号
-  real_name: 真实姓名
-  bank_name: 开户银行
-  bank_branch: 开户银行所在分行
+  card number: 卡号
+  real name: 真实姓名
+  bank name: 开户银行
+  bank branch: 开户银行所在分行
   state: 状态
   edit: 编辑
   pending: 待定

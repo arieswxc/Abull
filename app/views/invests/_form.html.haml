@@ -2,15 +2,17 @@
 	= f.input :fund_id, value: @fund.id, as: :hidden
 	= f.input :date, as: :hidden
 	.form-group.mb0
-		%label
-			= "剩余投资额（元）"
+		%label.fs18
+			= "剩余可投资额（元）"
 		%br
-		%label.fs28.zdy-gold
+		%label.zdy-gold
 			%i.fa.fa-jpy
 			= (@fund.amount - invests_amount).to_s()
 	.form-group
-		%label.mr20 账户余额（元）:
-		%label
+		%label.fs18.mr20 我的账户余额（元）
+		%br
+		%label.zdy-gold
+			%i.fa.fa-jpy
 			- if current_user
 				= current_user.account.balance
 			- else
@@ -19,10 +21,10 @@
 	.input-group
 		%input#invest_input_can.form-control.text-center.numberic{:name => "invest[amount]",:maxlength => 7,:placeholder => "请输入计划投资的金额"}
 		%span.input-group-addon.zdy-bg-gold  元
-	.mb10.fs-sm.mt10
+	.mb10.fs16.mt10
 		%input#check{:type => "checkbox",:checked => ""}/
 		我已阅读并同意
-		%a.color-blue.sky-blue-i.gppz_items{:href => "javascript:;"} 条款
+		%a.color-blue.sky-blue-i.gppz_items{:href => "javascript:;"} 协议
 	= f.submit class: "hide",id: 'subbtn'
 	.text-center
 		%button.btn-u.btn-u-orange#submit{:name => "commit", :type => "button"} 我要投资

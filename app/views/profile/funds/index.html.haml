@@ -7,7 +7,6 @@
           = render "shares/profile"
           #profile-fund-show.tag-box.tag-box-v3.mt20.p20
             %h2
-              .glyphicon.glyphicon-usd
               发标资金总额（元）：
               %span.color-red.text-l
                 = @funds.sum(:amount)

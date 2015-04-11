@@ -3,7 +3,7 @@
     .p20.text-center
       %label 暗号:
       %input
-      %a.btn-u.btn-u-orange.btn-u-xs.unlock_btn UNLOCK
+      %a.btn-u.btn-u-orange.btn-u.unlock_btn 解锁
   .row.mt10
     = render 'users/funder_info',{user: @fund.user}
   .row
@@ -68,7 +68,7 @@
         .panel-heading
           .panel-title
             %label.mr40
-              申购记录
+              投资记录
             %label.mr15
               %span 人次：
               %span= @invests.count

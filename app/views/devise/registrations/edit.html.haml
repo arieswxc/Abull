@@ -190,12 +190,12 @@
                   file: :horizontal_file_input,                         |
                   boolean: :horizontal_boolean}) do |f|                 |
                   %dl.dl-horizontal.pl50
-                    %dt 当前密码(需要当前密码确认您的更改)
+                    %dt 当前密码
                     %dd
                       %section
                         %label.input.w250
                           %i.icon-append.fa.fa-key
-                          %input{:name => "user[current_password]", :type => "password"}/
+                          %input{:name => "user[current_password]",:placeholder => '需要当前密码确认您的更改', :type => "password"}/
                     %dt 密码
                     %dd
                       %section

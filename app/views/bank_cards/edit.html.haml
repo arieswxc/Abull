@@ -8,9 +8,9 @@
           = render "shares/profile"
           .panel.panel-default
             .panel-heading
-              %h3.panel-title 我的银行卡
+              %h3.panel-title.fs18 我的银行卡
             .panel-body
-              %dl.dl-horizontal
+              %dl.dl-horizontal.col-xs-6.col-xs-offset-3
                 = simple_form_for(@bank_card, url: user_bank_card_path, html:{class: "sky-form",onsubmit: "return confirm_bank()"}) do |f|
                   = f.input :number
                   .form-group.string
@@ -18,7 +18,8 @@
                     %input#bank_number_confirm.form-control{:type => "text"}
                   = f.input :bank_name
                   = f.input :bank_branch
-                  = f.button :submit
+                  .text-center
+                    = f.button :submit,class: "btn-u btn-u-red"
 
 :javascript
   function confirm_bank() {

@@ -6,7 +6,7 @@
           .avatar
             = image_tag user.avatar.url,class: "img-thumbnail img-rounded w160 #{'blur' unless @flag}"
           .username.mt5
-            %span 操盘人：
+            %span 交易员：
             %span
               - if @flag
                 = user.username
