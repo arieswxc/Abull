@@ -4,11 +4,11 @@
       .col-xs-12
         .col-xs-4.text-center.mb40
           .avatar
-            = image_tag user.avatar.url,class: "img-thumbnail img-rounded w160 #{'blur' unless @flag}",alt: '头像'
+            = image_tag user.avatar.url,class: "img-thumbnail img-rounded w160 #{'blur' unless @is_unlock}",alt: '头像'
           .username.mt5
             %span 交易员：
             %span
-              - if @flag
+              - if @is_unlock
                 = user.username
               - else
                 = check_private(user.username,@fund.private_check)
@@ -20,7 +20,7 @@
             .row
               .col-md-4
                 姓名：
-                - if @flag
+                - if @is_unlock
                   = user.real_name
                 - else
                   - if @fund.private_check == 'private'
@@ -30,7 +30,7 @@
                   -# = check_private(user.real_name,@fund.private_check)
               .col-md-4
                 年龄：
-                - if @flag
+                - if @is_unlock
                   = user.age
                 - else
                   - if @fund.private_check == 'private'
@@ -40,7 +40,7 @@
                     岁
               .col-md-4
                 性别：
-                - if @flag
+                - if @is_unlock
                   = I18n.t(user.gender)
                 - else
                   = check_private(I18n.t(user.gender),@fund.private_check)
@@ -53,19 +53,19 @@
               -#     = check_private(user.id.to_s,@fund.private_check)
               .col-md-4
                 学历：
-                - if @flag
+                - if @is_unlock
                   = user.education
                 - else
                   = check_private(user.education,@fund.private_check)
               .col-md-4
                 职业：
-                - if @flag
+                - if @is_unlock
                   = user.job
                 - else
                   = check_private(user.job,@fund.private_check)
               .col-md-4
                 现居地：
-                - if @flag
+                - if @is_unlock
                   = user.address
                 - else
                   = check_private(user.address,@fund.private_check)
@@ -81,7 +81,7 @@
                 %label.zdy-red 自我介绍：
                 -# .tag-box.tag-box-v3.mb0.border-black.mt10
                 -# = user.abstract
-                - if @flag
+                - if @is_unlock
                   = user.abstract
                 - else
                   - if @fund.private_check == 'private'
@@ -133,9 +133,9 @@
               .owl-slider
                 - @verify_photos.each do |f|
                   .item
-                    %a.fancybox-button.zoomer{:href => f.photo.url.split("?")[0] + "#{'?imageMogr2/blur/50x50' unless @flag}", 'data-rel' => "fancybox-button"}
+                    %a.fancybox-button.zoomer{:href => f.photo.url.split("?")[0] + "#{'?imageMogr2/blur/50x50' unless @is_unlock}", 'data-rel' => "fancybox-button"}
                       %span.overlay-zoom
-                        = image_tag f.photo.url.split("?")[0] + "?imageView2/1/w/335/h/168/interlace/1" + "#{'&imageMogr2/blur/50x50'  unless @flag}",class: "img-responsive" if f.photo && f.photo.url
+                        = image_tag f.photo.url.split("?")[0] + "?imageView2/1/w/335/h/168/interlace/1" + "#{'&imageMogr2/blur/50x50'  unless @is_unlock}",class: "img-responsive" if f.photo && f.photo.url
                         %span.zoom-icon
 
           - else

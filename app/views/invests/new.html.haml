@@ -72,9 +72,9 @@
                     - @fund_verify_photos.each do |f|
                       - if f.photo && f.photo.url
                         .item
-                          %a.fancybox-button.zoomer{:href => f.photo.url, 'data-rel' => "fancybox-button"}
+                          %a.fancybox-button.zoomer{:href => f.photo.url.split("?")[0] + "#{'?imageMogr2/blur/50x50'  unless @is_invest}", 'data-rel' => "fancybox-button"}
                             %span.overlay-zoom
-                              = image_tag f.photo.url.split("?")[0] + '?imageView2/1/w/335/h/168/interlace/1',class: "img-responsive"
+                              = image_tag f.photo.url.split("?")[0] + '?imageView2/1/w/335/h/168/interlace/1' + "#{'&imageMogr2/blur/50x50'  unless @is_invest}",class: "img-responsive"
                               %span.zoom-icon
 
               - else

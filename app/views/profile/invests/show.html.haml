@@ -1,9 +1,4 @@
 .container.content
-  - if !@flag
-    .p20.text-center
-      %label 暗号:
-      %input
-      %a.btn-u.btn-u-orange.btn-u.unlock_btn 解锁
   .row.mt10
     = render 'users/funder_info',{user: @fund.user}
   .row

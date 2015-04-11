@@ -54,21 +54,20 @@
                       0.0
       .col-xs-4.invest_form_containter
         .row
-          - if @fund.private_check == 'private' && @fund.state == "gathering"
-            - unless @flag
-              .row
-                .col-md-12
-                  %label 暗标码:
-                .col-md-12.md-margin-bottom-10
-                  .input-group
-                    %input.form-control.unlock_val
-                    %span.input-group-addon.zdy-bg-gold.unlock_btn  解锁
+          - unless @is_unlock
+            .row
+              .col-md-12
+                %label 暗标码:
+              .col-md-12.md-margin-bottom-10
+                .input-group
+                  %input.form-control.unlock_val
+                  %span.input-group-addon.zdy-bg-gold.unlock_btn  解锁
                 -#   %input.unlock_val
                 -# .col-md-4.col-md-offset-1
                 -#   %a.btn-u.btn-u-orange.btn-u.unlock_btn 解锁
           .row
             - if @fund.state == "gathering"
-              .col-xs-12.new_invest_form{class: "#{'can_invest' unless @flag }"}
+              .col-xs-12.new_invest_form{class: "#{'can_invest' unless @is_unlock }"}
                 %p= render 'invests/form', {invests_amount: invests_amount}
             - else
               .mt25.mb25.text-center

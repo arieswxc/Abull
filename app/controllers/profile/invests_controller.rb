@@ -23,12 +23,13 @@ class Profile::InvestsController < ApplicationController
       fund_list_data = parse_list_data(@fund.line_csv.file.current_path)
       @fund_list_array = fund_list_data.last(5).reverse
     end
-    if !session[@fund.id].nil?
-      @flag = @fund.private_check == 'public' ?  true : session[@fund.id]
-    else
-      @flag = @fund.private_check == 'public' ?  true : false
-    end
-    @flag = true if @fund.check_user_bid(current_user)
+    # if !session[@fund.id].nil?
+    #   @flag = @fund.private_check == 'public' ?  true : session[@fund.id]
+    # else
+    #   @flag = @fund.private_check == 'public' ?  true : false
+    # end
+    @is_invest = true
+    @is_unlock = true
   end
 
 end

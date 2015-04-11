@@ -14,6 +14,7 @@ class Profile::FundsController < ApplicationController
     @invests            = invests.paginate(:page => params[:page], :per_page => 10)
     @invest = @fund.invests.build()
     @invest.date = Time.now()
-    @flag = true
+    @is_invest = true
+    @is_unlock = true
   end
 end
