@@ -77,13 +77,13 @@ class UsersController < ApplicationController
   def generate_verification_code
     code      = rand(100000..999999)
     session[params[:cell].to_i] = code
-    msg = "欢迎注册摩尔街账户，您的验证码为#{code},请在注册页面填写【bull】"
-    msg = "你的验证码为#{code}" if params[:forget_pswd].to_i == 1
+    msg = "欢迎注册摩尔街账户，您的验证码为#{code},请在注册页面填写【摩尔街】"
+    msg = "你的验证码为#{code}, 请在重置密码页面填写【摩尔街】" if params[:forget_pswd].to_i == 1
     batch_code  = send_sms(code, params[:cell], msg)
 
-    if params[:forget_pswd].to_i == 1 && User.find_by(cell: params[:user][:cell])
+    if params[:forget_pswd].to_i == 1 && User.find_by(cell: params[:cell])
       render "forget_password_edit"
-    elsif params[:forget_pswd].to_i == 1 && User.find_by(cell: params[:user][:cell]).nil?
+    elsif params[:forget_pswd].to_i == 1 && User.find_by(cell: params[:cell]).nil?
       flash[:error] = "手机号错误，用户不存在"
       redirect_to new_user_password_path
     elsif batch_code

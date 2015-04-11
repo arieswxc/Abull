@@ -11,7 +11,7 @@
         .input-group.margin-bottom-20
           %span.input-group-addon
             %i.fa.fa-phone
-          = f.text_field :cell, autofocus: true, placeholder: "手机号", class: "form-control"
+          %input{:name => 'cell', :placeholder => "手机号", :class => "form-control", :autofocus => true}
         .field
           %br/
           %input{:type => 'hidden', :name => 'forget_pswd', :value => 1}
