@@ -72,13 +72,15 @@
             -# %li{:class => "#{'active' if @navItem == 'leverage_new'}"}= link_to "我要配资",new_leverage_path
             -# %li{:class => "#{'active' if @navItem == 'topics'}"}= link_to "交流互动",topics_path/*cap1*/
             %li{:class => "#{'active' if @navItem == 'guide'}"}= link_to "新手指引",page_path("guides/beginners_guide")
-            %li.dropdown{:class => "#{'active' if @navItem == 'pages'}"}
-              %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "javascript:void(0);"}
-                关于我们
-              %ul.dropdown-menu
-                %li= link_to "公司简介",page_path("about/about_us")
-                %li= link_to "员工风采",page_path("about/about_staff")
-                %li= link_to "团队介绍",page_path("about/our_team")
-                %li= link_to "资质荣誉",page_path("about/qualification_and_honors")
-                %li= link_to "媒体报道",page_path("about/media_reports")
-                %li= link_to "大事记",page_path("about/our_events")
+            %li{:class => "#{'active' if @navItem == 'pages'}"}= link_to "关于我们",page_path("about/about_us")
+
+            / %li.dropdown{:class => "#{'active' if @navItem == 'pages'}"}
+            /   %a.dropdown-toggle{"data-toggle" => "dropdown", :href => "javascript:void(0);"}
+            /     关于我们
+            /   %ul.dropdown-menu
+            /     %li= link_to "公司简介",page_path("about/about_us")
+            /     %li= link_to "员工风采",page_path("about/about_staff")
+            /     %li= link_to "团队介绍",page_path("about/our_team")
+            /     %li= link_to "资质荣誉",page_path("about/qualification_and_honors")
+            /     %li= link_to "媒体报道",page_path("about/media_reports")
+            /     %li= link_to "大事记",page_path("about/our_events")
