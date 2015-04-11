@@ -1,22 +1,25 @@
-- if @fund.state == 'pending' ||  @fund.state == 'applied'
-	- @result_type = 'fund'
-	= render 'shares/result', ojbect: @restult_type
-- else
-	.container.content
-		.row
-			.col-md-12
-				%label.mr15
-					%span HOMS账号：
-					%span
-				%label.mr15
-					%span 密码：
-					%span
-				%label
-					%span 暗标码：
-					%span= @fund.private_code
-		.row
-			.col-md-12
-				= render 'funds/fund_base_info', {invests_amount: @total_invest_value}
+-# - if @fund.state == 'pending' ||  @fund.state == 'applied'
+- @result_type = 'fund'
+= render 'shares/result', ojbect: @restult_type
+
+- @navItem = 'funds_new'
+-# - else
+
+	-# .container.content
+	-# 	.row
+	-# 		.col-md-12
+	-# 			%label.mr15
+	-# 				%span HOMS账号：
+	-# 				%span
+	-# 			%label.mr15
+	-# 				%span 密码：
+	-# 				%span
+	-# 			%label
+	-# 				%span 暗标码：
+	-# 				%span= @fund.private_code
+	-# 	.row
+	-# 		.col-md-12
+	-# 			= render 'funds/fund_base_info', {invests_amount: @total_invest_value}
 		-# .row
 		-# 	.col-md-12
 		-# 		.panel.panel-grey
