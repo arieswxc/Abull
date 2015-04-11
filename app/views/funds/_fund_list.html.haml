@@ -31,7 +31,7 @@
           %td= check_private(f.genre,f.private_check)
         - else
           -# %td= f.name
-          %td=link_to f.name,user_fund_path(user_id: current_user,id: f.id)
+          %td=link_to f.name,user_fund_path(user_id: current_user,id: f.id),target: "blank"
           %td= f.genre
         %td.color-red
           = f.amount
