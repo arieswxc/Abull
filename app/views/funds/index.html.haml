@@ -7,7 +7,7 @@
   %div.container.content
     %form.sky-form
       %section.col.col-2
-        %label 操盘时间(>)
+        %label.fs18 操盘时间(>)
         .input-group
           .select
             %select{:name => "duration"}
@@ -16,7 +16,7 @@
             %i
           %span.input-group-addon  个月
       %section.col.col-2
-        %label 募集总额
+        %label.fs18 募集总额
         .input-group
           .select
             %select{:name => "amount"}
@@ -27,7 +27,7 @@
             %i
           %span.input-group-addon  万元
       %section.col.col-2
-        %label 预期年化收益率
+        %label.fs18 预期年化收益率
         .input-group
           .select
             %select{:name => "expected_earning_rate"}
@@ -38,7 +38,7 @@
             %i
           %span.input-group-addon  ％
       %section.col.col-2
-        %label 明／暗标
+        %label.fs18 明／暗标
         .input-group
           .select
             %select{:name => "private_check"}
@@ -47,10 +47,10 @@
             %i
           %span.input-group-addon  标
       %section.col.col-4
-        %button.btn-u.btn-u-dark-blue.mt25.mr10{:type => "submit"}
+        %button.btn-u.btn-u-dark-blue.mt32.mr10.w90{:type => "submit"}
           %i.fa.fa-search
           搜索
-        %a.btn-u.btn-u-red.mt25{:href => "/funds"} 查看所有
+        %a.btn-u.btn-u-red.mt32.w90.text-center{:href => "/funds"} 查看所有
       -# %section.col.col-3
       -#   %div.input-group
       -#     %span.input-group-btn.custom-right

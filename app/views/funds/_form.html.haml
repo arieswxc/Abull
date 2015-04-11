@@ -13,59 +13,59 @@
     .form-group
       .col-sm-3.control-label
       .col-sm-9.pt5
-        %label.w130 是否为暗标：
-        %span.mr10
+        %label.w130.fs18 是否为暗标：
+        %span.mr10.fs18
           %input{:class => "radio_buttons optional", :type => "radio", :value => "private",
             :name => "fund[private_check]", :id => "fund_private_check_private"}
             是
-        %span.mr10
+        %span.mr10.fs18
           %input{:class => "radio_buttons optional", :type => "radio", :value => "public",
             :checked => "",:name => "fund[private_check]", :id => "fund_private_check_public"}
             否
-        %span 什么是暗标
+        %span.fs18 什么是暗标
         .pz_tips_1
           .pz_tips_hd
             %span.icon-question.ui_ico
           .pz_tips_bd
             %em.caret
-            %p 投资本金＋配资金额
+            %p 暗标是指面向特定投资者的标的，需要有交易员授权的暗标码才能查看和投资。
     .form-group.private_check_control.zdy-hide
       .col-sm-3.control-label
       .col-sm-9.pt5
-        %label.w130 是否账户托管：
-        %span.mr10
+        %label.w130.fs18 是否账户托管：
+        %span.mr10.fs18
           %input{:class => "radio_buttons optional", :type => "radio", :value => "true",
            :checked => "checked", :name => "fund[mandate]"}
             是
-        %span.mr10
+        %span.mr10.fs18
           %input{:class => "radio_buttons optional", :type => "radio", :value => "false",
             :name => "fund[mandate]"}
             否
-        %span 什么是账户托管
+        %span.fs18 什么是账户托管
         .pz_tips_1
           .pz_tips_hd
             %span.icon-question.ui_ico
           .pz_tips_bd
             %em.caret
-            %p 投资本金＋配资金额
+            %p 托管账户是指将交易账户委托给摩尔街监管并进行风险控制的账户
     = f.input :user_id, as: :hidden, input_html: { value: "#{current_user.id if current_user}"}
     %hr
     .form-group.text-center
       .col-sm-2
       .col-sm-4
-        %label= Fund.human_attribute_name('amount')
+        %label.fs18= Fund.human_attribute_name('amount')
         .input-group
           %input.form-control.text-center.numberic{:name => "fund[amount]",:maxlength => 7, :required => ""}
           %span.input-group-addon  元
       .col-sm-4
-        %label= Fund.human_attribute_name('expected_earning_rate')
+        %label.fs18= Fund.human_attribute_name('expected_earning_rate')
         .input-group
           %input.form-control.text-center.numberic{:name => "fund[expected_earning_rate]",:maxlength => 3, :required => ""}
           %span.input-group-addon  ％
     .form-group.text-center
       .col-sm-2
       .col-sm-4
-        %label= Fund.human_attribute_name('duration')
+        %label.fs18= Fund.human_attribute_name('duration')
         .input-group
           .select
             %select{:name => "fund[duration]"}
@@ -74,7 +74,7 @@
             %i
           %span.input-group-addon  个月
       .col-sm-4
-        %label= Fund.human_attribute_name('ending_days')
+        %label.fs18= Fund.human_attribute_name('ending_days')
         .input-group
           .select
             %select{:name => "fund[ending_days]"}
@@ -85,7 +85,7 @@
     .form-group.text-center
       .col-sm-2
       .col-sm-4
-        %label 受托管理费（占超额业绩的）
+        %label.fs18 受托管理费（占超额业绩的）
         .input-group
           %input.form-control.text-center.numberic{:name => "fund[management_fee]",:maxlength => 3}
           %span.input-group-addon  ％
@@ -100,7 +100,7 @@
       .form-group.text-center
         .col-sm-2
         .col-sm-8
-          %label
+          %label.fs18
             = Fund.human_attribute_name('description')
             \（50到1000字）
           %br
@@ -109,7 +109,7 @@
       .form-group.text-center
         .col-sm-2
         .col-sm-8
-          %label
+          %label.fs18
             = Fund.human_attribute_name('frontend_risk_method')
             \（30到300字）
           %br
@@ -124,7 +124,7 @@
         我已阅读并同意
         %a.color-blue.sky-blue-i.wtcp_items{:href => "javascript:;"} 条款
       = f.submit class: "hide",id: 'subbtn'
-      %button.btn-u.btn-u-red#submit{:name => "commit", :type => "button"} 发标
+      %button.btn-u.btn-u-red.mt15.w100#submit{:name => "commit", :type => "button"} 发标
 :javascript
   $(function() {
     $("input[name='fund[private_check]']").click(function() {

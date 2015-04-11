@@ -6,13 +6,13 @@
     %table{:width => "100%"}
       %tbody
         %tr
-          %td{:align => "right", :style => "font-size:14px; padding-right:15px;", :width => "100"} 支付宝账号：
+          %td{:align => "right", :style => "font-size:16px; padding-right:15px;", :width => "150"} 支付宝账号：
           %td{:style => "padding:15px 0;"}
-            %input#alipayName.ui-input{:name => "alipayName", :style => " width:250px; padding:7px;", :type => "text"}/
+            %input#alipayName.ui-input{:name => "alipayName", :style => " width:200px; padding:7px;", :type => "text"}/
         %tr
-          %td{:align => "right", :style => "font-size:14px; padding-right:15px;"} 充值金额：
+          %td{:align => "right", :style => "font-size:16px; padding-right:15px;"} 充值金额：
           %td{:style => "padding:15px 0;"}
-            %input#alimoney.ui-input.numberic{:name => "money", :style => " width:250px; padding:7px;", :type => "text",:maxlength => "7"}/
+            %input#alimoney.ui-input.numberic{:name => "money", :style => " width:200px; padding:7px;", :type => "text",:maxlength => "7"}/
             %span 元
             %input#alicharge{:name => "charge", :type => "hidden", :value => "0"}/
         %tr
@@ -49,13 +49,13 @@
     %table{:width => "100%"}
       %tbody
         %tr
-          %td{:align => "center", :height => "50", :style => "color:#999999;", :width => "400"}
+          %td{:align => "center", :height => "50", :style => "", :width => "400"}
             手机支付宝扫一扫，快速转账，
             %em{:style => "color:#B20606;"} 0手续费
-          %td{:align => "center", :style => "color:#999999;"} 去支付宝网站付款
+          %td{:align => "center", :style => ""} 去支付宝网站付款
         %tr
           %td{:align => "center"}
-            %img{:src => asset_path("alipay-qr-code.png"), :style => "display:block;"}/
+            %img{:src => asset_path("alipay-qr-code.png"), :style => "display:block; width: 150px;"}/
           %td{:align => "center"}
             %a.zfb{:href => "https://shenghuo.alipay.com/send/payment/fill.htm?_tosheet=true&_pdType=afcabecbafgggffdhjch", :target => "_blank"}
               %img{:src => asset_path("alipay.jpg"), :style => "display:block;"}/
