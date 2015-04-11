@@ -7,7 +7,7 @@
   %div.container.content
     %form.sky-form
       %section.col.col-3
-        %label.fs18 操盘时间(>=)
+        %label.fs18 操盘时间
         .input-group
           .select
             %select{:name => "duration"}
@@ -32,7 +32,7 @@
             %i
           %span.input-group-addon  万元
       %section.col.col-3
-        %label.fs18 预期年化收益率
+        %label.fs18 预期收益
         .input-group
           .select
             - @slt_rate = [[0,'全部'],[1,'1-20'],[2,'20-50'],[3,'50-100'],[4,'>100']]
@@ -61,7 +61,7 @@
         %button.btn-u.btn-u-dark-blue.mt32.mr10.w90{:type => "submit"}
           %i.fa.fa-search
           搜索
-        %a.btn-u.btn-u-red.mt32.w90.text-center{:href => "/funds"} 重置
+        %a.btn-u.btn-u-red.mt32.w90.text-center{:href => "/funds"} 全部
       -# %section.col.col-3
       -#   %div.input-group
       -#     %span.input-group-btn.custom-right
