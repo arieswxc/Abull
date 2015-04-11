@@ -9,5 +9,8 @@ class Profile::FundsController < ApplicationController
     @user               = User.find(params[:user_id])
     @fund               = @user.funds.find(params[:id])
     @invests            = @fund.invests
+    @invest = @fund.invests.build()
+    @invest.date = Time.now()
+    @flag = true
   end
 end
