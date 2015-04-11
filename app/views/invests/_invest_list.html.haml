@@ -16,21 +16,21 @@
         -#
         -# %th= Fund.human_attribute_name('invest_starting_date')
         -# %th= Fund.human_attribute_name('invest_ending_date')
-        %th 冻结资金
         %th= Fund.human_attribute_name('expected_earning_rate')
         %th= Fund.human_attribute_name('earning_rate')
         %th= Fund.human_attribute_name('state')
       %th= Invest.human_attribute_name('amount')
       %th= Invest.human_attribute_name('date')
-      %th 
-        合同
+      - if @current=="xxx"
+        %th
+          合同
   -# todo, 处理 private_check
   %tbody
     - @invests.each_index do |index|
       - if @invests[index].user
         %tr{'data-index' => @invests[index].id}
           - unless @current=="xxx"
-            / %td.index= index+1
+            %td.index= index+1
             %td= "#{@invests[index].user.username}"
           - else
             / %td.index= @invests[index].id
@@ -51,9 +51,9 @@
             -# / %td= f.minimum
             -# %td{:class => "#{'formattime' unless f.fund.invest_starting_date.blank?}"}= f.fund.invest_starting_date
             -# %td{:class => "#{'formattime' unless f.fund.invest_ending_date.blank?}"}= f.fund.invest_ending_date
-            %td
-              = current_user.account.frost
-              = '元' if current_user.account.frost
+            -# %td
+            -#   = current_user.account.frost
+            -#   = '元' if current_user.account.frost
             %td
               = @invests[index].fund.expected_earning_rate
               = '%' if !@invests[index].fund.expected_earning_rate.blank?
@@ -65,5 +65,6 @@
             = @invests[index].amount
             = '元' unless @invests[index].amount.blank?
           %td{:class => "#{'formattime' unless @invests[index].date.blank? }"}= @invests[index].date
-          %td 
-            ***
+          - if @current=="xxx"
+            %td
+              ***
