@@ -24,7 +24,7 @@
       = render 'users/funder_info',{user: @fund.user}
     .row
       .col-xs-12.fund_base_info
-        = render 'funds/fund_base_info', {invests_amount: @invests.sum(:amount)}
+        = render 'funds/fund_base_info', {invests_amount: @total_invest_value}
 
     .tag-box.tag-box-v3.mt20.p20.pt0
       .row

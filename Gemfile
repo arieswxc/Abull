@@ -100,3 +100,4 @@ gem 'activeadmin-dragonfly', github: 'stefanoverna/activeadmin-dragonfly'
 gem 'activeadmin-wysihtml5', github: 'stefanoverna/activeadmin-wysihtml5'
 gem 'whenever', :require => false
 gem 'number_to_cn'
+gem 'will_paginate', '~> 3.0.6'

@@ -5,7 +5,7 @@ require 'active_support/all'
 
 class BillingsController < ApplicationController
   def index
-    @billings = current_user.account.billings.order(id: :desc).where.not(billing_type: ["To Frost", "From Balance", "From Frost", "To Balance", "获得投标"], state: "cancelled")
+    @billings = current_user.account.billings.order(id: :desc).where.not(billing_type: ["To Frost", "From Balance", "From Frost", "To Balance", "获得投标"], state: "cancelled").paginate(:page => params[:page], :per_page => 10)
   end
 
   def cancel_withdraw
