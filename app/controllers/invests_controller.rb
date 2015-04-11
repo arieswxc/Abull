@@ -10,7 +10,9 @@ class InvestsController < ApplicationController
 
   def new
     @fund   = Fund.find(params[:fund_id])
-    @invests = @fund.invests
+    invests = @fund.invests
+    @total_invest_value = invests.sum(:amount)
+    @invests = invests.paginate(:page => params[:page], :per_page => 10)
     @invest = @fund.invests.build()
     @invest.date = Time.now()
     user = User.find(@fund.user_id)

@@ -8,7 +8,7 @@
     = render 'users/funder_info',{user: @fund.user}
   .row
     .col-md-12
-      = render 'funds/fund_base_info',{invests_amount: @fund.invests.sum(:amount)}
+      = render 'funds/fund_base_info',{invests_amount: @total_invest_value}
   .tag-box.tag-box-v3.mt20.p20.pt0
     .row
       .col-md-4.col-sm-6.col-xs-6

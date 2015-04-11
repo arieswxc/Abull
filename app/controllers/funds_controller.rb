@@ -6,7 +6,9 @@ class FundsController < ApplicationController
   def index
     # @q      = Fund.search(params[:q])
     # @funds  = @q.result
-    @funds = Fund.search_by_conditions(params[:duration], params[:amount], params[:expected_earning_rate], params[:private_check]).where("state = 'gathering' or state = 'reached'").order(state: :asc, created_at: :desc)
+    funds = Fund.search_by_conditions(params[:duration], params[:amount], params[:expected_earning_rate], params[:private_check]).where("state = 'gathering' or state = 'reached'").order(state: :asc, created_at: :desc)
+    @total_fund_value = funds.sum(:amount)
+    @funds          = funds.paginate(:page => params[:page], :per_page => 10)
   end
 
   def show
