@@ -9,7 +9,7 @@ class Profile::InvestsController < ApplicationController
     @user               = User.find(params[:user_id])
     @invest             = @user.invests.find(params[:id])
     @fund               = @invest.fund
-    @invests            = @user.invests
+    @invests            = @fund.invests
     if @user.line_csv && @user.line_csv.file
       list_data = parse_list_data(@user.line_csv.file.current_path)
       @list_array = list_data.last(5).reverse
