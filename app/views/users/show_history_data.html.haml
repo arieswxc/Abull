@@ -2,11 +2,12 @@
   .headline.headline-md
     %h3 历史数据
   - if @list_data
-    %table.table.table-striped.w300i
+    %table.table.table-striped.w300i.margin-auto
       %thead
         %tr
           %th 日期
           %th 净值
+          %th 增长率
       %tbody
         - @list_data.each do |f|
           %tr
@@ -14,5 +15,7 @@
               = f[0]
             %td
               = f[1]
+            %td
+              = f[2]
   - else
     %h2.text-center 还没有历史数据

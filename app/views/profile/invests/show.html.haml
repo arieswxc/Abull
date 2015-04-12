@@ -64,14 +64,15 @@
           .panel-title
             %label.mr40
               投资记录
-            %label.mr15
-              %span 人次：
-              %span= @invests.count
-            %label
-              %span 投标总额：
-              %span
-                = @invests.sum(:amount)
-                元
+            .float-right
+              %label.mr15
+                %span 人次：
+                %span= @invests.count
+              %label
+                %span 投标总额：
+                %span
+                  = @invests.sum(:amount)
+                  元
         .panel-title
           = render "invests/invest_list"
 

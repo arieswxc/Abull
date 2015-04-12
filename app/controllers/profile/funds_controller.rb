@@ -9,7 +9,7 @@ class Profile::FundsController < ApplicationController
   def show
     @user               = User.find(params[:user_id])
     @fund               = @user.funds.find(params[:id])
-    invests            = @fund.invests
+    invests            = @fund.invests.order(date: :desc)
     @total_invest_value = invests.sum(:amount)
     @invests            = invests.paginate(:page => params[:page], :per_page => 10)
     @invest = @fund.invests.build()
