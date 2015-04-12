@@ -146,35 +146,35 @@
                     .col-sm-6
                       %input.form-control{:name => "user[education]"}
                   -# = f.input :education
-                  .user_education.form-group.optional
-                    %label.string.optional.col-sm-4.control-label
-                      %span
-                        (学历图片证明)
-                    %label.input.input-file.col-sm-6.state-success
-                      .button
-                        %input{:type => "file",:name =>"education_photo", :onchange => "this.parentNode.nextElementSibling.value = this.value", :accept => "image/*"}
-                        %span
-                          浏览
-                      %input{:type => "text", :readonly => ""}
+                  -# .user_education.form-group.optional
+                  -#   %label.string.optional.col-sm-4.control-label
+                  -#     %span
+                  -#       (学历图片证明)
+                  -#   %label.input.input-file.col-sm-6.state-success
+                  -#     .button
+                  -#       %input{:type => "file",:name =>"education_photo", :onchange => "this.parentNode.nextElementSibling.value = this.value", :accept => "image/*"}
+                  -#       %span
+                  -#         浏览
+                  -#     %input{:type => "text", :readonly => ""}
                   .form-group
                     %label.optional.col-sm-4.control-label
-                      %span 学历
+                      %span 住址
                     .col-sm-6
                       %input.form-control{:name => "user[address]"}
                   -# = f.input :address
-                  .user_address.form-group.optional
-                    %label.string.optional.col-sm-4.control-label
-                      %span
-                        (住址图片证明)
-                    %label.input.input-file.col-sm-6.state-success
-                      .button
-                        %input#address_photo{:type => "file", :name => "address_photo", :onchange => "this.parentNode.nextElementSibling.value =this.value", :value => "this.parentNode.nextElementSibling.value =this.value"}
-                        %span
-                          浏览
-                      %input{:type => "text", :readonly => ""}
+                  -# .user_address.form-group.optional
+                  -#   %label.string.optional.col-sm-4.control-label
+                  -#     %span
+                  -#       (住址图片证明)
+                  -#   %label.input.input-file.col-sm-6.state-success
+                  -#     .button
+                  -#       %input#address_photo{:type => "file", :name => "address_photo", :onchange => "this.parentNode.nextElementSibling.value =this.value", :value => "this.parentNode.nextElementSibling.value =this.value"}
+                  -#       %span
+                  -#         浏览
+                  -#     %input{:type => "text", :readonly => ""}
                   .form-group
                     %label.optional.col-sm-4.control-label
-                      %span 学历
+                      %span 工作
                     .col-sm-6
                       %input.form-control{:name => "user[job]"}
                   -# = f.input :job
