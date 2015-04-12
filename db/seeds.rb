@@ -22,65 +22,70 @@ admin = User.create!(
   education: '博士')
 Account.create!(user_id: admin.id, balance: 0)
 
-User.create!(
+user1 = User.create!(
   username: 'zjs01',
   cell: '00000000001',
   password: 'a00000000',
   password_confirmation: 'a00000000',
   level: 'investor_applied'
   )
+Account.create!(user_id: user1.id, balance: 0)
 
-User.create!(
+user2 = User.create!(
   username: 'zjs02',
   cell: '00000000002',
   password: 'a00000000',
   password_confirmation: 'a00000000'
   )
+Account.create!(user_id: user2.id, balance: 0)
 
-User.create!(
+user3 = User.create!(
   username: 'zjs03',
   cell: '00000000003',
   password: 'a00000000',
   password_confirmation: 'a00000000',
   level: 'investor_applied'
   )
-
-User.create!(
+Account.create!(user_id: user3.id, balance: 0)
+user4 = User.create!(
   username: 'zjs04',
   cell: '00000000004',
   password: 'a00000000',
   password_confirmation: 'a00000000',
   level: 'investor_applied'
   )
-
-User.create!(
+Account.create!(user_id: user4.id, balance: 0)
+user5 = User.create!(
   username: 'zjs05',
   cell: '00000000005',
   password: 'a00000000',
   password_confirmation: 'a00000000',
   level: 'investor_applied'
   )
+Account.create!(user_id: user5.id, balance: 0)
 
-User.create!(
+user6 = User.create!(
   username: 'zjs06',
   cell: '00000000006',
   password: 'a00000000',
   password_confirmation: 'a00000000',
   level: 'investor_applied'
   )
+Account.create!(user_id: user6.id, balance: 0)
 
-User.create!(
+user7 = User.create!(
   username: 'zjs07',
   cell: '00000000007',
   password: 'a00000000',
   password_confirmation: 'a00000000',
   level: 'investor_applied'
   )
-
-User.create!(
+Account.create!(user_id: user7.id, balance: 0)
+user8 = User.create!(
   username: 'zjs08',
   cell: '00000000008',
   password: 'a00000000',
   password_confirmation: 'a00000000',
   level: 'investor_applied'
   )
+Account.create!(user_id: user8.id, balance: 0)
