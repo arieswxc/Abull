@@ -162,6 +162,7 @@ zh-CN:
         updated_at: 更新日期
       billing:
         account_id: 账户
+        account: 账户
         amount: 金额
         billing_type: 账单类型
         billable_type: 关联类型

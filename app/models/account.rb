@@ -9,5 +9,12 @@ class Account < ActiveRecord::Base
   def send_sms(mobile, type, params)
     SMSGateway.render_then_send(mobile, type, params)
   end
-  
+
+  def self.username_list
+    username_list = Array.new
+    Account.all.each do |account|
+      username_list << [account.user.username, account.user_id]
+    end
+    return username_list.sort!
+  end
 end

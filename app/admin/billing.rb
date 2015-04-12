@@ -77,6 +77,17 @@ ActiveAdmin.register Billing do
     end
   end
 
+  form do |f|
+    f.inputs "新建账单" do
+      f.input :account_id, as: :select, collection: Account.username_list
+      f.input :amount
+      f.input :billing_type, as: :select, collection: ["充值", "提现"]
+      f.input :state, as: :select, collection: [["待定", "pending"], ["确认", "confirmed"]]
+      f.input :remark
+    end
+    f.actions
+  end
+
   sidebar "状态", only: :show do
     attributes_table_for billing do
       row :state do
