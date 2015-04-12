@@ -22,65 +22,8 @@ admin = User.create!(
   education: '博士')
 Account.create!(user_id: admin.id, balance: 0)
 
-User.create!(
-  username: 'zjs01',
-  cell: '00000000001',
-  password: 'a00000000',
-  password_confirmation: 'a00000000',
-  level: 'investor_applied'
-  )
+CsvFile.create!(
+  title: '每日账单数据')
 
-User.create!(
-  username: 'zjs02',
-  cell: '00000000002',
-  password: 'a00000000',
-  password_confirmation: 'a00000000'
-  )
-
-User.create!(
-  username: 'zjs03',
-  cell: '00000000003',
-  password: 'a00000000',
-  password_confirmation: 'a00000000',
-  level: 'investor_applied'
-  )
-
-User.create!(
-  username: 'zjs04',
-  cell: '00000000004',
-  password: 'a00000000',
-  password_confirmation: 'a00000000',
-  level: 'investor_applied'
-  )
-
-User.create!(
-  username: 'zjs05',
-  cell: '00000000005',
-  password: 'a00000000',
-  password_confirmation: 'a00000000',
-  level: 'investor_applied'
-  )
-
-User.create!(
-  username: 'zjs06',
-  cell: '00000000006',
-  password: 'a00000000',
-  password_confirmation: 'a00000000',
-  level: 'investor_applied'
-  )
-
-User.create!(
-  username: 'zjs07',
-  cell: '00000000007',
-  password: 'a00000000',
-  password_confirmation: 'a00000000',
-  level: 'investor_applied'
-  )
-
-User.create!(
-  username: 'zjs08',
-  cell: '00000000008',
-  password: 'a00000000',
-  password_confirmation: 'a00000000',
-  level: 'investor_applied'
-  )
+CsvFile.create!(
+  title: '利率表')

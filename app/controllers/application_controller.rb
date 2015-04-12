@@ -34,9 +34,9 @@ class ApplicationController < ActionController::Base
 
     File.open(hushen300_path, "r") do |file|
       file.each_line.with_index do |line, index|
+        break if line.blank?
         array = line.chomp.split(" ")
         initial_value = array[1].to_f if index == 0
-        
         if array[0].to_time >= begin_date && flag == 0 .. array[0].to_time >= end_date
           time = array[0].to_time.to_i.to_s + "000"
           time = time.to_i
