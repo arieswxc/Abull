@@ -190,8 +190,9 @@
                   file: :horizontal_file_input,                         |
                   boolean: :horizontal_boolean}) do |f|                 |
                   %dl.dl-horizontal.pl50
-                    %dt
-                    %dd.zdy-red.ml100.mb30= flash[:info]
+                    - if flash[:info]
+                      %dt
+                      %dd.zdy-red.ml100.mb30= flash[:info]
                     %dt 当前密码
                     %dd
                       %section
