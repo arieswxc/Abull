@@ -3,6 +3,7 @@ class Profile::InvestsController < ApplicationController
     @user               = User.find(params[:user_id])
     invests            = @user.invests.order(id: :desc)
     @total_invest_value = invests.sum(:amount)
+    @total_invest_num = invests.count
     @invests            = invests.paginate(:page => params[:page], :per_page => 10)
   end
 
