@@ -1,12 +1,12 @@
 .container.content
-  - if current_user && current_user.level == 'unverified'
-    .text-center.min-height300.pt80
-      %h3 请进行实名认证
-      = link_to "点此进行实名认证", "#{edit_user_registration_path}/#auth"
-  - elsif current_user && current_user.level == 'investor_applied'
-    .text-center.min-height300.pt80
-      %h3 您已提交实名认证申请，请等待审核
-  - else
+  -# - if current_user && current_user.level == 'unverified'
+  -#   .text-center.min-height300.pt80
+  -#     %h3 请进行实名认证
+  -#     = link_to "点此进行实名认证", "#{edit_user_registration_path}/#auth"
+  -# - elsif current_user && current_user.level == 'investor_applied'
+  -#   .text-center.min-height300.pt80
+  -#     %h3 您已提交实名认证申请，请等待审核
+  -# - else
     -# - if @fund.private_check == 'private'
     -#   .p20.text-center
     -#     %label 暗号:
@@ -20,85 +20,85 @@
     -#     - else
     -#       .col-xs-12.hide.new_invest_form
     -#         %p= render 'form'
-    .row.mt10
-      = render 'users/funder_info',{user: @fund.user}
-    .row
-      .col-xs-12.fund_base_info
-        = render 'funds/fund_base_info', {invests_amount: @total_invest_value}
+  .row.mt10
+    = render 'users/funder_info',{user: @fund.user}
+  .row
+    .col-xs-12.fund_base_info
+      = render 'funds/fund_base_info', {invests_amount: @total_invest_value}
 
-    .tag-box.tag-box-v3.mt20.p20.pt0
-      .row
-        .col-md-4.col-sm-6.col-xs-6
-          .headline.headline-md.relative
-            %h4 当前标的业绩
-          .text-center
-            #fund_history_chart.chart_box
-        .col-md-4.col-sm-6.col-xs-6
-          .headline.headline-md
-            %h4 当前标的数据
-            = link_to "更多","#",class: "float-right"
-          .mt10
-            - if @fund_list_array
-              %table.table.table-striped.table-bordered
-                %thead
+  .tag-box.tag-box-v3.mt20.p20.pt0
+    .row
+      .col-md-4.col-sm-6.col-xs-6
+        .headline.headline-md.relative
+          %h4 当前标的业绩
+        .text-center
+          #fund_history_chart.chart_box
+      .col-md-4.col-sm-6.col-xs-6
+        .headline.headline-md
+          %h4 当前标的数据
+          = link_to "更多","#",class: "float-right"
+        .mt10
+          - if @fund_list_array
+            %table.table.table-striped.table-bordered
+              %thead
+                %tr
+                  %th.text-center 净值时间
+                  %th.text-center 单位净值
+                  %th.text-center 增长率
+              %tbody
+                - @fund_list_array.each do |f|
                   %tr
-                    %th.text-center 净值时间
-                    %th.text-center 单位净值
-                    %th.text-center 增长率
-                %tbody
-                  - @fund_list_array.each do |f|
-                    %tr
-                      %td.text-center
-                        = f[0]
-                      %td.text-center
-                        = f[1]
-                      %td.text-center
-            - else
-              %h2.text-center.p20 还没有历史数据
-        .col-md-4.col-sm-12.col-xs-12
-          .headline.headline-md
-            %h4 证明图片
-          .mt10
-            - if @check_user_bid === 'true'
-              - if @fund_verify_photos && !@fund_verify_photos.empty?
-                .owl-carousel-v1.owl-carousel-style-v2
-                  .owl-navigation
-                    .customNavigation
-                      %a.owl-btn.prev-v1
-                        %i.fa.fa-angle-left
-                      %a.owl-btn.next-v1
-                        %i.fa.fa-angle-right
-                  .owl-slider
-                    - @fund_verify_photos.each do |f|
-                      - if f.photo && f.photo.url
-                        .item
-                          %a.fancybox-button.zoomer{:href => f.photo.url.split("?")[0] + "#{'?imageMogr2/blur/50x50'  unless @is_invest}", 'data-rel' => "fancybox-button"}
-                            %span.overlay-zoom
-                              = image_tag f.photo.url.split("?")[0] + '?imageView2/1/w/335/h/168/interlace/1' + "#{'&imageMogr2/blur/50x50'  unless @is_invest}",class: "img-responsive"
-                              %span.zoom-icon
+                    %td.text-center
+                      = f[0]
+                    %td.text-center
+                      = f[1]
+                    %td.text-center
+          - else
+            %h2.text-center.p20 还没有历史数据
+      .col-md-4.col-sm-12.col-xs-12
+        .headline.headline-md
+          %h4 证明图片
+        .mt10
+          - if @check_user_bid === 'true'
+            - if @fund_verify_photos && !@fund_verify_photos.empty?
+              .owl-carousel-v1.owl-carousel-style-v2
+                .owl-navigation
+                  .customNavigation
+                    %a.owl-btn.prev-v1
+                      %i.fa.fa-angle-left
+                    %a.owl-btn.next-v1
+                      %i.fa.fa-angle-right
+                .owl-slider
+                  - @fund_verify_photos.each do |f|
+                    - if f.photo && f.photo.url
+                      .item
+                        %a.fancybox-button.zoomer{:href => f.photo.url.split("?")[0] + "#{'?imageMogr2/blur/50x50'  unless @is_invest}", 'data-rel' => "fancybox-button"}
+                          %span.overlay-zoom
+                            = image_tag f.photo.url.split("?")[0] + '?imageView2/1/w/335/h/168/interlace/1' + "#{'&imageMogr2/blur/50x50'  unless @is_invest}",class: "img-responsive"
+                            %span.zoom-icon
 
-              - else
-                %h2.text-center.p20 还没有证明图片
-            -else
-              %h2.text-center.p20 请投标后查看
-    .row
-      .col-xs-12
-        .panel.panel-grey
-          .panel-heading
-            .panel-title
-              %label.mr40.fs18
-                投资记录
-              %label.float-right
-                %label.mr15
-                  %span 人次：
-                  %span= @invests.count
-                %label
-                  %span 投标总额：
-                  %span
-                    = @invests.sum(:amount)
-                    元
+            - else
+              %h2.text-center.p20 还没有证明图片
+          -else
+            %h2.text-center.p20 请投标后查看
+  .row
+    .col-xs-12
+      .panel.panel-grey
+        .panel-heading
           .panel-title
-            = render "invest_list"
+            %label.mr40.fs18
+              投资记录
+            %label.float-right
+              %label.mr15
+                %span 人次：
+                %span= @invests.count
+              %label
+                %span 投标总额：
+                %span
+                  = @invests.sum(:amount)
+                  元
+        .panel-title
+          = render "invest_list"
 
     -# .row
     -#   .col-md-12

@@ -37,6 +37,21 @@
 			minimum = maxmum;
 		}
 		$('#submit').bind('click',function(){
+			if ("#{current_user}" === ""){
+				alert("请登录...");
+				return;
+			}else{
+				if ("#{current_user.level == "unverified" if current_user}" === "true"){
+					if(confirm("请进行实名认证...")){
+						window.location.href = "#{edit_user_registration_path}/#auth";
+					}
+					return;
+				}
+				if ("#{current_user.level == "investor_applied" if current_user}" === "true"){
+					alert("您已提交实名认证申请，请等待审核...");
+					return;
+				}
+			}
 			var crt_amount = parseInt($("#invest_input_can").val()) || 0;
 			if ($(".can_invest").length > 0) {
 				alert("请填写正确的暗标码，并解锁");
