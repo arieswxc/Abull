@@ -37,4 +37,11 @@ RSpec.describe HomsAccount, type: :model do
     expect(homs_account).to be_invalid
     expect(homs_account.errors[:amount]).to include(I18n.t('errors.messages.not_a_number'))
   end
+
+  it "is invalid when amount is less than zero" do
+    homs_account = build(:homs_account, amount: -10)
+    homs_account.valid?
+    expect(homs_account).to be_invalid
+    expect(homs_account.errors[:amount]).to include(I18n.t('errors.messages.greater_than_or_equal_to', count: 0))
+  end
 end
