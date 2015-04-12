@@ -31,7 +31,7 @@
         %tr{'data-index' => "#{@invests[index].id unless @current === 'xxx'}"}
           - unless @current=="xxx"
             %td.index= index+1
-            %td= "#{@invests[index].user.username}"
+            %td= check_private(@invests[index].user.username,'private')
           - else
             / %td.index= @invests[index].id
             %td
@@ -40,10 +40,10 @@
               - else
                 =link_to @invests[index].fund.name,user_invest_path(user_id: current_user,id: @invests[index].id),target: "blank"
             %td
-              - if @invests[index].fund.user.username
-                = @invests[index].fund.user.username
-              - else
-                = check_private(@invests[index].fund.user.cell.to_s())
+              -# - if @invests[index].fund.user.username
+              = @invests[index].fund.user.username
+              -# - else
+              -#   = check_private(@invests[index].fund.user.cell.to_s())
             -# %td
             -#   = f.fund.minimum
             -#   = '元' unless f.fund.minimum.blank?

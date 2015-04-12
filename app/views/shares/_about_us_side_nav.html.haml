@@ -33,11 +33,23 @@
         %a.ui-side-item-link.pt0{:href => "/pages/about/our_events"}
           %span.ml10.mr40
           大事记
-      %li{:class => "ui-side-item #{'active' if activeItem=='beginners_guide'}"}
-        %a.ui-side-item-link.pt0{:href => "/pages/guides/beginners_guide"}
-          %span.ml10.mr40
-          新手指南
-      %li{:class => "ui-side-item last #{'active' if activeItem=='faq'}"}
+      -# %li{:class => "ui-side-item #{'active' if activeItem=='beginners_guide'}"}
+      -#   %a.ui-side-item-link.pt0{:href => "/pages/guides/beginners_guide"}
+      -#     %span.ml10.mr40
+      -#     新手指南
+      %li{:class => "ui-side-item #{'active' if activeItem=='faq'}"}
         %a.ui-side-item-link.pt0{:href => "/pages/guides/faq"}
           %span.ml10.mr40
           常见问题
+      %li{:class => "ui-side-item #{'active' if activeItem=='statement'}"}
+        = link_to page_path("statment/statement"),class: "ui-side-item-link pt0" do
+          %span.ml10.mr40
+          免责声明
+      %li{:class => "ui-side-item #{'active' if activeItem=='tariff'}"}
+        = link_to page_path("statment/tariff"),class: "ui-side-item-link pt0" do
+          %span.ml10.mr40
+          费率说明
+      %li{:class => "ui-side-item last #{'active' if activeItem=='download'}"}
+        = link_to page_path("guides/download"),class: "ui-side-item-link pt0" do
+          %span.ml10.mr40
+          软件下载
