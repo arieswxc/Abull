@@ -60,7 +60,6 @@ RSpec.describe Fund, type: :model do
     expect(build(:fund, state: "applied")).to be_valid
     expect(build(:fund, state: "gathering")).to be_valid
     expect(build(:fund, state: "reached")).to be_valid
-    expect(build(:fund, state: "opened")).to be_valid
     expect(build(:fund, state: "running")).to be_valid
     expect(build(:fund, state: "finished")).to be_valid
     expect(build(:fund, state: "closed")).to be_valid

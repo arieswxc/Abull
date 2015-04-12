@@ -2,7 +2,7 @@ class Account < ActiveRecord::Base
   validates :user_id, presence: true
   validates :user, presence: true
   validates :balance, presence: true
-  validates :balance, numericality: true
+  validates :balance, numericality: {greater_than_or_equal_to: 0}
   belongs_to :user
   has_many :billings
 
