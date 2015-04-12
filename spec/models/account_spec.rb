@@ -24,5 +24,12 @@ RSpec.describe Account, type: :model do
     account.valid?
     expect(account).to be_invalid
     expect(account.errors[:balance]).to include(I18n.t("errors.messages.not_a_number"))
-  end  
+  end
+
+  it "is invalid when balance is less than zero" do
+    account = build(:account, balance: -10)
+    account.valid?
+    expect(account).to be_invalid
+    expect(account.errors[:balance]).to include(I18n.t("errors.messages.greater_than_or_equal_to", count: 0))
+  end   
 end

@@ -1,6 +1,6 @@
 module ApplicationHelper
   def check_user(user)
-    [ "risk_controller", "customer_service" ].include?(user.role) ? true : false
+    [ "risk_controller", "customer_service", "admin" ].include?(user.role) ? true : false
   end
   def inform(resource, type, amount)
     user = resource.user
