@@ -70,6 +70,18 @@
             = '元' unless @invests[index].amount.blank?
           %td{:class => "#{'formattime' unless @invests[index].date.blank? }"}= @invests[index].date
           - if @current=="xxx"
-            %td=link_to '合同',"/entrusted_operation/"+@invests[index].id.to_s,target: "blank"
+            %td=link_to '合同',"javascript:;",target: "blank",class:"entrusted_operation_href","data-index" => @invests[index].id
 .text-right
   = will_paginate @invests
+
+:javascript
+  $(function(){
+    $(".entrusted_operation_href").click(function(){
+      var enop_id = $(this).attr("data-index");
+      var winHeight = 600;
+      var winWidth = 600;
+      var winLeft = (screen.width-600)/2;
+      var winTop = (screen.height-600)/2;
+      window.open("/entrusted_operation/"+enop_id, "newwindow", "height="+winHeight+", width="+winWidth+", toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no, left="+winLeft+", top="+winTop);
+    });
+  });
