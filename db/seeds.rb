@@ -10,7 +10,7 @@ AdminUser.create!(
   cell: '12345678901', 
   password: 'password123', 
   password_confirmation: 'password123', 
-  role: "customer_service", 
+  role: "admin", 
   email: "foobar1@example.com")
 admin = User.create!(
   email: 'moerjie@molstr.com',
