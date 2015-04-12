@@ -19,7 +19,7 @@
 				= link_to("登录",new_user_session_path,class: "",rel: "nofollow")
 				= "后可见"
 	.input-group
-		%input#invest_input_can.form-control.text-center.numberic{:name => "invest[amount]",:maxlength => 7,:placeholder => "请输入计划投资的金额"}
+		%input#invest_input_can.form-control.text-center.numberic{:name => "invest[amount]",:maxlength => 7,:placeholder => "请输入最小投资额的整数倍"}
 		%span.input-group-addon.zdy-bg-gold  元
 	.mb10.fs16.mt10
 		%input#check{:type => "checkbox",:checked => ""}/
@@ -37,6 +37,21 @@
 			minimum = maxmum;
 		}
 		$('#submit').bind('click',function(){
+			if ("#{current_user}" === ""){
+				alert("请登录...");
+				return;
+			}else{
+				if ("#{current_user.level == 'unverified' if current_user}" === "true"){
+					if(confirm("请进行实名认证...")){
+						window.location.href = "#{edit_user_registration_path}/#auth";
+					}
+					return;
+				}
+				if ("#{current_user.level == 'investor_applied' if current_user}" === "true"){
+					alert("您已提交实名认证申请，请等待审核...");
+					return;
+				}
+			}
 			var crt_amount = parseInt($("#invest_input_can").val()) || 0;
 			if ($(".can_invest").length > 0) {
 				alert("请填写正确的暗标码，并解锁");
@@ -49,6 +64,12 @@
 			if (crt_amount < minimum) {
 				alert("您输入的投资额小于最小投资额");
 				return;
+			}
+			if (minimum > 0) {
+				if (parseInt(crt_amount)%parseInt(minimum) > 0){
+					alert("请输入最小投资额的整数倍哦！");
+					return;
+				}
 			}
 			var myBalance = parseFloat("#{current_user.account.balance if current_user}");
 			if (crt_amount > myBalance) {
