@@ -16,7 +16,7 @@
                 %a{"data-toggle" => "tab", :href => "#editPassword"} 更改密码
             .tab-content
               #baseProfile.tab-pane.fade.active.in.mt30
-                = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'sky-form'}) do |f|
+                = form_for(resource, as: resource_name, url: update_info_user_path(current_user), html: { method: :put, class: 'sky-form'}) do |f|
                   = devise_error_messages!
                   %dl.dl-horizontal.pl50
                     %dt 昵称
@@ -39,6 +39,7 @@
                       -#   %label.input
                       -#     %i.icon-append.fa.fa-user
                       %textarea.w250{:name => "user[abstract]", :type => "text", :value => "#{current_user.abstract}",:style=>"max-width: 250px;height:200px;"}
+                        = current_user.abstract
                   .text-center
                     %button.btn-u.btn-u-default.mr20{:type => "reset"} 取消
                     %button.btn-u{:type => "submit"} 保存修改

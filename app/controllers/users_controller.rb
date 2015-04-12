@@ -38,6 +38,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_info
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    redirect_to edit_user_registration_path
+  end
+
   def show
     @user             = User.find(params[:id])
     @funds            = @user.funds.order(created_at: :desc)
@@ -168,7 +174,7 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(
         :real_name, :id_card_number, :email, :password, :username,
-        :birthday, :gender, :education, :address, :job, :cell, :education_photo, :address_photo,
+        :birthday, :gender, :education, :address, :job, :cell, :education_photo, :address_photo, :abstract,
         identity_photos_attributes: [:id, :title, :photo, :destroy])
     end
 
