@@ -8,14 +8,14 @@ ActiveAdmin.register Billing do
 
   controller do
     def order_result_query(billing)
-      uri                           = URI('http://180.168.127.5/gateway.htm')
+      uri                           = URI('https://www.ebatong.com/gateway.htm')
       hashed_params                 = Hash.new
       hashed_params[:service]       = "single_direct_query"
       hashed_params[:sign_type]     = "MD5"
       hashed_params[:input_charset] = "utf-8"
-      hashed_params[:partner]       = "201501131139398055"
+      hashed_params[:partner]       = Rails.application.secrets.third_partner
       hashed_params[:out_trade_no]  = billing.billing_number
-      key                           = "2XYEF5RDNQ0U7H25WWSHM3IF8YK0YVvgyftw"
+      key                           = Rails.application.secrets.third_key
       hashed_params[:sign]          = Digest::MD5.hexdigest(hashed_params.sort.to_h.to_param + key)
       uri.query                     = URI.encode_www_form(hashed_params)
       res                           = Net::HTTP.get_response(uri)
@@ -38,7 +38,7 @@ ActiveAdmin.register Billing do
     end
 
     def get_realtime(partner, key)
-      uri                           = URI('http://180.168.127.5/gateway.htm')
+      uri                           = URI('https://www.ebatong.com/gateway.htm')
       hashed_params                 = Hash.new
       hashed_params[:service]       = "query_timestamp"
       hashed_params[:partner]       = partner
@@ -83,10 +83,10 @@ ActiveAdmin.register Billing do
         t(billing.state)
       end
       row(t('confirm'))  do 
-          link_to t('Confirm'), confirm_admin_billing_path(billing), :method => :put, :class => 'button' 
+          link_to_if (billing.state == "pending"), t('Confirm'), confirm_admin_billing_path(billing), :method => :put, :class => 'button' 
       end
       row(t('deny'))  do 
-          link_to t('Deny'), deny_admin_billing_path(billing), :method => :put, :class => 'button' 
+          link_to_if (billing.state == "pending"), t('Deny'), deny_admin_billing_path(billing), :method => :put, :class => 'button' 
       end
     end
   end
@@ -94,7 +94,7 @@ ActiveAdmin.register Billing do
   sidebar "第三方支付收款", only: :show do
     attributes_table_for billing do
       row('收款')  do 
-          link_to '收款', confirm_thirdpay_admin_billing_path(billing), :method => :put, :class => 'button' 
+          link_to_if (billing.state == "pending" && billing.remark == "第三方支付"), '收款', confirm_thirdpay_admin_billing_path(billing), :method => :put, :class => 'button' 
       end
     end
   end

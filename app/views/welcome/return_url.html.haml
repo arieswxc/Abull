@@ -4,20 +4,20 @@
   or it should be pending
 :javascript
   $(function(){
-    var current_location = window.location.origin;
-    var patt_location=new RegExp("www");
-    if ("#{current_user}" === ""){
-      if (patt_location.test(current_location)){
-        window.location.href = "http://molstr.com" +window.location.pathname+window.location.search;
-      }else {
-        window.location = "http://www.molstr.com"+window.location.pathname+window.location.search;
-      }
-
-    }else {
+    // var current_location = window.location.origin;
+    // var patt_location=new RegExp("www");
+    // if ("#{current_user}" === ""){
+    //   if (patt_location.test(current_location)){
+    //     window.location.href = "http://molstr.com" +window.location.pathname+window.location.search;
+    //   }else {
+    //     window.location = "http://www.molstr.com"+window.location.pathname+window.location.search;
+    //   }
+    //
+    // }else {
       setTimeout(function(){
-        window.location.href = window.location.origin + "/users/#{current_user.id}"
+        window.location.href = "/users/#{current_user.id}";
       },3000);
-    }
+    // }
   });
 .container.content.fund-show-pending
   - if @billing.state == "confirmed"

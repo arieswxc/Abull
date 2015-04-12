@@ -119,9 +119,11 @@ class UsersController < ApplicationController
     if @user.update_with_password(user_password_params)
       # Sign in the user by passing validation in case their password changed
       sign_in @user, :bypass => true
-      redirect_to root_path
+      flash[:info] = "更新成功"
+      redirect_to edit_user_registration_path + "/#edit_password"
     else
-      redirect_to edit_user_registration_path
+      flash[:info] = "当前密码错误或两次输入密码不一致"
+      redirect_to edit_user_registration_path + "/#edit_password"
     end
   end
 
