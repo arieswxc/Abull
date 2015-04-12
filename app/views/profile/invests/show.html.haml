@@ -31,7 +31,7 @@
                     %td.text-center
                       = f[1]
                     %td.text-center
-
+                      = f[2]
           - else
             %h2.text-center.p20 还没有历史数据
       .col-md-4.col-sm-12.col-xs-12
@@ -64,14 +64,15 @@
           .panel-title
             %label.mr40
               投资记录
-            %label.mr15
-              %span 人次：
-              %span= @invests.count
-            %label
-              %span 投标总额：
-              %span
-                = @invests.sum(:amount)
-                元
+            .float-right
+              %label.mr15
+                %span 人次：
+                %span= @invests.count
+              %label
+                %span 投标总额：
+                %span
+                  = @invests.sum(:amount)
+                  元
         .panel-title
           = render "invests/invest_list"
 

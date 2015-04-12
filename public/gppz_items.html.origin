@@ -365,9 +365,6 @@ target=":股票配资合同.files:props0002.xml">
 <style>
 <!--
  /* Font Definitions */
-* {
-	font-family: Arial,'Microsoft Yahei',"Wenquanyi Micro Hei", 'YaHei', tahoma, "Hiragino Sans GB", '宋体'!important;
-}
 @font-face
 	{font-family:宋体;
 	panose-1:2 1 6 0 3 1 1 1 1 1;

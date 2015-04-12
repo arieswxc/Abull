@@ -4,7 +4,7 @@
       .col-xs-12
         .col-xs-4.text-center.mb40
           .avatar
-            = image_tag user.avatar.url,class: "img-thumbnail img-rounded w160 #{'blur' unless @is_unlock}",alt: '头像'
+            = image_tag user.avatar.url.split("?")[0] + "?imageView2/1/w/128/h/128",class: "img-thumbnail img-rounded w160 #{'blur' unless @is_unlock}",alt: '头像'
           .username.mt5
             %span 交易员：
             %span
@@ -116,6 +116,7 @@
                     %td.text-center
                       = f[1]
                     %td.text-center
+                      = f[2]
           - else
             %h2.text-center.p20 还没有历史数据
       .col-md-4.col-sm-12.col-xs-12

@@ -59,6 +59,22 @@ ActiveAdmin.register Billing do
     end
   end
 
+  index do
+    selectable_column
+    column :id
+    column :amount
+    column :billing_type
+    column :billable_id
+    column :billable_type
+    column :state do |billing|
+      t(billing.state)
+    end
+    column :billing_number
+    column :created_at
+    column :updated_at
+    actions
+  end
+
   show do |billing|
     attributes_table do
       row :id
@@ -113,7 +129,7 @@ ActiveAdmin.register Billing do
   member_action :confirm, :method => :put do
     billing = Billing.find(params[:id])
     account = billing.account
-    if billing.billing_type == "Withdraw"
+    if billing.billing_type == "提现"
       account.frost += billing.amount
     else
       account.balance += billing.amount

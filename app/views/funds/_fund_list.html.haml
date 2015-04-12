@@ -11,7 +11,7 @@
         %th= Fund.human_attribute_name('user')
       %th= Fund.human_attribute_name('name')
       %th 类型
-      %th= Fund.human_attribute_name('amount')
+      %th= Fund.human_attribute_name('amount') + '（元）'
       %th= Fund.human_attribute_name('expected_earning_rate')
       %th= Fund.human_attribute_name('duration')
       %th 明／暗标
@@ -35,7 +35,6 @@
           %td= f.genre
         %td.color-red
           = f.amount
-          = '元' unless f.amount.blank?
         %td.color-red
           = f.expected_earning_rate
           = '%' unless f.expected_earning_rate.blank?
@@ -60,6 +59,18 @@
         - else
           %td= t(f.state)
           %td= f.private_code
-          %td=link_to '合同',"/trader_agreement/"+f.id.to_s,target: "blank"
+          %td=link_to '合同',"javascript:;",target: "blank",class:"trader_agreement_href","data-index" => f.id
 .text-right
   = will_paginate @funds
+
+:javascript
+  $(function(){
+    $(".trader_agreement_href").click(function(){
+      var enop_id = $(this).attr("data-index");
+      var winHeight = 600;
+      var winWidth = 600;
+      var winLeft = (screen.width-600)/2;
+      var winTop = (screen.height-600)/2;
+      window.open("/trader_agreement/"+enop_id, "newwindow", "height="+winHeight+", width="+winWidth+", toolbar=no, menubar=no, scrollbars=no, resizable=no, location=no, status=no, left="+winLeft+", top="+winTop);
+    });
+  });
