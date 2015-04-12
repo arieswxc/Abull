@@ -66,7 +66,7 @@ class AccountsController < ApplicationController
 
     account.balance -= @billing_out.amount
     account.frost += @billing_out.amount
-    if @billing_out.amount < balance
+    if @billing_out.amount <= balance
       ActiveRecord::Base.transaction do
         @billing_out.save
         @billing_in.save

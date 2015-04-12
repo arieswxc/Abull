@@ -1,7 +1,9 @@
 class Billing < ActiveRecord::Base
   validates :account_id,    presence: true
+  validates :account,       presence: true
   validates :amount,        presence: true
   validates :amount,        numericality: true
+  validates :billing_number, uniqueness: true
   # validates :billable_id,   presence: true
   validates :billing_type,  presence: true
   belongs_to :account
