@@ -35,10 +35,10 @@ class InvestsController < ApplicationController
     
     @verify_photos = user.verify_photos
 
-    if @fund.line_csv && @fund.line_csv.file
-      fund_list_data = parse_list_data(@fund.line_csv.file.current_path)
-      @fund_list_array = fund_list_data.last(5).reverse
-    end
+    # if @fund.line_csv && @fund.line_csv.file
+    #   fund_list_data = parse_list_data(@fund.line_csv.file.current_path)
+    #   @fund_list_array = fund_list_data.last(5).reverse
+    # end
     @fund_verify_photos  = @fund.fund_verify_photos
     @check_user_bid = @fund.check_user_bid(current_user).to_s
   end
