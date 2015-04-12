@@ -157,6 +157,8 @@ class UsersController < ApplicationController
     if user.line_csv && user.line_csv.file.current_path
       @list_data = parse_list_data(user.line_csv.file.current_path)
     end
+
+    render json: { data: @list_data }
   end
 
   def cashin

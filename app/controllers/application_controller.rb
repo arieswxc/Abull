@@ -34,9 +34,12 @@ class ApplicationController < ActionController::Base
 
     File.open(hushen300_path, "r") do |file|
       file.each_line.with_index do |line, index|
+        #容错处理
+        break if line.blank?
+
         array = line.chomp.split(" ")
-        initial_value = array[1].to_f if index == 0
-        
+        initial_value = array[1].to_f if array[0].to_time == begin_date
+
         if array[0].to_time >= begin_date && flag == 0 .. array[0].to_time >= end_date
           time = array[0].to_time.to_i.to_s + "000"
           time = time.to_i
@@ -63,21 +66,28 @@ class ApplicationController < ActionController::Base
 
   def parse_list_data(current_path)
     array = []
+    arrays = []
     if current_path
-      begin
-        File.open(current_path, "r") do |file|
+      begin       
+      File.open(current_path, "r") do |file|
           file.each_line do |line|
             pos_x, pos_y = line.chomp.split(",")
             array = array << [pos_x, pos_y]
           end
         end
 
+        (array.length - 1).downto(1) do |i|
+          rate = (((array[i][1].to_f / array[i-1][1].to_f - 1) * 10000).round.to_f / 100).to_s + "%"
+          arrays << [array[i][0], array[i][1], rate]
+        end
+        arrays << [array[0][0], array[0][1], 0]
+        arrays.reverse
       rescue
         array =[]
       end
     end
-    array
   end
+
 
   protected
 
