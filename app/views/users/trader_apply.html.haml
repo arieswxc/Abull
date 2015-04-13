@@ -1,5 +1,5 @@
 .container.content
-  %h3.text-center.zdy-red 发标人审核
+  %h3.text-center.zdy-red 交易员认证
   %hr
   = simple_nested_form_for(@user,url: trader_applied_user_path(current_user),  |
     html: { class: 'form-horizontal sky-form', id: 'trader_authentication_form',enctype: "multipart/form-data" },                   |

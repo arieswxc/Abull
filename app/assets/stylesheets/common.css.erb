@@ -34,6 +34,14 @@ a:focus, a:hover {
 .navbar.navbar-default.mega-menu {
   padding: 0;
 }
+
+@media (max-width: 991px) and (min-width: 767px) {
+  .header .navbar-toggle {
+    margin-right: 0;
+    margin-top: 25px;
+  }
+}
+
 .jumbotron.home {
   padding-top: 12px;
   width: 1100px;
@@ -302,16 +310,16 @@ a:focus, a:hover {
 #logo-footer {
   height: 48px;
 }
-.header .mega-menu .collapse.nav-menu {
+.header .mega-menu .collapse.nav-menu,.header .mega-menu .collapsing.nav-menu  {
   padding-top: 20px;
 }
-.header .mega-menu .collapse.nav-menu .dropdown-menu li a {
+.header .mega-menu .collapse.nav-menu .dropdown-menu li a,.header .mega-menu .collapsing.nav-menu .dropdown-menu li a  {
   font-size: 18px;
 }
-.header .mega-menu .collapse.nav-menu > ul > li > a {
+.header .mega-menu .collapse.nav-menu > ul > li > a,.header .mega-menu .collapsing.nav-menu > ul > li > a {
   font-size: 20px;
 }
-.header .mega-menu .collapse.nav-menu .navbar-nav>li>.dropdown-menu {
+.header .mega-menu .collapse.nav-menu .navbar-nav>li>.dropdown-menu,.header .mega-menu .collapsing.nav-menu .navbar-nav>li>.dropdown-menu {
   margin-top: -8px;
 }
 .ui-side-withicon .ui-side-item-link {
