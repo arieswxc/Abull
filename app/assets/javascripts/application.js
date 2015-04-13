@@ -15,6 +15,10 @@
 //= require turbolinks
 //= require ckeditor/init
 //= require_tree .
+//= stub "plugins/IE8.js"
+//= stub "plugins/respond.min.js"
+//= stub "plugins/html5.js"
+
 //= require jquery_nested_form
 //= require 'china_city/jquery.china_city'
 

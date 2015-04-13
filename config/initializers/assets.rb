@@ -59,6 +59,10 @@ Rails.application.config.assets.precompile += %w( plugins/Chart.min.js)
 Rails.application.config.assets.precompile += %w( plugins/highstock.js)
 Rails.application.config.assets.precompile += %w( plugins/exporting.js)
 Rails.application.config.assets.precompile += %w( plugins/ZeroClipboard.js)
+Rails.application.config.assets.precompile += %w( plugins/IE8.js)
+Rails.application.config.assets.precompile += %w( plugins/html5.js)
+Rails.application.config.assets.precompile += %w( plugins/respond.min.js)
+Rails.application.config.assets.precompile += %w( plugins/css3-mediaqueries.js)
 Rails.application.config.assets.precompile += %w( datefield.js)
 
 
