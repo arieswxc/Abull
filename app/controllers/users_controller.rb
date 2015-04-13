@@ -40,6 +40,7 @@ class UsersController < ApplicationController
   def update_info
     @user = User.find(params[:id])
     @user.update(user_params)
+    flash[:update_info] = "更新成功"
     redirect_to edit_user_registration_path
   end
 

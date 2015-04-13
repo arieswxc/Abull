@@ -90,7 +90,7 @@
         });
         $(".numberic").each(function(){
           this.oninput = function() {
-            var crt_amount = parseInt($(this).val()) || 0;
+            var crt_amount = parseInt($(this).val()) || "";
             $(this).val(crt_amount);
           }
         });
