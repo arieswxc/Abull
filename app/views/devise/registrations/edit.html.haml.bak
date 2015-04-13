@@ -93,7 +93,7 @@
                 .text-center
                   = f.button :submit
               %hr
-              %h3 发表人审核
+              %h3 交易员认证
               %hr
               = simple_nested_form_for(@user,url: trader_applied_user_path(current_user),  |
                 html: { class: 'form-horizontal sky-form', id: 'trader_authentication_form',enctype: "multipart/form-data" },                   |
