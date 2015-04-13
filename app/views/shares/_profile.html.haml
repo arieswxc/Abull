@@ -29,7 +29,7 @@
               %a.btn-u.btn-u-xs{:class => "#{'btn-u-default direct_to_tab2' if current_user.cell.blank?}" "#{'btn-u-yellow' if !current_user.cell.blank?}",
                 :href => "#{edit_user_registration_path+'/#trader_auth' if current_user.cell.blank?}" "#{'javascript:;' if !current_user.cell.blank?}"} 手机
               %a.btn-u.btn-u-xs{:class => "#{'btn-u-default direct_to_tab2' unless current_user.active_email && current_user.active_email == 'active'}" "#{'btn-u-yellow' if current_user.active_email && current_user.active_email == 'active'}",
-                :href => "#{edit_user_registration_path+'/#trader_auth' if current_user.email.blank?}" "#{'javascript:;' if !current_user.email.blank?}"} 邮箱
+                :href => "#{edit_user_registration_path if current_user.email.blank?}" "#{'javascript:;' if !current_user.email.blank?}"} 邮箱
               - @authenticated = !(current_user.level == 'unverified' || current_user.level == 'investor_applied')
               %a.btn-u.btn-u-xs{:class => "#{'btn-u-default direct_to_tab2' if !@authenticated}" "#{'btn-u-yellow' if @authenticated}",
                 :href => "#{edit_user_registration_path+'/#auth' if !@authenticated}" "#{'javascript:;' if @authenticated}"} 身份证
