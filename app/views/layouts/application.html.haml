@@ -37,7 +37,9 @@
     %script{:src => asset_path("plugins/jquery-migrate.min.js"), :type => "text/javascript"}
     -# %script{:src => asset_path("plugin.js"), :type => "text/javascript"}
     %script{:src => "http://api.map.baidu.com/api?key=&v=1.1&services=true", :type => "text/javascript"}
-
+    %script{:src => asset_path("plugins/ZeroClipboard.js")}
+    :javascript
+      ZeroClipboard.setMoviePath( "#{asset_path 'plugins/ZeroClipboard.swf'}" );
     = csrf_meta_tags
   %body
     .wapper
@@ -65,6 +67,7 @@
     %script{:src => asset_path("plugins/Chart.min.js")}
     %script{:src => asset_path("plugins/highstock.js")}
     %script{:src => asset_path("plugins/exporting.js")}
+
     %script{:src => asset_path("datefield.js")}
 
 
@@ -94,6 +97,7 @@
             $(this).val(crt_amount);
           }
         });
+
         // if ($(".half-table").length > 0){
         //   $(".half-table").each(function(){
         //     if ($(".half-table .index").length > 0){

@@ -26,8 +26,8 @@
         %tr
           %td{:align => "right", :width => "200"} 收款人支付宝账户：
           %td{:style => "padding:0 20px;"}
-            molstr@molstr.com
-            %a#popBtn{"data-clipboard-target" => "popText", :href => "javascript:;"} 复制
+            %label.fe_text{value: "molstr@molstr.com"} molstr@molstr.com
+            %a#d_clip_button{"data-clipboard-target" => "popText", :href => "javascript:;"} 复制
             %input#popText{:type => "hidden", :value => "17178@yztz.com"}/
         %tr
           %td{:align => "right"} 账户名称：

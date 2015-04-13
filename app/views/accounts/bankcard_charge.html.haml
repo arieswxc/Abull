@@ -235,9 +235,35 @@
 
       }
     });
-  			$('#u_alipayName').html(aliName);
-  			$('#u_money').html(m);
-  			$('#alipay1').hide();$('#alipay2').show();
+    $('#u_alipayName').html(aliName);
+    $('#u_money').html(m);
+    $('#alipay1').hide();$('#alipay2').show();
+    var clip = null;
+    ZeroClipboard_init();
+    function ZeroClipboard_init() {
+      clip = new ZeroClipboard.Client();
+      clip.setHandCursor( true );
+
+      clip.addEventListener('load', my_load);
+      clip.addEventListener('mouseOver', my_mouse_over);
+      clip.addEventListener('complete', my_complete);
+
+      clip.glue( 'd_clip_button' );
+    }
+
+    function my_load(client) {
+      debugstr("Flash movie loaded and ready.");
+    }
+
+    function my_mouse_over(client) {
+      // we can cheat a little here -- update the text on mouse over
+      clip.setText( $('.fe_text').attr("value") );
+    }
+
+    function my_complete(client, text) {
+      // debugstr("Copied text to clipboard: " + text );
+      alert("已复制到剪贴板");
+    }
   	// 	}else{
   	// 		alert(data.resultMsg,3);
   	// 	}
