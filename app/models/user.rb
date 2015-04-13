@@ -7,12 +7,9 @@ class User < ActiveRecord::Base
   validates :cell, presence: true
   validates :cell, uniqueness: true
   mount_uploader :avatar, AvatarUploader
-  # mount_uploader :line_csv, LineCsvUploader
-  # mount_uploader :verify_file, VerifyFileUploader
   has_many :funds,        dependent: :destroy
   has_many :invests,      dependent: :destroy
   has_many :leverages,    dependent: :destroy
-  # has_many :photos,       dependent: :destroy
   has_many :topics,       dependent: :destroy
   has_one :account,       dependent: :destroy
   has_one :bank_card,     dependent: :destroy
@@ -23,7 +20,6 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :verify_photos, allow_destroy: true, :reject_if => proc { |attributes| attributes["photo"].blank? }
   accepts_nested_attributes_for :identity_photos, allow_destroy: true
   accepts_nested_attributes_for :line_csv, allow_destroy: true, :reject_if => proc { |attributes| attributes["file"].blank? }
-  # accepts_nested_attributes_for :photos, allow_destroy: true
 
   acts_as_followable
   acts_as_follower
@@ -96,14 +92,5 @@ class User < ActiveRecord::Base
   end
 
   private
-    # def send_password(cell, account_password)
-    #   uri       = URI.parse("http://222.73.117.158:80/msg/HttpBatchSendSM")
-    #   msg       = "新的账户密码为#{account_password},请及时登陆摩尔街来修改帐号密码"
-    #   username  = 'zxnicv'
-    #   password  = 'Txb123456'
-
-    #   res = Net::HTTP.post_form(uri, account: username, pswd: password, mobile: cell, msg: msg, needstatus: true)
-    #   res.body.split[1]
-    # end
 
 end

@@ -1,6 +1,4 @@
 class RegistrationsController < Devise::RegistrationsController
-  # after_filter :add_account, only: [:update_resource]
-  # after_filter :add_three_photos, only: [:update_resource]
   after_filter :add_account
   after_filter :add_three_photos
 
@@ -10,6 +8,9 @@ class RegistrationsController < Devise::RegistrationsController
       redirect_to new_registration_path(resource_name)
     elsif User.find_by(username: params[:user][:username])
       flash[:notice] = "用户昵称已经被注册，请更换"
+      redirect_to new_registration_path(resource_name)
+    elsif User.find_by(cell: params[:user][:cell])
+      flash[:notice] = "该手机号已经被注册"
       redirect_to new_registration_path(resource_name)
     else
       build_resource(sign_up_params)
@@ -32,34 +33,6 @@ class RegistrationsController < Devise::RegistrationsController
       end
     end
   end
-  #   if session[:code] == params[:verification_code].to_i && User.find_by(username: params[:username]).nil?
-  #     build_resource(sign_up_params)
-  
-  #     resource.save
-  #     yield resource if block_given?
-  #     if resource.persisted?
-  #       if resource.active_for_authentication?
-  #         set_flash_message :notice, :signed_up if is_flashing_format?
-  #         sign_up(resource_name, resource)
-  #         respond_with resource, location: after_sign_up_path_for(resource)
-  #       else
-  #         set_flash_message :notice, :"signed_up_but_#{resource.inactive_message}" if is_flashing_format?
-  #         expire_data_after_sign_in!
-  #         respond_with resource, location: after_inactive_sign_up_path_for(resource)
-  #       end
-  #     else
-  #       clean_up_passwords resource
-  #       set_minimum_password_length
-  #       respond_with resource
-  #     end
-  #   elsif session[:code] != params[:verification_code].to_i
-  #     flash[:notice] = "验证码错误"
-  #     redirect_to new_registration_path(resource_name)
-  #   else
-  #     flash[:notice] = "用户昵称已经被注册，请更换"
-  #     redirect_to new_registration_path(resource_name)
-  #   end
-  # end
 
   protected
     def update_resource(resource, params)

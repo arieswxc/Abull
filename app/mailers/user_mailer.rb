@@ -63,6 +63,12 @@ class UserMailer < ApplicationMailer
     end
   end
 
+  def email_verification(user, params)
+    mail(to: user.email, subject: "邮箱验证通知") do |format|
+      format.html { render "email_verification", locals: params }
+    end
+  end
+
 
 
 

@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  after_action :send_email, only: [:create]
   before_action :authenticate_user!, except: [:generate_verification_code, :update_password, :get_history_data, :forget_password_edit]
 
   def investor_apply
@@ -84,7 +83,7 @@ class UsersController < ApplicationController
   def generate_verification_code
     code      = rand(100000..999999)
     session[params[:cell].to_i] = code
-    msg = "欢迎注册摩尔街账户，您的验证码为#{code},请在注册页面填写"
+    msg = "尊敬的用户，欢迎加入摩尔街，您的注册验证码是#{code},请尽快完成注册，享受摩尔街完美的投资体验!"
     msg = "您的验证码为#{code}, 请在重置密码页面填写" if params[:forget_pswd].to_i == 1
     batch_code  = send_sms(code, params[:cell], msg)
 
@@ -170,6 +169,29 @@ class UsersController < ApplicationController
 
   def forget_password_edit
   end
+
+
+  #发送邮箱验证邮件
+  def send_verification_email
+    email_code = rand(100000..999999)
+    user = User.find(params[:id])
+    user.email_code = email_code
+    user.save
+    params[:msg] = "localhost:3000/users/#{params[:id]}/email_verification?email_code=#{email_code}"
+    UserMailer.email_verification(user, params).deliver_now
+    render status: 200
+  end
+  
+  #点击邮箱验证链接进行验证
+  def email_verification
+    user = User.find(params[:id])
+    if user.email_code.to_s == params[:email_code].to_s
+      user.activ_email = "active"
+      user.save
+    end
+    render json:{ message: "验证成功"}
+  end
+  
 
   private
     def user_params
