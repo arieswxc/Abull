@@ -6,7 +6,7 @@ class Fund < ActiveRecord::Base
   validates :ending_days,         numericality: true
   validates :earning,             numericality: true
   validates :state,               presence: true
-  validates :state,               inclusion: { in: ["pending", "applied", "gathering", "reached", "running", "finished", "closed", "denied"] }
+  validates :state,               inclusion: { in: ["pending", "applied", "gathering", "reached", "running", "finished", "closed", "denied", "money_returned"] }
   validates :private_check,       inclusion: { in: ["private", "public"] }
   validates :duration,  presence: true
   validates :expected_earning_rate, presence: true
@@ -36,6 +36,10 @@ class Fund < ActiveRecord::Base
 
     event :deny do
       transition :applied => :denied
+    end
+
+    event :return_money do
+      transition :gathering => :money_returned
     end
 
     event :reach do

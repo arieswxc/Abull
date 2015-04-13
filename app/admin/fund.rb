@@ -55,15 +55,6 @@ ActiveAdmin.register Fund do
       row :management_fee
     end
 
-    panel t('证明文件照片') do
-      table_for fund.fund_verify_photos do |f|
-        column "标题", :title
-        column "照片" do |f|
-          image_tag f.photo, width:400, height:400
-        end
-      end
-    end
-
     panel t('Homs') do
       attributes_table_for fund.homs_account do
         row :title do
@@ -71,6 +62,15 @@ ActiveAdmin.register Fund do
         end
         row :password
         row :amount
+      end
+    end
+
+    panel t('证明文件照片') do
+      table_for fund.fund_verify_photos do |f|
+        column "标题", :title
+        column "照片" do |f|
+          image_tag f.photo, width:400, height:400
+        end
       end
     end
 
@@ -125,6 +125,9 @@ ActiveAdmin.register Fund do
         end
         row ' ', :state do |fund|
           link_to_if (fund.state == "gathering"), t('强制完成募集'), confirm_fund_admin_fund_path(fund), :method => :put, :class => 'button'
+        end
+        row t('money_returned'), :state do
+          
         end
         row t('reached'), :state do |fund|
           link_to_if (fund.state == "reached"), t('open_homs'), confirm_fund_admin_fund_path(fund), :method => :put, :class => 'button'
@@ -264,94 +267,103 @@ ActiveAdmin.register Fund do
   member_action :return_money, :method => :get do
     fund = Fund.find(params[:id])
     fund_account = fund.fund_account
-
-    fund.invests.each do |invest|
-      invest_account = invest.user.account
-      billing_out = Billing.new(
-        account_id: invest_account.id,
-        amount: -invest.amount,
-        billing_type: "募集未满返款",
-        billable: invest)
-      billing_in = Billing.new(
-        account_id: fund.user.account.id,
-        amount: invest.amount,
-        billing_type: "募集未满返款",
-        billable: fund)
-      fund_account.balance    += billing_out.amount
-      invest_account.balance  += billing_in.amount
-      ActiveRecord::Base.transaction do
-        billing_out.save!
-        billing_in.save!
-        fund_account.save!
-        invest_account.save!
-        billing_in.confirm
-        billing_out.confirm
+    if fund.state == "gathering"
+      fund.invests.each do |invest|
+        invest_account = invest.user.account
+        billing_out = Billing.new(
+          account_id: invest_account.id,
+          amount: -invest.amount,
+          billing_type: "募集未满返款",
+          billable: invest)
+        billing_in = Billing.new(
+          account_id: fund.user.account.id,
+          amount: invest.amount,
+          billing_type: "募集未满返款",
+          billable: fund)
+        fund_account.balance    += billing_out.amount
+        invest_account.balance  += billing_in.amount
+        begin
+          ActiveRecord::Base.transaction do
+            billing_out.save!
+            billing_in.save!
+            fund_account.save!
+            invest_account.save!
+            billing_in.confirm
+            billing_out.confirm
+          end
+        rescue Exception
+        end
       end
+      fund.return_money
     end
-
-    fund.close if fund_account.balance == 0
-    redirect_to admin_fund_path(fund), notice: "执行成功"
+    notice =  (fund_account.balance == 0) ? "执行成功" : "请查看操盘账户余额"
+    redirect_to admin_fund_path(fund), notice: notice
   end
 
   member_action :clear, :method => :get do
     fund = Fund.find(params[:id])
-    homs_account = fund.homs_account
+    if fund.state == "running" || fund.state == "finished"
+      homs_account = fund.homs_account
 
-    profit            = homs_account.amount - fund.amount
-    management_profit = (profit > 0) ? profit * (fund.management_fee.to_f / 100) : 0
-    shared_profit     = profit - management_profit
-    rate              = (shared_profit / fund.amount) + 1
+      profit            = homs_account.amount - fund.amount
+      management_profit = (profit > 0) ? profit * (fund.management_fee.to_f / 100) : 0
+      shared_profit     = profit - management_profit
+      rate              = (shared_profit / fund.amount) + 1
 
-    if profit > 0
-      funder_account = fund.user.account
-      fund_billing_out = Billing.new(
-        account_id:     funder_account.id,
-        amount:         -management_profit,
-        billing_type:   "清盘返款",
-        billable:       fund)
-      fund_billing_in = Billing.new(
-        account_id:     funder_account.id,
-        amount:         management_profit,
-        billing_type:   "清盘返款",
-        billable:       fund)
-      homs_account.amount     += fund_billing_out.amount
-      funder_account.balance  += fund_billing_in.amount
-      ActiveRecord::Base.transaction do
-        fund_billing_in.save
-        fund_billing_in.confirm
-        fund_billing_out.save
-        fund_billing_out.confirm
-        homs_account.save
-        funder_account.save
+      if profit > 0
+        funder_account = fund.user.account
+        fund_billing_out = Billing.new(
+          account_id:     funder_account.id,
+          amount:         -management_profit,
+          billing_type:   "清盘返款",
+          billable:       fund)
+        fund_billing_in = Billing.new(
+          account_id:     funder_account.id,
+          amount:         management_profit,
+          billing_type:   "清盘返款",
+          billable:       fund)
+        homs_account.amount     += fund_billing_out.amount
+        funder_account.balance  += fund_billing_in.amount
+        begin
+          ActiveRecord::Base.transaction do
+            fund_billing_in.save!
+            fund_billing_in.confirm
+            fund_billing_out.save!
+            fund_billing_out.confirm
+            homs_account.save!
+            funder_account.save!
+          end
+        rescue Exception => e          
+        end
       end
-    end
 
-    fund.invests.each do |invest|
-      account = invest.user.account
-      billing_in = Billing.new(
-        account_id:   account.id,
-        amount:       (invest.amount * rate),
-        billing_type: "清盘返款",
-        billable:     invest)
-      billing_out = Billing.new(
-        account_id:   fund.user.account.id,
-        amount:       -(invest.amount * rate),
-        billing_type: "清盘返款",
-        billable:      fund)
-      account.balance       += billing_in.amount
-      homs_account.amount  += billing_out.amount
-      ActiveRecord::Base.transaction do
-        account.save
-        homs_account.save
-        billing_in.save
-        billing_in.confirm
-        billing_out.save
-        billing_out.confirm
+      fund.invests.each do |invest|
+        account = invest.user.account
+        billing_in = Billing.new(
+          account_id:   account.id,
+          amount:       (invest.amount * rate),
+          billing_type: "清盘返款",
+          billable:     invest)
+        billing_out = Billing.new(
+          account_id:   fund.user.account.id,
+          amount:       -(invest.amount * rate),
+          billing_type: "清盘返款",
+          billable:      fund)
+        account.balance       += billing_in.amount
+        homs_account.amount  += billing_out.amount
+        begin
+          ActiveRecord::Base.transaction do
+            account.save
+            homs_account.save
+            billing_in.save
+            billing_in.confirm
+            billing_out.save
+            billing_out.confirm
+          end  
+        rescue Exception => e
+        end
       end
-    end
-
-    if homs_account.amount == 0
-      fund.close
+      fund.close if homs_account.amount == 0
     end
     redirect_to admin_fund_path(fund), notice: "执行成功"
   end

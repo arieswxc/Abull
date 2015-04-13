@@ -28,8 +28,7 @@ class AccountsController < ApplicationController
     @billing.billing_type = "充值"
     @billing.remark = "支付宝转账"
     if @billing.save
-      # redirect_to user_account_billings_path
-      render json: {message: "seccess"}
+      render json: {message: "success"}
     else
       render json: {message: "fail"}
     end
@@ -67,15 +66,18 @@ class AccountsController < ApplicationController
     account.balance -= @billing_out.amount
     account.frost += @billing_out.amount
     if @billing_out.amount <= balance
-      ActiveRecord::Base.transaction do
-        @billing_out.save
-        @billing_in.save
-        @billing_withdraw.save
-        @billing_out.update(amount: -@billing_out.amount )
-        @billing_withdraw.update(amount: -@billing_withdraw.amount)
-        account.save
-        @billing_out.confirm
-        @billing_in.confirm
+      begin
+        ActiveRecord::Base.transaction do
+          @billing_out.save!
+          @billing_in.save!
+          @billing_withdraw.save!
+          @billing_out.update!(amount: -@billing_out.amount )
+          @billing_withdraw.update!(amount: -@billing_withdraw.amount)
+          account.save!
+          @billing_out.confirm
+          @billing_in.confirm
+        end
+      rescue Exception => e
       end
       redirect_to user_account_billings_path
     else

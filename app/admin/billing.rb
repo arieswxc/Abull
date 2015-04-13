@@ -69,6 +69,7 @@ ActiveAdmin.register Billing do
     column :state do |billing|
       t(billing.state)
     end
+    column :remark
     column :billing_number
     column :created_at
     column :updated_at
@@ -128,15 +129,20 @@ ActiveAdmin.register Billing do
 
   member_action :confirm, :method => :put do
     billing = Billing.find(params[:id])
-    account = billing.account
-    if billing.billing_type == "提现"
-      account.frost += billing.amount
-    else
-      account.balance += billing.amount
-    end
-    ActiveRecord::Base.transaction do
-      billing.confirm
-      account.save
+    if billing.state == "pending"
+      account = billing.account
+      if billing.billing_type == "提现"
+        account.frost += billing.amount
+      else
+        account.balance += billing.amount
+      end
+      begin
+        ActiveRecord::Base.transaction do
+          billing.confirm
+          account.save!
+        end  
+      rescue Exception => e
+      end
     end
     redirect_to admin_billing_path(billing), notice: "执行成功"
   end
@@ -152,9 +158,12 @@ ActiveAdmin.register Billing do
     if order_result_query(billing) && billing.state == "pending"
       account = billing.account
       account.balance += billing.amount
-      ActiveRecord::Base.transaction do
-        billing.confirm
-        account.save
+      begin
+        ActiveRecord::Base.transaction do
+          billing.confirm
+          account.save
+        end  
+      rescue Exception => e
       end
     end
     redirect_to admin_billing_path(billing), notice: "执行成功"
