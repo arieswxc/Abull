@@ -43,10 +43,10 @@
                 %span.ui-list-field.fn-left.text-big.w180.text-center
                   %em.value>= check_private(f.genre,f.private_check)
                 %span.ui-list-field.fn-left.num.text-right.w160.text-center
-                  %em.value>= f.amount
+                  %em.value>= (f.amount.to_i == f.amount) ? f.amount.to_i : f.amount
                   元
                 %span.ui-list-field.fn-left.num.text-center.w80.zdy-red
-                  %em.value>= f.expected_earning_rate
+                  %em.value>= (f.expected_earning_rate.to_i == f.expected_earning_rate) ? f.expected_earning_rate.to_i : f.expected_earning_rate
                   = "%" if f.expected_earning_rate
                 %span.ui-list-field.fn-left.num.text-center.w80.pr0.ellipsis
                   %em.value>= f.duration

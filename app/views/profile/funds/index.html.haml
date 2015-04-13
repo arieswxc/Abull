@@ -9,7 +9,7 @@
             %h2
               发标资金总额（元）：
               %span.color-red.text-l
-                = @funds.sum(:amount)
+                = (@funds.sum(:amount).to_i == @funds.sum(:amount)) ? @funds.sum(:amount).to_i : @funds.sum(:amount)
             = render "funds/fund_list", ojbect: @current="xxx"
 
 :javascript

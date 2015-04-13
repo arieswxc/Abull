@@ -34,9 +34,9 @@
           %td=link_to f.name,user_fund_path(user_id: current_user,id: f.id),target: "blank"
           %td= f.genre
         %td.color-red
-          = f.amount
+          = (f.amount.to_i == f.amount) ? f.amount.to_i : f.amount
         %td.color-red
-          = f.expected_earning_rate
+          = (f.expected_earning_rate.to_i == f.expected_earning_rate) ? f.expected_earning_rate.to_i : f.expected_earning_rate
           = '%' unless f.expected_earning_rate.blank?
         %td
           = f.duration

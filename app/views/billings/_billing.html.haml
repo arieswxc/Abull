@@ -3,7 +3,7 @@
   %td= billing.billing_number
   -# %td= billing.account.user.username if billing.account &&  billing.account.user
   %td.w90= billing.billing_type
-  %td.color-red= billing.amount
+  %td.color-red= (billing.amount.to_i == billing.amount) ? billing.amount.to_i : billing.amount
   %td= billing.remark
   %td.w75= t(billing.state)
   - if billing.remark == "第三方支付" && billing.state == "pending"

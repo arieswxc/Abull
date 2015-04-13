@@ -9,7 +9,7 @@
             .w200.dis-in-block.border-r
               .fs18 已投金额（元）：
               %div.color-red.text-l
-                = @total_invest_value
+                = (@total_invest_value.to_i == @total_invest_value) ? @total_invest_value.to_i : @total_invest_value
             -# .w200.dis-in-block.border-r
             -#   .fs18
             -#     盈亏（元）：
