@@ -15,11 +15,12 @@ namespace :data do
     # puts file
       file.each_line.with_index do |line, index|
         arr = line.split(",")
-        homs_title = arr[4]
-        amount = arr[12]
+        date = arr[0].to_time
+        homs_title = arr[1]
+        amount = arr[2]
         homs_account = HomsAccount.find_by(title: homs_title.to_s) ? HomsAccount.find_by(title: homs_title.to_s) : HomsAccount.find_by(title: homs_title.to_i)
         puts "homs_account #{homs_account}   homs_title #{homs_title}"
-        homs_account.homs_properties.create(amount: amount, date: Time.now.to_date) if homs_account
+        homs_account.homs_properties.create(amount: amount, date: date) if homs_account
       end
     end
   end

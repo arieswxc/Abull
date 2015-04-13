@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   include ActiveModel::Dirty 
-  
+  before_save :check_email_state
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,:authentication_keys => [:cell]
   validates :password, format: { with: /(?=.*[a-z])(?=.*\d)/i}, :on => :create
@@ -98,6 +99,10 @@ class User < ActiveRecord::Base
     msg = "尊敬的用户，欢迎加入摩尔街，您的注册验证码是#{code},请尽快完成注册，享受摩尔街完美的投资体验!"
     msg = "您的验证码为#{code}, 请在重置密码页面填写" if params[:forget_pswd].to_i == 1
     batch_code  = send_sms(code, params[:cell], msg)
+  end
+
+  def check_email_state
+    self.update_column(:active_email, "inactive") if self.email_changed?
   end
 
 private

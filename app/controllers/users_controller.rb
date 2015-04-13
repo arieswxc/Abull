@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, except: [:generate_verification_code, :update_password, :get_history_data, :forget_password_edit]
-  after_save :check_email_state
 
   def investor_apply
     @user = User.find(params[:id])
@@ -177,7 +176,7 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     user.email_code = email_code
     user.save
-    params[:msg] = "molstr.com/users/#{params[:id]}/email_verification?email_code=#{email_code}"
+    params[:msg] = "localhost:3000/users/#{params[:id]}/email_verification?email_code=#{email_code}"
     UserMailer.email_verification(user, params).deliver_now
     render json:{ message: "发送验证邮件成功"}, status: 200
   end
@@ -191,17 +190,7 @@ class UsersController < ApplicationController
     end
     redirect_to edit_user_registration_path
   end
-
-<<<<<<< HEAD
-  def check_email_state
-    self.email_changed?
-    self.active_email = "inactive"
-    self.save!
-  end
   
-=======
->>>>>>> 485d6591d0dda081337909b51ef998ff37aa2777
-
   private
     def user_params
       params.require(:user).permit(

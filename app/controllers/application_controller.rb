@@ -96,8 +96,9 @@ class ApplicationController < ActionController::Base
     hushen_data = []
     hushen300_path = "#{Rails.root}/lib/LibFile/hs300_data.csv"
     initial_value = 0
-
-    fund.homs_account.homs_properties.each_with_index do |i, index|
+    
+    #解析fund账户
+    fund.homs_account.homs_properties.order(date: :asc).each_with_index do |i, index|
       initial_value = i.amount.to_f if index == 0
       time = i.date.to_time.to_i.to_s + "000"
       time = time.to_i
@@ -105,13 +106,12 @@ class ApplicationController < ActionController::Base
       item = [time, data]
       other_data << item
     end
-
-
+   
     begin_date = Time.at(other_data.first[0].to_s.slice(0, other_data.first[0].to_s.length - 3).to_i)
     end_date = Time.at(other_data.last[0].to_s.slice(0, other_data.last[0].to_s.length - 3).to_i)
-
     flag = 0
 
+    #解析沪深300数据
     File.open(hushen300_path, "r") do |file|
       file.each_line.with_index do |line, index|
         #容错处理
@@ -119,7 +119,7 @@ class ApplicationController < ActionController::Base
 
         array = line.chomp.split(" ")
         initial_value = array[1].to_f if array[0].to_time == begin_date
-
+        
         if array[0].to_time >= begin_date && flag == 0 .. array[0].to_time >= end_date
           time = array[0].to_time.to_i.to_s + "000"
           time = time.to_i
@@ -130,8 +130,9 @@ class ApplicationController < ActionController::Base
         end
       end
     end
-    
+
     hs_data = []
+
     other_data.each do |a|
       hushen_data.each do |b|
         if b[0] == a[0]
@@ -140,9 +141,8 @@ class ApplicationController < ActionController::Base
         end
       end
     end
-    
-    [other_data,hs_data]
 
+    [other_data,hs_data]
   end
 
 
