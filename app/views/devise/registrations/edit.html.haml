@@ -16,40 +16,44 @@
                 %a{"data-toggle" => "tab", :href => "#editPassword"} 更改密码
             .tab-content
               #baseProfile.tab-pane.fade.active.in.mt30
-                = form_for(resource, as: resource_name, url: update_info_user_path(current_user), html: { method: :put, class: 'sky-form'}) do |f|
+                = form_for(resource, as: resource_name, url: update_info_user_path(current_user), html: { method: :put, class: 'form-horizontal sky-form'}) do |f|
                   = devise_error_messages!
-                  %dl.dl-horizontal.pl50
-                    .flash_update_info
-                      - if flash[:update_info]
-                        %dt
-                        %dd.zdy-red.ml100.mb30= flash[:update_info]
-                    %dt 昵称
-                    %dd
-                      %section
+                  - if flash[:update_info]
+                    .form-group.optional
+                      %label.optional.col-sm-4.control-label
+                      .col-sm-6.mt5
+                        %span.bold.zdy-red= flash[:update_info]
+                  .form-group.optional
+                    %label.optional.col-sm-4.control-label
+                      %span
+                        = User.human_attribute_name('username')
+                        \:
+                    .col-sm-6.mt5
+                      %span.bold= current_user.username
+                  .form-group.optional
+                    %label.optional.col-sm-4.control-label
+                      %span
+                        = User.human_attribute_name('email')
+                        \:
+                    .col-sm-6.mt5
+                      %section.edit_profile.hide
                         %label.input.w250
-                          = current_user.username
-                          -# %i.icon-append.fa.fa-user
-                          -# %input{:name => "user[username]", :placeholder => "昵称", :type => "text", :value => "#{current_user.username}"}/
-                          -# %b.tooltip.tooltip-bottom-right 登录网站所用
-                    %dt.mt5 邮箱
-                    %dd
-                      %section
-                        %label.input.w250.edit_profile.hide
                           %i.icon-append.fa.fa-envelope
                           %input{:name => "user[email]", :placeholder => "电子邮箱", :type => "email", :value => "#{current_user.email}"}/
                           %b.tooltip.tooltip-bottom-right 验证账户所用
-                        %label.input.show_profile
-                          = current_user.email
-                          - if current_user.active_email != "active"
-                            %span.label.label-default.inline-block.mr40 未验证
-                            %a.btn-u.btn-u-yellow#verify_email{href: "javascript:;"} 发送验证邮件
-                          - else
-                            %span.label.label-yellow.inline-block 已验证
-                    %dt 个人简介
-                    %dd
-                      -# %section
-                      -#   %label.input
-                      -#     %i.icon-append.fa.fa-user
+                      %label.input.show_profile
+                        = current_user.email
+                        - if current_user.active_email != "active"
+                          %span.label.label-default.inline-block.mr40 未验证
+                          %a.btn-u.btn-u-yellow#verify_email{href: "javascript:;"} 发送验证邮件
+                        - else
+                          %span.label.label-yellow.inline-block 已验证
+                  .form-group.optional
+                    %label.optional.col-sm-4.control-label
+                      %span
+                        = User.human_attribute_name('abstract')
+                        \:
+                    .col-sm-6.mt5
                       %textarea.w250.edit_profile.hide{:name => "user[abstract]", :type => "text", :value => "#{current_user.abstract}",:style=>"max-width: 250px;height:200px;"}
                         = current_user.abstract
                       %label.input.w250.show_profile
@@ -206,24 +210,31 @@
                   radio_buttons: :horizontal_radio_and_checkboxes,      |
                   file: :horizontal_file_input,                         |
                   boolean: :horizontal_boolean}) do |f|                 |
-                  %dl.dl-horizontal.pl50
-                    - if flash[:info]
-                      %dt
-                      %dd.zdy-red.ml100.mb30= flash[:info]
-                    %dt 当前密码
-                    %dd
+                  - if flash[:info]
+                    .form-group.optional
+                      %label.optional.col-sm-4.control-label
+                      .col-sm-6.mt5
+                        %span.bold.zdy-red= flash[:info]
+                  .form-group.optional
+                    %label.optional.col-sm-4.control-label
+                      %span 当前密码
+                    .col-sm-6
                       %section
                         %label.input.w250
                           %i.icon-append.fa.fa-key
                           %input{:name => "user[current_password]",:placeholder => '需要当前密码确认您的身份', :type => "password"}/
-                    %dt 新密码
-                    %dd
+                  .form-group.optional
+                    %label.optional.col-sm-4.control-label
+                      %span 新密码
+                    .col-sm-6
                       %section
                         %label.input.w250
                           %i.icon-append.fa.fa-key
                           %input{:name => "user[password]", :type => "password"}/
-                    %dt 确认新密码
-                    %dd
+                  .form-group.optional
+                    %label.optional.col-sm-4.control-label
+                      %span 确认新密码
+                    .col-sm-6
                       %section
                         %label.input.w250
                           %i.icon-append.fa.fa-key
