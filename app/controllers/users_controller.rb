@@ -179,25 +179,28 @@ class UsersController < ApplicationController
     user.save
     params[:msg] = "molstr.com/users/#{params[:id]}/email_verification?email_code=#{email_code}"
     UserMailer.email_verification(user, params).deliver_now
-    render json:{ message: "发送成功" }, status: 200
+    render json:{ message: "发送验证邮件成功"}, status: 200
   end
-  
+
   #点击邮箱验证链接进行验证
   def email_verification
     user = User.find(params[:id])
     if user.email_code.to_s == params[:email_code].to_s
-      user.activ_email = "active"
+      user.active_email = "active"
       user.save
     end
-    render json:{ message: "验证成功"}
+    redirect_to edit_user_registration_path
   end
 
+<<<<<<< HEAD
   def check_email_state
     self.email_changed?
     self.active_email = "inactive"
     self.save!
   end
   
+=======
+>>>>>>> 485d6591d0dda081337909b51ef998ff37aa2777
 
   private
     def user_params

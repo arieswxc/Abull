@@ -2,8 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   include ActiveModel::Dirty 
-  define_attribute_methods :email
-
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,:authentication_keys => [:cell]
   validates :password, format: { with: /(?=.*[a-z])(?=.*\d)/i}, :on => :create
