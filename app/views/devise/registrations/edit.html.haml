@@ -19,6 +19,9 @@
                 = form_for(resource, as: resource_name, url: update_info_user_path(current_user), html: { method: :put, class: 'sky-form'}) do |f|
                   = devise_error_messages!
                   %dl.dl-horizontal.pl50
+                    - if flash[:update_info]
+                      %dt
+                      %dd.zdy-red.ml100.mb30= flash[:update_info]
                     %dt 昵称
                     %dd
                       %section
@@ -175,7 +178,7 @@
                   -#     %input{:type => "text", :readonly => ""}
                   .form-group
                     %label.optional.col-sm-4.control-label
-                      %span 工作
+                      %span= User.human_attribute_name('job')
                     .col-sm-6
                       %input.form-control{:name => "user[job]"}
                   -# = f.input :job
