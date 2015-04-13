@@ -47,29 +47,11 @@ class FundsController < ApplicationController
     end
   end
 
-  # def get_history_data
-  #   fund = Fund.find(params[:id])
-  #   if fund.line_csv && fund.line_csv.file.current_path
-  #     hushen_data, fund_data = parse_csv(fund.line_csv.file.current_path)
-  #     render json:[{data: hushen_data}, {data: fund_data}]
-  #   else
-  #     render json:{ message: "Not found" }, status: 404
-  #   end
-  # end
-
-  
-  # def show_history_data
-  #   fund = Fund.find(params[:id])
-  #   if fund.line_csv && fund.line_csv.file.current_path
-  #     @list_data = parse_list_data(fund.line_csv.file.current_path)
-  #   end
-  # end
-
   def get_history_data
     fund = Fund.find(params[:id])
     if fund.homs_account
-      hushen_data, fund_data = parse_fund_csv(fund)
-      render json:[{data: hushen_data}, {data: fund_data}]
+      fund_data, hushen_data = parse_fund_csv(fund)
+      render json:[{data: fund_data}, {data: hushen_data}]
     else
       render json:{ message: "Not found" }, status: 404
     end
@@ -78,7 +60,11 @@ class FundsController < ApplicationController
   def show_history_data
     fund = Fund.find(params[:id])
     if fund.homs_account
-      @list_data = fund.homs_account.homs_properties
+      # @list_data = fund.homs_account.homs_properties
+      @list_data = []
+      fund.homs_account.homs_properties.each do |i|
+        @list_data << [i.date, i.amount]
+      end
     end
   end
 
