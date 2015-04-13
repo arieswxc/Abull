@@ -31,15 +31,20 @@
                           -# %i.icon-append.fa.fa-user
                           -# %input{:name => "user[username]", :placeholder => "昵称", :type => "text", :value => "#{current_user.username}"}/
                           -# %b.tooltip.tooltip-bottom-right 登录网站所用
-                    %dt 邮箱
+                    %dt.mt5 邮箱
                     %dd
                       %section
                         %label.input.w250.edit_profile.hide
                           %i.icon-append.fa.fa-envelope
                           %input{:name => "user[email]", :placeholder => "电子邮箱", :type => "email", :value => "#{current_user.email}"}/
                           %b.tooltip.tooltip-bottom-right 验证账户所用
-                        %label.input.w250.show_profile
+                        %label.input.show_profile
                           = current_user.email
+                          - if current_user.active_email != "active"
+                            %span.label.label-default.inline-block.mr40 未验证
+                            %a.btn-u.btn-u-yellow#verify_email{href: "javascript:;"} 发送验证邮件
+                          - else
+                            %span.label.label-yellow.inline-block 已验证
                     %dt 个人简介
                     %dd
                       -# %section
@@ -264,5 +269,10 @@
       $(".edit_profile").addClass('hide');
       $(".show_profile").show();
       // $(".flash_update_info").hide();
+    });
+    $("#verify_email").click(function(){
+      $.getJSON('/users/#{current_user.id}/send_verification_email',function(data){
+        alert(data.message);
+      });
     });
   });
