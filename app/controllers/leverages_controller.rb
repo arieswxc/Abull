@@ -1,11 +1,9 @@
 class LeveragesController < ApplicationController
   before_action :authenticate_user!, only: [:create,:edit]
-  # after_action :save_interest, only: [:create]
   def show
     @leverage   = Leverage.find(params[:id])
     @user       = @leverage.user
     @comments   = @leverage.comments
-    # @interests  = Interest.where(show: "true")
   end
 
   def new

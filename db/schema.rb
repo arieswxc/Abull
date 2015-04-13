@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150407151451) do
+ActiveRecord::Schema.define(version: 20150413032144) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -302,6 +302,8 @@ ActiveRecord::Schema.define(version: 20150407151451) do
     t.string   "verify_file",            limit: 255
     t.string   "address_photo",          limit: 255
     t.string   "education_photo",        limit: 255
+    t.string   "active_email",           limit: 255
+    t.string   "email_code",             limit: 255
   end
 
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree

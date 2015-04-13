@@ -1,6 +1,5 @@
 class FundsController < ApplicationController
   before_action :authenticate_user!, only: [:create,:edit]
-  # before_action :check_fund_user, only: [:new, :create]
   after_action :generate_private_code, only: [:create]
   after_action :authenticate_user!, only: [:new]
   def index
@@ -91,16 +90,6 @@ class FundsController < ApplicationController
         :duration, :expected_earning_rate, :description,
         :frontend_risk_method, :backend_risk_method, :homs_account,
         :initial_amount, :state, :management_fee)
-    end
-
-    def check_fund_user
-      if current_user.level == 'unverified'
-        render json: { message: '请进行用户身份验证' }
-      elsif current_user.level == 'investor'
-        render json: { message: '请填写trader申请资料'}
-      elsif current_user.level == 'trader_appiled'
-        render json: { message: '申请trader资料尚在审核' }
-      end
     end
 
     def generate_private_code
