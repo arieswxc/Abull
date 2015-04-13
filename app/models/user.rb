@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  include ActiveModel::Dirty 
+  define_attribute_methods :email
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,:authentication_keys => [:cell]
   validates :password, format: { with: /(?=.*[a-z])(?=.*\d)/i}, :on => :create
@@ -91,6 +94,21 @@ class User < ActiveRecord::Base
     self.save
   end
 
-  private
+  #生成验证码并发送
+  def self.generate_verification_code(params, code)
+    msg = "尊敬的用户，欢迎加入摩尔街，您的注册验证码是#{code},请尽快完成注册，享受摩尔街完美的投资体验!"
+    msg = "您的验证码为#{code}, 请在重置密码页面填写" if params[:forget_pswd].to_i == 1
+    batch_code  = send_sms(code, params[:cell], msg)
+  end
+
+private
+  def self.send_sms(code, cell, msg)
+    uri       = URI.parse("http://222.73.117.158:80/msg/HttpBatchSendSM")
+    username  = 'zxnicv'
+    password  = 'Txb123456'
+    puts "激活码为 #{code}"
+    res = Net::HTTP.post_form(uri, account: username, pswd: password, mobile: cell, msg: msg, needstatus: true)
+    res.body.split[1]
+  end
 
 end

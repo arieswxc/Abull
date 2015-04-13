@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!, except: [:generate_verification_code, :update_password, :get_history_data, :forget_password_edit]
+  after_save :check_email_state
 
   def investor_apply
     @user = User.find(params[:id])
@@ -80,12 +81,11 @@ class UsersController < ApplicationController
     end
   end
 
+  #发送注册或忘记密码的验证码并发送
   def generate_verification_code
     code      = rand(100000..999999)
     session[params[:cell].to_i] = code
-    msg = "尊敬的用户，欢迎加入摩尔街，您的注册验证码是#{code},请尽快完成注册，享受摩尔街完美的投资体验!"
-    msg = "您的验证码为#{code}, 请在重置密码页面填写" if params[:forget_pswd].to_i == 1
-    batch_code  = send_sms(code, params[:cell], msg)
+    batch_code = User.generate_verification_code(params, code)
 
     if params[:forget_pswd].to_i == 1 && User.find_by(cell: params[:cell])
       render "forget_password_edit"
@@ -177,9 +177,9 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     user.email_code = email_code
     user.save
-    params[:msg] = "localhost:3000/users/#{params[:id]}/email_verification?email_code=#{email_code}"
+    params[:msg] = "molstr.com/users/#{params[:id]}/email_verification?email_code=#{email_code}"
     UserMailer.email_verification(user, params).deliver_now
-    render status: 200
+    render json:{ message: "发送成功" }, status: 200
   end
   
   #点击邮箱验证链接进行验证
@@ -190,6 +190,12 @@ class UsersController < ApplicationController
       user.save
     end
     render json:{ message: "验证成功"}
+  end
+
+  def check_email_state
+    self.email_changed?
+    self.active_email = "inactive"
+    self.save!
   end
   
 
@@ -208,15 +214,6 @@ class UsersController < ApplicationController
     def send_email
       @user = current_user
       UserMailer.welcome_email(@user).deliver_now
-    end
-
-    def send_sms(code, cell, msg)
-      uri       = URI.parse("http://222.73.117.158:80/msg/HttpBatchSendSM")
-      username  = 'zxnicv'
-      password  = 'Txb123456'
-      puts "激活码为 #{code}"
-      res = Net::HTTP.post_form(uri, account: username, pswd: password, mobile: cell, msg: msg, needstatus: true)
-      res.body.split[1]
     end
 
     def parse_image_data(base64_image)
