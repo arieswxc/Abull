@@ -8,9 +8,9 @@
             .help-sub-in
               %h4.first 采用上市公司《恒生电子》专业股票交易软件
               %p
-                %a{:href => "http://quote.yztz.com/600570", :target => "_blank"}> 恒生电子
-                （股票交易代码：
-                %a{:href => "http://quote.yztz.com/600570", :target => "_blank"}> 600570
+                -# %a{:href => "http://quote.yztz.com/600570", :target => "_blank"}> 恒生电子
+                恒生电子（股票交易代码： 600570
+                -# %a{:href => "http://quote.yztz.com/600570", :target => "_blank"}> 600570
                 ）是中国最专业的证券交易系统服务商，其系统与各大证券公司进行了无缝对接。
                 %br>/
                 2014年04月04日马云33亿入主恒生电子扩张金融版图，
@@ -20,10 +20,12 @@
               %a{:name => "about3"}
               %p  
               %div{:style => "padding-bottom:20px;"}
-                %b.fs18> 快速下载
+                -# %b.fs18>
+                .headline
+                  %h3.zdy-red.fs18.title-font 快速下载
                 　
-                %em.red 请按照开户信息选择相应的软件版本
-              %div{:style => " position:relative; padding:0 20px; height:170px; margin-top:30px;"}
+                -# %em.red 请按照开户信息选择相应的软件版本
+              %div{:style => " position:relative; padding:0 20px; height:170px; "}
                 %p{:style => " color:#DB7C22; font-size:24px;"}
                   Homs
                   %b 涌金版交易端

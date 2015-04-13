@@ -6,7 +6,7 @@ class FundsController < ApplicationController
   def index
     # @q      = Fund.search(params[:q])
     # @funds  = @q.result
-    funds = Fund.search_by_conditions(params[:duration], params[:amount], params[:expected_earning_rate], params[:private_check]).where("state = 'gathering' or state = 'reached'").order(state: :asc, created_at: :desc)
+    funds = Fund.search_by_conditions(params[:duration], params[:amount], params[:expected_earning_rate], params[:private_check]).where(state: ['gathering', 'reached', 'running', 'finished', 'closed']).order(state: :asc, created_at: :desc)
     @total_fund_value = funds.sum(:amount)
     @funds          = funds.paginate(:page => params[:page], :per_page => 10)
   end
@@ -48,10 +48,28 @@ class FundsController < ApplicationController
     end
   end
 
+  # def get_history_data
+  #   fund = Fund.find(params[:id])
+  #   if fund.line_csv && fund.line_csv.file.current_path
+  #     hushen_data, fund_data = parse_csv(fund.line_csv.file.current_path)
+  #     render json:[{data: hushen_data}, {data: fund_data}]
+  #   else
+  #     render json:{ message: "Not found" }, status: 404
+  #   end
+  # end
+
+  
+  # def show_history_data
+  #   fund = Fund.find(params[:id])
+  #   if fund.line_csv && fund.line_csv.file.current_path
+  #     @list_data = parse_list_data(fund.line_csv.file.current_path)
+  #   end
+  # end
+
   def get_history_data
     fund = Fund.find(params[:id])
-    if fund.line_csv && fund.line_csv.file.current_path
-      hushen_data, fund_data = parse_csv(fund.line_csv.file.current_path)
+    if fund.homs_account
+      hushen_data, fund_data = parse_fund_csv(fund)
       render json:[{data: hushen_data}, {data: fund_data}]
     else
       render json:{ message: "Not found" }, status: 404
@@ -60,8 +78,8 @@ class FundsController < ApplicationController
 
   def show_history_data
     fund = Fund.find(params[:id])
-    if fund.line_csv && fund.line_csv.file.current_path
-      @list_data = parse_list_data(fund.line_csv.file.current_path)
+    if fund.homs_account
+      @list_data = fund.homs_account.homs_properties
     end
   end
 

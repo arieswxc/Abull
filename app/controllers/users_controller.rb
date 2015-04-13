@@ -41,6 +41,7 @@ class UsersController < ApplicationController
   def update_info
     @user = User.find(params[:id])
     @user.update(user_params)
+    flash[:update_info] = "更新成功"
     redirect_to edit_user_registration_path
   end
 
@@ -83,8 +84,8 @@ class UsersController < ApplicationController
   def generate_verification_code
     code      = rand(100000..999999)
     session[params[:cell].to_i] = code
-    msg = "欢迎注册摩尔街账户，您的验证码为#{code},请在注册页面填写【摩尔街】"
-    msg = "你的验证码为#{code}, 请在重置密码页面填写【摩尔街】" if params[:forget_pswd].to_i == 1
+    msg = "欢迎注册摩尔街账户，您的验证码为#{code},请在注册页面填写"
+    msg = "您的验证码为#{code}, 请在重置密码页面填写" if params[:forget_pswd].to_i == 1
     batch_code  = send_sms(code, params[:cell], msg)
 
     if params[:forget_pswd].to_i == 1 && User.find_by(cell: params[:cell])
@@ -189,7 +190,6 @@ class UsersController < ApplicationController
 
     def send_sms(code, cell, msg)
       uri       = URI.parse("http://222.73.117.158:80/msg/HttpBatchSendSM")
-      # msg       = "欢迎注册摩尔街账户，您的验证码为#{code},请在注册页面填写【bull】"
       username  = 'zxnicv'
       password  = 'Txb123456'
       puts "激活码为 #{code}"

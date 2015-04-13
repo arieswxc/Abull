@@ -19,30 +19,41 @@
                 = form_for(resource, as: resource_name, url: update_info_user_path(current_user), html: { method: :put, class: 'sky-form'}) do |f|
                   = devise_error_messages!
                   %dl.dl-horizontal.pl50
+                    .flash_update_info
+                      - if flash[:update_info]
+                        %dt
+                        %dd.zdy-red.ml100.mb30= flash[:update_info]
                     %dt 昵称
                     %dd
                       %section
                         %label.input.w250
-                          %i.icon-append.fa.fa-user
-                          %input{:name => "user[username]", :placeholder => "昵称", :type => "text", :value => "#{current_user.username}"}/
-                          %b.tooltip.tooltip-bottom-right 登录网站所用
+                          = current_user.username
+                          -# %i.icon-append.fa.fa-user
+                          -# %input{:name => "user[username]", :placeholder => "昵称", :type => "text", :value => "#{current_user.username}"}/
+                          -# %b.tooltip.tooltip-bottom-right 登录网站所用
                     %dt 邮箱
                     %dd
                       %section
-                        %label.input.w250
+                        %label.input.w250.edit_profile.hide
                           %i.icon-append.fa.fa-envelope
                           %input{:name => "user[email]", :placeholder => "电子邮箱", :type => "email", :value => "#{current_user.email}"}/
                           %b.tooltip.tooltip-bottom-right 验证账户所用
+                        %label.input.w250.show_profile
+                          = current_user.email
                     %dt 个人简介
                     %dd
                       -# %section
                       -#   %label.input
                       -#     %i.icon-append.fa.fa-user
-                      %textarea.w250{:name => "user[abstract]", :type => "text", :value => "#{current_user.abstract}",:style=>"max-width: 250px;height:200px;"}
+                      %textarea.w250.edit_profile.hide{:name => "user[abstract]", :type => "text", :value => "#{current_user.abstract}",:style=>"max-width: 250px;height:200px;"}
                         = current_user.abstract
-                  .text-center
-                    %button.btn-u.btn-u-default.mr20{:type => "reset"} 取消
+                      %label.input.w250.show_profile
+                        = current_user.abstract
+                  .text-center.edit_profile.hide
+                    %button.btn-u.btn-u-default.mr20.cancel_edit_profile_btn{:type => "button"} 取消
                     %button.btn-u{:type => "submit"} 保存修改
+                  .ml100.show_profile
+                    %button.btn-u.btn-u-default.ml100.edit_profile_btn{:type => "button"} 修改
               #authenticationProfile.tab-pane.fade.mt30.pl30
                 -# %h3 实名认证
                 -# %hr
@@ -175,7 +186,7 @@
                   -#     %input{:type => "text", :readonly => ""}
                   .form-group
                     %label.optional.col-sm-4.control-label
-                      %span 工作
+                      %span= User.human_attribute_name('job')
                     .col-sm-6
                       %input.form-control{:name => "user[job]"}
                   -# = f.input :job
@@ -243,5 +254,15 @@
       $(".birthday_day").attr('rel',birth_day_spl2[2]);
     }
 
-    $.ms_DatePicker('birthday')
+    $.ms_DatePicker('birthday');
+    $(".edit_profile_btn").click(function(){
+      $(".edit_profile").removeClass('hide');
+      $(".show_profile").hide();
+      $(".flash_update_info").hide();
+    });
+    $(".cancel_edit_profile_btn").click(function(){
+      $(".edit_profile").addClass('hide');
+      $(".show_profile").show();
+      // $(".flash_update_info").hide();
+    });
   });

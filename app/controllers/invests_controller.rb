@@ -10,13 +10,13 @@ class InvestsController < ApplicationController
 
   def new
     @fund   = Fund.find(params[:fund_id])
-    invests = @fund.invests
+    invests = @fund.invests.order(date: :desc)
     @total_invest_value = invests.sum(:amount)
     @invests = invests.paginate(:page => params[:page], :per_page => 10)
     @invest = @fund.invests.build()
     @invest.date = Time.now()
     user = User.find(@fund.user_id)
-    
+
     if user.line_csv && user.line_csv.file
       list_data = parse_list_data(user.line_csv.file.current_path)
       @list_array = list_data.last(5).reverse
@@ -26,19 +26,19 @@ class InvestsController < ApplicationController
     @is_invest = false
     @is_invest = @fund.check_user_bid(current_user) if current_user
 
-    
+
     # 判断是非解锁
     @is_unlock = @fund.private_check == 'public' ?  true : false
-    @is_unlock = true if session[@fund.id] or @is_invest 
-     
+    @is_unlock = true if session[@fund.id] or @is_invest
+
     # @flag = true if current_user && @fund.check_user_bid(current_user)
-    
+
     @verify_photos = user.verify_photos
 
-    if @fund.line_csv && @fund.line_csv.file
-      fund_list_data = parse_list_data(@fund.line_csv.file.current_path)
-      @fund_list_array = fund_list_data.last(5).reverse
-    end
+    # if @fund.line_csv && @fund.line_csv.file
+    #   fund_list_data = parse_list_data(@fund.line_csv.file.current_path)
+    #   @fund_list_array = fund_list_data.last(5).reverse
+    # end
     @fund_verify_photos  = @fund.fund_verify_photos
     @check_user_bid = @fund.check_user_bid(current_user).to_s
   end

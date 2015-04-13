@@ -1,8 +1,8 @@
 ActiveAdmin.register Fund do
   permit_params :name, :user_id, :amount, :ending_days, :earning, :expected_earning_rate, :earning_rate, :state, :private_check, :minimum, :invest_starting_date, :invest_ending_date, :description,
     	:frontend_risk_method, :duration, :mandate, :management_fee,
-  		:backend_risk_method, :initial_amount, :created_at, :updated_at, :raised_amount, :genre, :private_code,fund_verify_photos_attributes: [:title, :photo],
-      line_csv_attributes: [:title, :file]
+  		:backend_risk_method, :initial_amount, :created_at, :updated_at, :raised_amount, :genre, :private_code,fund_verify_photos_attributes: [:title, :photo]
+      # line_csv_attributes: [:title, :file]
   index do
     selectable_column
     column :id
@@ -45,7 +45,7 @@ ActiveAdmin.register Fund do
       row :description do
         sanitize(fund.description.truncate(30)) if fund.description
       end
-      row :line_csv
+      # row :line_csv
       row :frontend_risk_method do
         sanitize(fund.frontend_risk_method.truncate(30)) if fund.frontend_risk_method
       end
@@ -185,10 +185,10 @@ ActiveAdmin.register Fund do
           end
         end
       end
-        f.inputs "上传csv文件", for: [:line_csv, f.object.line_csv || CsvFile.new] do |file|
-          file.input :title
-          file.input :file
-        end
+        # f.inputs "上传csv文件", for: [:line_csv, f.object.line_csv || CsvFile.new] do |file|
+        #   file.input :title
+        #   file.input :file
+        # end
       f.actions
   end
 
