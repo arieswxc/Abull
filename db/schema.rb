@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150414055804) do
+ActiveRecord::Schema.define(version: 20150414081031) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -148,29 +148,30 @@ ActiveRecord::Schema.define(version: 20150414055804) do
   add_index "fund_accounts", ["fund_id"], name: "index_fund_accounts_on_fund_id", using: :btree
 
   create_table "funds", force: :cascade do |t|
-    t.string   "name",                  limit: 255
-    t.integer  "user_id",               limit: 4
-    t.decimal  "amount",                              precision: 12, scale: 2
-    t.decimal  "earning",                             precision: 12, scale: 2, default: 0.0
-    t.decimal  "earning_rate",                        precision: 12, scale: 4
-    t.string   "state",                 limit: 255
-    t.string   "private_check",         limit: 255,                            default: "private"
-    t.decimal  "minimum",                             precision: 12, scale: 2
+    t.string   "name",                    limit: 255
+    t.integer  "user_id",                 limit: 4
+    t.decimal  "amount",                                precision: 12, scale: 2
+    t.decimal  "earning",                               precision: 12, scale: 2, default: 0.0
+    t.decimal  "earning_rate",                          precision: 12, scale: 4
+    t.string   "state",                   limit: 255
+    t.string   "private_check",           limit: 255,                            default: "private"
+    t.decimal  "minimum",                               precision: 12, scale: 2
     t.datetime "invest_starting_date"
-    t.datetime "created_at",                                                                       null: false
-    t.datetime "updated_at",                                                                       null: false
-    t.decimal  "expected_earning_rate",               precision: 12, scale: 4
-    t.text     "description",           limit: 65535
-    t.text     "frontend_risk_method",  limit: 65535
-    t.decimal  "initial_amount",                      precision: 12, scale: 2
-    t.text     "backend_risk_method",   limit: 65535
-    t.integer  "homs_account",          limit: 4
-    t.integer  "duration",              limit: 4
-    t.string   "genre",                 limit: 255
-    t.boolean  "mandate",               limit: 1
-    t.integer  "ending_days",           limit: 4
-    t.integer  "private_code",          limit: 4
-    t.decimal  "management_fee",                      precision: 10,           default: 0
+    t.datetime "created_at",                                                                         null: false
+    t.datetime "updated_at",                                                                         null: false
+    t.decimal  "expected_earning_rate",                 precision: 12, scale: 4
+    t.text     "description",             limit: 65535
+    t.text     "frontend_risk_method",    limit: 65535
+    t.decimal  "initial_amount",                        precision: 12, scale: 2
+    t.text     "backend_risk_method",     limit: 65535
+    t.integer  "homs_account",            limit: 4
+    t.integer  "duration",                limit: 4
+    t.string   "genre",                   limit: 255
+    t.boolean  "mandate",                 limit: 1
+    t.integer  "ending_days",             limit: 4
+    t.integer  "private_code",            limit: 4
+    t.decimal  "management_fee",                        precision: 10,           default: 0
+    t.string   "additional_instructions", limit: 255
   end
 
   add_index "funds", ["user_id"], name: "index_funds_on_user_id", using: :btree
