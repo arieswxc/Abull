@@ -114,6 +114,13 @@
             \（30到300字）
           %br
           = f.cktext_area :frontend_risk_method, :cols => 40, :ckeditor => {:uiColor => '#ededed', :toolbar => 'mini', :maxLength => '300'},:minlength => "30", :maxlength => "300",:tooltip => "请填写30字到300字"
+      .form-group.text-center
+        .col-sm-2
+        .col-sm-8
+          %label.fs18
+            = Fund.human_attribute_name('additional_instructions')
+          %br
+          = f.cktext_area :additional_instructions, :cols => 40, :ckeditor => {:uiColor => '#ededed', :toolbar => 'mini'}
     = f.input :earning, as: :hidden
     = f.input :earning_rate, as: :hidden
     = f.input :initial_amount, as: :hidden

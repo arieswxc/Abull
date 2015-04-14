@@ -52,6 +52,9 @@ ActiveAdmin.register Fund do
       row :backend_risk_method do
         sanitize(fund.backend_risk_method.truncate(30)) if fund.backend_risk_method
       end
+      row :additional_instructions do
+        sanitize(fund.additional_instructions.truncate(30)) if fund.additional_instructions
+      end
       row :management_fee
     end
 
@@ -127,7 +130,7 @@ ActiveAdmin.register Fund do
           link_to_if (fund.state == "gathering"), t('强制完成募集'), confirm_fund_admin_fund_path(fund), :method => :put, :class => 'button'
         end
         row t('money_returned'), :state do
-          
+
         end
         row t('reached'), :state do |fund|
           link_to_if (fund.state == "reached"), t('open_homs'), confirm_fund_admin_fund_path(fund), :method => :put, :class => 'button'
@@ -171,6 +174,7 @@ ActiveAdmin.register Fund do
         f.input :description, as: :wysihtml5
         f.input :frontend_risk_method, as: :wysihtml5
         f.input :backend_risk_method, as: :wysihtml5
+        f.input :additional_instructions, as: :wysihtml5
         f.input :initial_amount
         f.input :mandate, as: :select, collection: [ 'true', 'false' ]
         f.input :minimum
@@ -333,7 +337,7 @@ ActiveAdmin.register Fund do
             homs_account.save!
             funder_account.save!
           end
-        rescue Exception => e          
+        rescue Exception => e
         end
       end
 
@@ -359,7 +363,7 @@ ActiveAdmin.register Fund do
             billing_in.confirm
             billing_out.save
             billing_out.confirm
-          end  
+          end
         rescue Exception => e
         end
       end

@@ -75,7 +75,7 @@ class FundsController < ApplicationController
         :private_check, :minimum, :invest_starting_date,
         :duration, :expected_earning_rate, :description,
         :frontend_risk_method, :backend_risk_method, :homs_account,
-        :initial_amount, :state, :management_fee)
+        :initial_amount, :state, :management_fee, :additional_instructions)
     end
 
     def generate_private_code
