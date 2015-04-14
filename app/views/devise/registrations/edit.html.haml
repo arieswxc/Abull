@@ -43,11 +43,12 @@
                           %b.tooltip.tooltip-bottom-right 验证账户所用
                       %label.input.show_profile
                         = current_user.email
-                        - if current_user.active_email != "active"
-                          %span.label.label-default.inline-block.mr40 未验证
-                          %a.btn-u.btn-u-yellow#verify_email{href: "javascript:;"} 发送验证邮件
-                        - else
-                          %span.label.label-yellow.inline-block 已验证
+                        - if current_user.email != ""
+                          - if current_user.active_email != "active"
+                            %span.label.label-default.inline-block.mr40 未验证
+                            %a.btn-u.btn-u-yellow#verify_email{href: "javascript:;"} 发送验证邮件
+                          - else
+                            %span.label.label-yellow.inline-block 已验证
                   .form-group.optional
                     %label.optional.col-sm-4.control-label
                       %span
@@ -106,15 +107,17 @@
                     .form-group.optional
                       %label.optional.col-sm-4.control-label
                         %span{:name => "user[identity_photos_attributes][#{photo_form.index}][title]", :value => "#{photo_form.object.title}"}= photo_form.object.title
-                      .col-sm-6
-                        %label.input.input-file
-                          .button
-                            %input{:type =>"file", :name =>"user[identity_photos_attributes][#{photo_form.index}][photo]", :multiple => "", :onchange => "this.parentNode.nextElementSibling.value = this.value", :accept => "image/*"} 浏览
-                          %input{:type => "text", :readonly => ""}
+                      - if current_user.level == 'unverified' && current_user.level == 'investor_applied'
+                        .col-sm-6
+                          %label.input.input-file
+                            .button
+                              %input{:type =>"file", :name =>"user[identity_photos_attributes][#{photo_form.index}][photo]", :multiple => "", :onchange => "this.parentNode.nextElementSibling.value = this.value", :accept => "image/*"} 浏览
+                            %input{:type => "text", :readonly => ""}
                     .text-center.w140.margin-auto
                       = image_tag current_user.identity_photos[photo_form.index].photo.url,class: "img-thumbnail img-rounded #{'w140' if !current_user.identity_photos[photo_form.index].photo.blank?}"
-                  .text-center
-                    = f.button :submit,class: "btn-u btn-u-red"
+                  - if current_user.level == 'unverified' && current_user.level == 'investor_applied'
+                    .text-center
+                      = f.button :submit,class: "btn-u btn-u-red"
               #fabiao.tab-pane.fade.mt30
                 -# %h3 发表人审核
                 -# %hr
@@ -136,75 +139,93 @@
                   .form-group
                     %label.col-sm-4.control-label 生日
                     .col-sm-6
-                      .birthday
-                        %input#birthday{:name => "user[birthday]",:class => "birthday_input", :type => "hidden", :value => current_user.birthday}/
-                        .w100.inline-block
-                          .select
-                            %select{:class => "birthday_year",:rel => "1990", :type => "text"}
-                            %i
-                        .w100.inline-block
-                          .select
-                            %select{:class => "birthday_month",:rel => "2", :type => "text"}
-                            %i
-                        .w100.inline-block
-                          .select
-                            %select{:class => "birthday_day",:rel => "14", :type => "text"}
-                            %i
+                      - if current_user.level != 'trader'
+                        .birthday
+                          %input#birthday{:name => "user[birthday]",:class => "birthday_input", :type => "hidden", :value => current_user.birthday}/
+                          .w100.inline-block
+                            .select
+                              %select{:class => "birthday_year",:rel => "1990", :type => "text"}
+                              %i
+                          .w100.inline-block
+                            .select
+                              %select{:class => "birthday_month",:rel => "2", :type => "text"}
+                              %i
+                          .w100.inline-block
+                            .select
+                              %select{:class => "birthday_day",:rel => "14", :type => "text"}
+                              %i
+                      - else
+                        .formattime.mt5= current_user.birthday
                   .form-group.select
                     %label.optional.col-sm-4.control-label
                       %span 性别
                     .col-sm-6
-                      %select.form-control{name: "user[gender]", id: "user_gender", :value => "#{current_user.gender}"}
-                        - ['male','female'].each do |sg|
-                          - if(sg == current_user.gender)
-                            %option{:value => sg, :selected => 'selected'}= t(sg)
-                          - else
-                            %option{:value => sg}= t(sg)
+                      - if current_user.level != 'trader'
+                        %select.form-control{name: "user[gender]", id: "user_gender", :value => "#{current_user.gender}"}
+                          - ['male','female'].each do |sg|
+                            - if(sg == current_user.gender)
+                              %option{:value => sg, :selected => 'selected'}= t(sg)
+                            - else
+                              %option{:value => sg}= t(sg)
+                      - else
+                        .formattime.mt5= t(current_user.gender)
                   -# = f.input :gender, collection: [[t(:male),:male], [t(:female),:female]],include_blank: false
                   .form-group
                     %label.optional.col-sm-4.control-label
                       %span 学历
                     .col-sm-6
-                      %input.form-control{:name => "user[education]",:value => current_user.education}
+                      - if current_user.level != 'trader'
+                        %input.form-control{:name => "user[education]",:value => current_user.education}
+                      - else
+                        .formattime.mt5= current_user.education
                   -# = f.input :education
                   .user_education.form-group.optional
                     %label.string.optional.col-sm-4.control-label
                       %span{:name => "user[education_photo_attributes][title]", :value => "(学历图片证明)"}
                         (学历图片证明)
-                    %label.input.input-file.col-sm-6.state-success
-                      .button
-                        %input{:type => "file", :name =>"user[education_photo_attributes][photo]", :onchange => "this.parentNode.nextElementSibling.value = this.value", :accept => "image/*"}
-                        %span
-                          浏览
-                      %input{:type => "text", :readonly => ""}
+                    - if current_user.level != 'trader'
+                      %label.input.input-file.col-sm-6.state-success
+                        .button
+                          %input{:type => "file", :name =>"user[education_photo_attributes][photo]", :onchange => "this.parentNode.nextElementSibling.value = this.value", :accept => "image/*"}
+                          %span
+                            浏览
+                        %input{:type => "text", :readonly => ""}
                     .text-center.w140.margin-auto
                       = image_tag current_user.education_photo.photo.url,class: "img-thumbnail img-rounded #{'w140' unless current_user.education_photo.photo.blank?}"
                   .form-group
                     %label.optional.col-sm-4.control-label
                       %span 住址
                     .col-sm-6
-                      %input.form-control{:name => "user[address]",:value => current_user.address}
+                      - if current_user.level != 'trader'
+                        %input.form-control{:name => "user[address]",:value => current_user.address}
+                      - else
+                        .formattime.mt5= current_user.address
                   -# = f.input :address
                   .user_address.form-group.optional
                     %label.string.optional.col-sm-4.control-label
                       %span{:name => "user[address_photo_attributes][title]", :value => "(住址图片证明)"}
                         (住址图片证明)
-                    %label.input.input-file.col-sm-6.state-success
-                      .button
-                        %input#address_photo{:type => "file", :name => "user[address_photo_attributes][photo]", :onchange => "this.parentNode.nextElementSibling.value =this.value", :accept => "image/*"}
-                        %span
-                          浏览
-                      %input{:type => "text", :readonly => ""}
+                    - if current_user.level != 'trader'
+                      %label.input.input-file.col-sm-6.state-success
+                        .button
+                          %input#address_photo{:type => "file", :name => "user[address_photo_attributes][photo]", :onchange => "this.parentNode.nextElementSibling.value =this.value", :accept => "image/*"}
+                          %span
+                            浏览
+                        %input{:type => "text", :readonly => ""}
                     .text-center.w140.margin-auto
                       = image_tag current_user.address_photo.photo.url,class: "img-thumbnail img-rounded #{'w140' unless current_user.address_photo.photo.blank?}"
                   .form-group
                     %label.optional.col-sm-4.control-label
                       %span= User.human_attribute_name('job')
                     .col-sm-6
-                      %input.form-control{:name => "user[job]",:value => current_user.job}
+                      - if current_user.level != 'trader'
+                        %input.form-control{:name => "user[job]",:value => current_user.job}
+                      - else
+                        .formattime.mt5= current_user.job
                   -# = f.input :job
-                  .text-center
-                    = f.button :submit,class: "btn-u btn-u-red"
+                  - if current_user.level != 'trader'
+                    .text-center
+                      = f.button :submit,class: "btn-u btn-u-red"
               #editPassword.tab-pane.fade.mt30
                 = form_for(@user, :url => reset_password_users_path, |
                   html: { class: 'form-horizontal sky-form'},         |
@@ -260,8 +281,8 @@
     if (ptn.test(window.location.href)) {
       $("#pg-account-index .tab-v1 ul.nav.nav-tabs li:nth-child(4) a").tab('show');
     }
-    console.log("#{current_user.birthday}");
-    var birth_day = $("#birthday").val();
+    var birth_day_str = "#{current_user.birthday}";
+    var birth_day = birth_day_str;
     var birth_day_spl1 = birth_day.split('-');
     var birth_day_spl2 = birth_day.split('/');
     if (birth_day_spl1.length === 3){
