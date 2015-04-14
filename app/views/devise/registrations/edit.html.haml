@@ -115,7 +115,7 @@
                             %input{:type => "text", :readonly => ""}
                     .text-center.w140.margin-auto
                       = image_tag current_user.identity_photos[photo_form.index].photo.url,class: "img-thumbnail img-rounded #{'w140' if !current_user.identity_photos[photo_form.index].photo.blank?}"
-                  - if current_user.level == 'unverified' && current_user.level == 'investor_applied'
+                  - if current_user.level == 'unverified' || current_user.level == 'investor_applied'
                     .text-center
                       = f.button :submit,class: "btn-u btn-u-red"
               #fabiao.tab-pane.fade.mt30
