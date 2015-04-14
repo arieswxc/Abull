@@ -18,10 +18,15 @@ class User < ActiveRecord::Base
   has_one :bank_card,     dependent: :destroy
   has_many :verify_photos, -> { where photo_type: "verify_photo" }, :class_name => "Photo", as: :imageable, dependent: :destroy
   has_many :identity_photos, -> { where photo_type: "identity_photo" }, :class_name => "Photo", as: :imageable, dependent: :destroy
+  has_one :address_photo, -> { where photo_type: "address_photo" }, :class_name => "Photo", as: :imageable, dependent: :destroy
+  has_one :education_photo, -> { where photo_type: "education_photo" }, :class_name => "Photo", as: :imageable, dependent: :destroy
+
   has_one :line_csv, :class_name => "CsvFile", as: :data_file, dependent: :destroy
 
   accepts_nested_attributes_for :verify_photos, allow_destroy: true, :reject_if => proc { |attributes| attributes["photo"].blank? }
   accepts_nested_attributes_for :identity_photos, allow_destroy: true
+  accepts_nested_attributes_for :address_photo, allow_destroy: true, :reject_if => proc { |attributes| attributes["photo"].blank? }
+  accepts_nested_attributes_for :education_photo, allow_destroy: true, :reject_if => proc { |attributes| attributes["photo"].blank? }
   accepts_nested_attributes_for :line_csv, allow_destroy: true, :reject_if => proc { |attributes| attributes["file"].blank? }
 
   acts_as_followable

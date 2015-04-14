@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150413032144) do
+ActiveRecord::Schema.define(version: 20150414055804) do
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "user_id",    limit: 4
@@ -300,8 +300,6 @@ ActiveRecord::Schema.define(version: 20150413032144) do
     t.string   "address",                limit: 255
     t.string   "job",                    limit: 255
     t.string   "verify_file",            limit: 255
-    t.string   "address_photo",          limit: 255
-    t.string   "education_photo",        limit: 255
     t.string   "active_email",           limit: 255
     t.string   "email_code",             limit: 255
   end
