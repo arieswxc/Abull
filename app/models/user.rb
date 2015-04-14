@@ -25,8 +25,8 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :verify_photos, allow_destroy: true, :reject_if => proc { |attributes| attributes["photo"].blank? }
   accepts_nested_attributes_for :identity_photos, allow_destroy: true
-  accepts_nested_attributes_for :address_photo, allow_destroy: true, :reject_if => proc { |attributes| attributes["photo"].blank? }
-  accepts_nested_attributes_for :education_photo, allow_destroy: true, :reject_if => proc { |attributes| attributes["photo"].blank? }
+  accepts_nested_attributes_for :address_photo, allow_destroy: true
+  accepts_nested_attributes_for :education_photo, allow_destroy: true
   accepts_nested_attributes_for :line_csv, allow_destroy: true, :reject_if => proc { |attributes| attributes["file"].blank? }
 
   acts_as_followable

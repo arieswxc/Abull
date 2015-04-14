@@ -1,6 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   after_filter :add_account
-  after_filter :add_three_photos
+  after_filter :add_three_photos, :only => [:create]
 
   def create
     if session[params[:user][:cell].to_i] != params[:verification_code].to_i

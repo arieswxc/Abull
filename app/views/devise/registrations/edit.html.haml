@@ -167,13 +167,14 @@
                     .col-sm-6
                       %input.form-control{:name => "user[education]",:value => current_user.education}
                   -# = f.input :education
+
                   .user_education.form-group.optional
                     %label.string.optional.col-sm-4.control-label
-                      %span
+                      %span{:name => "user[education_photo_attributes][title]", :value => "(学历图片证明)"}
                         (学历图片证明)
                     %label.input.input-file.col-sm-6.state-success
                       .button
-                        %input{:type => "file",:name =>"user[education_photo_attributes][photo]", :onchange => "this.parentNode.nextElementSibling.value = this.value", :accept => "image/*"}
+                        %input{:type => "file", :name =>"user[education_photo_attributes][photo]", :onchange => "this.parentNode.nextElementSibling.value = this.value", :accept => "image/*"}
                         %span
                           浏览
                       %input{:type => "text", :readonly => ""}
@@ -187,11 +188,11 @@
                   -# = f.input :address
                   .user_address.form-group.optional
                     %label.string.optional.col-sm-4.control-label
-                      %span
+                      %span{:name => "user[address_photo_attributes][title]", :value => "(住址图片证明)"}
                         (住址图片证明)
                     %label.input.input-file.col-sm-6.state-success
                       .button
-                        %input#address_photo{:type => "file", :name => "user[address_photo_attributes][photo]", :onchange => "this.parentNode.nextElementSibling.value =this.value", :value => "this.parentNode.nextElementSibling.value =this.value"}
+                        %input#address_photo{:type => "file", :name => "user[address_photo_attributes][photo]", :onchange => "this.parentNode.nextElementSibling.value =this.value", :accept => "image/*"}
                         %span
                           浏览
                       %input{:type => "text", :readonly => ""}
