@@ -14,4 +14,14 @@ ActiveAdmin.register HomsAccount do
     end
     actions
   end
+
+    form do |f|
+      f.inputs do
+        f.input :fund
+        f.input :title
+        f.input :password, as: :string
+        f.input :amount
+      f.actions
+    end
+  end
 end
