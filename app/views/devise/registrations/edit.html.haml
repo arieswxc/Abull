@@ -177,6 +177,8 @@
                         %span
                           浏览
                       %input{:type => "text", :readonly => ""}
+                    .text-center.w140.margin-auto
+                      = image_tag current_user.education_photo.photo.url,class: "img-thumbnail img-rounded #{'w140' unless current_user.education_photo.photo.blank?}"
                   .form-group
                     %label.optional.col-sm-4.control-label
                       %span 住址
@@ -193,6 +195,8 @@
                         %span
                           浏览
                       %input{:type => "text", :readonly => ""}
+                    .text-center.w140.margin-auto
+                      = image_tag current_user.address_photo.photo.url,class: "img-thumbnail img-rounded #{'w140' unless current_user.address_photo.photo.blank?}"
                   .form-group
                     %label.optional.col-sm-4.control-label
                       %span= User.human_attribute_name('job')
