@@ -2,6 +2,7 @@ class BankCard < ActiveRecord::Base
   validates :number,    presence: true
   validates :bank_name, presence: true
   validates :user_id,   presence: true
+  validates :user,      presence: true
   belongs_to :user
 
   state_machine :state, initial: :pending do

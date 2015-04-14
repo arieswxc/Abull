@@ -163,40 +163,40 @@ ActiveAdmin.register Fund do
 
   # page of new and edit
   form do |f|
-      f.inputs do
-        f.input :name
-        f.input :amount
-        f.input :ending_days
-        f.input :earning
-        f.input :earning_rate
-        f.input :private_check
-        f.input :private_code
-        f.input :description, as: :wysihtml5
-        f.input :frontend_risk_method, as: :wysihtml5
-        f.input :backend_risk_method, as: :wysihtml5
-        f.input :additional_instructions, as: :wysihtml5
-        f.input :initial_amount
-        f.input :mandate, as: :select, collection: [ 'true', 'false' ]
-        f.input :minimum
-        f.input :invest_starting_date, as: :datepicker
-        f.input :duration
-        f.input :genre
-        f.input :expected_earning_rate
-        f.input :state, as: :select, collection: ["pending", "applied", "gathering", "reached", "running", "finished", "closed", "denied"]
-        f.input :user_id
-        f.input :management_fee
-        f.inputs "上传证明文件" do
-          f.has_many :fund_verify_photos do |t|
-            t.input :title
-            t.input :photo
-          end
+    f.inputs do
+      f.input :name
+      f.input :amount
+      f.input :ending_days
+      f.input :earning
+      f.input :earning_rate
+      f.input :private_check
+      f.input :private_code
+      f.input :description, as: :wysihtml5
+      f.input :frontend_risk_method, as: :wysihtml5
+      f.input :backend_risk_method, as: :wysihtml5
+      f.input :additional_instructions, as: :wysihtml5
+      f.input :initial_amount
+      f.input :mandate, as: :select, collection: [ 'true', 'false' ]
+      f.input :minimum
+      f.input :invest_starting_date, as: :datepicker
+      f.input :duration
+      f.input :genre
+      f.input :expected_earning_rate
+      f.input :state, as: :select, collection: ["pending", "applied", "gathering", "reached", "running", "finished", "closed", "denied"]
+      f.input :user_id
+      f.input :management_fee
+      f.inputs "上传证明文件" do
+        f.has_many :fund_verify_photos do |t|
+          t.input :title
+          t.input :photo
         end
       end
-        # f.inputs "上传csv文件", for: [:line_csv, f.object.line_csv || CsvFile.new] do |file|
-        #   file.input :title
-        #   file.input :file
-        # end
-      f.actions
+    end
+      # f.inputs "上传csv文件", for: [:line_csv, f.object.line_csv || CsvFile.new] do |file|
+      #   file.input :title
+      #   file.input :file
+      # end
+    f.actions
   end
 
 
