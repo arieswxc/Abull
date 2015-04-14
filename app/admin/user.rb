@@ -150,18 +150,18 @@ ActiveAdmin.register User do
           t.input :_destroy, :as=>:boolean, :required => false, :label=>'Remove'
         end
       end
-      f.inputs "上传地址证明图片" do
-        f.has_many :address_photo do |t|
-          t.input :title
-          t.input :photo, hint: image_tag(t.object.photo.url)
-        end
-      end
-      f.inputs "上传学历证明图片" do
-        f.has_many :education_photo do |t|
-          t.input :title
-          t.input :photo, hint: image_tag(t.object.photo.url)
-        end
-      end
+      # f.inputs "上传地址证明图片" do
+      #   f.has_many :address_photo do |t|
+      #     t.input :title
+      #     t.input :photo, hint: image_tag(t.object.photo.url)
+      #   end
+      # end
+      # f.inputs "上传学历证明图片" do
+      #   f.has_many :education_photo do |t|
+      #     t.input :title
+      #     t.input :photo, hint: image_tag(t.object.photo.url)
+      #   end
+      # end
     end
     f.inputs "上传csv文件", for: [:line_csv, f.object.line_csv || CsvFile.new] do |file|
       file.input :title
