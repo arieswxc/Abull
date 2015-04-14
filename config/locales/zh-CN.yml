@@ -46,6 +46,8 @@ zh-CN:
         education: 学历
         address: 地址
         job: 职业
+        address_photo: 住址证明照片
+        education_photo: 学历证明照片
       fund:
         name: 标名
         amount: 募集数额

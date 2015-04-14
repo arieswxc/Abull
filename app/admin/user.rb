@@ -59,21 +59,19 @@ ActiveAdmin.register User do
       row :current_sign_in_at
       row :sign_in_count
       row :created_at
-      row :address_photo 
-      row :education_photo
     end
 
     panel t('交易员信息认证') do
       attributes_table_for user do
         row :birthday
         row :education
-        row 'education photo' do
-          image_tag(user.education_photo)
+        row '学历认证照片' do
+          image_tag user.education_photo.photo, size: '250x250' if user.education_photo
         end
         row :gender
         row :address
-        row 'Address photo' do
-          image_tag(user.address_photo)
+        row '住址认证照片' do
+          image_tag user.address_photo.photo, size: '250x250' if user.address_photo
         end
         row :job
       end
@@ -157,18 +155,6 @@ ActiveAdmin.register User do
           t.input :_destroy, :as=>:boolean, :required => false, :label=>'Remove'
         end
       end
-      # f.inputs "上传地址证明图片" do
-      #   f.has_many :address_photo do |t|
-      #     t.input :title
-      #     t.input :photo, hint: image_tag(t.object.photo.url)
-      #   end
-      # end
-      # f.inputs "上传学历证明图片" do
-      #   f.has_many :education_photo do |t|
-      #     t.input :title
-      #     t.input :photo, hint: image_tag(t.object.photo.url)
-      #   end
-      # end
     end
     f.inputs "上传csv文件", for: [:line_csv, f.object.line_csv || CsvFile.new] do |file|
       file.input :title
