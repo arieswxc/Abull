@@ -43,11 +43,12 @@
                           %b.tooltip.tooltip-bottom-right 验证账户所用
                       %label.input.show_profile
                         = current_user.email
-                        - if current_user.active_email != "active"
-                          %span.label.label-default.inline-block.mr40 未验证
-                          %a.btn-u.btn-u-yellow#verify_email{href: "javascript:;"} 发送验证邮件
-                        - else
-                          %span.label.label-yellow.inline-block 已验证
+                        - if current_user.email != ""
+                          - if current_user.active_email != "active"
+                            %span.label.label-default.inline-block.mr40 未验证
+                            %a.btn-u.btn-u-yellow#verify_email{href: "javascript:;"} 发送验证邮件
+                          - else
+                            %span.label.label-yellow.inline-block 已验证
                   .form-group.optional
                     %label.optional.col-sm-4.control-label
                       %span
@@ -281,8 +282,8 @@
     if (ptn.test(window.location.href)) {
       $("#pg-account-index .tab-v1 ul.nav.nav-tabs li:nth-child(4) a").tab('show');
     }
-    console.log("#{current_user.birthday}");
-    var birth_day = $("#birthday").val();
+    var birth_day_str = "#{current_user.birthday}";
+    var birth_day = birth_day_str;
     var birth_day_spl1 = birth_day.split('-');
     var birth_day_spl2 = birth_day.split('/');
     if (birth_day_spl1.length === 3){
