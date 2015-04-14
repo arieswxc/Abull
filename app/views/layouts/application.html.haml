@@ -55,31 +55,31 @@
       = yield
       = render "shares/footer"
     / JS Implementing Plugins
-    -# %script{:src => asset_path("plugins/back-to-top.js"), :type => "text/javascript"}
-    -# %script{:src => asset_path("plugins/owl.carousel.js")}
-    -# %script{:src => asset_path("plugins/jquery.mousewheel.js")}
-    -# %script{:src => asset_path("plugins/perfect-scrollbar.js")}
-    -# %script{:src => asset_path("plugins/jquery.parallax.js")}
-    -# %script{:src => asset_path("plugins/jquery.themepunch.tools.min.js")}
-    -# %script{:src => asset_path("plugins/jquery.themepunch.revolution.min.js")}
-    -# %script{:src => asset_path("plugins/moment-with-locales.js")}
-    -# %script{:src => asset_path("plugins/jquery.fancybox.pack.js")}
-    -# %script{:src => asset_path("plugins/fancy-box.js")}
-    -# / JS Customization
-    -# %script{:src => asset_path("custom.js")}
-    -# / JS Page Level
-    -# %script{:src => asset_path("shop.app.js")}
-    -# %script{:src => asset_path("plugins/owl-carousel.js")}
-    -# %script{:src => asset_path("plugins/revolution-slider.js")}
-    -# %script{:src => asset_path("plugins/Chart.min.js")}
-    -# %script{:src => asset_path("plugins/highstock.js")}
-    -# %script{:src => asset_path("plugins/exporting.js")}
-    -#
-    -# %script{:src => asset_path("datefield.js")}
+    %script{:src => asset_path("plugins/back-to-top.js"), :type => "text/javascript"}
+    %script{:src => asset_path("plugins/owl.carousel.js")}
+    %script{:src => asset_path("plugins/jquery.mousewheel.js")}
+    %script{:src => asset_path("plugins/perfect-scrollbar.js")}
+    %script{:src => asset_path("plugins/jquery.parallax.js")}
+    %script{:src => asset_path("plugins/jquery.themepunch.tools.min.js")}
+    %script{:src => asset_path("plugins/jquery.themepunch.revolution.min.js")}
+    %script{:src => asset_path("plugins/moment-with-locales.js")}
+    %script{:src => asset_path("plugins/jquery.fancybox.pack.js")}
+    %script{:src => asset_path("plugins/fancy-box.js")}
+    / JS Customization
+    %script{:src => asset_path("custom.js")}
+    / JS Page Level
+    %script{:src => asset_path("shop.app.js")}
+    %script{:src => asset_path("plugins/owl-carousel.js")}
+    %script{:src => asset_path("plugins/revolution-slider.js")}
+    %script{:src => asset_path("plugins/Chart.min.js")}
+    %script{:src => asset_path("plugins/highstock.js")}
+    %script{:src => asset_path("plugins/exporting.js")}
+
+    %script{:src => asset_path("datefield.js")}
 
 
     / JS Page Level
-    -# %script{:src => asset_path("common.js")}
+    %script{:src => asset_path("common.js")}
     :javascript
       jQuery(document).ready(function() {
         App.init();
