@@ -61,6 +61,22 @@ ActiveAdmin.register User do
       row :created_at
     end
 
+    panel t('交易员信息认证') do
+      attributes_table_for user do
+        row :birthday
+        row :education
+        row 'education photo' do
+          image_tag(user.education_photo)
+        end
+        row :gender
+        row :address
+        row 'Address photo' do
+          image_tag(user.address_photo)
+        end
+        row :job
+      end
+    end
+
     panel t('用户身份认证') do 
       attributes_table_for user do
         row :real_name
@@ -71,25 +87,7 @@ ActiveAdmin.register User do
         end
       end
     end
-    panel t('证明文件照片') do
-      table_for user.verify_photos do |f| 
-        column "标题", :title
-        column "照片" do |f|
-          image_tag f.photo, width:400, height:400
-        end
-      end
-    end
 
-    panel t('交易员信息认证') do
-      attributes_table_for user do
-        row :birthday
-        row :education
-        row :gender
-        row :address
-        row :job
-      end
-    end
-      
     panel '用户投标历史' do
       table_for user.invests do
         column "标名" do |i|
@@ -110,6 +108,15 @@ ActiveAdmin.register User do
         column "状态", :state
         column "投资开始日期", :invest_starting_date
         column "持续月份", :duration
+      end
+    end
+
+    panel t('证明文件照片') do
+      table_for user.verify_photos do |f| 
+        column "标题", :title
+        column "照片" do |f|
+          image_tag f.photo, width:150, height:150
+        end
       end
     end
   end
