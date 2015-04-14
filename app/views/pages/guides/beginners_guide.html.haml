@@ -1,6 +1,6 @@
-.container.content
-  .guide_header
-    = image_tag "guide/guide_header.png",width:"100%"
+.container.content.mt40
+  -# .guide_header
+  -#   = image_tag "guide/guide_header.png",width:"100%"
   .tab-v2.guide_tab
     %div.text-center
       %ul.nav.nav-tabs
@@ -10,20 +10,170 @@
           %a{"data-toggle" => "tab", :href => "#guide_fund"} 我要操盘
         %li
           %a{"data-toggle" => "tab", :href => "#guide_secure"} 安全保障
-    .tab-content.text-center.relative
+    .tab-content.relative
       #guide_invest.tab-pane.fade.active.in
         .mt20
-          = image_tag "guide/guide_invest.png",width:"100%"
-          = link_to("立即注册",new_user_registration_path,class: "btn-u btn-u-red reg",rel: "nofollow")
-          %p 1分钟成为摩尔街会员，轻松开始理财
+          .guide_item_box
+            .guide_header
+              = image_tag "guide/guide_molstr.png"
+            .guide_content
+              .row
+                .col-md-12
+                  .col-md-6.mt40
+                    %label.bold.fs20 摩尔街
+                    是证津集团旗下的专注于证券投资信息服务的互联网金融平台，秉承互联网普惠精神，着力推动证券投资信息交流定制化，社区化，解决投资者与民间操盘手互相难以发现的信息难题，使二者成功对接，并享受到摩尔街的行政人服务。最终使投资者投资更理性、更专业，同时培养出优秀的私募基金经理人，让证券市场机构化健康发展。
+                  .col-md-6
+                    = image_tag 'guide/guide_molstr_1.png',width:"100%"
+          .guide_item_box
+            .guide_header
+              = image_tag "guide/guide_molstr_why.png"
+            .guide_content
+              .row
+                .col-md-12.mt40
+                  .col-xs-3
+                    = image_tag 'guide/guide_molstr_new.png',width:"100%"
+                  .col-xs-9
+                    %h3 模式创新
+                    %p 摩尔街首创的互联网委托操盘模式解决了优秀操盘手与投资客户信息不对称的难题，在摩尔街，您可以寻觅到适合您风险偏好的操盘手，了解他的操作思路，委托其操作您的证券账户，在整个操作期间，您可以实时看到操盘手每一笔操作的交易流水以及可以与其实时沟通等，正真享受到完全透明、真实、高效的专属理财服务。
+              .row
+                .col-md-12.mt40
+                  .col-xs-9
+                    %h3 严格风控
+                    %p  摩尔街有严格的风控体系和先进的风控技术，能做到对委托账户资金状况的实时监控，能防止操盘手的道德风险，能限制操盘手高风险的操作，也能在发生亏损时最大限度的保护您的利益。
+                  .col-xs-3
+                    = image_tag 'guide/guide_molstr_aq.png',width:"100%"
+              .row
+                .col-md-12.mt40
+                  .col-xs-3
+                    = image_tag 'guide/guide_molstr_jd.png',width:"100%"
+                  .col-xs-9
+                    %h3 高收益、低风险
+                    %p 委托操盘账户的净值一般不得低于0.75-0.8，触及该条规则，操盘账户将会被限制买入和强制平仓，所以您委托给操盘手的账户最多只会有损失20-25%的风险，以20%的风险换取高达200%甚至300%的收益，可谓小风险大收益，您可以按照您的风险偏好选择委托量，合理配置您的资产，加速您的财富增值。
+              .row
+                .col-md-12.mt40
+                  .col-xs-9
+                    %h3 投资简单
+                    %p  您只要在摩尔街注册，确保自己不是证券市场禁入者，然后进行实名认证或充值即可，摩尔街会将您的资金划入摩尔街名下专属于您的一个证券账户并分配给操盘手操作，相比上百万起投的私募基金，摩尔街的委托操盘您可以100元起委托，简单又方便。
+                  .col-xs-3
+                    = image_tag 'guide/guide_molstr_circle.png',width:"100%"
+          .guide_item_box
+            .guide_header
+              = image_tag "guide/guide_molstr_how_invest.png"
+            .guide_content
+              .row
+                .col-md-12
+                  .col-md-7
+                    %h3 摩尔街投资步骤：
+                    %h4 第一步：
+                    %p &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;登陆www.molstr.com，点击注册成为摩尔街的注册会员；
+                    %h4 第二步：
+                    %p &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;完成实名认证；
+                    %h4 第三步：
+                    %p &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;账户充值；
+                    %h4 第四步：
+                    %p &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点击“我要投资”完成操盘委托。
+                  .col-md-5
+                    = image_tag "guide/guide_molstr_lc_tz.png",width:"100%"
+          -# = image_tag "guide/guide_invest.png",width:"100%"
+          - unless user_signed_in?
+            .text-center
+              = link_to("立即注册",new_user_registration_path,class: "btn-u btn-u-red reg",rel: "nofollow")
+              %p.fs20 1分钟成为摩尔街会员，轻松开始理财
       #guide_fund.tab-pane.fade
         .mt20
-          = image_tag "guide/guide_funder.png",width:"100%"
-          = link_to("立即注册",new_user_registration_path,class: "btn-u btn-u-red reg",rel: "nofollow")
-          %p 1分钟成为摩尔街会员，轻松开始理财
+          .guide_item_box
+            .guide_header
+              = image_tag "guide/guide_molstr.png"
+            .guide_content
+              .row
+                .col-md-12
+                  .col-md-6
+                    = image_tag 'guide/guide_molstr_1.png',width:"100%"
+                  .col-md-6.mt40
+                    %label.bold.fs20 摩尔街
+                    是证津集团旗下的专注于证券投资信息服务的互联网金融平台，秉承互联网普惠精神，着力推动证券投资信息交流定制化，社区化，解决投资者与民间操盘手互相难以发现的信息难题，使二者成功对接，并享受到摩尔街的行政人服务。最终使投资者投资更理性、更专业，同时培养出优秀的私募基金经理人，让证券市场机构化健康发展。
+          .guide_item_box
+            .guide_header
+              = image_tag "guide/guide_title_1.png"
+            .guide_content
+              .text-center.mb40
+                = image_tag "guide/guide_molstr_2.png",width:"80%"
+              %h3 1. 受托操盘无须劣后资金，不承担风险
+              %p.p20.pt0 用户如果是证券投资高手，那么可以作为受托人，接受其他用户的委托，对他人的证券账户进行操作，实现超额盈利后，双方在摩尔街的见证下就盈利部分协议分成。您只向中介方摩尔街缴纳少量履约保证金即可，不需要以自有资金作为劣后资金充入受托操盘账户内，不承担交易风险，而对超额收益部分您可以提取部分费用，所以，摩尔街是您施展才华的，名利双收的不二选择。 
+              %h3 2. 创新推出股票配资
+              %p.p20.pt0 如果用户自有资金不能满足暂时的投资需求，可以通过摩尔街平台发布借款信息，其他用户在摩尔街的见证下将自有闲散资金出借给借款用户，借款用户到期还本付息，超额盈利归自己所有。
+              %h3 3. 投资交流让你快速成长
+              %p.p20.pt0 用户对某个股票、经济形势、证券市场等有独到见解或者有长期的投资心得，可以通过摩尔街与其他用户分享交流，互相学习，增长投资知识、获得投资技巧。摩尔街会定期邀请知名券商研究所的研究员第一时间对当下市场进行研究分析，并第一时间对用户分享研究报告，让用户第一时间获得最有用的信息。
+          .guide_item_box
+            .guide_header
+              = image_tag "guide/guide_molstr_how.png"
+            .guide_content
+              .row
+                .col-md-12
+                  .col-md-7
+                    %h3 摩尔街投资步骤：
+                    %h4 第一步：
+                    %p &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;登陆www.molstr.com，点击注册成为摩尔街的注册会员；
+                    %h4 第二步：
+                    %p &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;完成实名认证和操盘手认证；
+                    %h4 第三步：
+                    %p &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点击“我要操盘”完成信息输入，提交后台审核；
+                    %h4 第四步：
+                    %p &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;审核通过，受托信息发布,开始操盘。
+                  .col-md-5
+                    = image_tag "guide/guide_molstr_lc.png",width:"100%"
+          -# = image_tag "guide/guide_funder.png",width:"100%"
+          - unless user_signed_in?
+            .text-center
+              = link_to("立即注册",new_user_registration_path,class: "btn-u btn-u-red reg",rel: "nofollow")
+              %p.fs20 1分钟成为摩尔街会员，轻松开始理财
       #guide_secure.tab-pane.fade
         .mt20
-          = image_tag "guide/guide_secure.png",width:"100%"
+          .guide_item_box
+            .guide_header
+              = image_tag "guide/guide_aq_grxx.png"
+            .guide_content
+              %h3 最先进的IT技术
+              %p 摩尔街网站采用当下最先进的IT技术，保障客户信息数据库安全，对客户信息访问设置最高级别权限，并与客户签订信息保密协议，非客户本人授权，任何人不能获取客户信息。（国家司法、执法机关可依据相关法律、法规合理查询）
+              %h3 强大的网站安全监测系统与团队
+              %p 摩尔街网站具有强大的网站安全监测系统与团队，对每一步操作指令做高度加密处理，防止未授权和非正常访问，杜绝信息安全隐患。同时，摩尔街网站还会不断改进安全策略适应发展需要，以保证用户信息的绝对安全。
+          .guide_item_box
+            .guide_header
+              = image_tag "guide/guide_aq_tzzj.png"
+            .guide_content
+              %h3 支付安全
+              %p 摩尔街与国内领先的第三方支付公司“贝付”达成战略合作协议，由贝付提供资金支付，存管等一揽子解决方案，保证用户资金支付渠道通畅安全。（贝付：浙江省第二大获得中国人民银行颁发的《支付业务许可证》的第三方支付公司，公司于2011年6月成立，总部设于杭州，目前在北京、上海、金华等地设立分支机构，目前超过5000万用户，年交易量超过100亿。）
+              %h3 托管安全
+              %p
+                %label.bold A:
+                摩尔街用户资金划转完全由战略合作伙伴“招商银行”存管，没有用户与划拨方协议共同授权，资金无法划拨，从根源解决了用户资金被挪用，划拨等违规操作问题，保障用户资金安全。
+              %p
+                %label.bold B:
+                用户委托账户由摩尔街战略合作券商监管，由委托方与受委托方双方协议授权，并发出“解除银证转账冻结”指令，操作方才可进行出入金操作，多重制约，保障了资金安全与证券账户安全。
+              %h3 风控安全
+              %p 摩尔街拥有专业的风控团队，建立了完善的风控策略，对用户委托的账户操作进行实时监控，能做到冻结操作权限，一键平仓以及高风险仓位与头寸限制等一系列风控措施，能严格保护用户的委托投资权益。
+          .guide_item_box
+            .guide_header
+              = image_tag "guide/guide_aq_czlc.png"
+            .guide_content
+              %p 摩尔街用户在摩尔街网站平台进行的所有操作，除非用户授权或国家司法执法机构依法查询，否则任何人无权查看。
+          .guide_item_box
+            .guide_header
+              = image_tag "guide/guide_aq_fxbz.png"
+            .guide_content
+              %p 摩尔街为保障用户权益，在每一笔超过25%盈利的委托操作中收取盈利部分的1.5%作为风险准备金，并存入专用账户。如果有发生不可预知的风险（如股票长期停牌、交易系统技术故障）导致用户损失超出协定部分，则摩尔街启动风险准备金赔付计划，对超出部分进行按比例赔付。（风险赔付金计划详见网站公示）
+          .guide_item_box
+            .guide_header
+              = image_tag "guide/guide_aq_zwaq.png"
+            .guide_content
+              %p 1.摩尔街用户为了保障自身权益，在注册认证后应妥善保管账号、密码以及个人身份证信息；
+              %p 2.进行资金支付，账号输入时应选择非公共开放网络，及时清理上网浏览痕迹数据等，保证自身信息、资金安全。
+              %p 3.避免线下交易无交易数据可据可查，给自身带来不必要的损失与潜在安全风险。
 
+          -# = image_tag "guide/guide_secure.png",width:"100%"
+          - unless user_signed_in?
+            .text-center
+              = link_to("立即注册",new_user_registration_path,class: "btn-u btn-u-red reg",rel: "nofollow")
+              %p.fs20 1分钟成为摩尔街会员，轻松开始理财
 -# why
 - @navItem = 'guide'

@@ -154,6 +154,10 @@
 
     //输入检查
     $('#submit').bind('click',function(){
+      if (parseInt($("input[name='fund[management_fee]']").val()) > 100) {
+        alert("您填写的受托管理费请不要大于100%");
+        return;
+      }
       check_val($("input[name='fund[amount]'],input[name='fund[expected_earning_rate]'],input[name='fund[management_fee]']"));
       check_cke_length($("textarea[name='fund[description]'],textarea[name='fund[frontend_risk_method]']"));
 
