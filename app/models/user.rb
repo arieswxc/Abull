@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   validates :password, format: { with: /(?=.*[a-z])(?=.*\d)/i}, :on => :create
   validates :cell, presence: true
   validates :cell, uniqueness: true
+  validates :username, uniqueness: true
   mount_uploader :avatar, AvatarUploader
   has_many :funds,        dependent: :destroy
   has_many :invests,      dependent: :destroy
