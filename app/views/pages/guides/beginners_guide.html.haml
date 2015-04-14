@@ -171,6 +171,9 @@
               %p 3.避免线下交易无交易数据可据可查，给自身带来不必要的损失与潜在安全风险。
 
           -# = image_tag "guide/guide_secure.png",width:"100%"
-
+          - unless user_signed_in?
+            .text-center
+              = link_to("立即注册",new_user_registration_path,class: "btn-u btn-u-red reg",rel: "nofollow")
+              %p.fs20 1分钟成为摩尔街会员，轻松开始理财
 -# why
 - @navItem = 'guide'
