@@ -2,7 +2,7 @@ include ApplicationHelper
 ActiveAdmin.register User do
   permit_params :email, :password, :password_confirmation, :username, :real_name, :avatar, :cell, :id_card_number, :abstract, :level,
                 :account, :birthday, :verify_file, :line_csv, :gender, :education, :address,:job, verify_photos_attributes: [:title, :photo], 
-                line_csv_attributes: [:title, :file]
+                line_csv_attributes: [:title, :file], address_photo_attributes: [:title, :file], education_photo_attributes: [:title, :file]
  
   index do
     selectable_column
@@ -59,6 +59,8 @@ ActiveAdmin.register User do
       row :current_sign_in_at
       row :sign_in_count
       row :created_at
+      row :address_photo 
+      row :education_photo
     end
 
     panel t('交易员信息认证') do
@@ -83,7 +85,6 @@ ActiveAdmin.register User do
         row :id_card_number
         user.identity_photos.each do |p|
           row("#{p.title}") { link_to image_tag(p.photo, width:400, height:400), p.photo.url }    
-          # row("#{p.title}") { link_to image_tag(p.photo.thumb), p.photo.url }        
         end
       end
     end
@@ -156,6 +157,18 @@ ActiveAdmin.register User do
           t.input :_destroy, :as=>:boolean, :required => false, :label=>'Remove'
         end
       end
+      # f.inputs "上传地址证明图片" do
+      #   f.has_many :address_photo do |t|
+      #     t.input :title
+      #     t.input :photo, hint: image_tag(t.object.photo.url)
+      #   end
+      # end
+      # f.inputs "上传学历证明图片" do
+      #   f.has_many :education_photo do |t|
+      #     t.input :title
+      #     t.input :photo, hint: image_tag(t.object.photo.url)
+      #   end
+      # end
     end
     f.inputs "上传csv文件", for: [:line_csv, f.object.line_csv || CsvFile.new] do |file|
       file.input :title

@@ -165,7 +165,7 @@
                     %label.optional.col-sm-4.control-label
                       %span 学历
                     .col-sm-6
-                      %input.form-control{:name => "user[education]"}
+                      %input.form-control{:name => "user[education]",:value => current_user.education}
                   -# = f.input :education
                   .user_education.form-group.optional
                     %label.string.optional.col-sm-4.control-label
@@ -173,7 +173,7 @@
                         (学历图片证明)
                     %label.input.input-file.col-sm-6.state-success
                       .button
-                        %input{:type => "file",:name =>"education_photo", :onchange => "this.parentNode.nextElementSibling.value = this.value", :accept => "image/*"}
+                        %input{:type => "file",:name =>"user[education_photo_attributes][photo]", :onchange => "this.parentNode.nextElementSibling.value = this.value", :accept => "image/*"}
                         %span
                           浏览
                       %input{:type => "text", :readonly => ""}
@@ -183,7 +183,7 @@
                     %label.optional.col-sm-4.control-label
                       %span 住址
                     .col-sm-6
-                      %input.form-control{:name => "user[address]"}
+                      %input.form-control{:name => "user[address]",:value => current_user.address}
                   -# = f.input :address
                   .user_address.form-group.optional
                     %label.string.optional.col-sm-4.control-label
@@ -191,7 +191,7 @@
                         (住址图片证明)
                     %label.input.input-file.col-sm-6.state-success
                       .button
-                        %input#address_photo{:type => "file", :name => "address_photo", :onchange => "this.parentNode.nextElementSibling.value =this.value", :value => "this.parentNode.nextElementSibling.value =this.value"}
+                        %input#address_photo{:type => "file", :name => "user[address_photo_attributes][photo]", :onchange => "this.parentNode.nextElementSibling.value =this.value", :value => "this.parentNode.nextElementSibling.value =this.value"}
                         %span
                           浏览
                       %input{:type => "text", :readonly => ""}
@@ -201,7 +201,7 @@
                     %label.optional.col-sm-4.control-label
                       %span= User.human_attribute_name('job')
                     .col-sm-6
-                      %input.form-control{:name => "user[job]"}
+                      %input.form-control{:name => "user[job]",:value => current_user.job}
                   -# = f.input :job
                   .text-center
                     = f.button :submit,class: "btn-u btn-u-red"

@@ -50,6 +50,8 @@ class RegistrationsController < Devise::RegistrationsController
         resource.identity_photos.create(title: "身份证正面")
         resource.identity_photos.create(title: "身份证反面")
         resource.identity_photos.create(title: "手持身份证露脸照片")
+        resource.create_address_photo(title: "住址证明照片")
+        resource.create_education_photo(title: "学历证明照片")
       end
     end
 
