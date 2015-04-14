@@ -107,7 +107,7 @@
                     .form-group.optional
                       %label.optional.col-sm-4.control-label
                         %span{:name => "user[identity_photos_attributes][#{photo_form.index}][title]", :value => "#{photo_form.object.title}"}= photo_form.object.title
-                      - if current_user.level == 'unverified' && current_user.level == 'investor_applied'
+                      - if current_user.level == 'unverified' || current_user.level == 'investor_applied'
                         .col-sm-6
                           %label.input.input-file
                             .button
