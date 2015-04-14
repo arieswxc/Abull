@@ -174,6 +174,7 @@ ActiveAdmin.register Fund do
         f.input :description, as: :wysihtml5
         f.input :frontend_risk_method, as: :wysihtml5
         f.input :backend_risk_method, as: :wysihtml5
+        f.input :additional_instructions, as: :wysihtml5
         f.input :initial_amount
         f.input :mandate, as: :select, collection: [ 'true', 'false' ]
         f.input :minimum
