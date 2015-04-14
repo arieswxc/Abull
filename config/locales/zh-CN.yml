@@ -73,6 +73,7 @@ zh-CN:
         genre: 类型
         raised_amount: 已募集金额
         management_fee: 受托管理费
+        additional_instructions: 附加说明
       comment:
         title: 标题
         comment: 评论
