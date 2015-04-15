@@ -7,20 +7,11 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 AdminUser.create!(
-  cell: '12345678901', 
+  cell: '15000035210', 
   password: 'password123', 
   password_confirmation: 'password123', 
   role: "admin", 
-  email: "foobar1@example.com")
-admin = User.create!(
-  email: 'moerjie@molstr.com',
-  password: 'mol6868068',
-  cell: '15000035210',
-  username: '摩尔街',
-  real_name: '摩尔街',
-  birthday: '2015-03-06',
-  education: '博士')
-Account.create!(user_id: admin.id, balance: 0)
+  email: "moerjie@molstr.com")
 
 CsvFile.create!(
   title: '每日账单数据')

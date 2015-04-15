@@ -19,6 +19,7 @@ zh-CN:
       billing: 账单
       fund_account: 操盘账户
       homs_property: 每日标的资产（FROM HOMS）
+      admin_comment: 评论
     attributes:
       admin_user:
         email: 电子邮件

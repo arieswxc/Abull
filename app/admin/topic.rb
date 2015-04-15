@@ -1,5 +1,5 @@
 ActiveAdmin.register Topic do
-  menu priority: 17
+  menu priority: 18
   permit_params :user_id, :title, :content, :date
 
   index do
