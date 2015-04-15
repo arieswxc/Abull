@@ -34,7 +34,7 @@
               %a.btn-u.btn-u-xs{:class => "#{'btn-u-default direct_to_tab2' if !@authenticated}" "#{'btn-u-yellow' if @authenticated}",
                 :href => "#{edit_user_registration_path if !@authenticated}" "#{'javascript:;' if @authenticated}"} 身份证
               %a.btn-u.btn-u-xs{:class => "#{'btn-u-default direct_to_tab2' if current_user.address.blank?}" "#{'btn-u-yellow' if !current_user.address.blank?}",
-                :href => "#{edit_user_registration_path+ if current_user.address.blank?}" "#{'javascript:;' if !current_user.address.blank?}"} 住址
+                :href => "#{edit_user_registration_path if current_user.address.blank?}" "#{'javascript:;' if !current_user.address.blank?}"} 住址
               %a.btn-u.btn-u-xs{:class => "#{'btn-u-default direct_to_tab2' if current_user.education.blank?}" "#{'btn-u-yellow' if !current_user.education.blank?}",
                 :href => "#{edit_user_registration_path if current_user.education.blank?}" "#{'javascript:;' if !current_user.education.blank?}"} 学历
         .mt15
