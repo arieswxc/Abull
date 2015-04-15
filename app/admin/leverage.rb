@@ -1,4 +1,5 @@
 ActiveAdmin.register Leverage do
+  menu priority: 14
   permit_params :user_id, :date, :amount, :description, :duration, :state, :created_at, :updated_at, :interest_id,
                 :rate, :total_interests, :leverage_amount
 

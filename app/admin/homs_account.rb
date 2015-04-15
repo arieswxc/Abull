@@ -1,4 +1,5 @@
 ActiveAdmin.register HomsAccount do
+  menu priority: 9
   permit_params :title, :password, :fund_id, :amount
 
   index do

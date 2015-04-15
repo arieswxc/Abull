@@ -4,7 +4,7 @@ zh-CN:
     models:
       admin_user: 后台用户
       user: 用户
-      fund: 操盘
+      fund: 操盘标的
       topic: 话题
       comment: 评论
       follow: 关注
@@ -14,11 +14,11 @@ zh-CN:
       news: 动态
       photo: 照片
       interest: 利率
-      account: 账户
+      account: 用户资产账户
       bank_card: 银行卡
       billing: 账单
       fund_account: 操盘账户
-      homs_property: HOMS资产
+      homs_property: 每日标的资产（FROM HOMS）
     attributes:
       admin_user:
         email: 电子邮件
@@ -250,3 +250,5 @@ zh-CN:
   trader: 交易员
   investor_applied: 投资人申请中
   trader_applied: 交易员申请中
+  private: 暗标
+  public: 明标

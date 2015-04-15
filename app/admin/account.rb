@@ -1,4 +1,5 @@
 ActiveAdmin.register Account do
+  menu priority: 2
   permit_params :balance, :user_id, :frost
 
   index do

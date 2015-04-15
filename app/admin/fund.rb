@@ -1,4 +1,5 @@
 ActiveAdmin.register Fund do
+  menu priority: 4
   permit_params :name, :user_id, :amount, :ending_days, :earning, :expected_earning_rate, :earning_rate, :state, :private_check, :minimum, :invest_starting_date, :invest_ending_date, :description,
     	:frontend_risk_method, :duration, :mandate, :management_fee,
   		:backend_risk_method, :initial_amount, :created_at, :updated_at, :raised_amount, :genre, :private_code,fund_verify_photos_attributes: [:title, :photo]
@@ -36,12 +37,13 @@ ActiveAdmin.register Fund do
       row :raised_amount
       row :ending_days
       row :minimum
-      row :private_check
+      row :private_check do
+        t(fund.private_check)
+      end
       row :private_code
       row :expected_earning_rate
       row :genre
-      row :invest_starting_date
-      row :invest_ending_date
+      row :management_fee
       row :description do
         sanitize(fund.description.truncate(30)) if fund.description
       end
@@ -55,7 +57,8 @@ ActiveAdmin.register Fund do
       row :additional_instructions do
         sanitize(fund.additional_instructions.truncate(30)) if fund.additional_instructions
       end
-      row :management_fee
+      row :invest_starting_date
+      row :invest_ending_date
     end
 
     panel t('Homs') do
@@ -124,7 +127,7 @@ ActiveAdmin.register Fund do
           end
         end
         row t('gathering'), :state do |fund|
-          link_to_if (fund.state == "gathering"), t('返款'), return_money_admin_fund_path(fund), :method => :get, :class => 'button'
+          link_to_if (fund.state == "gathering"), t('招标未满返款'), return_money_admin_fund_path(fund), :method => :get, :class => 'button'
         end
         row ' ', :state do |fund|
           link_to_if (fund.state == "gathering"), t('强制完成募集'), confirm_fund_admin_fund_path(fund), :method => :put, :class => 'button'
@@ -146,7 +149,7 @@ ActiveAdmin.register Fund do
         end
       end
     end
-    panel t("发标通知") do
+    panel t("发标短信通知") do
       attributes_table_for fund do
         row('发标审核通过')  do
           link_to t('confirm'), fund_confirm_inform_admin_fund_path(fund), :method => :get, :class => 'button'

@@ -1,4 +1,5 @@
 ActiveAdmin.register BankCard do
+  menu priority: 3
   permit_params :user_id, :number, :bank_name, :bank_branch, :state
 
   index do

@@ -1,4 +1,5 @@
 ActiveAdmin.register Interest do
+  menu priority: 11
   permit_params :leverage_time, :amount, :duration, :interest_rate, :managerment_fee, :show
 
   form do |f|

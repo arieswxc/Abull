@@ -1,4 +1,5 @@
 ActiveAdmin.register CsvFile do
+  menu priority: 6
   permit_params :title, :file, :data_file_id, :data_file_type, :csv_file_type
 
 

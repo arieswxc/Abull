@@ -4,6 +4,7 @@ require 'net/http'
 require 'active_support/all'
 
 ActiveAdmin.register Billing do
+  menu priority: 7
   permit_params :account_id, :amount, :billing_type, :billable_type, :billable_id, :state, :billing_number, :remark
 
   controller do

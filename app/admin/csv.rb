@@ -1,4 +1,5 @@
 ActiveAdmin.register_page "Csv" do
+  menu priority: 5
   content do
     panel "解析账单程序" do
       # div do

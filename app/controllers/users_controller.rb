@@ -176,7 +176,7 @@ class UsersController < ApplicationController
     user = User.find(params[:id])
     user.email_code = email_code
     user.save
-    params[:msg] = "localhost:3000/users/#{params[:id]}/email_verification?email_code=#{email_code}"
+    params[:msg] = "http://www.molstr.com/users/#{params[:id]}/email_verification?email_code=#{email_code}"
     UserMailer.email_verification(user, params).deliver_now
     render json:{ message: "发送验证邮件成功"}, status: 200
   end

@@ -1,5 +1,6 @@
 include ApplicationHelper
 ActiveAdmin.register User do
+  menu priority: 1
   permit_params :email, :password, :password_confirmation, :username, :real_name, :avatar, :cell, :id_card_number, :abstract, :level,
                 :account, :birthday, :verify_file, :line_csv, :gender, :education, :address,:job, verify_photos_attributes: [:title, :photo], 
                 line_csv_attributes: [:title, :file], address_photo_attributes: [:title, :file], education_photo_attributes: [:title, :file]
