@@ -213,7 +213,7 @@ zh-CN:
   devise:
     sessions:
       user:
-        valid_username_or_password: 用户名或密码错误
+        valid username or password: 用户名或密码错误
   female: 女
   applied: 申请
   gathering: 募集中
@@ -235,10 +235,10 @@ zh-CN:
   clear: 清盘
   force_clear: 提前清盘
   Reject: 拒绝
-  card_number: 卡号
-  real_name: 真实姓名
-  bank_name: 开户银行
-  bank_branch: 开户银行所在分行
+  card number: 卡号
+  real name: 真实姓名
+  bank name: 开户银行
+  bank branch: 开户银行所在分行
   state: 状态
   edit: 编辑
   pending: 待定
