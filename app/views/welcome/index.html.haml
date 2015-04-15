@@ -21,7 +21,7 @@
     .loan.mb.fn-clear.w1010
       .grid_12
         .headline.headline-md
-          %h2.bold 投资列表
+          %h2.bold 委托操盘
         %ul#loan-list.ui-list.ui-list-m.ui-list-invest.table-cell
           %li#loan-list-header.ui-list-header.fn-clear.zdy-bg-gray
             %span.ui-list-title.fn-left.color-gray-text.w110 交易员
@@ -67,42 +67,60 @@
                       = t(f.state)
           %li.ui-list-more
             =link_to "查看更多投资理财项目",funds_path
-  .block-v1.pt0i.pb0i
-    .container
-      .row.content-boxes-v3
-        .col-md-12
-          .headline.headline-md
-            %h2 用户心声
-        .col-md-4.col-sm-4.md-margin-bottom-30
-          .row
-            .col-md-2.col-sm-2
-            .col-md-4.col-sm-4.mb20
-              %img.img-circle.w100{:src => asset_path("home_user/home_user1.png")}/
-            .col-md-6.col-sm-6.mt20
-              %h2.heading-sm 操盘手
-              %h3.heading-sm 张先生
-          .content-boxes-in-v3
-            %p “之前一直是帮几个朋友打理账户，收益不错，但账户清算、交易软件、产品发行等很不方便，有了摩尔街，轻松解决了这些问题，让我有更多的精力投入交易操作。”
-        .col-md-4.col-sm-4.md-margin-bottom-30
-          .row
-            .col-md-2.col-sm-2
-            .col-md-4.col-sm-4.mb20
-              %img.img-circle.w100{:src => asset_path("home_user/home_user2.jpg")}/
-            .col-md-6.col-sm-6.mt20
-              %h2.heading-sm 投资客户
-              %h3.heading-sm 刘女士
-          .content-boxes-in-v3
-            %p “随时股市行情上升，股票投资的收益远远超过其他理财方式。由于平时要上班，没时间研究股票，但通过摩尔街，可以找到最好的操盘手为我服务，收益也有保障。”
-        .col-md-4.col-sm-4
-          .row
-            .col-md-2.col-sm-2
-            .col-md-4.col-sm-4.mb20
-              %img.img-circle.w100{:src => asset_path("home_user/home_user3.jpg")}/
-            .col-md-6.col-sm-6.mt20
-              %h2.heading-sm 投资客户
-              %h3.heading-sm 王先生
-          .content-boxes-in-v3
-            %p “我在摩尔街的投资体验非常不错，高效、服务好。而且他们团队成员都是名校毕业，安全性上也有保障，我会跟他们长期合作。”
+  / 投资操盘列表
+  .container.content.pt0i.pb0i
+    .loan.mb.fn-clear.w1010
+      .grid_12
+        .headline.headline-md
+          %h2.bold 产品收益权转让
+        %ul#loan-list.ui-list.ui-list-m.ui-list-invest.table-cell
+          %li#loan-list-header.ui-list-header.fn-clear.zdy-bg-gray
+            %span.ui-list-title.fn-left.color-gray-text.w110 交易员
+            %span.ui-list-title.fn-left.color-gray-text.w200 转让产品名称
+            %span.ui-list-title.fn-left.color-gray-text.w180 类型
+            %span.ui-list-title.fn-left.color-gray-text.text-center.w160 转让金额
+            %span.ui-list-title.fn-left.color-gray-text.text-center.w80 预期收益率
+            %span.ui-list-title.fn-left.color-gray-text.text-center.w80 期限
+            %span.ui-list-title.fn-left.color-gray-text.text-center.w90 进度
+            %span.ui-list-title.fn-left.color-gray-text.text-center.w80  状态
+          %li.ui-list-more
+            =link_to "查看更多投资理财项目",funds_path
+  / .block-v1.pt0i.pb0i
+  /   .container
+  /     .row.content-boxes-v3
+  /       .col-md-12
+  /         .headline.headline-md
+  /           %h2 用户心声
+  /       .col-md-4.col-sm-4.md-margin-bottom-30
+  /         .row
+  /           .col-md-2.col-sm-2
+  /           .col-md-4.col-sm-4.mb20
+  /             %img.img-circle.w100{:src => asset_path("home_user/home_user1.png")}/
+  /           .col-md-6.col-sm-6.mt20
+  /             %h2.heading-sm 操盘手
+  /             %h3.heading-sm 张先生
+  /         .content-boxes-in-v3
+  /           %p “之前一直是帮几个朋友打理账户，收益不错，但账户清算、交易软件、产品发行等很不方便，有了摩尔街，轻松解决了这些问题，让我有更多的精力投入交易操作。”
+  /       .col-md-4.col-sm-4.md-margin-bottom-30
+  /         .row
+  /           .col-md-2.col-sm-2
+  /           .col-md-4.col-sm-4.mb20
+  /             %img.img-circle.w100{:src => asset_path("home_user/home_user2.jpg")}/
+  /           .col-md-6.col-sm-6.mt20
+  /             %h2.heading-sm 投资客户
+  /             %h3.heading-sm 刘女士
+  /         .content-boxes-in-v3
+  /           %p “随时股市行情上升，股票投资的收益远远超过其他理财方式。由于平时要上班，没时间研究股票，但通过摩尔街，可以找到最好的操盘手为我服务，收益也有保障。”
+  /       .col-md-4.col-sm-4
+  /         .row
+  /           .col-md-2.col-sm-2
+  /           .col-md-4.col-sm-4.mb20
+  /             %img.img-circle.w100{:src => asset_path("home_user/home_user3.jpg")}/
+  /           .col-md-6.col-sm-6.mt20
+  /             %h2.heading-sm 投资客户
+  /             %h3.heading-sm 王先生
+  /         .content-boxes-in-v3
+  /           %p “我在摩尔街的投资体验非常不错，高效、服务好。而且他们团队成员都是名校毕业，安全性上也有保障，我会跟他们长期合作。”
   .container.content.pt0i
     .row
       .col-md-12
