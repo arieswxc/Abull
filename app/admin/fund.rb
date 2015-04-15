@@ -212,11 +212,11 @@ ActiveAdmin.register Fund do
     elsif fund.state == 'reached'
       billing_out = fund.user.account.billings.build(
         amount:       -fund.amount,
-        billing_type: "从资金账户到交易账户",
+        billing_type: "资金账户出金",
         billable:     fund.fund_account)
       billing_in = fund.user.account.billings.build(
         amount:       fund.amount,
-        billing_type: "从资金账户到交易账户",
+        billing_type: "交易账户入金",
         billable:     fund.homs_account)
       fund_account          = fund.fund_account
       homs_account          = fund.homs_account
@@ -319,7 +319,7 @@ ActiveAdmin.register Fund do
         fund_billing_out = Billing.new(
           account_id:     funder_account.id,
           amount:         -management_profit,
-          billing_type:   "清盘返款",
+          billing_type:   "交易账户出金",
           billable:       fund)
         fund_billing_in = Billing.new(
           account_id:     funder_account.id,
