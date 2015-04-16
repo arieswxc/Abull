@@ -36,7 +36,7 @@ zh-CN:
         level: 用户等级
         current_sign_in_at: 当前登录时间
         sign_in_count: 登录次数
-        abstract: 摘要
+        abstract: 自我介绍
         created_at: 用户创建日期
         level: 用户等级
         birthday: 生日
